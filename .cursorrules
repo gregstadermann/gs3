@@ -1,0 +1,43 @@
+# MUD Rebuild Project
+
+This is a MUD (Multi-User Dungeon) rebuild project based on the original Gemstone3 MUD code.
+
+## Reference Materials
+- Original Gemstone3 code: `/home/greg/gemstone3`
+- Gemstone3 core: `/home/greg/gemstone3-core`
+
+## Project Context
+- Rebuilding a MUD from scratch using Gemstone3 as reference and influence
+- Use the existing Gemstone3 codebase to understand systems, patterns, and architecture
+- Reference these directories when suggesting implementations or understanding MUD mechanics
+
+## Guidelines
+- When working on MUD systems, check the reference code for existing patterns
+- Maintain compatibility with MUD conventions and player expectations
+- Focus on modern, maintainable code while preserving the spirit of the original
+- Consider both the technical implementation and gameplay implications of changes
+
+## Key Areas to Reference
+- Character systems and progression
+- Combat mechanics
+- World building and room systems
+- Item and inventory management
+- Social systems and communication
+- Quest and event systems
+
+## CRITICAL: Player Stats (FINAL LIST - DO NOT VARY)
+The following 10 stats are FINAL and must not be changed anywhere in the codebase without explicit warning:
+
+1. Strength (STR)
+2. Intelligence (INT)
+3. Wisdom (WIS)
+4. Constitution (CON)
+5. Dexterity (DEX)
+6. Charisma (CHA)
+7. Agility (AGI)
+8. Logic (LOG)
+9. Discipline (DIS)
+10. Aura (AUR)
+
+Default stat distribution: 90, 90, 90, 60, 60, 60, 50, 50, 50, 100
+Usage: Either <STR 90> or <1 90> assigns 90 to strength

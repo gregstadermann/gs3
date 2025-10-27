@@ -1,0 +1,36 @@
+{
+  "name": "gs3",
+  "version": "1.0.0",
+  "description": "Modern MUD Engine - Gemstone3",
+  "main": "gs3",
+  "scripts": {
+    "start": "node gs3 -v",
+    "dev": "nodemon --watch src --ext js,json,yml --ignore log/ --exec node gs3",
+    "gs3": "node gs3",
+    "stop": "pkill -f 'node.*gs3' && pkill -f 'node.*server' && pkill -f nodemon",
+    "test": "jest"
+  },
+  "keywords": [
+    "mud",
+    "game",
+    "multiplayer",
+    "text-based"
+  ],
+  "author": "Greg Stadermann",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21",
+    "mongodb": "^6.20.0",
+    "ws": "^8.14.2",
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

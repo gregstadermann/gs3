@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+'use strict';
+
+// Simple CLI interface for development
+const args = process.argv.slice(2);
+const verbose = args.includes('-v') || args.includes('--verbose');
+
+if (verbose) {
+  console.log('GS3 Game Server - Development Mode');
+  console.log('Starting with verbose logging...');
+}
+
+// Start the game server
+const GameServer = require('./src/server');
+const server = new GameServer();
+server.start();
+
+// Handle graceful shutdown
+process.on('SIGINT', () => {
+  console.log('\nShutting down gracefully...');
+  server.stop();
+  process.exit(0);
+});

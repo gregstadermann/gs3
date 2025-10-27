@@ -34,6 +34,8 @@ class GameEngine extends EventEmitter {
     this.accountManager = new AccountManager(this.dataDir);
     this.actionRecorder = new ActionRecorder();
     this.dailyProcessor = new DailyProcessor(this.actionRecorder);
+    this.combatSystem = null; // Lazy loaded when needed
+    this.npcCombatBehavior = null; // Lazy loaded when needed
     
     // Game state
     this.players = new Map();
@@ -105,9 +107,50 @@ class GameEngine extends EventEmitter {
    * Process a single game tick
    */
   processTick() {
-    // Update all players
+    // Import combat system lazily
+    if (!this.combatSystem) {
+      const CombatSystem = require('../systems/CombatSystem');
+      this.combatSystem = new CombatSystem();
+    }
+
+    // Process roundtime for all players in combat
     for (const [playerId, player] of this.players) {
+      // Update player
       this.playerSystem.updatePlayer(player);
+
+      // Process roundtime/lag
+      if (player.combatData && player.combatData.lag > 0) {
+        player.combatData.lag = Math.max(0, player.combatData.lag - 1000);
+      }
+
+      // If in combat, update combat state
+      if (this.combatSystem.isInCombat(player)) {
+        this.combatSystem.updateCombat(player, 1000);
+      }
+    }
+
+    // Import NPC combat behavior if needed
+    if (!this.npcCombatBehavior && this.combatSystem) {
+      const NPCCombatBehavior = require('../systems/NPCCombatBehavior');
+      this.npcCombatBehavior = new NPCCombatBehavior(this.combatSystem);
+    }
+
+    // Process roundtime for NPCs in combat
+    const allNPCs = this.npcSystem.getAllNPCs();
+    for (const npc of allNPCs) {
+      if (npc.combatData && npc.combatData.lag > 0) {
+        npc.combatData.lag = Math.max(0, npc.combatData.lag - 1000);
+      }
+
+      // Check aggressive NPCs (non-combat NPCs that should attack)
+      if (!this.combatSystem.isInCombat(npc) && npc.aggressive && npc.room) {
+        this.npcCombatBehavior?.checkAggressiveAttack(npc);
+      }
+
+      // If NPC can act (lag expired) and is in combat, perform action
+      if (npc.combatData && npc.combatData.lag === 0 && this.combatSystem.isInCombat(npc)) {
+        this.npcCombatBehavior?.performCombatAction(npc);
+      }
     }
     
     // Emit tick event for other systems

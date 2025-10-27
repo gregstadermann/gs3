@@ -43,10 +43,19 @@ module.exports = {
 
       let skillNumber = 1;
       const formatSkill = (name, ranks, cost, number, maxTotal, maxPerLevel) => {
-        // Format: Number) Current_Ranks Max/Max_Per_Level (Base_Cost) Skill_Name
-        // Base cost is the first rank cost (second rank costs double)
-        const baseCost = cost[0] + cost[1]; // Sum of physical and mental costs
-        return `${number}) ${ranks} ${maxTotal}/${maxPerLevel} (${baseCost}) ${name}`;
+        // Format: Number) Current_Ranks Max/Max_Per_Level (Next_Rank_Cost) Skill_Name
+        // Calculate what the next rank would cost based on current ranks
+        const rankInLevel = ranks % 3;
+        let costMultiplier;
+        
+        if (rankInLevel === 0) costMultiplier = 1;      // Next is 1st rank
+        else if (rankInLevel === 1) costMultiplier = 2; // Next is 2nd rank  
+        else costMultiplier = 4;                        // Next is 3rd rank
+        
+        const nextPhysicalCost = cost[0] * costMultiplier;
+        const nextMentalCost = cost[1] * costMultiplier;
+        
+        return `${number}) ${ranks} ${maxTotal}/${maxPerLevel} (${nextPhysicalCost}/${nextMentalCost}) ${name}`;
       };
       
       // Define max ranks for each skill type

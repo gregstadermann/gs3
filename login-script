@@ -1,0 +1,80 @@
+#!/usr/bin/expect -f
+
+# Login script for GS3 MUD
+# Usage: ./login-script <username> <password> <character>
+
+set username [lindex $argv 0]
+set password [lindex $argv 1]
+set character [lindex $argv 2]
+
+if {[llength $argv] != 3} {
+    puts "Usage: ./login-script <username> <password> <character>"
+    puts "Example: ./login-script admin gcsgcs zoso"
+    exit 1
+}
+
+set timeout 3
+
+# Connect to localhost:4001
+spawn telnet localhost 4001
+
+# Wait for telnet connection to complete
+expect {
+    "Escape character" { }
+    timeout { puts "Connection timeout"; exit 1 }
+}
+
+# Wait for welcome and username prompt (with longer timeout for first interaction)
+set timeout 10
+expect {
+    "Welcome, what is your account username?" { send "$username\r\n" }
+    timeout { puts "Did not receive username prompt"; exit 1 }
+}
+set timeout 3
+
+# Wait for password prompt
+expect {
+    "Enter your password:" { send "$password\r\n" }
+    timeout { puts "Did not receive password prompt"; exit 1 }
+}
+
+# Wait for character selection or account creation
+expect {
+    "Select a character:" { 
+        # List of characters shown, select by number or name
+        expect {
+            "Your choice:" { send "$character\r\n" }
+            timeout { puts "Did not receive character selection prompt"; exit 1 }
+        }
+    }
+    "Your choice:" { send "$character\r\n" }
+    timeout { 
+        # Check if we're already in game or if there's an error
+        expect {
+            "Welcome back" { puts "Already logged in"; interact }
+            "Error*" { puts "Login error occurred"; exit 1 }
+    "Invalid" { puts "Invalid selection"; exit 1 }
+            default { interact }
+        }
+    }
+}
+
+# Wait for login success or proceed to character creation
+expect {
+    "Welcome back" { 
+        puts "Successfully logged in as $character"
+        interact
+    }
+    "Creating new character" {
+        puts "Starting character creation"
+        interact
+    }
+    timeout { 
+        puts "Login completed, entering interactive mode"
+        interact
+    }
+}
+
+# Enter interactive mode
+interact
+

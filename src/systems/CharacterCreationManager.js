@@ -976,10 +976,19 @@ class CharacterCreationManager {
         };
         
         const formatSkill = (name, ranks, cost, number, maxTotal, maxPerLevel) => {
-          // Format: Number) Current_Ranks Max/Max_Per_Level (Base_Cost) Skill_Name
-          // Base cost is the first rank cost (second rank costs double)
-          const baseCost = cost[0] + cost[1]; // Sum of physical and mental costs
-          return `${number}) ${ranks} ${maxTotal}/${maxPerLevel} (${baseCost}) ${name}`;
+          // Format: Number) Current_Ranks Max/Max_Per_Level (Next_Rank_Cost) Skill_Name
+          // Calculate what the next rank would cost based on current ranks
+          const rankInLevel = ranks % 3;
+          let costMultiplier;
+          
+          if (rankInLevel === 0) costMultiplier = 1;      // Next is 1st rank
+          else if (rankInLevel === 1) costMultiplier = 2; // Next is 2nd rank  
+          else costMultiplier = 4;                        // Next is 3rd rank
+          
+          const nextPhysicalCost = cost[0] * costMultiplier;
+          const nextMentalCost = cost[1] * costMultiplier;
+          
+          return `${number}) ${ranks} ${maxTotal}/${maxPerLevel} (${nextPhysicalCost}/${nextMentalCost}) ${name}`;
         };
         
         if (combatSkills.length > 0) {
@@ -1214,56 +1223,8 @@ class CharacterCreationManager {
    * Show skills list
    */
   showSkillsList(connection) {
-    const state = this.creationStates.get(connection);
-    
-    if (!state.characterData.skills || Object.keys(state.characterData.skills).length === 0) {
-      state.characterData.skills = this.initializeSkills(state.characterData.profession);
-    }
-    
-    this.sendMessage(connection, '\r\nAvailable Skills:\r\n');
-    this.sendMessage(connection, `Training Points: ${state.characterData.tps[0]} physical, ${state.characterData.tps[1]} mental\r\n\r\n`);
-    
-    const skills = Object.entries(state.characterData.skills);
-    
-    // Group skills by category
-    const combatSkills = skills.filter(([id, skill]) =>
-      ['brawling', 'one_handed_edged', 'one_handed_blunt', 'two_handed', 'polearm', 'ranged', 'thrown', 'combat_maneuvers', 'shield_use', 'armor_use'].includes(id)
-    );
-    const utilitySkills = skills.filter(([id, skill]) =>
-      ['climbing', 'swimming', 'disarm_traps', 'pick_locks', 'stalk_and_hide', 'perception', 'ambush', 'survival', 'first_aid'].includes(id)
-    );
-    const magicSkills = skills.filter(([id, skill]) =>
-      ['spell_aim', 'mana_share', 'magic_item_use', 'scroll_reading', 'harness_power', 'major_elemental', 'minor_elemental', 'major_spiritual', 'minor_spiritual', 'cleric_base', 'wizard_base', 'empath_base', 'sorcerer_base', 'ranger_base', 'paladin_base', 'bard_base'].includes(id)
-    );
-
-    const formatSkill = ([id, skill]) => {
-      const currentRanks = skill.ranks || 0;
-      return `- ${skill.name} (Ranks: ${currentRanks}) - Cost: ${skill.cost[0]} physical, ${skill.cost[1]} mental per rank`;
-    };
-
-    if (combatSkills.length > 0) {
-      this.sendMessage(connection, '--- Combat Skills ---\r\n');
-      combatSkills.forEach(([id, skill]) => {
-        this.sendMessage(connection, formatSkill([id, skill]) + '\r\n');
-      });
-      this.sendMessage(connection, '\r\n');
-    }
-    if (utilitySkills.length > 0) {
-      this.sendMessage(connection, '--- Utility Skills ---\r\n');
-      utilitySkills.forEach(([id, skill]) => {
-        this.sendMessage(connection, formatSkill([id, skill]) + '\r\n');
-      });
-      this.sendMessage(connection, '\r\n');
-    }
-    if (magicSkills.length > 0) {
-      this.sendMessage(connection, '--- Magic Skills ---\r\n');
-      magicSkills.forEach(([id, skill]) => {
-        this.sendMessage(connection, formatSkill([id, skill]) + '\r\n');
-      });
-      this.sendMessage(connection, '\r\n');
-    }
-    
-    this.sendMessage(connection, '>');
+    // Just call the showSkillTraining method which has the correct format
+    this.showSkillTraining(connection);
   }
 
   /**

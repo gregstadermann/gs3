@@ -115,6 +115,8 @@ module.exports = {
       : room.items;
     
     console.log('[GET] Container:', container ? container.name : 'none');
+    console.log('[GET] Container _id:', container ? container._id : 'none');
+    console.log('[GET] Container id:', container ? container.id : 'none');
     console.log('[GET] Container metadata:', container ? JSON.stringify(container.metadata, null, 2) : 'none');
     console.log('[GET] Search term:', searchTerm);
     console.log('[GET] Search sources count:', searchSources ? searchSources.length : 0);
@@ -123,12 +125,19 @@ module.exports = {
     for (const itemRef of searchSources) {
       const itemId = typeof itemRef === 'string' ? itemRef : (itemRef.id || itemRef.name);
       
+      console.log('[GET] Looking for item with id:', itemId);
+      
       // Try to fetch item from database
       let item = null;
       if (player.gameEngine.roomSystem.db) {
         try {
           item = await player.gameEngine.roomSystem.db.collection('items')
             .findOne({ id: itemId });
+          if (item) {
+            console.log('[GET] Found item:', item.name, '_id:', item._id, 'id:', item.id);
+          } else {
+            console.log('[GET] Item not found in DB for id:', itemId);
+          }
         } catch (error) {
           console.error('Error fetching item:', error);
         }
@@ -141,8 +150,11 @@ module.exports = {
       const name = item.name || '';
       const keywords = item.keywords || [];
       
+      console.log('[GET] Checking item:', name, 'against search term:', searchTerm);
+      
       if (name.toLowerCase().includes(searchTerm) || 
           keywords.some(kw => kw.toLowerCase().includes(searchTerm))) {
+        console.log('[GET] MATCH FOUND:', name);
         foundItem = item;
         break;
       }

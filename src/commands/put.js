@@ -60,7 +60,7 @@ module.exports = {
 
     // Find target container
     let container = null;
-    // If "my" for container, search belongings first
+    // If "my" for container, search belongings first (needs DB lookup)
     if (containerIsMine) {
       const belongings = [];
       if (player.equipment?.rightHand) belongings.push(player.equipment.rightHand);
@@ -71,7 +71,17 @@ module.exports = {
         }
       }
       if (Array.isArray(player.inventory)) belongings.push(...player.inventory);
-      container = belongings.find(it => ((it.name||'').toLowerCase().includes(targetTerm)) || (it.keywords||[]).some(k=>k.toLowerCase().includes(targetTerm)));
+      // Check belongings using their IDs to fetch fresh item docs
+      for (const it of belongings) {
+        if (!it.id) continue;
+        const fetched = await db.collection('items').findOne({ id: it.id });
+        console.log('[PUT] Checked belonging:', fetched?.name, '_id:', fetched?._id, 'id:', fetched?.id);
+        if (fetched && (((fetched.name||'').toLowerCase().includes(targetTerm)) || (fetched.keywords||[]).some(k=>k.toLowerCase().includes(targetTerm)))) {
+          container = fetched;
+          console.log('[PUT] Container found:', container.name, '_id:', container._id);
+          break;
+        }
+      }
     } else {
       if (Array.isArray(room.items) && room.items.length) {
         const itemIds = room.items.map(r => typeof r === 'string' ? r : (r.id || r.name));
@@ -162,13 +172,17 @@ module.exports = {
 
     // Update container's stored items array in room
     let containerItems = (container.metadata?.items || []).slice();
+    console.log('[PUT] Container items before:', containerItems);
     containerItems.push(itemId);
+    console.log('[PUT] Container items after:', containerItems);
+    console.log('[PUT] Updating container with id:', container.id, '_id:', container._id);
     
     try {
-      await db.collection('items').updateOne(
+      const result = await db.collection('items').updateOne(
         { id: container.id },
         { $set: { 'metadata.items': containerItems } }
       );
+      console.log('[PUT] Update result:', result.modifiedCount, 'docs modified');
     } catch (error) {
       console.error('Error storing item in container:', error);
     }

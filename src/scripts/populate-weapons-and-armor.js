@@ -58,21 +58,22 @@ async function populate(){
     }
 
     // 1) Create one instance of each base weapon, place in TSC
-    let createdWeapons = 0;
-    if (tsc) {
-      const roomItems = Array.isArray(tsc.items)? tsc.items.slice() : [];
-      for (const key of Object.keys(BASE_WEAPONS)) {
-        try{
-          const base = BASE_WEAPONS[key];
-          const doc = createWeaponInstance(key, base, tsc._id);
-          await db.collection('items').insertOne(doc);
-          roomItems.push(doc.id);
-          createdWeapons++;
-        }catch(e){ /* skip problematic entries */ }
-      }
-      await db.collection('rooms').updateOne({ _id: tsc._id }, { $set: { items: roomItems } });
-      console.log('Created weapon instances:', createdWeapons);
-    }
+    // DISABLED: Weapons no longer spawned in TSC
+    // let createdWeapons = 0;
+    // if (tsc) {
+    //   const roomItems = Array.isArray(tsc.items)? tsc.items.slice() : [];
+    //   for (const key of Object.keys(BASE_WEAPONS)) {
+    //     try{
+    //       const base = BASE_WEAPONS[key];
+    //       const doc = createWeaponInstance(key, base, tsc._id);
+    //       await db.collection('items').insertOne(doc);
+    //       roomItems.push(doc.id);
+    //       createdWeapons++;
+    //     }catch(e){ /* skip problematic entries */ }
+    //   }
+    //   await db.collection('rooms').updateOne({ _id: tsc._id }, { $set: { items: roomItems } });
+    //   console.log('Created weapon instances:', createdWeapons);
+    // }
 
     // 2) Create armor for each ASG and put into chest
     let createdArmor = 0;

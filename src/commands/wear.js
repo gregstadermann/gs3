@@ -4,11 +4,11 @@ const { checkRoundtime } = require('../utils/roundtimeChecker');
 
 /**
  * Wear Command
- * Equip items from hands to appropriate equipment slots
+ * Move items from hands to appropriate equipment slots
  */
 module.exports = {
   name: 'wear',
-  aliases: ['equip', 'don'],
+  aliases: ['don'],
   description: 'Wear an item from your hands',
   usage: 'wear <item>',
   
@@ -183,10 +183,10 @@ module.exports = {
     player.equipment[equipmentSlot] = foundItem.id;
 
     try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
-    return { 
-      success: true, 
-      message: `You equip ${itemName}.\r\n` 
-    };
+      return { 
+        success: true, 
+        message: `You wear ${itemName}.\r\n` 
+      };
   }
 };
 

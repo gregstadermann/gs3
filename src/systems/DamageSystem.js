@@ -601,13 +601,20 @@ class DamageSystem {
       }
     }
 
-    console.log(`[DEATH CHECK] newHealth <= 0: ${newHealth <= 0}, target: ${!!target}, room: ${target?.room}, gameEngine: ${!!target?.gameEngine}, roomSystem: ${!!target?.gameEngine?.roomSystem}`);
+    // Get gameEngine from attacker if target doesn't have it (for logging)
+    const debugGameEngine = target.gameEngine || attacker.gameEngine;
+    const debugRoomSystem = target.gameEngine?.roomSystem || attacker.gameEngine?.roomSystem;
+    console.log(`[DEATH CHECK] newHealth <= 0: ${newHealth <= 0}, target: ${!!target}, room: ${target?.room}, gameEngine: ${!!debugGameEngine}, roomSystem: ${!!debugRoomSystem}`);
     
     // If target died, create a corpse item in the room for SEARCH/SKIN
-    if (newHealth <= 0 && target && target.room && target.gameEngine && target.gameEngine.roomSystem) {
+    // Get gameEngine from attacker if target doesn't have it
+    const gameEngine = target.gameEngine || attacker.gameEngine;
+    const roomSystem = target.gameEngine?.roomSystem || attacker.gameEngine?.roomSystem;
+    
+    if (newHealth <= 0 && target && target.room && gameEngine && roomSystem) {
       console.log(`[CORPSE] Target died: ${target.name}, room: ${target.room}`);
       try {
-        const db = target.gameEngine.roomSystem.db;
+        const db = roomSystem.db;
         if (db) {
           console.log(`[CORPSE] DB available, creating corpse`);
           const roomDoc = await db.collection('rooms').findOne({ id: target.room });
@@ -638,13 +645,13 @@ class DamageSystem {
           const newItems = Array.isArray(roomDoc?.items) ? [...roomDoc.items, corpseId] : [corpseId];
           await db.collection('rooms').updateOne({ id: target.room }, { $set: { items: newItems } });
           console.log(`[CORPSE] Added corpse to room items array`);
-          const cachedRoom = target.gameEngine.roomSystem.getRoom(target.room);
+          const cachedRoom = roomSystem.getRoom(target.room);
           if (cachedRoom) {
-            target.gameEngine.roomSystem.rooms.set(target.room, { ...cachedRoom, items: newItems });
+            roomSystem.rooms.set(target.room, { ...cachedRoom, items: newItems });
           }
           
           // Remove living NPC from room
-          const npcSystem = target.gameEngine?.npcSystem;
+          const npcSystem = gameEngine?.npcSystem;
           console.log(`[CORPSE] Attempting to remove NPC, npcId: ${target.npcId}, has system: ${!!npcSystem}`);
           if (npcSystem && target.npcId) {
             console.log(`[CORPSE] Removing NPC ${target.npcId} from room`);

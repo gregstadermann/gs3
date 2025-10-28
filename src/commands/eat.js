@@ -33,22 +33,26 @@ module.exports = {
     // Find the herb in player's hands or inventory
     let herb = null;
     let herbItem = null;
+    let handSlot = null;
+    const db = player.gameEngine.roomSystem.db;
     
     // Check right hand
-    if (player.equipment?.rightHand) {
-      const item = player.equipment.rightHand;
-      if (isHerb(item)) {
+    if (player.equipment?.rightHand && typeof player.equipment.rightHand === 'string') {
+      const item = await db.collection('items').findOne({ id: player.equipment.rightHand });
+      if (item && isHerb(item)) {
         herbItem = item;
         herb = getHerb(item.metadata.baseItem);
+        handSlot = 'rightHand';
       }
     }
     
     // Check left hand
-    if (!herb && player.equipment?.leftHand) {
-      const item = player.equipment.leftHand;
-      if (isHerb(item)) {
+    if (!herb && player.equipment?.leftHand && typeof player.equipment.leftHand === 'string') {
+      const item = await db.collection('items').findOne({ id: player.equipment.leftHand });
+      if (item && isHerb(item)) {
         herbItem = item;
         herb = getHerb(item.metadata.baseItem);
+        handSlot = 'leftHand';
       }
     }
 
@@ -74,10 +78,8 @@ module.exports = {
       message += `Restored ${healResult.restoredHP} HP. Your health is now ${healResult.currentHealth}/${healResult.maxHealth}.\r\n`;
       
       // Remove herb from hand
-      if (herbItem === player.equipment.rightHand) {
-        player.equipment.rightHand = null;
-      } else if (herbItem === player.equipment.leftHand) {
-        player.equipment.leftHand = null;
+      if (handSlot) {
+        player.equipment[handSlot] = null;
       }
     }
     // Heal wounds

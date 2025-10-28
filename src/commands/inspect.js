@@ -28,9 +28,28 @@ module.exports = {
 
     // Search order: hands -> worn -> room
     const candidates = [];
-    if (player.equipment?.rightHand) candidates.push(player.equipment.rightHand);
-    if (player.equipment?.leftHand) candidates.push(player.equipment.leftHand);
-    if (player.wornItems && Array.isArray(player.wornItems)) candidates.push(...player.wornItems);
+    
+    // Fetch hands items from DB
+    if (player.equipment?.rightHand && typeof player.equipment.rightHand === 'string') {
+      const item = await db.collection('items').findOne({ id: player.equipment.rightHand });
+      if (item) candidates.push(item);
+    }
+    if (player.equipment?.leftHand && typeof player.equipment.leftHand === 'string') {
+      const item = await db.collection('items').findOne({ id: player.equipment.leftHand });
+      if (item) candidates.push(item);
+    }
+    
+    // Search worn items
+    if (player.equipment) {
+      for (const [slot, itemId] of Object.entries(player.equipment)) {
+        if (slot !== 'rightHand' && slot !== 'leftHand' && itemId && typeof itemId === 'string') {
+          const item = await db.collection('items').findOne({ id: itemId });
+          if (item) candidates.push(item);
+        }
+      }
+    }
+    
+    // Search room items
     if (room?.items && Array.isArray(room.items)) {
       for (const ref of room.items) {
         const it = await fetchItemByRef(ref);

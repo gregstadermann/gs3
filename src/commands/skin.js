@@ -46,12 +46,27 @@ module.exports = {
       let tool = null;
       if (withName) {
         // Look in hands for named tool
-        const left = player.equipment?.leftHand;
-        const right = player.equipment?.rightHand;
-        const matches = [left, right].filter(it => it && ((it.name || '').toLowerCase().includes(withName.toLowerCase())));
-        tool = matches[0] || null;
+        const leftId = player.equipment?.leftHand;
+        const rightId = player.equipment?.rightHand;
+        
+        // Fetch items from DB
+        if (leftId && typeof leftId === 'string') {
+          const item = await db.collection('items').findOne({ id: leftId });
+          if (item && ((item.name || '').toLowerCase().includes(withName.toLowerCase()))) {
+            tool = item;
+          }
+        }
+        if (!tool && rightId && typeof rightId === 'string') {
+          const item = await db.collection('items').findOne({ id: rightId });
+          if (item && ((item.name || '').toLowerCase().includes(withName.toLowerCase()))) {
+            tool = item;
+          }
+        }
       } else {
-        tool = hand === 'left' ? player.equipment?.leftHand : player.equipment?.rightHand;
+        const itemId = hand === 'left' ? player.equipment?.leftHand : player.equipment?.rightHand;
+        if (itemId && typeof itemId === 'string') {
+          tool = await db.collection('items').findOne({ id: itemId });
+        }
       }
 
       // Skill modifiers (very simplified placeholder)

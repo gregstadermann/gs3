@@ -634,6 +634,19 @@ class DamageSystem {
           if (cachedRoom) {
             target.gameEngine.roomSystem.rooms.set(target.room, { ...cachedRoom, items: newItems });
           }
+          
+          // Remove living NPC from room
+          const npcSystem = target.gameEngine?.npcSystem;
+          if (npcSystem && target.npcId) {
+            // Remove NPC from the in-memory NPC system
+            npcSystem.removeNPC(target.npcId);
+            
+            // Remove from room's NPCs array in database
+            await db.collection('rooms').updateOne(
+              { id: target.room },
+              { $pull: { npcs: target.npcId } }
+            );
+          }
         }
       } catch (_) {
         // non-fatal if corpse creation fails

@@ -13,7 +13,7 @@ module.exports = {
   usage: 'put <item> in <container>',
 
   async execute(player, args) {
-    if (!args || args.length < 3) {
+    if (!args || args.length < 1) {
       return { success:false, message: 'Put what in what?\r\n' };
     }
 
@@ -24,6 +24,8 @@ module.exports = {
     // Parse: find "in" splitter
     const inIdx = args.findIndex(a => a.toLowerCase() === 'in' || a.toLowerCase() === 'into');
     if (inIdx === -1) {
+      // No container specified → act like DROP
+      try { const drop = require('./drop'); return await drop.execute(player, args); } catch(_) {}
       return { success:false, message: 'Specify where to put it.\r\n' };
     }
     const itemTerm = args.slice(0, inIdx).join(' ').toLowerCase();

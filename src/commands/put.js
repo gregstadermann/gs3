@@ -93,13 +93,53 @@ module.exports = {
       return { success:true, message: `You place ${itemName} into ${contName}. It vanishes without a trace.\r\n` };
     }
 
-    // Regular container: store item inside (for now, mark as contained)
-    // TODO: Update container's items array in DB
+    // Regular container: store item inside and persist to DB
     if (handSlot) {
       player.equipment[handSlot] = null;
     } else if (Array.isArray(player.inventory)) {
       const idx = player.inventory.indexOf(item);
       if (idx >= 0) player.inventory.splice(idx, 1);
+    }
+
+    // Ensure item has an ID and exists in DB
+    let itemId = item.id;
+    if (!itemId) {
+      itemId = `item-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+      const doc = {
+        id: itemId,
+        type: item.type || 'ITEM',
+        name: item.name || 'an item',
+        roomDesc: item.roomDesc || item.name || 'an item',
+        keywords: item.keywords || [],
+        description: item.description || `${itemName} looks ordinary.`,
+        metadata: item.metadata || {},
+        createdAt: new Date()
+      };
+      try {
+        await db.collection('items').insertOne(doc);
+      } catch (error) {
+        console.error('Error creating item in DB:', error);
+      }
+    } else {
+      // Update existing item to mark it as inside a container
+      try {
+        await db.collection('items').updateOne({ id: itemId }, { $set: { containedIn: container.id } });
+      } catch (error) {
+        console.error('Error updating item container reference:', error);
+      }
+    }
+
+    // Update container's stored items array in room
+    let containerItems = (container.metadata?.items || []).slice();
+    containerItems.push(itemId);
+    
+    try {
+      await db.collection('items').updateOne(
+        { id: container.id },
+        { $set: { 'metadata.items': containerItems } }
+      );
+    } catch (error) {
+      console.error('Error storing item in container:', error);
     }
 
     return { success:true, message: `You put ${itemName} in ${contName}.\r\n` };

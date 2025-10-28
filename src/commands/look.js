@@ -131,9 +131,25 @@ const lookEntity = async (player, args) => {
 
       // Check if it's a container
       if (container.type === 'CONTAINER' || (container.metadata && container.metadata.container)) {
-        // TODO: Fetch items inside container from DB once storage is implemented
-        // For now, all containers are empty
-        return { success: true, message: `You look in ${container.name}.\r\nIt is empty.\r\n` };
+        const items = container.metadata?.items || [];
+        if (items.length === 0) {
+          return { success: true, message: `You look in ${container.name}.\r\nIt is empty.\r\n` };
+        }
+        
+        // Fetch item names
+        const itemDocs = await db.collection('items').find({ id: { $in: items } }).toArray();
+        const itemNames = itemDocs.map(doc => doc.name || 'an item');
+        
+        let contentMsg = '';
+        if (itemNames.length === 1) {
+          contentMsg = itemNames[0];
+        } else if (itemNames.length === 2) {
+          contentMsg = `${itemNames[0]} and ${itemNames[1]}`;
+        } else {
+          contentMsg = itemNames.slice(0, -1).join(', ') + ', and ' + itemNames[itemNames.length - 1];
+        }
+        
+        return { success: true, message: `You look in ${container.name}.\r\n${contentMsg}.\r\n` };
       }
       return { success: false, message: `You cannot look inside ${container.name}.\r\n` };
     }
@@ -157,8 +173,25 @@ const lookEntity = async (player, args) => {
             if (itemData) {
               // If "look in" and this is a container, show contents
               if (lookInContainer && (itemData.type === 'CONTAINER' || (itemData.metadata && itemData.metadata.container))) {
-                // TODO: Fetch items inside container from DB once storage is implemented
-                return { success: true, message: `You look in ${itemData.name}.\r\nIt is empty.\r\n` };
+                const containerItems = itemData.metadata?.items || [];
+                if (containerItems.length === 0) {
+                  return { success: true, message: `You look in ${itemData.name}.\r\nIt is empty.\r\n` };
+                }
+                
+                // Fetch item names
+                const itemDocs = await db.collection('items').find({ id: { $in: containerItems } }).toArray();
+                const itemNames = itemDocs.map(doc => doc.name || 'an item');
+                
+                let contentMsg = '';
+                if (itemNames.length === 1) {
+                  contentMsg = itemNames[0];
+                } else if (itemNames.length === 2) {
+                  contentMsg = `${itemNames[0]} and ${itemNames[1]}`;
+                } else {
+                  contentMsg = itemNames.slice(0, -1).join(', ') + ', and ' + itemNames[itemNames.length - 1];
+                }
+                
+                return { success: true, message: `You look in ${itemData.name}.\r\n${contentMsg}.\r\n` };
               }
               
               let message = '';
@@ -196,8 +229,25 @@ const lookEntity = async (player, args) => {
           )) {
             // If "look in" and this is a container, show contents
             if (lookInContainer && (itemData.type === 'CONTAINER' || (itemData.metadata && itemData.metadata.container))) {
-              // TODO: Fetch items inside container from DB once storage is implemented
-              return { success: true, message: `You look in ${itemData.name}.\r\nIt is empty.\r\n` };
+              const containerItems = itemData.metadata?.items || [];
+              if (containerItems.length === 0) {
+                return { success: true, message: `You look in ${itemData.name}.\r\nIt is empty.\r\n` };
+              }
+              
+              // Fetch item names
+              const itemDocs = await db.collection('items').find({ id: { $in: containerItems } }).toArray();
+              const itemNames = itemDocs.map(doc => doc.name || 'an item');
+              
+              let contentMsg = '';
+              if (itemNames.length === 1) {
+                contentMsg = itemNames[0];
+              } else if (itemNames.length === 2) {
+                contentMsg = `${itemNames[0]} and ${itemNames[1]}`;
+              } else {
+                contentMsg = itemNames.slice(0, -1).join(', ') + ', and ' + itemNames[itemNames.length - 1];
+              }
+              
+              return { success: true, message: `You look in ${itemData.name}.\r\n${contentMsg}.\r\n` };
             }
             
             let message = '';

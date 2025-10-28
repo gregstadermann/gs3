@@ -39,24 +39,22 @@ module.exports = {
     let searchTerm = raw;
     let fromIdx = args.findIndex(a => a.toLowerCase() === 'from');
     let containerTerm = null;
+    let containerIsMine = false;
     if (fromIdx !== -1) {
       searchTerm = args.slice(0, fromIdx).join(' ').toLowerCase();
       containerTerm = args.slice(fromIdx + 1).join(' ').toLowerCase();
-      // Strip "my" if present (not needed since searching belongings already)
-      containerTerm = containerTerm.replace(/^my\s+/, '');
+      // Check if "my" is present after FROM
+      containerIsMine = containerTerm.startsWith('my ');
+      if (containerIsMine) {
+        containerTerm = containerTerm.replace(/^my\s+/, '');
+      }
     }
     
-    // If getting FROM container, locate container first (room first, then belongings)
+    // If getting FROM container, locate container first
     let container = null;
     if (containerTerm) {
-      // Search room first
-      const itemIds = Array.isArray(room.items)? room.items.map(x=> typeof x==='string'? x : (x.id||x)) : [];
-      if (itemIds.length) {
-        const candidates = await player.gameEngine.roomSystem.db.collection('items').find({ id: { $in: itemIds } }).toArray();
-        container = candidates.find(it => ((it.name||'').toLowerCase().includes(containerTerm)) || (it.keywords||[]).some(k=>k.toLowerCase().includes(containerTerm)));
-      }
-      // Fallback to belongings
-      if (!container) {
+      if (containerIsMine) {
+        // MY keyword: search ONLY belongings
         const belongings = [];
         if (player.equipment?.rightHand) belongings.push(player.equipment.rightHand);
         if (player.equipment?.leftHand) belongings.push(player.equipment.leftHand);
@@ -73,6 +71,34 @@ module.exports = {
           if (fetched && (((fetched.name||'').toLowerCase().includes(containerTerm)) || (fetched.keywords||[]).some(k=>k.toLowerCase().includes(containerTerm)))) {
             container = fetched;
             break;
+          }
+        }
+      } else {
+        // Search room first
+        const itemIds = Array.isArray(room.items)? room.items.map(x=> typeof x==='string'? x : (x.id||x)) : [];
+        if (itemIds.length) {
+          const candidates = await player.gameEngine.roomSystem.db.collection('items').find({ id: { $in: itemIds } }).toArray();
+          container = candidates.find(it => ((it.name||'').toLowerCase().includes(containerTerm)) || (it.keywords||[]).some(k=>k.toLowerCase().includes(containerTerm)));
+        }
+        // Fallback to belongings
+        if (!container) {
+          const belongings = [];
+          if (player.equipment?.rightHand) belongings.push(player.equipment.rightHand);
+          if (player.equipment?.leftHand) belongings.push(player.equipment.leftHand);
+          if (player.equipment) {
+            for (const [slot, it] of Object.entries(player.equipment)) {
+              if (slot !== 'rightHand' && slot !== 'leftHand' && it) belongings.push(it);
+            }
+          }
+          if (Array.isArray(player.inventory)) belongings.push(...player.inventory);
+          // Fetch full DB document for each item in belongings
+          for (const ref of belongings) {
+            if (!ref.id) continue;
+            const fetched = await player.gameEngine.roomSystem.db.collection('items').findOne({ id: ref.id });
+            if (fetched && (((fetched.name||'').toLowerCase().includes(containerTerm)) || (fetched.keywords||[]).some(k=>k.toLowerCase().includes(containerTerm)))) {
+              container = fetched;
+              break;
+            }
           }
         }
       }

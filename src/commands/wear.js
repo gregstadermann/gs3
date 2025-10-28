@@ -189,7 +189,7 @@ module.exports = {
     // Set the item ID in the equipment slot (not the full object)
     player.equipment[equipmentSlot] = foundItem.id;
 
-    try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
+    try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
     return { 
       success: true, 
       message: `You equip ${itemName}.\r\n` 

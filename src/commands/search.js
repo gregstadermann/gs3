@@ -74,7 +74,7 @@ module.exports = {
       const cached = player.gameEngine.roomSystem.getRoom(player.room);
       if (cached) player.gameEngine.roomSystem.rooms.set(player.room, { ...cached, items: newItems });
 
-      try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
+      try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
       return { success: true, message: msg };
     } catch (e) {
       return { success: false, message: 'You find nothing.\r\n' };

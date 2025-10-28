@@ -204,7 +204,7 @@ module.exports = {
     const itemName = foundItem.name || 'an item';
     
     // Recalculate encumbrance
-    try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
+    try { const Enc = require('../utils/encumbrance'); await await Enc.recalcEncumbrance(player); } catch(_) {}
 
     // Show appropriate message based on source
     if (container) {

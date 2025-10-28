@@ -79,38 +79,85 @@ function getUnencumberedCapacity(player) {
   return Math.max(0, baseCap + armorAdj + pfBonus);
 }
 
-function getCarriedWeight(player) {
-  // Very simplified: sum of held and worn items weights if available + silvers weight
+async function getCarriedWeight(player) {
+  // Sum of held and worn items weights if available + container contents + silvers weight
   let total = 0;
+  const db = player.gameEngine?.roomSystem?.db;
+  
+  // Check hands (now stores IDs)
   const hands = [player.equipment?.rightHand, player.equipment?.leftHand];
-  for (const it of hands) {
-    if (it && typeof it.metadata?.weight === 'number') total += it.metadata.weight;
+  for (const itemId of hands) {
+    if (itemId && typeof itemId === 'string' && db) {
+      try {
+        const item = await db.collection('items').findOne({ id: itemId });
+        if (item && typeof item.metadata?.weight === 'number') {
+          total += item.metadata.weight;
+        }
+      } catch (_) {}
+    }
   }
+  
   // Add worn equipment weights (exclude main armor standard weight)
   try {
     const eq = player.equipment || {};
     for (const key of Object.keys(eq)) {
       if (key === 'rightHand' || key === 'leftHand') continue;
-      const it = eq[key];
-      if (!it) continue;
-      const w = it.metadata?.weight;
-      if (typeof w !== 'number') continue;
-      const isArmorMain = !!it.metadata?.armorGroup;
-      if (isArmorMain) {
-        // Skip main armor weight; capacity adjusted elsewhere
-        continue;
+      const itemId = eq[key];
+      if (!itemId || typeof itemId !== 'string') continue;
+      
+      // Fetch item from DB
+      if (db) {
+        try {
+          const item = await db.collection('items').findOne({ id: itemId });
+          if (!item) continue;
+          
+          const w = item.metadata?.weight;
+          if (typeof w !== 'number') continue;
+          const isArmorMain = !!item.metadata?.armorGroup;
+          if (isArmorMain) {
+            // Skip main armor weight; capacity adjusted elsewhere
+            continue;
+          }
+          total += w;
+          
+          // Check if this item is a container and add its contents
+          if (item.type === 'CONTAINER' && item.metadata?.container && Array.isArray(item.metadata.items)) {
+            for (const containedId of item.metadata.items) {
+              if (typeof containedId !== 'string') continue;
+              try {
+                const containedItem = await db.collection('items').findOne({ id: containedId });
+                if (containedItem && typeof containedItem.metadata?.weight === 'number') {
+                  total += containedItem.metadata.weight;
+                }
+              } catch (_) {}
+            }
+          }
+        } catch (_) {}
       }
-      total += w;
     }
   } catch (_) {}
+  
+  // Check inventory items
+  if (Array.isArray(player.inventory) && db) {
+    for (const itemId of player.inventory) {
+      if (typeof itemId !== 'string') continue;
+      try {
+        const item = await db.collection('items').findOne({ id: itemId });
+        if (item && typeof item.metadata?.weight === 'number') {
+          total += item.metadata.weight;
+        }
+      } catch (_) {}
+    }
+  }
+  
   const silvers = player.attributes?.currency?.silver || 0;
   total += silvers / 160; // 160 silvers per pound
   return total;
 }
 
-function getEncumbrancePercent(player) {
+async function getEncumbrancePercent(player) {
   const bodyW = getBodyWeight(player);
-  const carried = getCarriedWeight(player);
+  const carried = await getCarriedWeight(player);
   const capacity = getUnencumberedCapacity(player);
   const over = Math.max(0, carried - capacity);
   return (over / bodyW) * 100; // percentage of body weight
@@ -135,13 +182,13 @@ module.exports = {
   getCarriedWeight,
   getEncumbrancePercent,
   getEncumbranceMessage,
-  recalcEncumbrance(player) {
+  async recalcEncumbrance(player) {
     try {
       if (!player.attributes) player.attributes = {};
       const bodyW = getBodyWeight(player);
       const capacity = getUnencumberedCapacity(player);
-      const carried = getCarriedWeight(player);
-      const pct = getEncumbrancePercent(player);
+      const carried = await getCarriedWeight(player);
+      const pct = await getEncumbrancePercent(player);
       player.attributes.encumbrance = {
         bodyWeight: bodyW,
         capacity,

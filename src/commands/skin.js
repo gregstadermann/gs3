@@ -104,7 +104,7 @@ module.exports = {
       // Apply short RT for skinning
       player.gameEngine.combatSystem.addLag(player, 2000);
 
-      try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
+      try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
       return { success: true, message: `You begin to skin the ${npcName}... You manage to extract ${skinItem.name}.\r\n` };
     } catch (e) {
       return { success: false, message: 'You fail to skin anything useful.\r\n' };

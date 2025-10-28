@@ -41,7 +41,7 @@ module.exports = {
           } catch (_) {}
         }
 
-        try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
+        try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
         return { 
           success: true, 
           message: `You release ${weaponName} from your right hand.\r\n` 
@@ -69,7 +69,7 @@ module.exports = {
           } catch (_) {}
         }
 
-        try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
+        try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
         return { 
           success: true, 
           message: `You release ${weaponName} from your left hand.\r\n` 
@@ -105,7 +105,7 @@ module.exports = {
         }
         player.inventory.push(weaponId);
 
-        try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
+        try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
         return { 
           success: true, 
           message: `You release ${weaponName} from your right hand.\r\n` 
@@ -134,7 +134,7 @@ module.exports = {
         }
         player.inventory.push(weaponId);
 
-        try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
+        try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
         return { 
           success: true, 
           message: `You release ${weaponName} from your left hand.\r\n` 
@@ -160,7 +160,7 @@ module.exports = {
               // Put in right hand (store the ID)
               delete player.equipment[slot];
               player.equipment.rightHand = itemId;
-              try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
+              try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
               return { 
                 success: true, 
                 message: `You remove ${itemName} from ${slot}.\r\n` 
@@ -169,7 +169,7 @@ module.exports = {
               // Put in left hand (store the ID)
               delete player.equipment[slot];
               player.equipment.leftHand = itemId;
-              try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
+              try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
               return { 
                 success: true, 
                 message: `You remove ${itemName} from ${slot}.\r\n` 

@@ -31,7 +31,7 @@ module.exports = {
       if (amt > onHand) return { success: false, message: "You don't have that many silvers.\r\n" };
       player.attributes.currency.silver = onHand - amt;
       player.attributes.currency.bank = (player.attributes.currency.bank || 0) + amt;
-      try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); await player.gameEngine.playerSystem.saveCharacter(player); } catch (_) {}
+      try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); await player.gameEngine.playerSystem.saveCharacter(player); } catch (_) {}
       return { success: true, message: `You deposit ${amt} silvers.\r\n` };
     }
 
@@ -42,7 +42,7 @@ module.exports = {
       if (amt > banked) return { success: false, message: "You don't have that many silvers in the bank.\r\n" };
       player.attributes.currency.bank = banked - amt;
       player.attributes.currency.silver = (player.attributes.currency.silver || 0) + amt;
-      try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); await player.gameEngine.playerSystem.saveCharacter(player); } catch (_) {}
+      try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); await player.gameEngine.playerSystem.saveCharacter(player); } catch (_) {}
       return { success: true, message: `You withdraw ${amt} silvers.\r\n` };
     }
 

@@ -4,12 +4,12 @@ const { checkRoundtime } = require('../utils/roundtimeChecker');
 
 /**
  * Remove Command
- * Allows players to remove held items from their hands
+ * Removes worn items and puts them in your hands
  */
 module.exports = {
   name: 'remove',
-  aliases: ['drop', 'unwield'],
-  description: 'Remove an item from your hand',
+  aliases: ['rem'],
+  description: 'Remove a worn item and hold it',
   usage: 'remove <item>',
   
   async execute(player, args) {
@@ -20,145 +20,19 @@ module.exports = {
     }
 
     if (args.length === 0) {
-      // Remove from right hand first (main weapon slot)
-      if (player.equipment && player.equipment.rightHand) {
-        const weaponId = player.equipment.rightHand;
-        
-        // Check if other hand is free
-        if (player.equipment.leftHand) {
-          return { 
-            success: false, 
-            message: 'Your hands are full!\r\n' 
-          };
-        }
-        
-        delete player.equipment.rightHand;
-        player.equipment.leftHand = weaponId;
-        
-        // Fetch weapon name from DB
-        let weaponName = typeof weaponId === 'string' ? weaponId : 'a weapon';
-        const db = player.gameEngine.roomSystem.db;
-        if (db && typeof weaponId === 'string') {
-          try {
-            const weapon = await db.collection('items').findOne({ id: weaponId });
-            if (weapon) weaponName = weapon.name || weaponId;
-          } catch (_) {}
-        }
-
-        try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
-        return { 
-          success: true, 
-          message: `You move ${weaponName} to your left hand.\r\n` 
-        };
-      }
-      
-      // Try left hand if right is empty
-      if (player.equipment && player.equipment.leftHand) {
-        const weaponId = player.equipment.leftHand;
-        
-        // Check if other hand is free
-        if (player.equipment.rightHand) {
-          return { 
-            success: false, 
-            message: 'Your hands are full!\r\n' 
-          };
-        }
-        
-        delete player.equipment.leftHand;
-        player.equipment.rightHand = weaponId;
-        
-        // Fetch weapon name from DB
-        let weaponName = typeof weaponId === 'string' ? weaponId : 'a weapon';
-        const db = player.gameEngine.roomSystem.db;
-        if (db && typeof weaponId === 'string') {
-          try {
-            const weapon = await db.collection('items').findOne({ id: weaponId });
-            if (weapon) weaponName = weapon.name || weaponId;
-          } catch (_) {}
-        }
-
-        try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
-        return { 
-          success: true, 
-          message: `You move ${weaponName} to your right hand.\r\n` 
-        };
-      }
-      
       return { 
         success: false, 
-        message: 'Your hands are empty.\r\n' 
+        message: 'Remove what?\r\n' 
       };
     }
 
-    const searchTerm = args.join(' ').toLowerCase();
-
-    // Check right hand first
-    if (player.equipment && player.equipment.rightHand && typeof player.equipment.rightHand === 'string') {
-      const weaponId = player.equipment.rightHand;
-      
-      // Fetch weapon from DB to check name
-      const db = player.gameEngine.roomSystem.db;
-      let weaponName = weaponId;
-      try {
-        const weapon = await db.collection('items').findOne({ id: weaponId });
-        if (weapon) weaponName = weapon.name || weaponId;
-      } catch (_) {}
-      
-      if (weaponName.toLowerCase().includes(searchTerm)) {
-        // Check if other hand is free
-        if (player.equipment.leftHand) {
-          return { 
-            success: false, 
-            message: 'Your hands are full!\r\n' 
-          };
-        }
-        
-        // Move to other hand
-        delete player.equipment.rightHand;
-        player.equipment.leftHand = weaponId;
-        
-        try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
-        return { 
-          success: true, 
-          message: `You move ${weaponName} to your left hand.\r\n` 
-        };
-      }
+    // Strip "my" keyword if present
+    let searchTerm = args.join(' ').toLowerCase();
+    if (searchTerm.startsWith('my ')) {
+      searchTerm = searchTerm.replace(/^my\s+/, '');
     }
 
-    // Check left hand
-    if (player.equipment && player.equipment.leftHand && typeof player.equipment.leftHand === 'string') {
-      const weaponId = player.equipment.leftHand;
-      
-      // Fetch weapon from DB to check name
-      const db = player.gameEngine.roomSystem.db;
-      let weaponName = weaponId;
-      try {
-        const weapon = await db.collection('items').findOne({ id: weaponId });
-        if (weapon) weaponName = weapon.name || weaponId;
-      } catch (_) {}
-      
-      if (weaponName.toLowerCase().includes(searchTerm)) {
-        // Check if other hand is free
-        if (player.equipment.rightHand) {
-          return { 
-            success: false, 
-            message: 'Your hands are full!\r\n' 
-          };
-        }
-        
-        // Move to other hand
-        delete player.equipment.leftHand;
-        player.equipment.rightHand = weaponId;
-        
-        try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
-        return { 
-          success: true, 
-          message: `You move ${weaponName} to your right hand.\r\n` 
-        };
-      }
-    }
-
-    // Check worn items (equipped on slots other than hands) - moves to hand
+    // Only check worn items (equipped on slots other than hands)
     if (player.equipment) {
       for (const [slot, itemId] of Object.entries(player.equipment)) {
         if (slot !== 'rightHand' && slot !== 'leftHand' && itemId && typeof itemId === 'string') {
@@ -203,8 +77,7 @@ module.exports = {
 
     return { 
       success: false, 
-      message: `You don't have that.\r\n` 
+      message: `You don't have that equipped.\r\n` 
     };
   }
 };
-

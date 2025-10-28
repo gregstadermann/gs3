@@ -113,7 +113,15 @@ const lookEntity = async (player, args) => {
               .findOne({ id: itemId });
             
             if (itemData) {
-              let message = itemData.description || `You examine ${itemData.name || itemId}. It looks interesting.`;
+              let message = '';
+              if (itemData.longDescription) {
+                message = itemData.longDescription;
+              } else if (itemData.description) {
+                message = itemData.description;
+              } else {
+                const shown = itemData.name || itemId;
+                message = `You see ${shown}.`;
+              }
               
               // Show additional item details if available
               if (itemData.timeUntilDecay) {
@@ -138,7 +146,15 @@ const lookEntity = async (player, args) => {
           if (itemData && itemData.keywords && itemData.keywords.some(kw => 
             kw.toLowerCase().includes(searchLower) || searchLower.includes(kw.toLowerCase())
           )) {
-            let message = itemData.description || `You examine ${itemData.name || itemId}. It looks interesting.`;
+            let message = '';
+            if (itemData.longDescription) {
+              message = itemData.longDescription;
+            } else if (itemData.description) {
+              message = itemData.description;
+            } else {
+              const shown = itemData.name || itemId;
+              message = `You see ${shown}.`;
+            }
             
             if (itemData.timeUntilDecay) {
               const decayIn = Math.floor(itemData.timeUntilDecay / 1000);

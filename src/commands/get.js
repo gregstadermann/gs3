@@ -73,6 +73,14 @@ module.exports = {
       };
     }
 
+    // Prevent picking up unpickupable/DECOR items
+    if ((foundItem.type === 'DECOR') || (foundItem.metadata && foundItem.metadata.unpickupable)) {
+      return {
+        success: false,
+        message: 'You cannot pick that up.\r\n'
+      };
+    }
+
     // Check if player has a free hand
     if (!player.equipment) {
       player.equipment = {};

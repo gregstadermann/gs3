@@ -30,7 +30,11 @@ module.exports = {
       player.equipment = {};
     }
 
-    const searchTerm = args.join(' ').toLowerCase();
+    // Strip "my" keyword if present (hands-only, so redundant)
+    let searchTerm = args.join(' ').toLowerCase();
+    if (searchTerm.startsWith('my ')) {
+      searchTerm = searchTerm.replace(/^my\s+/, '');
+    }
 
     // Find the item in player's hands (now stored as IDs)
     let foundItem = null;

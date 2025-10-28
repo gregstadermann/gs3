@@ -101,30 +101,41 @@ const lookEntity = async (player, args) => {
 
   const searchLower = searchTerm.toLowerCase();
 
-  // Handle "look in MY container" - search player inventory
-  if (lookInContainer && searchLower.includes('my ')) {
-    const containerTerm = searchLower.replace(/^my\s+/, '');
-    const allItems = [];
-    if (player.equipment?.rightHand) allItems.push(player.equipment.rightHand);
-    if (player.equipment?.leftHand) allItems.push(player.equipment.leftHand);
-    if (Array.isArray(player.inventory)) allItems.push(...player.inventory);
+  // Handle "look in MY container" - search player inventory (MY as possessive filter)
+  if (lookInContainer) {
+    // Check for possessive pronoun "MY" or implied possession
+    const isPossessive = searchLower.startsWith('my ') || searchLower.startsWith('my');
+    let containerTerm = searchLower;
+    let searchIn = 'room'; // default: search room items
     
-    const container = allItems.find(it => {
-      const name = (it.name || '').toLowerCase();
-      const kws = (it.keywords || []).map(k => k.toLowerCase());
-      return name.includes(containerTerm) || kws.some(k => k.includes(containerTerm));
-    });
-
-    if (!container) {
-      return { success: false, message: "You don't see that container.\r\n" };
+    if (isPossessive) {
+      containerTerm = searchLower.replace(/^my\s+/, '').trim();
+      searchIn = 'player'; // MY keyword directs search to player's items
     }
+    
+    if (searchIn === 'player') {
+      const allItems = [];
+      if (player.equipment?.rightHand) allItems.push(player.equipment.rightHand);
+      if (player.equipment?.leftHand) allItems.push(player.equipment.leftHand);
+      if (Array.isArray(player.inventory)) allItems.push(...player.inventory);
+      
+      const container = allItems.find(it => {
+        const name = (it.name || '').toLowerCase();
+        const kws = (it.keywords || []).map(k => k.toLowerCase());
+        return name.includes(containerTerm) || kws.some(k => k.includes(containerTerm));
+      });
 
-    // Check if it's a container
-    if (container.type === 'CONTAINER' || (container.metadata && container.metadata.container)) {
-      // TODO: Fetch items inside container from DB once storage is implemented
-      return { success: true, message: `You look in ${container.name}. It appears to be empty.\r\n` };
+      if (!container) {
+        return { success: false, message: "You don't see that container in your belongings.\r\n" };
+      }
+
+      // Check if it's a container
+      if (container.type === 'CONTAINER' || (container.metadata && container.metadata.container)) {
+        // TODO: Fetch items inside container from DB once storage is implemented
+        return { success: true, message: `You look in ${container.name}. It appears to be empty.\r\n` };
+      }
+      return { success: false, message: `You cannot look inside ${container.name}.\r\n` };
     }
-    return { success: false, message: `You cannot look inside ${container.name}.\r\n` };
   }
 
   // Search items in room - fetch from database

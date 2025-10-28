@@ -55,6 +55,8 @@ class PlayerSystem {
         skills: player.skills,
         tps: player.tps,
         room: player.room,
+        // Preserve role so admin/player status is not lost on save
+        role: player.role,
         account: player.account,
         metadata: player.metadata,
         equipment: player.equipment || {},

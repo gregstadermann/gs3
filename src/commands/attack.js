@@ -124,7 +124,7 @@ module.exports = {
     if (!damageSystem) {
       damageSystem = new DamageSystem();
     }
-
+    
     // Check roundtime/lag
     const roundtimeCheck = checkRoundtime(player);
     if (roundtimeCheck) {
@@ -136,8 +136,8 @@ module.exports = {
     
     // Prevent ranged attacks if arms/hands are wounded
     if (!woundPenalties.canRangeAttack) {
-      return {
-        success: false,
+      return { 
+        success: false, 
         message: 'Your wounded arms prevent you from making ranged attacks!\r\n'
       };
     }
@@ -282,7 +282,7 @@ module.exports = {
 
     // Create combat messages
     let message = '';
-    
+
     const weaponName = weapon ? weapon.name : 'your fists';
     
     message += `You swing ${weaponName} at ${target.name}!\r\n`;

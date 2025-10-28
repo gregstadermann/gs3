@@ -641,28 +641,52 @@ class DamageSystem {
           };
           await db.collection('items').insertOne(corpseItem);
           console.log(`[CORPSE] Created corpse: ${corpseItem.name}, ID: ${corpseId}`);
+          
+          // Get NPC ID to remove
+          const npcSystem = gameEngine?.npcSystem;
+          const npcIdToRemove = target.npcId || target.id;
+          
           // attach to room items and update cache
           const newItems = Array.isArray(roomDoc?.items) ? [...roomDoc.items, corpseId] : [corpseId];
           await db.collection('rooms').updateOne({ id: target.room }, { $set: { items: newItems } });
           console.log(`[CORPSE] Added corpse to room items array`);
+          
+          // Update room cache to remove NPC
           const cachedRoom = roomSystem.getRoom(target.room);
           if (cachedRoom) {
-            roomSystem.rooms.set(target.room, { ...cachedRoom, items: newItems });
+            // Remove NPC from cached room
+            const updatedNpcs = Array.isArray(cachedRoom.npcs) 
+              ? cachedRoom.npcs.filter(npc => {
+                  const npcId = typeof npc === 'object' ? npc.id : npc;
+                  return npcId !== npcIdToRemove;
+                })
+              : [];
+            
+            roomSystem.rooms.set(target.room, { 
+              ...cachedRoom, 
+              items: newItems,
+              npcs: updatedNpcs
+            });
+            console.log(`[CORPSE] Updated room cache, npcs remaining: ${updatedNpcs.length}`);
           }
           
-          // Remove living NPC from room
-          const npcSystem = gameEngine?.npcSystem;
-          console.log(`[CORPSE] Attempting to remove NPC, npcId: ${target.npcId}, has system: ${!!npcSystem}`);
-          if (npcSystem && target.npcId) {
-            console.log(`[CORPSE] Removing NPC ${target.npcId} from room`);
+          // Remove NPC from system and database
+          console.log(`[CORPSE] Attempting to remove NPC, npcId: ${npcIdToRemove}, has system: ${!!npcSystem}`);
+          if (npcSystem && npcIdToRemove) {
+            console.log(`[CORPSE] Removing NPC ${npcIdToRemove} from NPC system`);
             // Remove NPC from the in-memory NPC system
-            npcSystem.removeNPC(target.npcId);
-            
-            // Remove from room's NPCs array in database
-            await db.collection('rooms').updateOne(
+            npcSystem.removeNPC(npcIdToRemove);
+          }
+          
+          // Remove from room's NPCs array in database (pull by id field in object)
+          try {
+            const result = await db.collection('rooms').updateOne(
               { id: target.room },
-              { $pull: { npcs: target.npcId } }
+              { $pull: { npcs: { id: npcIdToRemove } } }
             );
+            console.log(`[CORPSE] DB update result: modified ${result.modifiedCount} docs`);
+          } catch (err) {
+            console.log(`[CORPSE] Error removing NPC from DB: ${err.message}`);
           }
         }
       } catch (_) {

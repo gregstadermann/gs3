@@ -348,7 +348,8 @@ class DamageSystem {
     // Determine crit rank using armor crit divisor formula
     // Raw damage was provided in baseDamage = (Endroll - 100) * DF
     // rank = Truncate( (Raw - armorPadding + weaponWeighting) / critDivisor )
-    const armorGroup = this.getArmorGroupForTarget(target); // 1=cloth,5-8=leather,9-12=scale,13-16=chain,17-20=plate
+    // Pass bodyPart to adjust armor group if hit location is uncovered
+    const armorGroup = this.getArmorGroupForTarget(target, bodyPart); // 1=cloth,5-8=leather,9-12=scale,13-16=chain,17-20=plate
     const critDivisor = this.getArmorCritDivisor(armorGroup); // Robes 5, Leather 6, Scale 7, Chain 9, Plate 11
     const armorPadding = this.getArmorPadding(target) || 0;
     const weaponWeighting = this.getWeaponWeighting(attacker) || 0;
@@ -382,21 +383,63 @@ class DamageSystem {
   }
 
   // Map target's worn armor to a crit divisor armor group code
-  getArmorGroupForTarget(target) {
+  // bodyPart: which part was hit; if uncovered, treat armor as 1 AG lower
+  getArmorGroupForTarget(target, bodyPart = 'CHEST') {
     try {
-      // Expect armor stored on equipment.chest with metadata.armorGroup or armor type id
-      const armor = target.equipment?.chest || target.equipment?.body || null;
-      const asg = armor?.metadata?.armorGroup;
-      if (typeof asg === 'number') return asg;
-      // Fallback: rough map by armor.type string
-      const type = (armor?.type || armor?.metadata?.type || '').toString().toLowerCase();
-      if (type.includes('robe') || type.includes('cloth')) return 1; // Robes
-      if (type.includes('leather')) return 5; // Leather tier start
-      if (type.includes('scale')) return 9; // Scale tier start
-      if (type.includes('chain')) return 13; // Chain tier start
-      if (type.includes('plate')) return 17; // Plate tier start
+      const armor = target.equipment?.chest || target.equipment?.torso || null;
+      if (!armor) return 1;
+      
+      const asg = armor.metadata?.asg || armor.metadata?.armorGroup;
+      if (typeof asg !== 'number') return 1;
+      
+      // Map ASG to coverage tiers
+      function getCoverage(asgVal) {
+        // lowest = torso only, next = +arms, next-after = +legs, highest = full body
+        if (asgVal <= 1) return { torso: true, arms: true, legs: true, head: true, neck: true };
+        if (asgVal <= 2) return { torso: true, arms: true, legs: true, head: false, neck: false }; // robes
+        if (asgVal <= 5) return { torso: true, arms: false, legs: false, head: false, neck: false };
+        if (asgVal <= 6) return { torso: true, arms: true, legs: false, head: false, neck: false };
+        if (asgVal <= 7) return { torso: true, arms: true, legs: true, head: false, neck: false };
+        if (asgVal <= 8) return { torso: true, arms: true, legs: true, head: true, neck: true };
+        // Scale (9-12), Chain (13-16), Plate (17-20) follow same pattern
+        if (asgVal <= 9) return { torso: true, arms: false, legs: false, head: false, neck: false };
+        if (asgVal <= 10) return { torso: true, arms: true, legs: false, head: false, neck: false };
+        if (asgVal <= 11) return { torso: true, arms: true, legs: true, head: false, neck: false };
+        if (asgVal <= 12) return { torso: true, arms: true, legs: true, head: true, neck: true };
+        if (asgVal <= 13) return { torso: true, arms: false, legs: false, head: false, neck: false };
+        if (asgVal <= 14) return { torso: true, arms: true, legs: false, head: false, neck: false };
+        if (asgVal <= 15) return { torso: true, arms: true, legs: true, head: false, neck: false };
+        if (asgVal <= 16) return { torso: true, arms: true, legs: true, head: true, neck: true };
+        if (asgVal <= 17) return { torso: true, arms: false, legs: false, head: false, neck: false };
+        if (asgVal <= 18) return { torso: true, arms: true, legs: false, head: false, neck: false };
+        if (asgVal <= 19) return { torso: true, arms: true, legs: true, head: false, neck: false };
+        if (asgVal <= 20) return { torso: true, arms: true, legs: true, head: true, neck: true };
+        return { torso: false, arms: false, legs: false, head: false, neck: false };
+      }
+      
+      function isCovered(cv, bp) {
+        if (bp.includes('ARM')) return cv.arms;
+        if (bp.includes('LEG')) return cv.legs;
+        if (bp.includes('HAND')) return cv.arms;
+        if (bp.includes('EYE')) return cv.head;
+        if (bp === 'HEAD') return cv.head;
+        if (bp === 'NECK') return cv.neck;
+        if (bp.includes('CHEST') || bp.includes('BACK') || bp.includes('ABDOMEN')) return cv.torso;
+        return false;
+      }
+      
+      const coverage = getCoverage(asg);
+      
+      // If hit location covered, return asg; otherwise 1 AG tier lower
+      if (isCovered(coverage, bodyPart)) return asg;
+      
+      // Not covered: drop one tier (Plate→Chain, Chain→Scale, Scale→Leather, Leather→Cloth)
+      if (asg >= 17) return 13; // Plate → Chain tier start
+      if (asg >= 13) return 9; // Chain → Scale tier start
+      if (asg >= 9) return 5; // Scale → Leather tier start
+      if (asg >= 5) return 1; // Leather → Cloth/Robes
+      return 1;
     } catch (_) {}
-    // Unarmored default to cloth/robes
     return 1;
   }
 

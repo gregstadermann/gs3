@@ -275,10 +275,28 @@ module.exports = {
     // Apply damage with critical hits (using raw damage)
     const damageApplied = await damageSystem.applyDamageWithCritical(player, target, rawDamage, weapon);
 
+    // Determine armor roundtime penalty if wearing armor
+    function getArmorRoundtimeMs(p) {
+      try {
+        const wornArmor = p.equipment && (p.equipment.chest || p.equipment.torso);
+        if (!wornArmor || (wornArmor.type !== 'ARMOR' && wornArmor.type !== 'CLOTHING')) return 0;
+        const meta = wornArmor.metadata || {};
+        const baseRtSec = typeof meta.rt === 'number' ? meta.rt : 0;
+        // Armor Use reduction: 1s per 20 ranks
+        const armorRanks = p.skills?.armor_use?.ranks || 0;
+        const reductionSec = Math.floor(armorRanks / 20);
+        const effRtSec = Math.max(0, baseRtSec - reductionSec);
+        return effRtSec * 1000;
+      } catch (_) { return 0; }
+    }
+
     // Initiate or continue combat
     const wasInCombat = gameCombat.isInCombat(player);
     gameCombat.initiateCombat(player, target, 0);
-    gameCombat.addLag(player, 2500); // 2.5 seconds roundtime
+    const baseRtMs = 2500; // base RT for this attack
+    const armorRtMs = getArmorRoundtimeMs(player);
+    const totalRtMs = baseRtMs + armorRtMs;
+    gameCombat.addLag(player, totalRtMs);
 
     // Create combat messages
     let message = '';
@@ -314,7 +332,7 @@ module.exports = {
       }
     }
     
-    message += `Roundtime: 2.5 sec.\r\n`;
+    message += `Roundtime: ${(totalRtMs/1000).toFixed(1)} sec.\r\n`;
 
     // Check if target died
     if (damageApplied.targetDead) {

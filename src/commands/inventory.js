@@ -21,47 +21,38 @@ module.exports = {
 
     let message = '';
     
-    // Show held items (right and left hands)
-    if (player.equipment) {
-      const heldItems = [];
-      
-      if (player.equipment.rightHand) {
-        const item = player.equipment.rightHand;
-        const itemName = typeof item === 'string' ? item : (item.name || 'an item');
-        heldItems.push(`right hand: ${itemName}`);
+    // Collect held items
+    const heldRight = player.equipment?.rightHand;
+    const heldLeft = player.equipment?.leftHand;
+    
+    if (heldRight || heldLeft) {
+      const parts = [];
+      if (heldRight) {
+        const rName = typeof heldRight === 'string' ? heldRight : (heldRight.name || 'an item');
+        parts.push(rName + ' in your right hand');
       }
-      
-      if (player.equipment.leftHand) {
-        const item = player.equipment.leftHand;
-        const itemName = typeof item === 'string' ? item : (item.name || 'an item');
-        heldItems.push(`left hand: ${itemName}`);
+      if (heldLeft) {
+        const lName = typeof heldLeft === 'string' ? heldLeft : (heldLeft.name || 'an item');
+        parts.push(lName + ' in your left hand');
       }
-      
-      if (heldItems.length > 0) {
-        message += 'Held:\r\n';
-        heldItems.forEach(item => message += `  ${item}\r\n`);
-        message += '\r\n';
-      }
+      message += 'You are holding ' + parts.join(' and ') + '.\r\n';
     }
     
-    // Show worn items (if any other equipment slots exist)
+    // Show worn items
     const wornItems = [];
     if (player.equipment) {
       for (const [slot, item] of Object.entries(player.equipment)) {
         if (slot !== 'rightHand' && slot !== 'leftHand' && item) {
-          const itemName = typeof item === 'string' ? item : (item.name || 'an item');
-          wornItems.push(itemName);
+          wornItems.push(typeof item === 'string' ? item : item.name || 'an item');
         }
       }
     }
     
     if (wornItems.length > 0) {
-      message += 'Wearing:\r\n';
-      wornItems.forEach(item => message += `  ${item}\r\n`);
-      message += '\r\n';
+      message += 'You are wearing ' + wornItems.join(', ') + '.\r\n';
     }
     
-    if (wornItems.length === 0 && (!player.equipment || (!player.equipment.rightHand && !player.equipment.leftHand))) {
+    if (!heldRight && !heldLeft && wornItems.length === 0) {
       message += 'You are empty-handed.\r\n';
     }
     

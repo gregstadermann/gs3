@@ -101,6 +101,38 @@ const lookEntity = async (player, args) => {
 
   const searchLower = searchTerm.toLowerCase();
 
+  // If using possessive "MY" (and not specifically looking IN), limit search to player's belongings
+  if (!lookInContainer && (searchLower.startsWith('my ') || searchLower === 'my')) {
+    const term = searchLower.replace(/^my\s+/, '').trim();
+    const belongings = [];
+    if (player.equipment?.rightHand) belongings.push(player.equipment.rightHand);
+    if (player.equipment?.leftHand) belongings.push(player.equipment.leftHand);
+    if (player.equipment) {
+      for (const [slot, item] of Object.entries(player.equipment)) {
+        if (slot !== 'rightHand' && slot !== 'leftHand' && item) belongings.push(item);
+      }
+    }
+    if (Array.isArray(player.inventory)) belongings.push(...player.inventory);
+
+    const found = belongings.find(it => {
+      const name = (it?.name || '').toLowerCase();
+      const kws = (it?.keywords || []).map(k=>k.toLowerCase());
+      return term.length === 0 || name.includes(term) || kws.some(k=> k.includes(term));
+    });
+
+    if (!found) {
+      return { success:false, message: "You don't see that in your belongings.\r\n" };
+    }
+
+    // Describe the found item
+    const longDesc = found.longDescription || found.description;
+    if (longDesc) {
+      return { success:true, message: longDesc };
+    }
+    const shown = found.name || 'an item';
+    return { success:true, message: `You see ${shown}.` };
+  }
+
   // Handle "look in MY container" - search player inventory (MY as possessive filter)
   if (lookInContainer) {
     // Check for possessive pronoun "MY" or implied possession
@@ -117,6 +149,12 @@ const lookEntity = async (player, args) => {
       const allItems = [];
       if (player.equipment?.rightHand) allItems.push(player.equipment.rightHand);
       if (player.equipment?.leftHand) allItems.push(player.equipment.leftHand);
+      // Include worn/equipped items in all equipment slots
+      if (player.equipment) {
+        for (const [slot, item] of Object.entries(player.equipment)) {
+          if (slot !== 'rightHand' && slot !== 'leftHand' && item) allItems.push(item);
+        }
+      }
       if (Array.isArray(player.inventory)) allItems.push(...player.inventory);
       
       const container = allItems.find(it => {

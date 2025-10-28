@@ -110,6 +110,42 @@ module.exports = {
       }
     }
 
+    // Check worn items (equipped on slots other than hands)
+    if (player.equipment) {
+      for (const [slot, item] of Object.entries(player.equipment)) {
+        if (slot !== 'rightHand' && slot !== 'leftHand' && item) {
+          const itemName = typeof item === 'string' ? item : (item.name || '');
+          if (itemName.toLowerCase().includes(searchTerm)) {
+            // Check if player has a free hand
+            if (!player.equipment.rightHand) {
+              // Put in right hand
+              delete player.equipment[slot];
+              player.equipment.rightHand = item;
+              try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
+              return { 
+                success: true, 
+                message: `You remove ${itemName} from ${slot}.\r\n` 
+              };
+            } else if (!player.equipment.leftHand) {
+              // Put in left hand
+              delete player.equipment[slot];
+              player.equipment.leftHand = item;
+              try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
+              return { 
+                success: true, 
+                message: `You remove ${itemName} from ${slot}.\r\n` 
+              };
+            } else {
+              return { 
+                success: false, 
+                message: 'Both your hands are full!\r\n' 
+              };
+            }
+          }
+        }
+      }
+    }
+
     return { 
       success: false, 
       message: `You don't have that in your hands.\r\n` 

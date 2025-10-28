@@ -28,10 +28,14 @@ module.exports = {
       try { const drop = require('./drop'); return await drop.execute(player, args); } catch(_) {}
       return { success:false, message: 'Specify where to put it.\r\n' };
     }
-    const itemTerm = args.slice(0, inIdx).join(' ').toLowerCase();
-    const targetTerm = args.slice(inIdx + 1).join(' ').toLowerCase();
+    let itemTerm = args.slice(0, inIdx).join(' ').toLowerCase();
+    let targetTerm = args.slice(inIdx + 1).join(' ').toLowerCase();
+    const itemIsMine = itemTerm.startsWith('my ');
+    const containerIsMine = targetTerm.startsWith('my ');
+    if (itemIsMine) itemTerm = itemTerm.replace(/^my\s+/, '');
+    if (containerIsMine) targetTerm = targetTerm.replace(/^my\s+/, '');
 
-    // Determine item from hands or inventory
+    // Determine item from hands or inventory ("my" implies only belongings, but we already scope to belongings for item)
     let item = null;
     let handSlot = null;
     if (player.equipment?.rightHand && ((player.equipment.rightHand.name||'').toLowerCase().includes(itemTerm) || (player.equipment.rightHand.keywords||[]).some(k=>k.toLowerCase().includes(itemTerm)))) {
@@ -54,12 +58,39 @@ module.exports = {
       return { success:false, message: 'There is nowhere to put that.\r\n' };
     }
 
-    // Find target container in room
+    // Find target container
     let container = null;
-    if (Array.isArray(room.items) && room.items.length) {
-      const itemIds = room.items.map(r => typeof r === 'string' ? r : (r.id || r.name));
-      const candidates = await db.collection('items').find({ id: { $in: itemIds } }).toArray();
-      container = candidates.find(it => ((it.name||'').toLowerCase().includes(targetTerm)) || (it.keywords||[]).some(k=>k.toLowerCase().includes(targetTerm)));
+    // If "my" for container, search belongings first
+    if (containerIsMine) {
+      const belongings = [];
+      if (player.equipment?.rightHand) belongings.push(player.equipment.rightHand);
+      if (player.equipment?.leftHand) belongings.push(player.equipment.leftHand);
+      if (player.equipment) {
+        for (const [slot, it] of Object.entries(player.equipment)) {
+          if (slot !== 'rightHand' && slot !== 'leftHand' && it) belongings.push(it);
+        }
+      }
+      if (Array.isArray(player.inventory)) belongings.push(...player.inventory);
+      container = belongings.find(it => ((it.name||'').toLowerCase().includes(targetTerm)) || (it.keywords||[]).some(k=>k.toLowerCase().includes(targetTerm)));
+    } else {
+      if (Array.isArray(room.items) && room.items.length) {
+        const itemIds = room.items.map(r => typeof r === 'string' ? r : (r.id || r.name));
+        const candidates = await db.collection('items').find({ id: { $in: itemIds } }).toArray();
+        container = candidates.find(it => ((it.name||'').toLowerCase().includes(targetTerm)) || (it.keywords||[]).some(k=>k.toLowerCase().includes(targetTerm)));
+      }
+      // Fallback to belongings if not found in room
+      if (!container) {
+        const belongings = [];
+        if (player.equipment?.rightHand) belongings.push(player.equipment.rightHand);
+        if (player.equipment?.leftHand) belongings.push(player.equipment.leftHand);
+        if (player.equipment) {
+          for (const [slot, it] of Object.entries(player.equipment)) {
+            if (slot !== 'rightHand' && slot !== 'leftHand' && it) belongings.push(it);
+          }
+        }
+        if (Array.isArray(player.inventory)) belongings.push(...player.inventory);
+        container = belongings.find(it => ((it.name||'').toLowerCase().includes(targetTerm)) || (it.keywords||[]).some(k=>k.toLowerCase().includes(targetTerm)));
+      }
     }
 
     if (!container) {

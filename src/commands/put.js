@@ -78,10 +78,10 @@ module.exports = {
     const contName = container.name || 'a container';
 
     if (isDisposal) {
-      // Remove item from player hands/inventory and delete from DB if it exists there
+      // Remove item from player hands/inventory and delete from DB
       if (handSlot) {
         player.equipment[handSlot] = null;
-      } else {
+      } else if (Array.isArray(player.inventory)) {
         const idx = player.inventory.indexOf(item);
         if (idx >= 0) player.inventory.splice(idx, 1);
       }
@@ -93,8 +93,16 @@ module.exports = {
       return { success:true, message: `You place ${itemName} into ${contName}. It vanishes without a trace.\r\n` };
     }
 
-    // Non-disposal containers not yet implemented fully
-    return { success:false, message: `${contName} cannot accept items right now.\r\n` };
+    // Regular container: store item inside (for now, mark as contained)
+    // TODO: Update container's items array in DB
+    if (handSlot) {
+      player.equipment[handSlot] = null;
+    } else if (Array.isArray(player.inventory)) {
+      const idx = player.inventory.indexOf(item);
+      if (idx >= 0) player.inventory.splice(idx, 1);
+    }
+
+    return { success:true, message: `You put ${itemName} in ${contName}.\r\n` };
   }
 };
 

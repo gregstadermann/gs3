@@ -35,24 +35,45 @@ module.exports = {
     if (itemIsMine) itemTerm = itemTerm.replace(/^my\s+/, '');
     if (containerIsMine) targetTerm = targetTerm.replace(/^my\s+/, '');
 
-    // Determine item from hands or inventory ("my" implies only belongings, but we already scope to belongings for item)
+    // Determine item from hands or inventory (now uses IDs, need to fetch from DB)
     let item = null;
     let handSlot = null;
-    if (player.equipment?.rightHand && ((player.equipment.rightHand.name||'').toLowerCase().includes(itemTerm) || (player.equipment.rightHand.keywords||[]).some(k=>k.toLowerCase().includes(itemTerm)))) {
-      item = player.equipment.rightHand;
-      handSlot = 'rightHand';
-    } else if (player.equipment?.leftHand && ((player.equipment.leftHand.name||'').toLowerCase().includes(itemTerm) || (player.equipment.leftHand.keywords||[]).some(k=>k.toLowerCase().includes(itemTerm)))) {
-      item = player.equipment.leftHand;
-      handSlot = 'leftHand';
-    } else if (Array.isArray(player.inventory)) {
-      item = player.inventory.find(it => (it.name||'').toLowerCase().includes(itemTerm) || (it.keywords||[]).some(k=>k.toLowerCase().includes(itemTerm)));
+    const db = player.gameEngine.roomSystem.db;
+    
+    // Check right hand
+    if (player.equipment?.rightHand && typeof player.equipment.rightHand === 'string') {
+      const itemData = await db.collection('items').findOne({ id: player.equipment.rightHand });
+      if (itemData && ((itemData.name||'').toLowerCase().includes(itemTerm) || (itemData.keywords||[]).some(k=>k.toLowerCase().includes(itemTerm)))) {
+        item = itemData;
+        handSlot = 'rightHand';
+      }
+    }
+    
+    // Check left hand
+    if (!item && player.equipment?.leftHand && typeof player.equipment.leftHand === 'string') {
+      const itemData = await db.collection('items').findOne({ id: player.equipment.leftHand });
+      if (itemData && ((itemData.name||'').toLowerCase().includes(itemTerm) || (itemData.keywords||[]).some(k=>k.toLowerCase().includes(itemTerm)))) {
+        item = itemData;
+        handSlot = 'leftHand';
+      }
+    }
+    
+    // Check inventory
+    if (!item && Array.isArray(player.inventory)) {
+      for (const invId of player.inventory) {
+        if (typeof invId !== 'string') continue;
+        const itemData = await db.collection('items').findOne({ id: invId });
+        if (itemData && ((itemData.name||'').toLowerCase().includes(itemTerm) || (itemData.keywords||[]).some(k=>k.toLowerCase().includes(itemTerm)))) {
+          item = itemData;
+          break;
+        }
+      }
     }
 
     if (!item) {
       return { success:false, message: "You aren't holding that.\r\n" };
     }
 
-    const db = player.gameEngine.roomSystem.db;
     const room = player.gameEngine.roomSystem.getRoom(player.room);
     if (!room) {
       return { success:false, message: 'There is nowhere to put that.\r\n' };
@@ -72,9 +93,10 @@ module.exports = {
       }
       if (Array.isArray(player.inventory)) belongings.push(...player.inventory);
       // Check belongings using their IDs to fetch fresh item docs
-      for (const it of belongings) {
-        if (!it.id) continue;
-        const fetched = await db.collection('items').findOne({ id: it.id });
+      for (const ref of belongings) {
+        const itemId = typeof ref === 'string' ? ref : (ref?.id || ref);
+        if (!itemId) continue;
+        const fetched = await db.collection('items').findOne({ id: itemId });
         if (fetched && (((fetched.name||'').toLowerCase().includes(targetTerm)) || (fetched.keywords||[]).some(k=>k.toLowerCase().includes(targetTerm)))) {
           container = fetched;
           break;
@@ -97,7 +119,16 @@ module.exports = {
           }
         }
         if (Array.isArray(player.inventory)) belongings.push(...player.inventory);
-        container = belongings.find(it => ((it.name||'').toLowerCase().includes(targetTerm)) || (it.keywords||[]).some(k=>k.toLowerCase().includes(targetTerm)));
+        // Search belongings by fetching each from DB
+        for (const ref of belongings) {
+          const itemId = typeof ref === 'string' ? ref : (ref?.id || ref);
+          if (!itemId) continue;
+          const fetched = await db.collection('items').findOne({ id: itemId });
+          if (fetched && (((fetched.name||'').toLowerCase().includes(targetTerm)) || (fetched.keywords||[]).some(k=>k.toLowerCase().includes(targetTerm)))) {
+            container = fetched;
+            break;
+          }
+        }
       }
     }
 

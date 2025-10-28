@@ -66,8 +66,9 @@ module.exports = {
         if (Array.isArray(player.inventory)) belongings.push(...player.inventory);
         // Fetch full DB document for each item in belongings
         for (const ref of belongings) {
-          if (!ref.id) continue;
-          const fetched = await player.gameEngine.roomSystem.db.collection('items').findOne({ id: ref.id });
+          const itemId = typeof ref === 'string' ? ref : (ref?.id || ref);
+          if (!itemId) continue;
+          const fetched = await player.gameEngine.roomSystem.db.collection('items').findOne({ id: itemId });
           if (fetched && (((fetched.name||'').toLowerCase().includes(containerTerm)) || (fetched.keywords||[]).some(k=>k.toLowerCase().includes(containerTerm)))) {
             container = fetched;
             break;
@@ -93,8 +94,9 @@ module.exports = {
           if (Array.isArray(player.inventory)) belongings.push(...player.inventory);
           // Fetch full DB document for each item in belongings
           for (const ref of belongings) {
-            if (!ref.id) continue;
-            const fetched = await player.gameEngine.roomSystem.db.collection('items').findOne({ id: ref.id });
+            const itemId = typeof ref === 'string' ? ref : (ref?.id || ref);
+            if (!itemId) continue;
+            const fetched = await player.gameEngine.roomSystem.db.collection('items').findOne({ id: itemId });
             if (fetched && (((fetched.name||'').toLowerCase().includes(containerTerm)) || (fetched.keywords||[]).some(k=>k.toLowerCase().includes(containerTerm)))) {
               container = fetched;
               break;

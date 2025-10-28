@@ -160,8 +160,11 @@ const lookEntity = async (player, args) => {
       let container = null;
       // Fetch full item docs from DB using IDs
       for (const ref of itemRefs) {
-        if (!ref.id) continue;
-        const fetched = await db.collection('items').findOne({ id: ref.id });
+        // ref is now a string ID, not an object
+        const itemId = typeof ref === 'string' ? ref : (ref?.id || ref);
+        if (!itemId) continue;
+        
+        const fetched = await db.collection('items').findOne({ id: itemId });
         if (fetched) {
           const name = (fetched.name || '').toLowerCase();
           const kws = (fetched.keywords || []).map(k => k.toLowerCase());

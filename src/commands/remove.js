@@ -12,7 +12,7 @@ module.exports = {
   description: 'Remove an item from your hand',
   usage: 'remove <item>',
   
-  execute(player, args) {
+  async execute(player, args) {
     // Check roundtime/lag
     const roundtimeCheck = checkRoundtime(player);
     if (roundtimeCheck) {
@@ -22,16 +22,25 @@ module.exports = {
     if (args.length === 0) {
       // Remove from right hand first (main weapon slot)
       if (player.equipment && player.equipment.rightHand) {
-        const weapon = player.equipment.rightHand;
+        const weaponId = player.equipment.rightHand;
         delete player.equipment.rightHand;
         
         // Add back to inventory
         if (!player.inventory) {
           player.inventory = [];
         }
-        player.inventory.push(weapon);
+        player.inventory.push(weaponId);
 
-        const weaponName = typeof weapon === 'string' ? weapon : (weapon.name || 'a weapon');
+        // Fetch weapon name from DB
+        let weaponName = typeof weaponId === 'string' ? weaponId : 'a weapon';
+        const db = player.gameEngine.roomSystem.db;
+        if (db && typeof weaponId === 'string') {
+          try {
+            const weapon = await db.collection('items').findOne({ id: weaponId });
+            if (weapon) weaponName = weapon.name || weaponId;
+          } catch (_) {}
+        }
+
         try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
         return { 
           success: true, 
@@ -41,16 +50,25 @@ module.exports = {
       
       // Try left hand if right is empty
       if (player.equipment && player.equipment.leftHand) {
-        const weapon = player.equipment.leftHand;
+        const weaponId = player.equipment.leftHand;
         delete player.equipment.leftHand;
         
         // Add back to inventory
         if (!player.inventory) {
           player.inventory = [];
         }
-        player.inventory.push(weapon);
+        player.inventory.push(weaponId);
 
-        const weaponName = typeof weapon === 'string' ? weapon : (weapon.name || 'a weapon');
+        // Fetch weapon name from DB
+        let weaponName = typeof weaponId === 'string' ? weaponId : 'a weapon';
+        const db = player.gameEngine.roomSystem.db;
+        if (db && typeof weaponId === 'string') {
+          try {
+            const weapon = await db.collection('items').findOne({ id: weaponId });
+            if (weapon) weaponName = weapon.name || weaponId;
+          } catch (_) {}
+        }
+
         try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
         return { 
           success: true, 
@@ -67,9 +85,16 @@ module.exports = {
     const searchTerm = args.join(' ').toLowerCase();
 
     // Check right hand first
-    if (player.equipment && player.equipment.rightHand) {
-      const weapon = player.equipment.rightHand;
-      const weaponName = typeof weapon === 'string' ? weapon : (weapon.name || '');
+    if (player.equipment && player.equipment.rightHand && typeof player.equipment.rightHand === 'string') {
+      const weaponId = player.equipment.rightHand;
+      
+      // Fetch weapon from DB to check name
+      const db = player.gameEngine.roomSystem.db;
+      let weaponName = weaponId;
+      try {
+        const weapon = await db.collection('items').findOne({ id: weaponId });
+        if (weapon) weaponName = weapon.name || weaponId;
+      } catch (_) {}
       
       if (weaponName.toLowerCase().includes(searchTerm)) {
         delete player.equipment.rightHand;
@@ -78,7 +103,7 @@ module.exports = {
         if (!player.inventory) {
           player.inventory = [];
         }
-        player.inventory.push(weapon);
+        player.inventory.push(weaponId);
 
         try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
         return { 
@@ -89,9 +114,16 @@ module.exports = {
     }
 
     // Check left hand
-    if (player.equipment && player.equipment.leftHand) {
-      const weapon = player.equipment.leftHand;
-      const weaponName = typeof weapon === 'string' ? weapon : (weapon.name || '');
+    if (player.equipment && player.equipment.leftHand && typeof player.equipment.leftHand === 'string') {
+      const weaponId = player.equipment.leftHand;
+      
+      // Fetch weapon from DB to check name
+      const db = player.gameEngine.roomSystem.db;
+      let weaponName = weaponId;
+      try {
+        const weapon = await db.collection('items').findOne({ id: weaponId });
+        if (weapon) weaponName = weapon.name || weaponId;
+      } catch (_) {}
       
       if (weaponName.toLowerCase().includes(searchTerm)) {
         delete player.equipment.leftHand;
@@ -100,7 +132,7 @@ module.exports = {
         if (!player.inventory) {
           player.inventory = [];
         }
-        player.inventory.push(weapon);
+        player.inventory.push(weaponId);
 
         try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
         return { 
@@ -112,24 +144,31 @@ module.exports = {
 
     // Check worn items (equipped on slots other than hands)
     if (player.equipment) {
-      for (const [slot, item] of Object.entries(player.equipment)) {
-        if (slot !== 'rightHand' && slot !== 'leftHand' && item) {
-          const itemName = typeof item === 'string' ? item : (item.name || '');
+      for (const [slot, itemId] of Object.entries(player.equipment)) {
+        if (slot !== 'rightHand' && slot !== 'leftHand' && itemId && typeof itemId === 'string') {
+          // Fetch item from DB to get its name
+          const db = player.gameEngine.roomSystem.db;
+          let itemName = itemId;
+          try {
+            const item = await db.collection('items').findOne({ id: itemId });
+            if (item) itemName = item.name || itemId;
+          } catch (_) {}
+          
           if (itemName.toLowerCase().includes(searchTerm)) {
             // Check if player has a free hand
             if (!player.equipment.rightHand) {
-              // Put in right hand
+              // Put in right hand (store the ID)
               delete player.equipment[slot];
-              player.equipment.rightHand = item;
+              player.equipment.rightHand = itemId;
               try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
               return { 
                 success: true, 
                 message: `You remove ${itemName} from ${slot}.\r\n` 
               };
             } else if (!player.equipment.leftHand) {
-              // Put in left hand
+              // Put in left hand (store the ID)
               delete player.equipment[slot];
-              player.equipment.leftHand = item;
+              player.equipment.leftHand = itemId;
               try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
               return { 
                 success: true, 

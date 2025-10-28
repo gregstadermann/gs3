@@ -53,13 +53,19 @@ function createWeaponInstance(baseKey, baseDef, roomMongoId) {
 /**
  * Add article (a/an/some) to an item name
  */
-function addArticle(name) {
+function addArticle(name, itemType = null) {
   // Don't modify the name - just check if it needs an article
   const lowerName = name.toLowerCase().trim();
   
   // If it already starts with an article, return as-is
   if (lowerName.match(/^(a|an|some|the)\s+/)) {
     return name;
+  }
+  
+  // Armor and plate armor use "some"
+  if (itemType === 'ARMOR' || lowerName.includes('plate') || lowerName.includes('armor') || 
+      lowerName.includes('leather') || lowerName.includes('chain') || lowerName.includes('breastplate')) {
+    return `some ${name}`;
   }
   
   // Determine which article to use based on first letter
@@ -77,7 +83,7 @@ function createArmorInstance(armorDef, containedInId) {
   const rawName = armorDef.name || `asg ${armorDef.asg}`;
   // Keep original readable name with spaces (don't sanitize) and add article
   const baseName = rawName.toLowerCase();
-  const name = addArticle(baseName);
+  const name = addArticle(baseName, 'ARMOR');
   
   return {
     id: makeId(`armor-${armorDef.asg||'x'}`),

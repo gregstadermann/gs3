@@ -21,94 +21,69 @@ module.exports = {
 
     // Handle LOCATION subcommand
     if (args.length > 0 && args[0].toLowerCase() === 'location') {
-      const itemName = args.slice(1).join(' ');
-      if (!itemName) {
-        return { 
-          success: false, 
-          message: 'Usage: inventory location <item>\r\n' 
-        };
-      }
-
-    let message = '';
+      let message = 'You are currently wearing:\r\n';
       const db = player.gameEngine.roomSystem.db;
       
-      // Check held items
-      const heldRightId = player.equipment?.rightHand;
-      const heldLeftId = player.equipment?.leftHand;
+      // Track all items by slot
+      const slotGroups = {};
       
-      if (heldRightId) {
-        try {
-          const item = await db.collection('items').findOne({ id: heldRightId });
-          if (item && (item.name.toLowerCase().includes(itemName.toLowerCase()) || 
-              (item.keywords || []).some(k => k.toLowerCase().includes(itemName.toLowerCase())))) {
-            return { 
-              success: true, 
-              message: `${item.name} is in your right hand.\r\n` 
-            };
-          }
-        } catch (_) {}
-      }
-      
-      if (heldLeftId) {
-        try {
-          const item = await db.collection('items').findOne({ id: heldLeftId });
-          if (item && (item.name.toLowerCase().includes(itemName.toLowerCase()) || 
-              (item.keywords || []).some(k => k.toLowerCase().includes(itemName.toLowerCase())))) {
-            return { 
-              success: true, 
-              message: `${item.name} is in your left hand.\r\n` 
-            };
-          }
-        } catch (_) {}
-      }
-      
-      // Check worn items
-      if (player.equipment) {
-        for (const [slot, itemId] of Object.entries(player.equipment)) {
-          if (slot !== 'rightHand' && slot !== 'leftHand' && itemId) {
-            try {
-              const item = await db.collection('items').findOne({ id: itemId });
-              if (item && (item.name.toLowerCase().includes(itemName.toLowerCase()) || 
-                  (item.keywords || []).some(k => k.toLowerCase().includes(itemName.toLowerCase())))) {
-                return { 
-                  success: true, 
-                  message: `${item.name} is worn on your ${slot}.\r\n` 
-                };
-              }
-            } catch (_) {}
-          }
-        }
-      }
-      
-      // Search in containers
-      if (player.equipment) {
-        for (const [slot, itemId] of Object.entries(player.equipment)) {
-          if (itemId) {
-            try {
-              const containerItem = await db.collection('items').findOne({ id: itemId });
-              if (containerItem && containerItem.type === 'CONTAINER' && 
-                  Array.isArray(containerItem.metadata?.items)) {
-                for (const containedId of containerItem.metadata.items) {
-                  const containedItem = await db.collection('items').findOne({ id: containedId });
-                  if (containedItem && (containedItem.name.toLowerCase().includes(itemName.toLowerCase()) || 
-                      (containedItem.keywords || []).some(k => k.toLowerCase().includes(itemName.toLowerCase())))) {
-                    const containerName = containerItem.name || 'container';
-                    return { 
-                      success: true, 
-                      message: `${containedItem.name} is inside ${containerName} (${slot}).\r\n` 
-                    };
-                  }
-                }
-              }
-            } catch (_) {}
-          }
-        }
-      }
-      
-      return { 
-        success: false, 
-        message: `You don't seem to have ${itemName}.\r\n` 
+      // Map slot names to display names
+      const slotDisplayNames = {
+        'rightHand': 'In your right hand:',
+        'leftHand': 'In your left hand:',
+        'back': 'On your back:',
+        'chest': 'Over your chest:',
+        'head': 'On your head:',
+        'feet': 'On your feet:',
+        'gloves': 'Slipped over your hands:',
+        'neck': 'Hung around your neck:',
+        'finger': 'On your finger:',
+        'general': 'Equipped:',
+        'waist': 'Attached to your belt:',
+        'wrist': 'Attached to your wrist:',
+        'shoulder': 'Slung over your shoulder:',
+        'torso': 'Over your torso:',
+        'legs': 'On your legs:',
+        'hands': 'In your hands:'
       };
+      
+      // Collect all items from equipment
+      if (player.equipment) {
+        for (const [slot, itemId] of Object.entries(player.equipment)) {
+          if (!itemId) continue;
+          
+          try {
+            const item = await db.collection('items').findOne({ id: itemId });
+            if (item) {
+              const displaySlot = slotDisplayNames[slot] || `On your ${slot}:`;
+              if (!slotGroups[displaySlot]) {
+                slotGroups[displaySlot] = [];
+              }
+              slotGroups[displaySlot].push(item.name || itemId);
+            }
+          } catch (_) {}
+        }
+      }
+      
+      // Output grouped items
+      let itemCount = 0;
+      for (const [slot, items] of Object.entries(slotGroups)) {
+        if (items.length > 0) {
+          message += `  ${slot}\r\n`;
+          for (const itemName of items) {
+            message += `    ${itemName} (functional)\r\n`;
+            itemCount++;
+          }
+        }
+      }
+      
+      if (itemCount === 0) {
+        message = 'You are currently wearing nothing.\r\n';
+      } else {
+        message += `\r\n(${itemCount} ${itemCount === 1 ? 'item' : 'items'} displayed.)\r\n`;
+      }
+      
+      return { success: true, message };
     }
 
     let message = '';

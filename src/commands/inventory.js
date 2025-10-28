@@ -19,6 +19,98 @@ module.exports = {
       return roundtimeCheck;
     }
 
+    // Handle LOCATION subcommand
+    if (args.length > 0 && args[0].toLowerCase() === 'location') {
+      const itemName = args.slice(1).join(' ');
+      if (!itemName) {
+        return { 
+          success: false, 
+          message: 'Usage: inventory location <item>\r\n' 
+        };
+      }
+
+    let message = '';
+      const db = player.gameEngine.roomSystem.db;
+      
+      // Check held items
+      const heldRightId = player.equipment?.rightHand;
+      const heldLeftId = player.equipment?.leftHand;
+      
+      if (heldRightId) {
+        try {
+          const item = await db.collection('items').findOne({ id: heldRightId });
+          if (item && (item.name.toLowerCase().includes(itemName.toLowerCase()) || 
+              (item.keywords || []).some(k => k.toLowerCase().includes(itemName.toLowerCase())))) {
+            return { 
+              success: true, 
+              message: `${item.name} is in your right hand.\r\n` 
+            };
+          }
+        } catch (_) {}
+      }
+      
+      if (heldLeftId) {
+        try {
+          const item = await db.collection('items').findOne({ id: heldLeftId });
+          if (item && (item.name.toLowerCase().includes(itemName.toLowerCase()) || 
+              (item.keywords || []).some(k => k.toLowerCase().includes(itemName.toLowerCase())))) {
+            return { 
+              success: true, 
+              message: `${item.name} is in your left hand.\r\n` 
+            };
+          }
+        } catch (_) {}
+      }
+      
+      // Check worn items
+      if (player.equipment) {
+        for (const [slot, itemId] of Object.entries(player.equipment)) {
+          if (slot !== 'rightHand' && slot !== 'leftHand' && itemId) {
+            try {
+              const item = await db.collection('items').findOne({ id: itemId });
+              if (item && (item.name.toLowerCase().includes(itemName.toLowerCase()) || 
+                  (item.keywords || []).some(k => k.toLowerCase().includes(itemName.toLowerCase())))) {
+                return { 
+                  success: true, 
+                  message: `${item.name} is worn on your ${slot}.\r\n` 
+                };
+              }
+            } catch (_) {}
+          }
+        }
+      }
+      
+      // Search in containers
+      if (player.equipment) {
+        for (const [slot, itemId] of Object.entries(player.equipment)) {
+          if (itemId) {
+            try {
+              const containerItem = await db.collection('items').findOne({ id: itemId });
+              if (containerItem && containerItem.type === 'CONTAINER' && 
+                  Array.isArray(containerItem.metadata?.items)) {
+                for (const containedId of containerItem.metadata.items) {
+                  const containedItem = await db.collection('items').findOne({ id: containedId });
+                  if (containedItem && (containedItem.name.toLowerCase().includes(itemName.toLowerCase()) || 
+                      (containedItem.keywords || []).some(k => k.toLowerCase().includes(itemName.toLowerCase())))) {
+                    const containerName = containerItem.name || 'container';
+                    return { 
+                      success: true, 
+                      message: `${containedItem.name} is inside ${containerName} (${slot}).\r\n` 
+                    };
+                  }
+                }
+              }
+            } catch (_) {}
+          }
+        }
+      }
+      
+      return { 
+        success: false, 
+        message: `You don't seem to have ${itemName}.\r\n` 
+      };
+    }
+
     let message = '';
     
     // Collect held items

@@ -4,11 +4,10 @@
  * Create Command (Admin Only)
  * Creates items on the fly based on base templates
  * Usage:
- *   CREATE weapon broadsword          - Create a broadsword
- *   CREATE armor chain mail           - Create chain mail
- *   CREATE CONTAINER backpack         - Create a backpack
- *   CREATE weapon broadsword HERE     - Create item in current room
- *   CREATE weapon broadsword GROUND   - Create item on ground
+ *   CREATE weapon broadsword                    - Create a broadsword
+ *   CREATE armor chain mail                     - Create chain mail
+ *   CREATE weapon broadsword AS "flame blade"   - Custom name
+ *   CREATE weapon broadsword DESC "glowing"    - Custom description
  */
 const BASE_WEAPONS = require('../data/base-weapons');
 const BASE_ARMOR = require('../data/base-armor');
@@ -20,7 +19,7 @@ module.exports = {
   name: 'create',
   aliases: ['spawn'],
   description: 'Create items from base templates (Admin only)',
-  usage: 'create <type> <name> [location]',
+  usage: 'create <type> <name> [AS "custom name"] [DESC "custom description"] [HERE|GROUND]',
   
   async execute(player, args) {
     // Check admin access
@@ -31,13 +30,31 @@ module.exports = {
       };
     }
     
-    const fullArgs = args.trim();
-    const parts = fullArgs.toLowerCase().split(/\s+/);
+    const fullArgs = Array.isArray(args) ? args.join(' ') : String(args);
+    
+    // Parse custom name (AS "name")
+    let customName = null;
+    let modifiedArgs = fullArgs;
+    const asMatch = fullArgs.match(/\s+as\s+"([^"]+)"/i);
+    if (asMatch) {
+      customName = asMatch[1];
+      modifiedArgs = modifiedArgs.replace(/\s+as\s+"[^"]+"/i, '');
+    }
+    
+    // Parse custom description (DESC "description")
+    let customDesc = null;
+    const descMatch = modifiedArgs.match(/\s+desc\s+"([^"]+)"/i);
+    if (descMatch) {
+      customDesc = descMatch[1];
+      modifiedArgs = modifiedArgs.replace(/\s+desc\s+"[^"]+"/i, '');
+    }
+    
+    const parts = modifiedArgs.toLowerCase().split(/\s+/);
     
     if (parts.length < 2) {
       return { 
         success: false, 
-        message: 'Usage: CREATE <type> <name> [HERE|GROUND]\r\nType: weapon, armor, container, shield\r\n' 
+        message: 'Usage: CREATE <type> <name> [AS "name"] [DESC "desc"] [HERE|GROUND]\r\nType: weapon, armor, container, shield\r\n' 
       };
     }
     
@@ -172,6 +189,16 @@ module.exports = {
           success: false, 
           message: `Unknown item type: ${itemType}\r\nSupported types: weapon, armor, shield, container\r\n` 
         };
+      }
+      
+      // Apply custom name and description if provided
+      if (customName) {
+        item.name = customName;
+        item.roomDesc = customName;
+      }
+      
+      if (customDesc) {
+        item.description = customDesc;
       }
       
       // Save item to database

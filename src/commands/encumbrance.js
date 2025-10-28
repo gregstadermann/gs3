@@ -8,11 +8,11 @@ module.exports = {
   description: 'Show your current encumbrance status',
   usage: 'encumbrance',
 
-  execute(player) {
+  async execute(player) {
     const bodyW = Enc.getBodyWeight(player);
     const cap = Enc.getUnencumberedCapacity(player);
-    const carried = Enc.getCarriedWeight(player);
-    const pct = Enc.getEncumbrancePercent(player);
+    const carried = await Enc.getCarriedWeight(player);
+    const pct = await Enc.getEncumbrancePercent(player);
     const msg = Enc.getEncumbranceMessage(pct);
     const lines = [];
     lines.push(`Body Weight: ${bodyW.toFixed(2)} lbs.`);

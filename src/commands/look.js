@@ -87,40 +87,44 @@ const lookEntity = async (player, args) => {
     return { success: false, message: "You don't see anything like that here." };
   }
 
+  const db = player.gameEngine.roomSystem.db;
+
   // Handle "look at X" and "look in X" syntax
   let searchTerm = args.join(' ');
-  let isLookIn = false;
+  let lookInContainer = false;
   if (args.length > 1 && args[0].toLowerCase() === 'at') {
     searchTerm = args.slice(1).join(' ');
   } else if (args.length > 1 && args[0].toLowerCase() === 'in') {
-    isLookIn = true;
     searchTerm = args.slice(1).join(' ');
+    lookInContainer = true;
   }
 
   const searchLower = searchTerm.toLowerCase();
 
-  // If looking in "my" container, prefer searching player possessions first
-  if (isLookIn && searchLower.startsWith('my ')) {
-    const target = searchLower.replace(/^my\s+/, '');
-    // Gather candidate containers: hands + wornItems (if present)
-    const candidates = [];
-    if (player.equipment?.rightHand) candidates.push(player.equipment.rightHand);
-    if (player.equipment?.leftHand) candidates.push(player.equipment.leftHand);
-    if (Array.isArray(player.wornItems)) candidates.push(...player.wornItems);
-    const cont = candidates.find(it => {
-      const name = (it?.name||'').toLowerCase();
-      const kws = (it?.keywords||[]).map(k=>k.toLowerCase());
-      const isContainer = it && (it.type === 'CONTAINER' || it?.metadata?.container === true);
-      return isContainer && (name.includes(target) || kws.some(k=> k.includes(target) || target.includes(k)));
+  // Handle "look in MY container" - search player inventory
+  if (lookInContainer && searchLower.includes('my ')) {
+    const containerTerm = searchLower.replace(/^my\s+/, '');
+    const allItems = [];
+    if (player.equipment?.rightHand) allItems.push(player.equipment.rightHand);
+    if (player.equipment?.leftHand) allItems.push(player.equipment.leftHand);
+    if (Array.isArray(player.inventory)) allItems.push(...player.inventory);
+    
+    const container = allItems.find(it => {
+      const name = (it.name || '').toLowerCase();
+      const kws = (it.keywords || []).map(k => k.toLowerCase());
+      return name.includes(containerTerm) || kws.some(k => k.includes(containerTerm));
     });
-    if (cont) {
-      const contents = (cont.metadata && Array.isArray(cont.metadata.contents)) ? cont.metadata.contents : [];
-      if (contents.length === 0) {
-        return { success: true, message: `It is empty.` };
-      }
-      const list = contents.join(', ');
-      return { success: true, message: `Inside you see ${list}.` };
+
+    if (!container) {
+      return { success: false, message: "You don't see that container.\r\n" };
     }
+
+    // Check if it's a container
+    if (container.type === 'CONTAINER' || (container.metadata && container.metadata.container)) {
+      // TODO: Fetch items inside container from DB once storage is implemented
+      return { success: true, message: `You look in ${container.name}. It appears to be empty.\r\n` };
+    }
+    return { success: false, message: `You cannot look inside ${container.name}.\r\n` };
   }
 
   // Search items in room - fetch from database
@@ -139,17 +143,6 @@ const lookEntity = async (player, args) => {
               .findOne({ id: itemId });
             
             if (itemData) {
-              // If "look in" and it's a container, show contents
-              const isContainer = (itemData.type === 'CONTAINER') || (itemData.metadata && itemData.metadata.container === true);
-              if (isLookIn && isContainer) {
-                const contents = (itemData.metadata && Array.isArray(itemData.metadata.contents)) ? itemData.metadata.contents : [];
-                if (contents.length === 0) {
-                  return { success: true, message: `It is empty.` };
-                }
-                const list = contents.join(', ');
-                return { success: true, message: `Inside you see ${list}.` };
-              }
-
               let message = '';
               if (itemData.longDescription) {
                 message = itemData.longDescription;
@@ -183,17 +176,6 @@ const lookEntity = async (player, args) => {
           if (itemData && itemData.keywords && itemData.keywords.some(kw => 
             kw.toLowerCase().includes(searchLower) || searchLower.includes(kw.toLowerCase())
           )) {
-            // If "look in" and it's a container, show contents
-            const isContainer = (itemData.type === 'CONTAINER') || (itemData.metadata && itemData.metadata.container === true);
-            if (isLookIn && isContainer) {
-              const contents = (itemData.metadata && Array.isArray(itemData.metadata.contents)) ? itemData.metadata.contents : [];
-              if (contents.length === 0) {
-                return { success: true, message: `It is empty.` };
-              }
-              const list = contents.join(', ');
-              return { success: true, message: `Inside you see ${list}.` };
-            }
-
             let message = '';
             if (itemData.longDescription) {
               message = itemData.longDescription;

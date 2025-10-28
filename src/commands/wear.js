@@ -12,7 +12,7 @@ module.exports = {
   description: 'Wear an item from your hands',
   usage: 'wear <item>',
   
-  execute(player, args) {
+  async execute(player, args) {
     if (args.length === 0) {
       return { 
         success: false, 
@@ -32,36 +32,48 @@ module.exports = {
 
     const searchTerm = args.join(' ').toLowerCase();
 
-    // Find the item in player's hands
+    // Find the item in player's hands (now stored as IDs)
     let foundItem = null;
     let hand = null;
     let handName = null;
 
     // Check right hand
-    if (player.equipment.rightHand) {
-      const item = player.equipment.rightHand;
-      const name = item.name || '';
-      const keywords = item.keywords || [];
+    const rightHandId = player.equipment.rightHand;
+    if (rightHandId && typeof rightHandId === 'string') {
+      const db = player.gameEngine.roomSystem.db;
+      const item = await db.collection('items').findOne({ id: rightHandId });
       
-      if (name.toLowerCase().includes(searchTerm) || 
-          keywords.some(kw => kw.toLowerCase().includes(searchTerm))) {
-        foundItem = item;
-        hand = 'rightHand';
-        handName = 'right';
+      if (item) {
+        const name = item.name || '';
+        const keywords = item.keywords || [];
+        
+        if (name.toLowerCase().includes(searchTerm) || 
+            keywords.some(kw => kw.toLowerCase().includes(searchTerm))) {
+          foundItem = item;
+          hand = 'rightHand';
+          handName = 'right';
+        }
       }
     }
 
     // Check left hand if not found in right
-    if (!foundItem && player.equipment.leftHand) {
-      const item = player.equipment.leftHand;
-      const name = item.name || '';
-      const keywords = item.keywords || [];
-      
-      if (name.toLowerCase().includes(searchTerm) || 
-          keywords.some(kw => kw.toLowerCase().includes(searchTerm))) {
-        foundItem = item;
-        hand = 'leftHand';
-        handName = 'left';
+    if (!foundItem) {
+      const leftHandId = player.equipment.leftHand;
+      if (leftHandId && typeof leftHandId === 'string') {
+        const db = player.gameEngine.roomSystem.db;
+        const item = await db.collection('items').findOne({ id: leftHandId });
+        
+        if (item) {
+          const name = item.name || '';
+          const keywords = item.keywords || [];
+          
+          if (name.toLowerCase().includes(searchTerm) || 
+              keywords.some(kw => kw.toLowerCase().includes(searchTerm))) {
+            foundItem = item;
+            hand = 'leftHand';
+            handName = 'left';
+          }
+        }
       }
     }
 
@@ -153,13 +165,13 @@ module.exports = {
       };
     }
 
-    // Move item from hand to equipment slot
+    // Move item from hand to equipment slot (store ID, not full object)
     delete player.equipment[hand];
     
     // Add to inventory slot system
     const result = player.inventorySlots.wear(targetSlot, foundItem, true);
     
-    // Store reference in player.equipment for quick lookup
+    // Store reference in player.equipment for quick lookup (store ID only)
     // Map inventory slot names to equipment property names
     let equipmentSlot = targetSlot;
     if (targetSlot === 'torso') {
@@ -170,8 +182,8 @@ module.exports = {
       equipmentSlot = 'gloves';
     }
     
-    // Set the item in the equipment slot
-    player.equipment[equipmentSlot] = foundItem;
+    // Set the item ID in the equipment slot (not the full object)
+    player.equipment[equipmentSlot] = foundItem.id;
 
     try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
     return { 

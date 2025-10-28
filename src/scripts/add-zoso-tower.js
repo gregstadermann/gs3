@@ -43,7 +43,7 @@ async function addZosoTower() {
         items: [],
         exits: [
           { direction: 'path', roomId: 'wehnimers-landing-town:tsnw' },
-          { direction: 'tower', roomId: 'zoso-tower:entrance' }
+          { direction: 'tower', roomId: 'zoso-tower:entrance', hidden: true }
         ],
         metadata: {}
       },
@@ -146,7 +146,7 @@ async function addZosoTower() {
       if (!exits.find(e => e.direction === 'path')) exits.push({ direction: 'path', roomId: rooms.grove.id });
       await db.collection('rooms').updateOne({ _id: tsnw._id }, { $set: { exits } });
       // Also ensure Grove points back correctly
-      await db.collection('rooms').updateOne({ id: rooms.grove.id }, { $set: { exits: [ { direction: 'path', roomId: tsnw.id }, { direction: 'tower', roomId: rooms.entrance.id } ] } });
+      await db.collection('rooms').updateOne({ id: rooms.grove.id }, { $set: { exits: [ { direction: 'path', roomId: tsnw.id }, { direction: 'tower', roomId: rooms.entrance.id, hidden: true } ] } });
     }
 
     console.log("Zoso's Tower added.");

@@ -42,6 +42,8 @@ module.exports = {
     if (fromIdx !== -1) {
       searchTerm = args.slice(0, fromIdx).join(' ').toLowerCase();
       containerTerm = args.slice(fromIdx + 1).join(' ').toLowerCase();
+      // Strip "my" if present (not needed since searching belongings already)
+      containerTerm = containerTerm.replace(/^my\s+/, '');
     }
     
     // If getting FROM container, locate container first (room first, then belongings)

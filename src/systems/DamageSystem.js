@@ -285,17 +285,30 @@ class DamageSystem {
    * Get weapon from attacker's equipment
    * Uses right hand (primary weapon hand)
    */
-  getEquippedWeapon(attacker) {
+  async getEquippedWeapon(attacker) {
     if (!attacker.equipment) {
       return null;
     }
 
     // Check right hand first (primary weapon slot)
     if (attacker.equipment.rightHand) {
-      const item = attacker.equipment.rightHand;
-      // Check if it's a weapon
-      if (item && (item.type === 'WEAPON' || item.metadata?.weapon_type || item.metadata?.slot === 'wield')) {
-        return item;
+      const itemId = attacker.equipment.rightHand;
+      
+      // Check if it's a string ID - fetch from database
+      if (typeof itemId === 'string') {
+        const db = attacker.gameEngine?.roomSystem?.db;
+        if (db) {
+          try {
+            const item = await db.collection('items').findOne({ id: itemId });
+            if (item && (item.type === 'WEAPON' || item.metadata?.weapon_type || item.metadata?.slot === 'wield')) {
+              return item;
+            }
+          } catch (_) {}
+        }
+      }
+      // Legacy code for full object
+      else if (itemId && (itemId.type === 'WEAPON' || itemId.metadata?.weapon_type || itemId.metadata?.slot === 'wield')) {
+        return itemId;
       }
     }
 

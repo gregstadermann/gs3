@@ -165,7 +165,7 @@ module.exports = {
     }
 
     // Get equipped weapon
-    const weapon = damageSystem.getEquippedWeapon(player);
+    const weapon = await damageSystem.getEquippedWeapon(player);
 
     // Calculate Attack Strength (AS) using proper formula:
     // AS = STR Bonus + Weapon Skill Bonus + [Combat Maneuvers Ranks / 2] + Weapon Enchantment + Modifiers

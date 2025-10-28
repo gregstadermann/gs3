@@ -146,34 +146,27 @@ module.exports = {
       }
     }
 
-    // Initialize inventory slots if not present
-    if (!player.inventorySlots) {
-      const InventorySlotSystem = require('../systems/InventorySlotSystem');
-      player.inventorySlots = new InventorySlotSystem();
-    }
-
-    // Check if we can wear the item in this slot
-    const slot = player.inventorySlots.getSlot(targetSlot);
-    if (!slot) {
+    // Check if slot is already occupied
+    const mappedSlot = targetSlot === 'torso' ? 'chest' : targetSlot === 'feetPutOn' ? 'feet' : targetSlot === 'hands' ? 'gloves' : targetSlot;
+    if (player.equipment[mappedSlot]) {
+      // Try to get name of existing item
+      let existingItemName = 'something';
+      try {
+        const existingId = player.equipment[mappedSlot];
+        if (typeof existingId === 'string') {
+          const existingItem = await player.gameEngine.roomSystem.db.collection('items').findOne({ id: existingId });
+          if (existingItem) existingItemName = existingItem.name || 'something';
+        }
+      } catch (_) {}
+      
       return { 
         success: false, 
-        message: `You cannot wear ${itemName} there.\r\n` 
-      };
-    }
-
-    // Check if slot is available
-    if (!player.inventorySlots.canWear(targetSlot, foundItem, true)) {
-      return { 
-        success: false, 
-        message: `You already have something there.\r\n` 
+        message: `You already have ${existingItemName} there.\r\n` 
       };
     }
 
     // Move item from hand to equipment slot (store ID, not full object)
     delete player.equipment[hand];
-    
-    // Add to inventory slot system
-    const result = player.inventorySlots.wear(targetSlot, foundItem, true);
     
     // Store reference in player.equipment for quick lookup (store ID only)
     // Map inventory slot names to equipment property names

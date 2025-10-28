@@ -24,26 +24,51 @@ module.exports = {
       return { success: false, message: 'You are not holding anything to swap.\r\n' };
     }
 
+    // Fetch item names from DB
+    const db = player.gameEngine.roomSystem.db;
+    let leftName = 'an item';
+    let rightName = 'an item';
+    
+    if (left) {
+      try {
+        const item = await db.collection('items').findOne({ id: left });
+        if (item) leftName = item.name || 'an item';
+      } catch (_) {}
+    }
+    
+    if (right) {
+      try {
+        const item = await db.collection('items').findOne({ id: right });
+        if (item) rightName = item.name || 'an item';
+      } catch (_) {}
+    }
+
     // Swap
     player.equipment.leftHand = right || null;
     player.equipment.rightHand = left || null;
 
-    // Persist change if player system supports it
+    // Persist change
     try {
-      if (player.gameEngine && player.gameEngine.playerSystem && player.name) {
-        await player.gameEngine.playerSystem.saveCharacter(player);
-      }
+      await db.collection('players').updateOne(
+        { _id: player._id },
+        { 
+          $set: { 
+            'equipment.leftHand': player.equipment.leftHand,
+            'equipment.rightHand': player.equipment.rightHand
+          } 
+        }
+      );
     } catch (e) {
       // Non-fatal if persistence fails
     }
 
     let msg = '';
     if (player.equipment.rightHand && player.equipment.leftHand) {
-      msg = `You deftly swap ${player.equipment.rightHand.name || 'an item'} to your right hand and ${player.equipment.leftHand.name || 'an item'} to your left.\r\n`;
+      msg = `You deftly swap ${rightName} to your right hand and ${leftName} to your left.\r\n`;
     } else if (player.equipment.rightHand) {
-      msg = `You move ${player.equipment.rightHand.name || 'an item'} to your right hand.\r\n`;
+      msg = `You move ${rightName} to your right hand.\r\n`;
     } else if (player.equipment.leftHand) {
-      msg = `You move ${player.equipment.leftHand.name || 'an item'} to your left hand.\r\n`;
+      msg = `You move ${leftName} to your left hand.\r\n`;
     } else {
       msg = 'Your hands are now empty.\r\n';
     }

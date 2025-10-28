@@ -8,12 +8,13 @@
  * Usage:
  *  items list [filter]
  *  items spawn <itemId>
+ *  items get <itemId>
  */
 module.exports = {
   name: 'items',
   aliases: ['item'],
   description: 'Admin: list and spawn items from the database',
-  usage: 'items list [filter]\r\nitems spawn <itemId>',
+  usage: 'items list [filter]\r\nitems spawn <itemId>\r\nitems get <itemId>',
 
   async execute(player, args) {
     if (!player.gameEngine || !player.gameEngine.roomSystem || !player.gameEngine.roomSystem.db) {
@@ -133,7 +134,99 @@ module.exports = {
       }
     }
 
-    return { success: false, message: 'Usage:\r\nitems list [filter]\r\nitems spawn <itemId>\r\n' };
+    if (sub === 'get') {
+      const itemId = args[1];
+      if (!itemId) {
+        return { success: false, message: 'Usage: items get <itemId>\r\n' };
+      }
+
+      try {
+        const item = await db.collection('items').findOne({ id: itemId });
+        if (!item) {
+          return { success: false, message: `Item not found: ${itemId}\r\n` };
+        }
+
+        // Remove item from any room it's in
+        if (item.location) {
+          await db.collection('rooms').updateOne(
+            { _id: { $oid: item.location } },
+            { $pull: { items: itemId } }
+          );
+          
+          // Also try updating by room ID
+          await db.collection('rooms').updateMany(
+            { id: item.location },
+            { $pull: { items: itemId } }
+          );
+        }
+
+        // Clear item location
+        await db.collection('items').updateOne(
+          { id: itemId },
+          { $unset: { location: '' } }
+        );
+
+        // Find an empty hand slot
+        const freeHand = !player.equipment.leftHand ? 'leftHand' : 
+                         !player.equipment.rightHand ? 'rightHand' : null;
+
+        if (!freeHand) {
+          // If no free hands, place in current room
+          const roomId = player.room;
+          const roomCached = player.gameEngine.roomSystem.getRoom(roomId);
+          if (!roomCached) {
+            return { success: false, message: `Current room not found: ${roomId}\r\n` };
+          }
+
+          const roomDoc = await db.collection('rooms').findOne({ id: roomId });
+          if (!roomDoc) {
+            return { success: false, message: `Room ${roomId} not found in database.\r\n` };
+          }
+
+          // Add item to room
+          await db.collection('items').updateOne(
+            { id: itemId },
+            { $set: { location: roomDoc._id ? String(roomDoc._id) : roomId } }
+          );
+
+          const updatedRoomItems = Array.isArray(roomDoc.items) ? [...roomDoc.items] : [];
+          if (!updatedRoomItems.includes(itemId)) {
+            updatedRoomItems.push(itemId);
+          }
+
+          await db.collection('rooms').replaceOne({ id: roomId }, { ...roomDoc, items: updatedRoomItems });
+          
+          // Update cache
+          const cachedWithItem = { ...roomCached, items: updatedRoomItems };
+          player.gameEngine.roomSystem.rooms.set(roomId, cachedWithItem);
+
+          return { 
+            success: true, 
+            message: `Retrieved ${item.name || itemId} (your hands are full, placed in room).\r\n` 
+          };
+        }
+
+        // Place in free hand
+        player.equipment[freeHand] = itemId;
+        await db.collection('players').updateOne(
+          { _id: player._id },
+          { $set: { [`equipment.${freeHand}`]: itemId } }
+        );
+
+        return { 
+          success: true, 
+          message: `Retrieved ${item.name || itemId} with your ${freeHand === 'leftHand' ? 'left' : 'right'} hand.\r\n` 
+        };
+      } catch (err) {
+        console.error('Items get error:', err);
+        return { success: false, message: `Failed to retrieve item: ${err.message}\r\n` };
+      }
+    }
+
+    return { 
+      success: false, 
+      message: 'Usage:\r\nitems list [filter]\r\nitems spawn <itemId>\r\nitems get <itemId>\r\n' 
+    };
   }
 };
 

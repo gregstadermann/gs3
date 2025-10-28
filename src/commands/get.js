@@ -179,8 +179,8 @@ module.exports = {
       };
     }
 
-    // Add item to player's hand
-    player.equipment[hand] = foundItem;
+    // Add item to player's hand (store reference ID, not full object)
+    player.equipment[hand] = foundItem.id;
 
     // Remove from room or from container
     if (container) {

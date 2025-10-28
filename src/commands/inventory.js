@@ -12,7 +12,7 @@ module.exports = {
   description: 'View your inventory and equipment',
   usage: 'inventory',
   
-  execute(player, args) {
+  async execute(player, args) {
     // Check roundtime/lag
     const roundtimeCheck = checkRoundtime(player);
     if (roundtimeCheck) {
@@ -22,18 +22,32 @@ module.exports = {
     let message = '';
     
     // Collect held items
-    const heldRight = player.equipment?.rightHand;
-    const heldLeft = player.equipment?.leftHand;
+    const heldRightId = player.equipment?.rightHand;
+    const heldLeftId = player.equipment?.leftHand;
+    
+    // Fetch item data for held items
+    const db = player.gameEngine.roomSystem.db;
+    let heldRight = null;
+    let heldLeft = null;
+    
+    if (heldRightId && db) {
+      try {
+        heldRight = await db.collection('items').findOne({ id: heldRightId });
+      } catch (_) {}
+    }
+    if (heldLeftId && db) {
+      try {
+        heldLeft = await db.collection('items').findOne({ id: heldLeftId });
+      } catch (_) {}
+    }
     
     if (heldRight || heldLeft) {
       const parts = [];
       if (heldRight) {
-        const rName = typeof heldRight === 'string' ? heldRight : (heldRight.name || 'an item');
-        parts.push(rName + ' in your right hand');
+        parts.push((heldRight.name || 'an item') + ' in your right hand');
       }
       if (heldLeft) {
-        const lName = typeof heldLeft === 'string' ? heldLeft : (heldLeft.name || 'an item');
-        parts.push(lName + ' in your left hand');
+        parts.push((heldLeft.name || 'an item') + ' in your left hand');
       }
       message += 'You are holding ' + parts.join(' and ') + '.\r\n';
     }
@@ -41,9 +55,17 @@ module.exports = {
     // Show worn items
     const wornItems = [];
     if (player.equipment) {
-      for (const [slot, item] of Object.entries(player.equipment)) {
-        if (slot !== 'rightHand' && slot !== 'leftHand' && item) {
-          wornItems.push(typeof item === 'string' ? item : item.name || 'an item');
+      for (const [slot, itemId] of Object.entries(player.equipment)) {
+        if (slot !== 'rightHand' && slot !== 'leftHand' && itemId) {
+          // Try to fetch item name
+          let itemName = itemId;
+          if (typeof itemId === 'string' && db) {
+            try {
+              const item = await db.collection('items').findOne({ id: itemId });
+              if (item) itemName = item.name || itemId;
+            } catch (_) {}
+          }
+          wornItems.push(itemName);
         }
       }
     }

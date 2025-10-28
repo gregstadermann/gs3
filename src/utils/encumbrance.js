@@ -90,8 +90,11 @@ async function getCarriedWeight(player) {
     if (itemId && typeof itemId === 'string' && db) {
       try {
         const item = await db.collection('items').findOne({ id: itemId });
-        if (item && typeof item.metadata?.weight === 'number') {
-          total += item.metadata.weight;
+        if (item) {
+          const weight = item.metadata?.weight || item.metadata?.baseWeight;
+          if (typeof weight === 'number') {
+            total += weight;
+          }
         }
       } catch (_) {}
     }
@@ -111,7 +114,7 @@ async function getCarriedWeight(player) {
           const item = await db.collection('items').findOne({ id: itemId });
           if (!item) continue;
           
-          const w = item.metadata?.weight;
+          const w = item.metadata?.weight || item.metadata?.baseWeight;
           if (typeof w !== 'number') continue;
           const isArmorMain = !!item.metadata?.armorGroup;
           if (isArmorMain) {
@@ -126,8 +129,11 @@ async function getCarriedWeight(player) {
               if (typeof containedId !== 'string') continue;
               try {
                 const containedItem = await db.collection('items').findOne({ id: containedId });
-                if (containedItem && typeof containedItem.metadata?.weight === 'number') {
-                  total += containedItem.metadata.weight;
+                if (containedItem) {
+                  const containedWeight = containedItem.metadata?.weight || containedItem.metadata?.baseWeight;
+                  if (typeof containedWeight === 'number') {
+                    total += containedWeight;
+                  }
                 }
               } catch (_) {}
             }
@@ -143,8 +149,11 @@ async function getCarriedWeight(player) {
       if (typeof itemId !== 'string') continue;
       try {
         const item = await db.collection('items').findOne({ id: itemId });
-        if (item && typeof item.metadata?.weight === 'number') {
-          total += item.metadata.weight;
+        if (item) {
+          const weight = item.metadata?.weight || item.metadata?.baseWeight;
+          if (typeof weight === 'number') {
+            total += weight;
+          }
         }
       } catch (_) {}
     }

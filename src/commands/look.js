@@ -132,7 +132,8 @@ const lookEntity = async (player, args) => {
       // Check if it's a container
       if (container.type === 'CONTAINER' || (container.metadata && container.metadata.container)) {
         // TODO: Fetch items inside container from DB once storage is implemented
-        return { success: true, message: `You look in ${container.name}. It appears to be empty.\r\n` };
+        // For now, all containers are empty
+        return { success: true, message: `You look in ${container.name}.\r\nIt is empty.\r\n` };
       }
       return { success: false, message: `You cannot look inside ${container.name}.\r\n` };
     }
@@ -154,6 +155,12 @@ const lookEntity = async (player, args) => {
               .findOne({ id: itemId });
             
             if (itemData) {
+              // If "look in" and this is a container, show contents
+              if (lookInContainer && (itemData.type === 'CONTAINER' || (itemData.metadata && itemData.metadata.container))) {
+                // TODO: Fetch items inside container from DB once storage is implemented
+                return { success: true, message: `You look in ${itemData.name}.\r\nIt is empty.\r\n` };
+              }
+              
               let message = '';
               if (itemData.longDescription) {
                 message = itemData.longDescription;
@@ -187,6 +194,12 @@ const lookEntity = async (player, args) => {
           if (itemData && itemData.keywords && itemData.keywords.some(kw => 
             kw.toLowerCase().includes(searchLower) || searchLower.includes(kw.toLowerCase())
           )) {
+            // If "look in" and this is a container, show contents
+            if (lookInContainer && (itemData.type === 'CONTAINER' || (itemData.metadata && itemData.metadata.container))) {
+              // TODO: Fetch items inside container from DB once storage is implemented
+              return { success: true, message: `You look in ${itemData.name}.\r\nIt is empty.\r\n` };
+            }
+            
             let message = '';
             if (itemData.longDescription) {
               message = itemData.longDescription;

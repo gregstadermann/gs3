@@ -4,7 +4,7 @@ const WoundSystem = require('../systems/WoundSystem');
 
 /**
  * Health Command
- * Displays character's wounds, scars, HP, spirit, stamina, bleeding, poison, and status
+ * Displays character's wounds, scars, HP, spirit, bleeding, poison, and status
  */
 module.exports = {
   name: 'health',
@@ -131,15 +131,6 @@ module.exports = {
     
     message += `   Maximum Spirit Points: ${maxSpirit}\r\n`;
     message += ` Remaining Spirit Points: ${currentSpirit}\r\n\r\n`;
-    
-    // Get Stamina stats (if applicable)
-    const maxStamina = player.attributes?.stamina?.base || 100;
-    const currentStamina = maxStamina; // TODO: Calculate current
-    const staminaRecovery = 3; // TODO: Calculate
-    
-    message += `   Maximum Stamina Points: ${maxStamina}\r\n`;
-    message += ` Remaining Stamina Points: ${currentStamina}\r\n`;
-    message += `          Stamina Recover: ${staminaRecovery}\r\n`;
     
     // Check for overexertion
     const overexerted = false; // TODO: Implement overexertion

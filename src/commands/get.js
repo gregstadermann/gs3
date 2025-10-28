@@ -203,7 +203,9 @@ module.exports = {
     // Remove from room or from container
     if (container) {
       // Update container metadata.items in DB
+      // Remove ALL instances to handle duplicates
       const newList = (container.metadata.items || []).filter(id => id !== foundItem.id);
+      console.log('[GET] Removing item from container. Before:', container.metadata.items, 'After:', newList);
       container.metadata.items = newList;
       try { await player.gameEngine.roomSystem.db.collection('items').updateOne({ id: container.id }, { $set: { 'metadata.items': newList } }); } catch(_) {}
     } else {

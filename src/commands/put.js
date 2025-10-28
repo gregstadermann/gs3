@@ -173,6 +173,13 @@ module.exports = {
     // Update container's stored items array in room
     let containerItems = (container.metadata?.items || []).slice();
     console.log('[PUT] Container items before:', containerItems);
+    
+    // Check if item already in container
+    if (containerItems.includes(itemId)) {
+      console.log('[PUT] Item already in container, skipping add');
+      return { success:true, message: `${itemName} is already in ${contName}.\r\n` };
+    }
+    
     containerItems.push(itemId);
     console.log('[PUT] Container items after:', containerItems);
     console.log('[PUT] Updating container with id:', container.id, '_id:', container._id);

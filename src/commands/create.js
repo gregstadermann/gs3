@@ -156,13 +156,27 @@ module.exports = {
         
       } else if (itemType === 'container' || itemType === 'bag') {
         const searchName = parts.slice(1, parts.length).join(' ');
-        baseKey = searchName.replace(/\s+/g, '_').toLowerCase();
+        
+        // Try different key formats
+        baseKey = `container_${searchName.replace(/\s+/g, '_').toLowerCase()}`;
         baseDef = BASE_CONTAINERS[baseKey];
+        
+        if (!baseDef) {
+          // Try partial match by name
+          const matching = Object.entries(BASE_CONTAINERS).find(([k, v]) => 
+            k.includes(searchName.replace(/\s+/g, '_').toLowerCase()) || 
+            v.name.toLowerCase().includes(searchName)
+          );
+          if (matching) {
+            baseKey = matching[0];
+            baseDef = matching[1];
+          }
+        }
         
         if (!baseDef) {
           return { 
             success: false, 
-            message: `Container template '${searchName}' not found.\r\n` 
+            message: `Container template '${searchName}' not found. Use LIST CONTAINERS to see available.\r\n` 
           };
         }
         
@@ -170,16 +184,21 @@ module.exports = {
         const rawName = baseDef.name.toLowerCase();
         const name = itemFactory.addArticle(rawName);
         
+        // Structure metadata properly
         item = {
           id: itemFactory.makeId('container'),
           type: 'CONTAINER',
           name,
           roomDesc: name,
           keywords: baseDef.keywords || rawName.split(/\s+/).filter(Boolean),
-          description: name,
+          description: baseDef.description || name,
           metadata: {
-            ...baseDef.metadata,
-            container: true
+            container: baseDef.container || {
+              maxItems: 50,
+              maxWeight: 100
+            },
+            weight: baseDef.weight || 1,
+            slot: baseDef.slot || 'held'
           },
           createdAt: new Date()
         };

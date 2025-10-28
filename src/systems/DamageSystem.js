@@ -566,6 +566,8 @@ class DamageSystem {
     // Apply damage (or instant death)
     const newHealth = willDie ? 0 : (currentHealth - mitigatedDamage);
     
+    console.log(`[HEALTH CHECK] Target: ${target.name}, Current health: ${currentHealth}, Damage: ${mitigatedDamage}, New health: ${newHealth}, Will die: ${newHealth <= 0}`);
+    
     // Update target health
     this.setStat(target, 'health', newHealth);
     
@@ -599,6 +601,8 @@ class DamageSystem {
       }
     }
 
+    console.log(`[DEATH CHECK] newHealth <= 0: ${newHealth <= 0}, target: ${!!target}, room: ${target?.room}, gameEngine: ${!!target?.gameEngine}, roomSystem: ${!!target?.gameEngine?.roomSystem}`);
+    
     // If target died, create a corpse item in the room for SEARCH/SKIN
     if (newHealth <= 0 && target && target.room && target.gameEngine && target.gameEngine.roomSystem) {
       console.log(`[CORPSE] Target died: ${target.name}, room: ${target.room}`);

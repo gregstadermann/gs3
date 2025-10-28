@@ -64,7 +64,15 @@ module.exports = {
           }
         }
         if (Array.isArray(player.inventory)) belongings.push(...player.inventory);
-        container = belongings.find(it => ((it.name||'').toLowerCase().includes(containerTerm)) || (it.keywords||[]).some(k=>k.toLowerCase().includes(containerTerm)));
+        // Fetch full DB document for each item in belongings
+        for (const ref of belongings) {
+          if (!ref.id) continue;
+          const fetched = await player.gameEngine.roomSystem.db.collection('items').findOne({ id: ref.id });
+          if (fetched && (((fetched.name||'').toLowerCase().includes(containerTerm)) || (fetched.keywords||[]).some(k=>k.toLowerCase().includes(containerTerm)))) {
+            container = fetched;
+            break;
+          }
+        }
       }
 
       if (!container || !container.metadata?.container) {

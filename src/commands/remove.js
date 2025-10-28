@@ -25,19 +25,25 @@ module.exports = {
         const weaponId = player.equipment.rightHand;
         delete player.equipment.rightHand;
         
-        // Add back to inventory
-        if (!player.inventory) {
-          player.inventory = [];
-        }
-        player.inventory.push(weaponId);
-
-        // Fetch weapon name from DB
+        // Fetch weapon name from DB and drop in room
         let weaponName = typeof weaponId === 'string' ? weaponId : 'a weapon';
         const db = player.gameEngine.roomSystem.db;
         if (db && typeof weaponId === 'string') {
           try {
             const weapon = await db.collection('items').findOne({ id: weaponId });
-            if (weapon) weaponName = weapon.name || weaponId;
+            if (weapon) {
+              weaponName = weapon.name || weaponId;
+              // Update item location to current room
+              await db.collection('items').updateOne(
+                { id: weaponId },
+                { $set: { location: player.gameEngine.roomSystem.getRoom(player.currentRoom)?._id || player.currentRoom } }
+              );
+              // Add to room's items array
+              await db.collection('rooms').updateOne(
+                { id: player.currentRoom },
+                { $push: { items: weaponId } }
+              );
+            }
           } catch (_) {}
         }
 
@@ -53,19 +59,25 @@ module.exports = {
         const weaponId = player.equipment.leftHand;
         delete player.equipment.leftHand;
         
-        // Add back to inventory
-        if (!player.inventory) {
-          player.inventory = [];
-        }
-        player.inventory.push(weaponId);
-
-        // Fetch weapon name from DB
+        // Fetch weapon name from DB and drop in room
         let weaponName = typeof weaponId === 'string' ? weaponId : 'a weapon';
         const db = player.gameEngine.roomSystem.db;
         if (db && typeof weaponId === 'string') {
           try {
             const weapon = await db.collection('items').findOne({ id: weaponId });
-            if (weapon) weaponName = weapon.name || weaponId;
+            if (weapon) {
+              weaponName = weapon.name || weaponId;
+              // Update item location to current room
+              await db.collection('items').updateOne(
+                { id: weaponId },
+                { $set: { location: player.gameEngine.roomSystem.getRoom(player.currentRoom)?._id || player.currentRoom } }
+              );
+              // Add to room's items array
+              await db.collection('rooms').updateOne(
+                { id: player.currentRoom },
+                { $push: { items: weaponId } }
+              );
+            }
           } catch (_) {}
         }
 
@@ -99,11 +111,15 @@ module.exports = {
       if (weaponName.toLowerCase().includes(searchTerm)) {
         delete player.equipment.rightHand;
         
-        // Add back to inventory
-        if (!player.inventory) {
-          player.inventory = [];
-        }
-        player.inventory.push(weaponId);
+        // Drop item in room
+        await db.collection('items').updateOne(
+          { id: weaponId },
+          { $set: { location: player.gameEngine.roomSystem.getRoom(player.currentRoom)?._id || player.currentRoom } }
+        );
+        await db.collection('rooms').updateOne(
+          { id: player.currentRoom },
+          { $push: { items: weaponId } }
+        );
 
         try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
         return { 
@@ -128,11 +144,15 @@ module.exports = {
       if (weaponName.toLowerCase().includes(searchTerm)) {
         delete player.equipment.leftHand;
         
-        // Add back to inventory
-        if (!player.inventory) {
-          player.inventory = [];
-        }
-        player.inventory.push(weaponId);
+        // Drop item in room
+        await db.collection('items').updateOne(
+          { id: weaponId },
+          { $set: { location: player.gameEngine.roomSystem.getRoom(player.currentRoom)?._id || player.currentRoom } }
+        );
+        await db.collection('rooms').updateOne(
+          { id: player.currentRoom },
+          { $push: { items: weaponId } }
+        );
 
         try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
         return { 

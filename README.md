@@ -2,6 +2,11 @@
 
 This is a modern, clean MUD engine built with Node.js.
 
+## Recent Changes
+
+- 2025-10-28: Preserve `player.role` when saving players so admin roles are not lost. HOTFIX reads updated role reliably. Added Zoso's Tower content script. Minor combat updates in `attack.js`.
+- 2025-10-28: Major systems update: refined critical rank formula with armor divisors; added cold criticals; corpse creation with SEARCH/SKIN; bank in TSW with WEALTH/currency; encumbrance with weapon/shield weights and recalculation hooks; base armor/shields data; shield DS from left hand only; admin items spawn command; weights for brawling and polearm weapons.
+
 ## Architecture
 
 - **Core Engine**: Game loop, event system, command management

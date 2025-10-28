@@ -146,22 +146,31 @@ const lookEntity = async (player, args) => {
     }
     
     if (searchIn === 'player') {
-      const allItems = [];
-      if (player.equipment?.rightHand) allItems.push(player.equipment.rightHand);
-      if (player.equipment?.leftHand) allItems.push(player.equipment.leftHand);
-      // Include worn/equipped items in all equipment slots
+      // Collect item references from belongings, then fetch from DB
+      const itemRefs = [];
+      if (player.equipment?.rightHand) itemRefs.push(player.equipment.rightHand);
+      if (player.equipment?.leftHand) itemRefs.push(player.equipment.leftHand);
       if (player.equipment) {
         for (const [slot, item] of Object.entries(player.equipment)) {
-          if (slot !== 'rightHand' && slot !== 'leftHand' && item) allItems.push(item);
+          if (slot !== 'rightHand' && slot !== 'leftHand' && item) itemRefs.push(item);
         }
       }
-      if (Array.isArray(player.inventory)) allItems.push(...player.inventory);
+      if (Array.isArray(player.inventory)) itemRefs.push(...player.inventory);
       
-      const container = allItems.find(it => {
-        const name = (it.name || '').toLowerCase();
-        const kws = (it.keywords || []).map(k => k.toLowerCase());
-        return name.includes(containerTerm) || kws.some(k => k.includes(containerTerm));
-      });
+      let container = null;
+      // Fetch full item docs from DB using IDs
+      for (const ref of itemRefs) {
+        if (!ref.id) continue;
+        const fetched = await db.collection('items').findOne({ id: ref.id });
+        if (fetched) {
+          const name = (fetched.name || '').toLowerCase();
+          const kws = (fetched.keywords || []).map(k => k.toLowerCase());
+          if (name.includes(containerTerm) || kws.some(k => k.includes(containerTerm))) {
+            container = fetched;
+            break;
+          }
+        }
+      }
 
       if (!container) {
         return { success: false, message: "You don't see that container in your belongings.\r\n" };

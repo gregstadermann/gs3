@@ -601,9 +601,11 @@ class DamageSystem {
 
     // If target died, create a corpse item in the room for SEARCH/SKIN
     if (newHealth <= 0 && target && target.room && target.gameEngine && target.gameEngine.roomSystem) {
+      console.log(`[CORPSE] Target died: ${target.name}, room: ${target.room}`);
       try {
         const db = target.gameEngine.roomSystem.db;
         if (db) {
+          console.log(`[CORPSE] DB available, creating corpse`);
           const roomDoc = await db.collection('rooms').findOne({ id: target.room });
           const corpseId = `corpse-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
           const npcName = target.name || 'creature';
@@ -627,9 +629,11 @@ class DamageSystem {
             createdAt: new Date()
           };
           await db.collection('items').insertOne(corpseItem);
+          console.log(`[CORPSE] Created corpse: ${corpseItem.name}, ID: ${corpseId}`);
           // attach to room items and update cache
           const newItems = Array.isArray(roomDoc?.items) ? [...roomDoc.items, corpseId] : [corpseId];
           await db.collection('rooms').updateOne({ id: target.room }, { $set: { items: newItems } });
+          console.log(`[CORPSE] Added corpse to room items array`);
           const cachedRoom = target.gameEngine.roomSystem.getRoom(target.room);
           if (cachedRoom) {
             target.gameEngine.roomSystem.rooms.set(target.room, { ...cachedRoom, items: newItems });
@@ -637,7 +641,9 @@ class DamageSystem {
           
           // Remove living NPC from room
           const npcSystem = target.gameEngine?.npcSystem;
+          console.log(`[CORPSE] Attempting to remove NPC, npcId: ${target.npcId}, has system: ${!!npcSystem}`);
           if (npcSystem && target.npcId) {
+            console.log(`[CORPSE] Removing NPC ${target.npcId} from room`);
             // Remove NPC from the in-memory NPC system
             npcSystem.removeNPC(target.npcId);
             

@@ -10,6 +10,7 @@ const { AccountManager } = require('../systems/AccountManager');
 const ActionRecorder = require('../systems/ActionRecorder');
 const DailyProcessor = require('../systems/DailyProcessor');
 const NPCSystem = require('../systems/NPCSystem');
+const WoundSystem = require('../systems/WoundSystem');
 
 /**
  * Core Game Engine
@@ -113,7 +114,7 @@ class GameEngine extends EventEmitter {
       this.combatSystem = new CombatSystem();
     }
 
-    // Process roundtime for all players in combat
+      // Process roundtime for all players in combat
     for (const [playerId, player] of this.players) {
       // Update player
       this.playerSystem.updatePlayer(player);
@@ -122,6 +123,9 @@ class GameEngine extends EventEmitter {
       if (player.combatData && player.combatData.lag > 0) {
         player.combatData.lag = Math.max(0, player.combatData.lag - 1000);
       }
+
+      // Process bleed damage from wounds (rank 2+ bleed)
+      this.processBleedDamage(player);
 
       // If in combat, update combat state
       if (this.combatSystem.isInCombat(player)) {
@@ -149,7 +153,10 @@ class GameEngine extends EventEmitter {
 
       // If NPC can act (lag expired) and is in combat, perform action
       if (npc.combatData && npc.combatData.lag === 0 && this.combatSystem.isInCombat(npc)) {
-        this.npcCombatBehavior?.performCombatAction(npc);
+        // Perform combat action async (don't await to avoid blocking game loop)
+        this.npcCombatBehavior?.performCombatAction(npc).catch(err => {
+          console.error('Error in NPC combat action:', err);
+        });
       }
     }
     
@@ -228,6 +235,80 @@ class GameEngine extends EventEmitter {
     });
 
     return this.commandManager.execute(player, command, args);
+  }
+
+  /**
+   * Process bleed damage from wounds
+   * Rank 2+ wounds cause bleeding damage over time
+   */
+  processBleedDamage(player) {
+    if (!player.wounds || !player.wounds.wounds) {
+      return;
+    }
+
+    const wounds = WoundSystem.getAllWounds(player);
+    let totalBleedDamage = 0;
+    const bleedWounds = [];
+
+    // Check all wounds for bleeding (rank 2+)
+    for (const location in wounds) {
+      const wound = wounds[location];
+      if (wound.rank >= 2) {
+        // Skip if fully bandaged
+        if (wound.bandaged && wound.bandageReduction >= 1.0) {
+          continue;
+        }
+        
+        // Calculate bleed damage based on wound rank
+        // Rank 2: 1-2 damage per tick
+        // Rank 3: 2-4 damage per tick
+        let bleedAmount = wound.rank === 2 
+          ? Math.floor(Math.random() * 2) + 1  // 1-2 damage
+          : Math.floor(Math.random() * 3) + 2;   // 2-4 damage
+        
+        // Apply bandage reduction if partially bandaged
+        if (wound.bandaged && wound.bandageReduction < 1.0) {
+          bleedAmount = Math.floor(bleedAmount * (1 - wound.bandageReduction));
+        }
+        
+        if (bleedAmount > 0) {
+          totalBleedDamage += bleedAmount;
+          bleedWounds.push({ location, rank: wound.rank });
+        }
+      }
+    }
+
+    if (totalBleedDamage > 0) {
+      // Apply bleed damage
+      const currentHealth = player.attributes?.health?.base || 100;
+      const delta = player.attributes?.health?.delta || 0;
+      const totalHealth = currentHealth + delta;
+      
+      const newHealth = Math.max(0, totalHealth - totalBleedDamage);
+      
+      // Update health
+      if (!player.attributes) {
+        player.attributes = {};
+      }
+      if (!player.attributes.health) {
+        player.attributes.health = { base: 100, delta: 0 };
+      }
+      
+      player.attributes.health.base = Math.min(100, newHealth);
+      player.attributes.health.delta = 0;
+      
+      // Check if player died from bleeding
+      if (newHealth <= 0 && player.gameEngine) {
+        // Send death message to player
+        const connection = player.gameEngine.getPlayerConnection(player.id);
+        if (connection && connection.send) {
+          connection.send('\r\nYou have bled to death!\r\n');
+        }
+        
+        // TODO: Handle player death
+        console.log(`${player.name} has bled to death!`);
+      }
+    }
   }
 
   /**

@@ -16,7 +16,11 @@ module.exports = {
       let message = 'Available Skills:\n';
       message += `Training Points: ${player.tps ? player.tps[0] : 0} physical, ${player.tps ? player.tps[1] : 0} mental\n\n`;
       
+      console.log(`[SKILLS DEBUG] Player: ${player.name}`);
+      console.log(`[SKILLS DEBUG] Skills object:`, JSON.stringify(player.skills, null, 2));
+      
       const skills = Object.entries(player.skills || {});
+      console.log(`[SKILLS DEBUG] Skills entries:`, skills.length);
       
       if (skills.length === 0) {
         message += 'No skills available. This character was created before the skills system was implemented.\n';
@@ -28,6 +32,8 @@ module.exports = {
       const combatSkills = skills.filter(([id, skill]) => 
         ['brawling', 'one_handed_edged', 'one_handed_blunt', 'two_handed', 'polearm', 'ranged', 'thrown', 'combat_maneuvers', 'shield_use', 'armor_use'].includes(id)
       );
+      
+      console.log(`[SKILLS DEBUG] Combat skills:`, combatSkills.map(([id, skill]) => `${id}: rank ${skill.ranks}`));
       
       const utilitySkills = skills.filter(([id, skill]) => 
         ['climbing', 'swimming', 'survival', 'disarm_traps', 'pick_locks', 'stalk_and_hide', 'perception', 'ambush', 'first_aid'].includes(id)
@@ -43,6 +49,7 @@ module.exports = {
 
       let skillNumber = 1;
       const formatSkill = (name, ranks, cost, number, maxTotal, maxPerLevel) => {
+        console.log(`[SKILLS DEBUG] Formatting skill ${number}: ${name} with ${ranks} ranks`);
         // Format: Number) Current_Ranks Max/Max_Per_Level (Next_Rank_Cost) Skill_Name
         // Calculate what the next rank would cost based on current ranks
         const rankInLevel = ranks % 3;
@@ -105,6 +112,7 @@ module.exports = {
         message += 'Combat Skills\r\n';
         combatSkills.forEach(([id, skill]) => {
           const [maxTotal, maxPerLevel] = getSkillMaxRanks(id);
+          console.log(`[SKILLS DEBUG] Displaying ${id}: ranks=${skill.ranks}, maxTotal=${maxTotal}, maxPerLevel=${maxPerLevel}`);
           message += formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxTotal, maxPerLevel) + '\r\n';
         });
         message += '\r\n';

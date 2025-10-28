@@ -90,8 +90,19 @@ class PlayerSystem {
       const player = await collection.findOne({ name: username });
       
       if (player) {
+        console.log(`[LOAD PLAYER] Loading player ${username} from database`);
+        console.log(`[LOAD PLAYER] Skills:`, player.skills ? Object.keys(player.skills).join(', ') : 'none');
+        if (player.skills?.one_handed_edged) {
+          console.log(`[LOAD PLAYER] one_handed_edged ranks:`, player.skills.one_handed_edged.ranks);
+        }
+        
         // Set id if not present
         if (!player.id) player.id = player.name;
+        
+        // Ensure role field exists (default to 'player' if missing)
+        if (!player.role) {
+          player.role = 'player';
+        }
         
         // Add to memory cache
         this.players.set(username, player);

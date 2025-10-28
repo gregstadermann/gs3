@@ -1,5 +1,7 @@
 'use strict';
 
+const { checkRoundtime } = require('../utils/roundtimeChecker');
+
 /**
  * Train Command
  * Handles skill training with Training Points (TPs)
@@ -16,6 +18,12 @@ module.exports = {
         success: false, 
         message: 'Usage: train <skill> <ranks>\nExample: train brawling 5 or train 1 5\nType "skills" to see available skills and costs.' 
       };
+    }
+
+    // Check roundtime/lag
+    const roundtimeCheck = checkRoundtime(player);
+    if (roundtimeCheck) {
+      return roundtimeCheck;
     }
 
     const [skillNameOrNumber, ranksStr] = args;

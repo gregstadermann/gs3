@@ -119,6 +119,7 @@ class CommandManager {
   /**
    * Find a command with fuzzy matching
    * Tries exact match first, then partial match
+   * Requires at least 3 characters for abbreviation matching
    */
   findCommand(search) {
     if (!search) {
@@ -133,17 +134,20 @@ class CommandManager {
       return lowerSearch;
     }
 
-    // Try fuzzy match - starts with
-    for (const [name] of this.commands) {
-      if (name.startsWith(lowerSearch)) {
-        return name;
+    // Fuzzy match requires at least 3 characters (to avoid ambiguous matches)
+    if (lowerSearch.length >= 3) {
+      // Try fuzzy match - starts with (commands)
+      for (const [name] of this.commands) {
+        if (name.startsWith(lowerSearch)) {
+          return name;
+        }
       }
-    }
 
-    // Try fuzzy match - aliases
-    for (const [alias, commandName] of this.aliases) {
-      if (alias.startsWith(lowerSearch)) {
-        return commandName;
+      // Try fuzzy match - aliases
+      for (const [alias, commandName] of this.aliases) {
+        if (alias.startsWith(lowerSearch)) {
+          return commandName;
+        }
       }
     }
 

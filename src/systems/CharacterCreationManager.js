@@ -1,5 +1,7 @@
 'use strict';
 
+const Encumbrance = require('../utils/encumbrance');
+
 /**
  * Character Creation Manager
  * Handles step-by-step character creation process like gemstone3
@@ -111,22 +113,25 @@ class CharacterCreationManager {
       return { success: false, message: 'Invalid name length' };
     }
     
+    // Capitalize first letter
+    const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+    
     // Check if character name already exists in /data/player directory
-    const existingPlayer = await this.playerSystem.loadPlayer(name);
+    const existingPlayer = await this.playerSystem.loadPlayer(capitalizedName);
     if (existingPlayer) {
-      this.sendMessage(connection, `Character name '${name}' is already taken. Choose another:\r\n`);
+      this.sendMessage(connection, `Character name '${capitalizedName}' is already taken. Choose another:\r\n`);
       this.sendMessage(connection, '>');
       return { success: false, message: 'Name already taken' };
     }
     
     // Check if character already exists on this account
-    if (state.account.hasCharacter(name)) {
-      this.sendMessage(connection, `Character name '${name}' is already taken on this account. Choose another:\r\n`);
+    if (state.account.hasCharacter(capitalizedName)) {
+      this.sendMessage(connection, `Character name '${capitalizedName}' is already taken on this account. Choose another:\r\n`);
       this.sendMessage(connection, '>');
       return { success: false, message: 'Name already taken on account' };
     }
     
-    state.characterData.name = name;
+    state.characterData.name = capitalizedName;
     state.step = 'name_confirm';
     this.showNameConfirmation(connection);
     
@@ -748,6 +753,15 @@ class CharacterCreationManager {
       
       // Calculate final attributes with bonuses
       const finalAttributes = this.calculateFinalAttributes(state.characterData);
+      // Initialize Spirit based on Aura: maxSpirit = round(Aura/10), capped at 13; current = max
+      try {
+        const auraVal = finalAttributes.aura?.base || 0;
+        const maxSpirit = Math.min(13, Math.round(auraVal / 10));
+        finalAttributes.spirit = { base: maxSpirit, current: maxSpirit };
+      } catch (e) {
+        // Fallback to 10 if something unexpected occurs
+        finalAttributes.spirit = { base: 10, current: 10 };
+      }
       state.characterData.attributes = finalAttributes;
       
       // Calculate TPs
@@ -1258,12 +1272,15 @@ class CharacterCreationManager {
     
     if (input.toLowerCase() === 'create') {
       try {
-        // Create the final character
+        // Create the final character with default role
         const character = {
           name: state.characterData.name,
           gender: state.characterData.gender,
           race: state.characterData.race,
+          class: state.characterData.profession,
           playerClass: state.characterData.profession,
+          level: 1,
+          experience: 0,
           attributes: state.characterData.attributes,
           tps: state.characterData.tps,
           skills: state.characterData.skills,
@@ -1271,10 +1288,26 @@ class CharacterCreationManager {
           inventory: [],
           room: 'wehnimers-landing-town:tsc',
           account: state.account.username,
+          role: 'player',  // Set to 'admin' in MongoDB to grant admin access
+          combatStance: 'neutral',  // Combat stance (offensive to defensive)
+          wounds: {
+            wounds: {},
+            scars: {}
+          },
+          attributes: {
+            ...state.characterData.attributes,
+            currency: { silver: 0, bank: 0 },
+            bodyWeight: Encumbrance.getBodyWeight({
+              race: state.characterData.race,
+              attributes: state.characterData.attributes
+            })
+          },
           metadata: {
+            class: state.characterData.profession,
             level: 1,
             lastLogin: new Date().toISOString(),
-            isOnline: true
+            isOnline: true,
+            creationDate: new Date().toISOString()
           }
         };
         

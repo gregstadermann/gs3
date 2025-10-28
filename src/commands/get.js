@@ -1,5 +1,7 @@
 'use strict';
 
+const { checkRoundtime } = require('../utils/roundtimeChecker');
+
 /**
  * Get Command
  * Pick up items from the ground and hold them
@@ -16,6 +18,12 @@ module.exports = {
         success: false, 
         message: 'Get what?\r\n' 
       };
+    }
+
+    // Check roundtime/lag
+    const roundtimeCheck = checkRoundtime(player);
+    if (roundtimeCheck) {
+      return roundtimeCheck;
     }
 
     const room = player.gameEngine.roomSystem.getRoom(player.room);
@@ -100,21 +108,16 @@ module.exports = {
       room.items.splice(itemIndex, 1);
     }
 
-    // If it's a weapon, give appropriate message
-    const isWeapon = foundItem.type === 'WEAPON' || foundItem.metadata?.weapon_type;
     const itemName = foundItem.name || 'an item';
     
-    if (isWeapon) {
-      return { 
-        success: true, 
-        message: `You pick up ${itemName} and ready it in your ${handName} hand.\r\n` 
-      };
-    } else {
-      return { 
-        success: true, 
-        message: `You pick up ${itemName}.\r\n` 
-      };
-    }
+    // Recalculate encumbrance
+    try { const Enc = require('../utils/encumbrance'); Enc.recalcEncumbrance(player); } catch(_) {}
+
+    // Always show which hand picked up the item
+    return { 
+      success: true, 
+      message: `You pick up ${itemName} with your ${handName} hand.\r\n` 
+    };
   }
 };
 

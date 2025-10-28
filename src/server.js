@@ -149,10 +149,19 @@ class GameServer {
       
       // Parse command
       const parts = message.split(' ');
-      const command = parts[0].toLowerCase();
+      const rawCommand = parts[0].toLowerCase();
       const args = parts.slice(1);
       
-      console.log(`Player ${player.name} executing command: ${command} with args:`, args);
+      // Try to find the command with fuzzy matching (requires 3+ characters)
+      let command = rawCommand;
+      if (rawCommand.length >= 3) {
+        const fuzzyMatch = this.gameEngine.commandManager.findCommand(rawCommand);
+        if (fuzzyMatch) {
+          command = fuzzyMatch;
+        }
+      }
+      
+      console.log(`Player ${player.name} executing command: ${command} (from raw: ${rawCommand}) with args:`, args);
       
       // Check if it's a direction shortcut (n, s, e, w, ne, nw, se, sw, etc.)
       const direction = this.checkDirectionShortcut(player, command);
@@ -246,10 +255,19 @@ class GameServer {
       
       // Parse command
       const parts = message.split(' ');
-      const command = parts[0].toLowerCase();
+      const rawCommand = parts[0].toLowerCase();
       const args = parts.slice(1);
       
-      console.log(`Telnet: Player ${player.name} executing command: ${command} with args:`, args);
+      // Try to find the command with fuzzy matching (requires 3+ characters)
+      let command = rawCommand;
+      if (rawCommand.length >= 3) {
+        const fuzzyMatch = this.gameEngine.commandManager.findCommand(rawCommand);
+        if (fuzzyMatch) {
+          command = fuzzyMatch;
+        }
+      }
+      
+      console.log(`Telnet: Player ${player.name} executing command: ${command} (from raw: ${rawCommand}) with args:`, args);
       
       // Check if it's a direction shortcut (n, s, e, w, ne, nw, se, sw, etc.)
       const direction = this.checkDirectionShortcut(player, command);

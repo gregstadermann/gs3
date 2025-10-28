@@ -1,0 +1,20 @@
+items:
+  - id: "test-broadsword"
+    name: "a broadsword"
+    type: WEAPON
+    roomDesc: "a gleaming broadsword"
+    keywords: ["broadsword", "sword", "blade"]
+    description: "A well-balanced broadsword with a gleaming steel blade and a leather-wrapped hilt. A standard weapon for testing combat."
+    metadata:
+      weapon_type: "one_handed_edged"
+      baseWeapon: "weapon_broadsword"
+      level: 1
+      slot: "wield"
+      itemLevel: 1
+      quality: common
+      minDamage: 8
+      maxDamage: 16
+      speed: 2.5
+      stats:
+        critical: 5
+

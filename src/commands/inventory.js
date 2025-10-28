@@ -1,5 +1,7 @@
 'use strict';
 
+const { checkRoundtime } = require('../utils/roundtimeChecker');
+
 /**
  * Inventory Command
  * Display player's inventory and equipment
@@ -11,6 +13,12 @@ module.exports = {
   usage: 'inventory',
   
   execute(player, args) {
+    // Check roundtime/lag
+    const roundtimeCheck = checkRoundtime(player);
+    if (roundtimeCheck) {
+      return roundtimeCheck;
+    }
+
     let message = '';
     
     // Show held items (right and left hands)

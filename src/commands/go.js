@@ -1,5 +1,7 @@
 'use strict';
 
+const { checkRoundtime } = require('../utils/roundtimeChecker');
+
 /**
  * Go Command
  * Allows players to move between rooms
@@ -13,6 +15,12 @@ module.exports = {
   async execute(player, args) {
     if (args.length === 0) {
       return { success: false, message: 'Go where? Try: go north, go south, go east, go west' };
+    }
+    
+    // Check roundtime/lag
+    const roundtimeCheck = checkRoundtime(player);
+    if (roundtimeCheck) {
+      return roundtimeCheck;
     }
     
     const direction = args[0].toLowerCase();

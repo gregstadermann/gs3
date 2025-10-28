@@ -114,6 +114,13 @@ class NPCSystem {
   getAllNPCs() {
     return Array.from(this.npcs.values());
   }
+
+  /**
+   * Clear all NPCs (used for hotfix/reload)
+   */
+  clearAllNPCs() {
+    this.npcs.clear();
+  }
 }
 
 module.exports = NPCSystem;

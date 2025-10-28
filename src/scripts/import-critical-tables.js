@@ -24,6 +24,7 @@ async function importCriticalTables() {
     const impactCriticals = require('../data/impact-criticals-json');
     const fireCriticals = require('../data/fire-criticals-json');
     const noncorporealCriticals = require('../data/noncorporeal-criticals-json');
+    const coldCriticals = require('../data/cold-criticals-json');
     const grappleCriticals = require('../data/grapple-criticals-json');
 
     console.log('Importing slash criticals...');
@@ -160,6 +161,23 @@ async function importCriticalTables() {
           effects: entry.effects,
           wounds: entry.wounds,
           // Create range for lookup (rank-based)
+          RollRangeStart: entry.rank * 10,
+          RollRangeEnd: (entry.rank * 10) + 9
+        });
+      }
+    }
+
+    console.log('Importing cold criticals...');
+    for (const bodyPart of Object.keys(coldCriticals)) {
+      for (const entry of coldCriticals[bodyPart]) {
+        await critsCollection.insertOne({
+          damageType: 'cold',
+          bodyPart: bodyPart,
+          rank: entry.rank,
+          damage: entry.damage,
+          message: entry.message,
+          effects: entry.effects,
+          wounds: entry.wounds,
           RollRangeStart: entry.rank * 10,
           RollRangeEnd: (entry.rank * 10) + 9
         });

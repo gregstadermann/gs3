@@ -23,68 +23,64 @@ module.exports = {
       // Remove from right hand first (main weapon slot)
       if (player.equipment && player.equipment.rightHand) {
         const weaponId = player.equipment.rightHand;
-        delete player.equipment.rightHand;
         
-        // Fetch weapon name from DB and drop in room
+        // Check if other hand is free
+        if (player.equipment.leftHand) {
+          return { 
+            success: false, 
+            message: 'Your hands are full!\r\n' 
+          };
+        }
+        
+        delete player.equipment.rightHand;
+        player.equipment.leftHand = weaponId;
+        
+        // Fetch weapon name from DB
         let weaponName = typeof weaponId === 'string' ? weaponId : 'a weapon';
         const db = player.gameEngine.roomSystem.db;
         if (db && typeof weaponId === 'string') {
           try {
             const weapon = await db.collection('items').findOne({ id: weaponId });
-            if (weapon) {
-              weaponName = weapon.name || weaponId;
-              // Update item location to current room
-              await db.collection('items').updateOne(
-                { id: weaponId },
-                { $set: { location: player.gameEngine.roomSystem.getRoom(player.currentRoom)?._id || player.currentRoom } }
-              );
-              // Add to room's items array
-              await db.collection('rooms').updateOne(
-                { id: player.currentRoom },
-                { $push: { items: weaponId } }
-              );
-            }
+            if (weapon) weaponName = weapon.name || weaponId;
           } catch (_) {}
         }
 
         try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
         return { 
           success: true, 
-          message: `You release ${weaponName} from your right hand.\r\n` 
+          message: `You move ${weaponName} to your left hand.\r\n` 
         };
       }
       
       // Try left hand if right is empty
       if (player.equipment && player.equipment.leftHand) {
         const weaponId = player.equipment.leftHand;
-        delete player.equipment.leftHand;
         
-        // Fetch weapon name from DB and drop in room
+        // Check if other hand is free
+        if (player.equipment.rightHand) {
+          return { 
+            success: false, 
+            message: 'Your hands are full!\r\n' 
+          };
+        }
+        
+        delete player.equipment.leftHand;
+        player.equipment.rightHand = weaponId;
+        
+        // Fetch weapon name from DB
         let weaponName = typeof weaponId === 'string' ? weaponId : 'a weapon';
         const db = player.gameEngine.roomSystem.db;
         if (db && typeof weaponId === 'string') {
           try {
             const weapon = await db.collection('items').findOne({ id: weaponId });
-            if (weapon) {
-              weaponName = weapon.name || weaponId;
-              // Update item location to current room
-              await db.collection('items').updateOne(
-                { id: weaponId },
-                { $set: { location: player.gameEngine.roomSystem.getRoom(player.currentRoom)?._id || player.currentRoom } }
-              );
-              // Add to room's items array
-              await db.collection('rooms').updateOne(
-                { id: player.currentRoom },
-                { $push: { items: weaponId } }
-              );
-            }
+            if (weapon) weaponName = weapon.name || weaponId;
           } catch (_) {}
         }
 
         try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
         return { 
           success: true, 
-          message: `You release ${weaponName} from your left hand.\r\n` 
+          message: `You move ${weaponName} to your right hand.\r\n` 
         };
       }
       
@@ -109,22 +105,22 @@ module.exports = {
       } catch (_) {}
       
       if (weaponName.toLowerCase().includes(searchTerm)) {
-        delete player.equipment.rightHand;
+        // Check if other hand is free
+        if (player.equipment.leftHand) {
+          return { 
+            success: false, 
+            message: 'Your hands are full!\r\n' 
+          };
+        }
         
-        // Drop item in room
-        await db.collection('items').updateOne(
-          { id: weaponId },
-          { $set: { location: player.gameEngine.roomSystem.getRoom(player.currentRoom)?._id || player.currentRoom } }
-        );
-        await db.collection('rooms').updateOne(
-          { id: player.currentRoom },
-          { $push: { items: weaponId } }
-        );
-
+        // Move to other hand
+        delete player.equipment.rightHand;
+        player.equipment.leftHand = weaponId;
+        
         try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
         return { 
           success: true, 
-          message: `You release ${weaponName} from your right hand.\r\n` 
+          message: `You move ${weaponName} to your left hand.\r\n` 
         };
       }
     }
@@ -142,27 +138,27 @@ module.exports = {
       } catch (_) {}
       
       if (weaponName.toLowerCase().includes(searchTerm)) {
-        delete player.equipment.leftHand;
+        // Check if other hand is free
+        if (player.equipment.rightHand) {
+          return { 
+            success: false, 
+            message: 'Your hands are full!\r\n' 
+          };
+        }
         
-        // Drop item in room
-        await db.collection('items').updateOne(
-          { id: weaponId },
-          { $set: { location: player.gameEngine.roomSystem.getRoom(player.currentRoom)?._id || player.currentRoom } }
-        );
-        await db.collection('rooms').updateOne(
-          { id: player.currentRoom },
-          { $push: { items: weaponId } }
-        );
-
+        // Move to other hand
+        delete player.equipment.leftHand;
+        player.equipment.rightHand = weaponId;
+        
         try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
         return { 
           success: true, 
-          message: `You release ${weaponName} from your left hand.\r\n` 
+          message: `You move ${weaponName} to your right hand.\r\n` 
         };
       }
     }
 
-    // Check worn items (equipped on slots other than hands)
+    // Check worn items (equipped on slots other than hands) - moves to hand
     if (player.equipment) {
       for (const [slot, itemId] of Object.entries(player.equipment)) {
         if (slot !== 'rightHand' && slot !== 'leftHand' && itemId && typeof itemId === 'string') {
@@ -183,7 +179,7 @@ module.exports = {
               try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
               return { 
                 success: true, 
-                message: `You remove ${itemName} from ${slot}.\r\n` 
+                message: `You remove ${itemName} from ${slot} and hold it in your right hand.\r\n` 
               };
             } else if (!player.equipment.leftHand) {
               // Put in left hand (store the ID)
@@ -192,7 +188,7 @@ module.exports = {
               try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
               return { 
                 success: true, 
-                message: `You remove ${itemName} from ${slot}.\r\n` 
+                message: `You remove ${itemName} from ${slot} and hold it in your left hand.\r\n` 
               };
             } else {
               return { 
@@ -207,7 +203,7 @@ module.exports = {
 
     return { 
       success: false, 
-      message: `You don't have that in your hands.\r\n` 
+      message: `You don't have that.\r\n` 
     };
   }
 };

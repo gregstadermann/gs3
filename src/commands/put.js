@@ -75,10 +75,8 @@ module.exports = {
       for (const it of belongings) {
         if (!it.id) continue;
         const fetched = await db.collection('items').findOne({ id: it.id });
-        console.log('[PUT] Checked belonging:', fetched?.name, '_id:', fetched?._id, 'id:', fetched?.id);
         if (fetched && (((fetched.name||'').toLowerCase().includes(targetTerm)) || (fetched.keywords||[]).some(k=>k.toLowerCase().includes(targetTerm)))) {
           container = fetched;
-          console.log('[PUT] Container found:', container.name, '_id:', container._id);
           break;
         }
       }
@@ -172,24 +170,19 @@ module.exports = {
 
     // Update container's stored items array in room
     let containerItems = (container.metadata?.items || []).slice();
-    console.log('[PUT] Container items before:', containerItems);
     
     // Check if item already in container
     if (containerItems.includes(itemId)) {
-      console.log('[PUT] Item already in container, skipping add');
       return { success:true, message: `${itemName} is already in ${contName}.\r\n` };
     }
     
     containerItems.push(itemId);
-    console.log('[PUT] Container items after:', containerItems);
-    console.log('[PUT] Updating container with id:', container.id, '_id:', container._id);
     
     try {
-      const result = await db.collection('items').updateOne(
+      await db.collection('items').updateOne(
         { id: container.id },
         { $set: { 'metadata.items': containerItems } }
       );
-      console.log('[PUT] Update result:', result.modifiedCount, 'docs modified');
     } catch (error) {
       console.error('Error storing item in container:', error);
     }

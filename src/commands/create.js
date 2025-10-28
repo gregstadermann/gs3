@@ -226,17 +226,17 @@ module.exports = {
       
       // Place item in room or inventory
       const locationTerm = parts[parts.length - 1];
-      let location = player.currentRoom;
+      let location = 'inventory'; // Default to inventory
+      let locationMsg = 'Placed in your inventory.';
       
       if (locationTerm === 'here' || locationTerm === 'ground' || locationTerm === 'room') {
         // Place in current room
         location = player.currentRoom;
-      } else {
-        // Check if we should put in player inventory
-        const hasLocation = !['here', 'ground', 'room'].includes(locationTerm.toLowerCase());
-        if (!hasLocation) {
-          location = player.currentRoom;
-        }
+        locationMsg = 'Placed in current room.';
+      } else if (locationTerm === 'hand' || locationTerm === 'hands') {
+        // Place in player's hands
+        location = 'inventory';
+        locationMsg = 'Placed in your inventory.';
       }
       
       // If location is a room, add to room's items
@@ -245,11 +245,15 @@ module.exports = {
           { id: location },
           { $push: { items: item.id } }
         );
+      } else {
+        // If defaulting to inventory, we don't automatically add to player equipment
+        // Admin would need to GET it manually or it stays in DB
+        locationMsg = 'Item created in database. Use GET to retrieve it, or specify HERE to place in room.';
       }
       
       return { 
         success: true, 
-        message: `Created ${item.name} (ID: ${item.id}).${location && location !== 'inventory' ? '\r\nPlaced in room.' : '\r\n'}`
+        message: `Created ${item.name} (ID: ${item.id}).\r\n${locationMsg}\r\n`
       };
       
     } catch (error) {

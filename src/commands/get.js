@@ -113,6 +113,12 @@ module.exports = {
     const searchSources = container && Array.isArray(container.metadata?.items)
       ? container.metadata.items
       : room.items;
+    
+    console.log('[GET] Container:', container ? container.name : 'none');
+    console.log('[GET] Container metadata:', container ? JSON.stringify(container.metadata, null, 2) : 'none');
+    console.log('[GET] Search term:', searchTerm);
+    console.log('[GET] Search sources count:', searchSources ? searchSources.length : 0);
+    console.log('[GET] Search sources:', searchSources);
 
     for (const itemRef of searchSources) {
       const itemId = typeof itemRef === 'string' ? itemRef : (itemRef.id || itemRef.name);

@@ -10,8 +10,8 @@ const BASE_WEAPONS = {
   'weapon_broadsword': {
     name: 'Broadsword',
     type: 'one_handed_edged',
-    roundtime: 1.0.5,
-    minRoundtime: 1.0.0,
+    roundtime: 5,
+    minRoundtime: 1,
     damageType: ['slash', 'puncture', 'crush'],
     strReq: 75,
     disReq: 160,

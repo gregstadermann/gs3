@@ -352,7 +352,7 @@ module.exports = {
     
     if (!hit) {
       message += `  ... and misses!\r\n`;
-      message += `Roundtime: 2.5 sec.\r\n`;
+      message += `Roundtime: ${(totalRtMs/1000).toFixed(1)} sec.\r\n`;
       return { success: true, message: message };
     }
     

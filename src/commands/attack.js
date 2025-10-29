@@ -290,12 +290,44 @@ module.exports = {
       } catch (_) { return 0; }
     }
 
+    // Get weapon roundtime from weapon definition
+    function getWeaponRoundtimeMs(w, p) {
+      try {
+        const baseWeaponType = w?.metadata?.baseWeapon;
+        const baseWeapon = damageSystem.baseWeapons[baseWeaponType];
+        if (baseWeapon && typeof baseWeapon.roundtime === 'number') {
+          // Weapon RT is in 5-unit scale (5 = 2.5s, 10 = 5s, etc)
+          const rtMs = (baseWeapon.roundtime / 2) * 1000;
+          
+          // Two-Handed Weapon skill reduces RT: 1s per 20 ranks
+          const twoHandedRanks = p.skills?.two_handed?.ranks || 0;
+          const reductionMs = Math.floor((twoHandedRanks / 20) * 1000);
+          
+          return Math.max(500, rtMs - reductionMs); // Minimum 0.5s
+        }
+        return 2500; // Default 2.5s for unknown weapons
+      } catch (_) { return 2500; }
+    }
+
+    // Get encumbrance roundtime penalty
+    function getEncumbranceRoundtimeMs(p) {
+      try {
+        const enc = p.attributes?.encumbrance;
+        if (!enc || enc.percent <= 0) return 0;
+        
+        // Encumbrance penalty: 0.5s per 10% encumbrance
+        const penaltySec = (enc.percent / 10) * 0.5;
+        return penaltySec * 1000;
+      } catch (_) { return 0; }
+    }
+
     // Initiate or continue combat
     const wasInCombat = gameCombat.isInCombat(player);
     gameCombat.initiateCombat(player, target, 0);
-    const baseRtMs = 2500; // base RT for this attack
+    const weaponRtMs = getWeaponRoundtimeMs(weapon, player);
     const armorRtMs = getArmorRoundtimeMs(player);
-    const totalRtMs = baseRtMs + armorRtMs;
+    const encumbranceRtMs = getEncumbranceRoundtimeMs(player);
+    const totalRtMs = weaponRtMs + armorRtMs + encumbranceRtMs;
     gameCombat.addLag(player, totalRtMs);
 
     // Create combat messages

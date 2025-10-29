@@ -35,7 +35,7 @@ class CommandManager {
     
     if (!command) {
       console.error(`Command not found: ${commandName}`);
-      return { success: false, message: `Unknown command: ${commandName}` };
+      return { success: false, message: 'Huh?\r\n' };
     }
 
     try {

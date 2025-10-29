@@ -1,6 +1,7 @@
 'use strict';
 
 const { checkRoundtime } = require('../utils/roundtimeChecker');
+const { findItemWithOther } = require('../utils/keywordMatcher');
 
 /**
  * Wear Command
@@ -41,43 +42,36 @@ module.exports = {
     let hand = null;
     let handName = null;
 
+    // Collect all items in hands for keyword matching
+    const db = player.gameEngine.roomSystem.db;
+    const hands = [];
+    
     // Check right hand
     const rightHandId = player.equipment.rightHand;
     if (rightHandId && typeof rightHandId === 'string') {
-      const db = player.gameEngine.roomSystem.db;
       const item = await db.collection('items').findOne({ id: rightHandId });
-      
       if (item) {
-        const name = item.name || '';
-        const keywords = item.keywords || [];
-        
-        if (name.toLowerCase().includes(searchTerm) || 
-            keywords.some(kw => kw.toLowerCase().includes(searchTerm))) {
-          foundItem = item;
-          hand = 'rightHand';
-          handName = 'right';
-        }
+        hands.push({ item, hand: 'rightHand', handName: 'right' });
       }
     }
 
-    // Check left hand if not found in right
-    if (!foundItem) {
-      const leftHandId = player.equipment.leftHand;
-      if (leftHandId && typeof leftHandId === 'string') {
-        const db = player.gameEngine.roomSystem.db;
-        const item = await db.collection('items').findOne({ id: leftHandId });
-        
-        if (item) {
-          const name = item.name || '';
-          const keywords = item.keywords || [];
-          
-          if (name.toLowerCase().includes(searchTerm) || 
-              keywords.some(kw => kw.toLowerCase().includes(searchTerm))) {
-            foundItem = item;
-            hand = 'leftHand';
-            handName = 'left';
-          }
-        }
+    // Check left hand
+    const leftHandId = player.equipment.leftHand;
+    if (leftHandId && typeof leftHandId === 'string') {
+      const item = await db.collection('items').findOne({ id: leftHandId });
+      if (item) {
+        hands.push({ item, hand: 'leftHand', handName: 'left' });
+      }
+    }
+
+    // Use keyword matcher to find item
+    const match = findItemWithOther(searchTerm, hands.map(h => h.item));
+    if (match) {
+      const handInfo = hands.find(h => h.item.id === match.id);
+      if (handInfo) {
+        foundItem = match;
+        hand = handInfo.hand;
+        handName = handInfo.handName;
       }
     }
 

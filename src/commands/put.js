@@ -1,6 +1,7 @@
 'use strict';
 
 const { checkRoundtime } = require('../utils/roundtimeChecker');
+const { findItemWithOther } = require('../utils/keywordMatcher');
 
 /**
  * Put Command
@@ -40,33 +41,47 @@ module.exports = {
     let handSlot = null;
     const db = player.gameEngine.roomSystem.db;
     
+    // Collect all items from hands and inventory
+    const allItems = [];
+    const itemsWithMeta = [];
+    
     // Check right hand
     if (player.equipment?.rightHand && typeof player.equipment.rightHand === 'string') {
       const itemData = await db.collection('items').findOne({ id: player.equipment.rightHand });
-      if (itemData && ((itemData.name||'').toLowerCase().includes(itemTerm) || (itemData.keywords||[]).some(k=>k.toLowerCase().includes(itemTerm)))) {
-        item = itemData;
-        handSlot = 'rightHand';
+      if (itemData) {
+        allItems.push(itemData);
+        itemsWithMeta.push({ item: itemData, handSlot: 'rightHand' });
       }
     }
     
     // Check left hand
-    if (!item && player.equipment?.leftHand && typeof player.equipment.leftHand === 'string') {
+    if (player.equipment?.leftHand && typeof player.equipment.leftHand === 'string') {
       const itemData = await db.collection('items').findOne({ id: player.equipment.leftHand });
-      if (itemData && ((itemData.name||'').toLowerCase().includes(itemTerm) || (itemData.keywords||[]).some(k=>k.toLowerCase().includes(itemTerm)))) {
-        item = itemData;
-        handSlot = 'leftHand';
+      if (itemData) {
+        allItems.push(itemData);
+        itemsWithMeta.push({ item: itemData, handSlot: 'leftHand' });
       }
     }
     
     // Check inventory
-    if (!item && Array.isArray(player.inventory)) {
+    if (Array.isArray(player.inventory)) {
       for (const invId of player.inventory) {
         if (typeof invId !== 'string') continue;
         const itemData = await db.collection('items').findOne({ id: invId });
-        if (itemData && ((itemData.name||'').toLowerCase().includes(itemTerm) || (itemData.keywords||[]).some(k=>k.toLowerCase().includes(itemTerm)))) {
-          item = itemData;
-          break;
+        if (itemData) {
+          allItems.push(itemData);
+          itemsWithMeta.push({ item: itemData, handSlot: null });
         }
+      }
+    }
+
+    // Use keyword matcher to find item
+    const found = findItemWithOther(itemTerm, allItems);
+    if (found) {
+      const itemMeta = itemsWithMeta.find(meta => meta.item.id === found.id);
+      if (itemMeta) {
+        item = found;
+        handSlot = itemMeta.handSlot;
       }
     }
 
@@ -79,10 +94,13 @@ module.exports = {
       return { success:false, message: 'There is nowhere to put that.\r\n' };
     }
 
-    // Find target container
+    // Find target container using keyword matcher
     let container = null;
-    // If "my" for container, search belongings first (needs DB lookup)
+    
+    // Collect candidate items based on source
+    let candidates = [];
     if (containerIsMine) {
+      // Search belongings only
       const belongings = [];
       if (player.equipment?.rightHand) belongings.push(player.equipment.rightHand);
       if (player.equipment?.leftHand) belongings.push(player.equipment.leftHand);
@@ -92,24 +110,20 @@ module.exports = {
         }
       }
       if (Array.isArray(player.inventory)) belongings.push(...player.inventory);
-      // Check belongings using their IDs to fetch fresh item docs
-      for (const ref of belongings) {
-        const itemId = typeof ref === 'string' ? ref : (ref?.id || ref);
-        if (!itemId) continue;
-        const fetched = await db.collection('items').findOne({ id: itemId });
-        if (fetched && (((fetched.name||'').toLowerCase().includes(targetTerm)) || (fetched.keywords||[]).some(k=>k.toLowerCase().includes(targetTerm)))) {
-          container = fetched;
-          break;
-        }
+      
+      const itemIds = belongings.map(ref => typeof ref === 'string' ? ref : (ref?.id || ref));
+      if (itemIds.length > 0) {
+        candidates = await db.collection('items').find({ id: { $in: itemIds } }).toArray();
       }
     } else {
+      // Search room first
       if (Array.isArray(room.items) && room.items.length) {
         const itemIds = room.items.map(r => typeof r === 'string' ? r : (r.id || r.name));
-        const candidates = await db.collection('items').find({ id: { $in: itemIds } }).toArray();
-        container = candidates.find(it => ((it.name||'').toLowerCase().includes(targetTerm)) || (it.keywords||[]).some(k=>k.toLowerCase().includes(targetTerm)));
+        candidates = await db.collection('items').find({ id: { $in: itemIds } }).toArray();
       }
+      
       // Fallback to belongings if not found in room
-      if (!container) {
+      if (candidates.length === 0) {
         const belongings = [];
         if (player.equipment?.rightHand) belongings.push(player.equipment.rightHand);
         if (player.equipment?.leftHand) belongings.push(player.equipment.leftHand);
@@ -119,18 +133,16 @@ module.exports = {
           }
         }
         if (Array.isArray(player.inventory)) belongings.push(...player.inventory);
-        // Search belongings by fetching each from DB
-        for (const ref of belongings) {
-          const itemId = typeof ref === 'string' ? ref : (ref?.id || ref);
-          if (!itemId) continue;
-          const fetched = await db.collection('items').findOne({ id: itemId });
-          if (fetched && (((fetched.name||'').toLowerCase().includes(targetTerm)) || (fetched.keywords||[]).some(k=>k.toLowerCase().includes(targetTerm)))) {
-            container = fetched;
-            break;
-          }
+        
+        const itemIds = belongings.map(ref => typeof ref === 'string' ? ref : (ref?.id || ref));
+        if (itemIds.length > 0) {
+          candidates = await db.collection('items').find({ id: { $in: itemIds } }).toArray();
         }
       }
     }
+
+    // Use keyword matcher to find container
+    container = findItemWithOther(targetTerm, candidates);
 
     if (!container) {
       return { success:false, message: "You don't see that here.\r\n" };

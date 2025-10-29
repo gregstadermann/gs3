@@ -1,6 +1,7 @@
 'use strict';
 
 const { checkRoundtime } = require('../utils/roundtimeChecker');
+const { findItemWithOther } = require('../utils/keywordMatcher');
 
 /**
  * Get Command
@@ -110,39 +111,29 @@ module.exports = {
       }
     }
 
-    // Try to find item by name/keywords
+    // Fetch all items from the search source and use keyword matcher
     let foundItem = null;
     const searchSources = container && Array.isArray(container.metadata?.items)
       ? container.metadata.items
       : room.items;
 
-    for (const itemRef of searchSources) {
-      const itemId = typeof itemRef === 'string' ? itemRef : (itemRef.id || itemRef.name);
-      
-      // Try to fetch item from database
-      let item = null;
-      if (player.gameEngine.roomSystem.db) {
-        try {
-          item = await player.gameEngine.roomSystem.db.collection('items')
-            .findOne({ id: itemId });
-        } catch (error) {
-          console.error('Error fetching item:', error);
-        }
-      }
-
-      if (!item) {
-        continue;
-      }
-
-      const name = item.name || '';
-      const keywords = item.keywords || [];
-      
-      if (name.toLowerCase().includes(searchTerm) || 
-          keywords.some(kw => kw.toLowerCase().includes(searchTerm))) {
-        foundItem = item;
-        break;
+    // Fetch all items from database
+    const itemIds = searchSources.map(itemRef => typeof itemRef === 'string' ? itemRef : (itemRef.id || itemRef.name));
+    const items = [];
+    
+    if (player.gameEngine.roomSystem.db && itemIds.length > 0) {
+      try {
+        const fetched = await player.gameEngine.roomSystem.db.collection('items')
+          .find({ id: { $in: itemIds } })
+          .toArray();
+        items.push(...fetched);
+      } catch (error) {
+        console.error('Error fetching items:', error);
       }
     }
+
+    // Use keyword matcher to find the item
+    foundItem = findItemWithOther(searchTerm, items);
 
     if (!foundItem) {
       return { 

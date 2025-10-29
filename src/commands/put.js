@@ -219,6 +219,12 @@ module.exports = {
       return { success:true, message: `${itemName} is already in ${contName}.\r\n` };
     }
     
+    // Check maxItems limit
+    const maxItems = meta.maxItems || meta.max_items || Infinity;
+    if (containerItems.length >= maxItems) {
+      return { success:false, message: `${contName} is full.\r\n` };
+    }
+    
     containerItems.push(itemId);
     
     try {

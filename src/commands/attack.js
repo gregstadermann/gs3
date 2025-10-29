@@ -370,14 +370,14 @@ module.exports = {
         message += `${target.name} is stunned!\r\n`;
       }
     }
-    
-    message += `Roundtime: ${(totalRtMs/1000).toFixed(1)} sec.\r\n`;
 
-    // Check if target died
+    // Check if target died (show before roundtime)
     if (damageApplied.targetDead) {
       message += `${target.name} collapses and dies!\r\n`;
       gameCombat.removeFromCombat(player);
     }
+    
+    message += `Roundtime: ${(totalRtMs/1000).toFixed(1)} sec.\r\n`;
 
     // TODO: Send message to target if it's a player
     // TODO: Send messages to others in the room (room-wide combat announcements)

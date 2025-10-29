@@ -148,23 +148,31 @@ const lookEntity = async (player, args) => {
     }
     
     if (searchIn === 'player') {
-      // Collect item references from belongings, then fetch from DB
-      const itemRefs = [];
-      if (player.equipment?.rightHand) itemRefs.push(player.equipment.rightHand);
-      if (player.equipment?.leftHand) itemRefs.push(player.equipment.leftHand);
+      // Collect item references from belongings, prioritizing hands
+      const handItems = [];
+      const otherItems = [];
+      
+      if (player.equipment?.rightHand) handItems.push(player.equipment.rightHand);
+      if (player.equipment?.leftHand) handItems.push(player.equipment.leftHand);
       if (player.equipment) {
         for (const [slot, item] of Object.entries(player.equipment)) {
-          if (slot !== 'rightHand' && slot !== 'leftHand' && item) itemRefs.push(item);
+          if (slot !== 'rightHand' && slot !== 'leftHand' && item) otherItems.push(item);
         }
       }
-      if (Array.isArray(player.inventory)) itemRefs.push(...player.inventory);
+      if (Array.isArray(player.inventory)) otherItems.push(...player.inventory);
       
-      // Fetch all items and use keyword matcher
-      const itemIds = itemRefs.map(ref => typeof ref === 'string' ? ref : (ref?.id || ref));
-      const fetchedItems = await db.collection('items').find({ id: { $in: itemIds } }).toArray();
+      // Fetch items in order: hands first, then other inventory
+      const handIds = handItems.map(ref => typeof ref === 'string' ? ref : (ref?.id || ref));
+      const otherIds = otherItems.map(ref => typeof ref === 'string' ? ref : (ref?.id || ref));
       
-      // Use keyword matcher to find container
-      const container = findItemWithOther(containerTerm, fetchedItems);
+      const handItemsData = await db.collection('items').find({ id: { $in: handIds } }).toArray();
+      const otherItemsData = await db.collection('items').find({ id: { $in: otherIds } }).toArray();
+      
+      // Search hands first, then other inventory
+      let container = findItemWithOther(containerTerm, handItemsData);
+      if (!container) {
+        container = findItemWithOther(containerTerm, otherItemsData);
+      }
 
       if (!container) {
         return { success: false, message: "You don't see that container in your belongings.\r\n" };

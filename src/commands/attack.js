@@ -335,18 +335,6 @@ module.exports = {
     const armorRtMs = getArmorRoundtimeMs(player);
     const encumbranceRtMs = getEncumbranceRoundtimeMs(player);
     const totalRtMs = weaponRtMs + armorRtMs + encumbranceRtMs;
-    
-    // Debug logging
-    console.log('[RT DEBUG]', {
-      weapon: weapon?.name || 'fists',
-      baseWeapon: weapon?.metadata?.baseWeapon || 'none',
-      weaponRtMs: weaponRtMs,
-      armorRtMs: armorRtMs,
-      encumbranceRtMs: encumbranceRtMs,
-      totalRtMs: totalRtMs,
-      totalRtSec: (totalRtMs/1000).toFixed(1)
-    });
-    
     gameCombat.addLag(player, totalRtMs);
 
     // Create combat messages

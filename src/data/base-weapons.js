@@ -60,8 +60,8 @@ const BASE_WEAPONS = {
   'weapon_short_sword': {
     name: 'Short Sword',
     type: 'one_handed_edged',
-    roundtime: 1.5,
-    minRoundtime: 1.5,
+    roundtime: 3,
+    minRoundtime: 1,
     damageType: ['slash', 'puncture', 'crush'],
     strReq: 70,
     disReq: 185,
@@ -71,8 +71,8 @@ const BASE_WEAPONS = {
   'weapon_dagger': {
     name: 'Dagger',
     type: 'one_handed_edged',
-    roundtime: 0.5,
-    minRoundtime: 1.0,
+    roundtime: 1,
+    minRoundtime: 1,
     damageType: ['slash', 'puncture'],
     strReq: 18,
     disReq: 195,
@@ -83,8 +83,8 @@ const BASE_WEAPONS = {
   'weapon_longsword': {
     name: 'Longsword',
     type: 'one_handed_edged',
-    roundtime: 2.0,
-    minRoundtime: 2.0,
+    roundtime: 4,
+    minRoundtime: 4,
     damageType: ['slash', 'puncture', 'crush'],
     strReq: 65,
     disReq: 160,

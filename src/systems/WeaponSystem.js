@@ -102,8 +102,8 @@ class WeaponSystem {
 
     const baseWeapon = this.getBaseWeapon(weapon);
     if (baseWeapon && baseWeapon.roundtime) {
-      // Convert RT to milliseconds (RT unit is typically 5 = 2.5s)
-      return (baseWeapon.roundtime / 2) * 1000;
+      // RT is in seconds (5 = 5s, 2.5 = 2.5s, etc)
+      return baseWeapon.roundtime * 1000;
     }
 
     return 2500; // Default 2.5s

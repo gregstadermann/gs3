@@ -296,14 +296,21 @@ module.exports = {
         const baseWeaponType = w?.metadata?.baseWeapon;
         const baseWeapon = damageSystem.baseWeapons[baseWeaponType];
         if (baseWeapon && typeof baseWeapon.roundtime === 'number') {
-          // Weapon RT is in 5-unit scale (5 = 2.5s, 10 = 5s, etc)
-          const rtMs = (baseWeapon.roundtime / 2) * 1000;
+          // Weapon RT is in seconds (5 = 5s, 2.5 = 2.5s, etc)
+          const rtMs = baseWeapon.roundtime * 1000;
           
-          // Two-Handed Weapon skill reduces RT: 1s per 20 ranks
-          const twoHandedRanks = p.skills?.two_handed?.ranks || 0;
-          const reductionMs = Math.floor((twoHandedRanks / 20) * 1000);
+          // Only apply Two-Handed skill reduction if weapon is two-handed
+          const weaponType = baseWeapon.type || '';
+          const isTwoHanded = weaponType.includes('two_handed');
           
-          return Math.max(500, rtMs - reductionMs); // Minimum 0.5s
+          if (isTwoHanded) {
+            // Two-Handed Weapon skill reduces RT: 1s per 20 ranks
+            const twoHandedRanks = p.skills?.two_handed?.ranks || 0;
+            const reductionMs = Math.floor((twoHandedRanks / 20) * 1000);
+            return Math.max(500, rtMs - reductionMs); // Minimum 0.5s
+          }
+          
+          return rtMs;
         }
         return 2500; // Default 2.5s for unknown weapons
       } catch (_) { return 2500; }

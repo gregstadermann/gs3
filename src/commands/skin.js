@@ -46,6 +46,20 @@ module.exports = {
       if (corpse.metadata?.skinned) {
         return { success: false, message: "This corpse has already been skinned.\r\n" };
       }
+      
+      // Check NPC definition for skin info
+      const npcDefinitionId = corpse.metadata?.npcDefinitionId;
+      if (!npcDefinitionId) {
+        return { success: false, message: "You cannot skin this creature.\r\n" };
+      }
+      
+      // Fetch NPC definition to get skin information
+      const npcDefinition = await db.collection('npcs').findOne({ id: npcDefinitionId });
+      if (!npcDefinition || !npcDefinition.metadata?.skin) {
+        return { success: false, message: "You cannot skin this creature.\r\n" };
+      }
+      
+      const skinInfo = npcDefinition.metadata.skin;
 
       // Choose tool: by hand or named weapon
       let tool = null;
@@ -99,17 +113,21 @@ module.exports = {
       else if (score > difficulty + 6) quality = 'fair';
       else if (score > difficulty) quality = 'poor';
 
-      // Create a skin item (simple generic until per-creature definitions are added)
+      // Create a skin item using NPC skin info
       const skinId = `skin-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-      const npcName = corpse.metadata?.npcName || 'creature';
+      const skinItemName = skinInfo.name; // e.g., "giant rat pelt"
       const skinItem = {
         id: skinId,
         type: 'SKIN',
-        name: `a ${quality} ${npcName} skin`,
-        keywords: ['skin', npcName.toLowerCase()],
-        description: `This ${quality} skin was expertly taken from a ${npcName}.`,
+        name: `${quality} ${skinItemName}`,
+        keywords: [skinInfo.keyword || 'pelt', npcDefinition.name?.toLowerCase()],
+        description: skinInfo.description || `This ${quality} ${skinItemName} was expertly taken.`,
         location: player.gameEngine.roomSystem.getRoom(player.room)?._id || player.room,
-        metadata: { quality, from: npcName },
+        metadata: { 
+          quality, 
+          skinType: skinInfo.name,
+          from: npcDefinition.name 
+        },
         createdAt: new Date()
       };
       await db.collection('items').insertOne(skinItem);
@@ -128,7 +146,7 @@ module.exports = {
       player.gameEngine.combatSystem.addLag(player, 2000);
 
       try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
-      return { success: true, message: `You begin to skin the ${npcName}... You manage to extract ${skinItem.name}.\r\n` };
+      return { success: true, message: `You begin to skin the ${npcDefinition.name}... You manage to extract ${skinItem.name}.\r\n` };
     } catch (e) {
       return { success: false, message: 'You fail to skin anything useful.\r\n' };
     }

@@ -620,6 +620,7 @@ class DamageSystem {
           const roomDoc = await db.collection('rooms').findOne({ id: target.room });
           const corpseId = `corpse-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
           const npcName = target.name || 'creature';
+          const npcDefinitionId = target.definitionId; // For looking up skin info
           const corpseItem = {
             id: corpseId,
             type: 'CORPSE',
@@ -630,6 +631,7 @@ class DamageSystem {
             metadata: {
               corpse: true,
               npcName,
+              npcDefinitionId: npcDefinitionId, // Store NPC definition ID for skinning
               searched: false,
               skinned: false,
               loot: {

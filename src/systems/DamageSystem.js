@@ -643,8 +643,9 @@ class DamageSystem {
           console.log(`[CORPSE] Created corpse: ${corpseItem.name}, ID: ${corpseId}`);
           
           // Get NPC ID to remove
+          // target should be the actual spawned NPC object with id field
           const npcSystem = gameEngine?.npcSystem;
-          const npcIdToRemove = target.npcId || target.id;
+          const npcIdToRemove = target.id; // This is the spawned NPC ID
           
           // attach to room items and update cache
           const newItems = Array.isArray(roomDoc?.items) ? [...roomDoc.items, corpseId] : [corpseId];
@@ -662,19 +663,14 @@ class DamageSystem {
           }
           
           // Remove NPC from system (don't touch room npcs array - that's templates)
-          console.log(`[CORPSE] Attempting to remove NPC, npcId: ${npcIdToRemove}, has system: ${!!npcSystem}`);
+          console.log(`[CORPSE] target.id: ${target.id}, npcIdToRemove: ${npcIdToRemove}, has system: ${!!npcSystem}`);
           if (npcSystem && npcIdToRemove) {
             console.log(`[CORPSE] Removing NPC ${npcIdToRemove} from NPC system`);
             // Remove NPC from the in-memory NPC system
             npcSystem.removeNPC(npcIdToRemove);
-            
-            // Also mark as dead in case it gets accessed elsewhere
-            const activeNPC = npcSystem.getActiveNPC(npcIdToRemove);
-            if (activeNPC) {
-              activeNPC.isAlive = false;
-            }
-            
-            console.log(`[CORPSE] NPC removed from system, isAlive set to false`);
+            console.log(`[CORPSE] NPC ${npcIdToRemove} removed from system`);
+          } else {
+            console.log(`[CORPSE] Cannot remove NPC - missing system or ID`);
           }
         }
       } catch (_) {

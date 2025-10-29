@@ -312,8 +312,8 @@ module.exports = {
           
           return rtMs;
         }
-        return 2500; // Default 2.5s for unknown weapons
-      } catch (_) { return 2500; }
+        return 10000; // Default 10s for unknown weapons
+      } catch (_) { return 10000; }
     }
 
     // Get encumbrance roundtime penalty

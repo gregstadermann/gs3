@@ -102,7 +102,7 @@ class WeaponSystem {
 
     const baseWeapon = this.getBaseWeapon(weapon);
     if (baseWeapon && baseWeapon.roundtime) {
-      // RT is in seconds (5 = 5s, 2.5 = 2.5s, etc)
+      // RT is in seconds (5 = 5s, 3 = 3s, etc)
       return baseWeapon.roundtime * 1000;
     }
 

@@ -296,7 +296,7 @@ module.exports = {
         const baseWeaponType = w?.metadata?.baseWeapon;
         const baseWeapon = damageSystem.baseWeapons[baseWeaponType];
         if (baseWeapon && typeof baseWeapon.roundtime === 'number') {
-          // Weapon RT is in seconds (5 = 5s, 2.5 = 2.5s, etc)
+          // Weapon RT is in seconds (5 = 5s, 3 = 3s, etc)
           const rtMs = baseWeapon.roundtime * 1000;
           
           // Only apply Two-Handed skill reduction if weapon is two-handed

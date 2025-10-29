@@ -19,7 +19,8 @@ function checkRoundtime(player) {
   
   if (!combatSystem.canAct(player)) {
     const lag = combatSystem.getLag(player);
-    const remainingSeconds = (lag / 1000).toFixed(1);
+    // Display integer seconds (no decimals); ceil to avoid showing 0 when time remains
+    const remainingSeconds = Math.ceil(lag / 1000);
     
     return {
       success: false,

@@ -183,12 +183,12 @@ module.exports = {
       container.metadata.items = newList;
       try { await player.gameEngine.roomSystem.db.collection('items').updateOne({ id: container.id }, { $set: { 'metadata.items': newList } }); } catch(_) {}
     } else {
-      const itemIndex = room.items.findIndex(itemRef => {
-        const itemId = typeof itemRef === 'string' ? itemRef : (itemRef.id || itemRef.name);
-        return itemId === foundItem.id;
-      });
-      if (itemIndex > -1) {
-        room.items.splice(itemIndex, 1);
+    const itemIndex = room.items.findIndex(itemRef => {
+      const itemId = typeof itemRef === 'string' ? itemRef : (itemRef.id || itemRef.name);
+      return itemId === foundItem.id;
+    });
+    if (itemIndex > -1) {
+      room.items.splice(itemIndex, 1);
       }
     }
 

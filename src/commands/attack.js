@@ -253,7 +253,14 @@ module.exports = {
     const targetStance = target.combatStance || 'neutral';
     const targetStanceInfo = getStanceInfo(targetStance);
     const targetDSModifier = targetStanceInfo.percent;
-    let ds = 25 + Math.floor(targetDSModifier / 4);
+    let ds;
+    // If target is an NPC, use its defined DS directly; otherwise use player DS formula
+    if (target && (target.definitionId || target.npcId)) {
+      const npcDs = (target.attributes && (target.attributes.DS ?? target.attributes.ds)) ?? 0;
+      ds = Number.isFinite(npcDs) ? npcDs : 0;
+    } else {
+      ds = 25 + Math.floor(targetDSModifier / 4);
+    }
     // Add shield DS if target has a shield
     try { const Shield = require('../utils/shield'); ds += Shield.computeShieldDS(target); } catch(_) {}
 
@@ -352,7 +359,7 @@ module.exports = {
     
     if (!hit) {
       message += `  ... and misses!\r\n`;
-      message += `Roundtime: ${(totalRtMs/1000).toFixed(1)} sec.\r\n`;
+      message += `Roundtime: ${Math.round(totalRtMs/1000)} sec.\r\n`;
       return { success: true, message: message };
     }
     
@@ -377,7 +384,7 @@ module.exports = {
       gameCombat.removeFromCombat(player);
     }
     
-    message += `Roundtime: ${(totalRtMs/1000).toFixed(1)} sec.\r\n`;
+    message += `Roundtime: ${Math.round(totalRtMs/1000)} sec.\r\n`;
 
     // TODO: Send message to target if it's a player
     // TODO: Send messages to others in the room (room-wide combat announcements)

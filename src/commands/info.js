@@ -59,7 +59,7 @@ module.exports = {
     
     // Resources
     const mana = player.attributes?.mana?.base || 0;
-    const silver = player.silver || 0;
+    const silver = player.attributes?.currency?.silver || player.silver || 0;
     message += `Mana: ${String(mana).padStart(3)}   Silver: ${silver}\r\n`;
     
     return { success: true, message: message };

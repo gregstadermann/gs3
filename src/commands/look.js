@@ -168,10 +168,18 @@ const lookEntity = async (player, args) => {
       const handItemsData = await db.collection('items').find({ id: { $in: handIds } }).toArray();
       const otherItemsData = await db.collection('items').find({ id: { $in: otherIds } }).toArray();
       
-      // Search hands first, then other inventory
+      // Search hands first, then worn items, then inventory
       let container = findItemWithOther(containerTerm, handItemsData);
       if (!container) {
-        container = findItemWithOther(containerTerm, otherItemsData);
+        // Separate worn items from inventory for prioritization
+        const wornBackpacks = otherItemsData.filter(item => 
+          (item.type === 'CONTAINER' || item.metadata?.container) && 
+          !handItemsData.find(h => h.id === item.id)
+        );
+        container = findItemWithOther(containerTerm, wornBackpacks);
+        if (!container) {
+          container = findItemWithOther(containerTerm, otherItemsData);
+        }
       }
 
       if (!container) {
@@ -250,12 +258,12 @@ const lookEntity = async (player, args) => {
         
         if (matchedItem.timeUntilDecay) {
           const decayIn = Math.floor(matchedItem.timeUntilDecay / 1000);
-          message += ` You estimate it will rot away in ${decayIn} seconds.`;
+              message += ` You estimate it will rot away in ${decayIn} seconds.`;
+            }
+            
+            return { success: true, message: message };
         }
-        
-        return { success: true, message: message };
-      }
-    } catch (error) {
+      } catch (error) {
       console.error('Error fetching items:', error);
     }
   }

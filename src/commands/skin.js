@@ -114,14 +114,20 @@ module.exports = {
       else if (score > difficulty) quality = 'poor';
 
       // Create a skin item using NPC skin info
+      // Name should NOT include quality; quality goes in metadata
       const skinId = `skin-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
       const skinItemName = skinInfo.name; // e.g., "giant rat pelt"
+      // Ensure article if missing
+      const finalName = skinItemName.toLowerCase().startsWith('a ') || 
+                        skinItemName.toLowerCase().startsWith('an ') || 
+                        skinItemName.toLowerCase().startsWith('some ') ? 
+                        skinItemName : `a ${skinItemName}`;
       const skinItem = {
         id: skinId,
         type: 'SKIN',
-        name: `${quality} ${skinItemName}`,
+        name: finalName,
         keywords: [skinInfo.keyword || 'pelt', npcDefinition.name?.toLowerCase()],
-        description: skinInfo.description || `This ${quality} ${skinItemName} was expertly taken.`,
+        description: skinInfo.description || `This ${skinItemName} was expertly taken.`,
         location: player.gameEngine.roomSystem.getRoom(player.room)?._id || player.room,
         metadata: { 
           quality, 
@@ -146,7 +152,15 @@ module.exports = {
       player.gameEngine.combatSystem.addLag(player, 2000);
 
       try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
-      return { success: true, message: `You begin to skin the ${npcDefinition.name}... You manage to extract ${skinItem.name}.\r\n` };
+      // Success message includes quality
+      const qualityName = quality === 'magnificent' ? 'magnificent' :
+                          quality === 'superb' ? 'superb' :
+                          quality === 'outstanding' ? 'outstanding' :
+                          quality === 'exceptional' ? 'exceptional' :
+                          quality === 'fine' ? 'fine' :
+                          quality === 'fair' ? 'fair' :
+                          quality === 'poor' ? 'poor' : 'crude';
+      return { success: true, message: `You begin to skin the ${npcDefinition.name}... You manage to extract ${qualityName} ${skinItem.name}.\r\n` };
     } catch (e) {
       return { success: false, message: 'You fail to skin anything useful.\r\n' };
     }

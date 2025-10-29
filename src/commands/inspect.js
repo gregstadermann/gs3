@@ -132,6 +132,19 @@ module.exports = {
       lines.push(`It looks like this item has been mainly crafted out of ${meta.material}.`);
     }
 
+    // Skin/Pelt quality
+    if (item.type === 'SKIN' && meta.quality) {
+      lines.push('');
+      const qualityName = meta.quality === 'magnificent' ? 'magnificent' :
+                          meta.quality === 'superb' ? 'superb' :
+                          meta.quality === 'outstanding' ? 'outstanding' :
+                          meta.quality === 'exceptional' ? 'exceptional' :
+                          meta.quality === 'fine' ? 'fine' :
+                          meta.quality === 'fair' ? 'fair' :
+                          meta.quality === 'poor' ? 'poor' : 'crude';
+      lines.push(`The quality of this pelt is ${qualityName}.`);
+    }
+
     return { success:true, message: lines.join('\r\n') + '\r\n' };
   }
 };

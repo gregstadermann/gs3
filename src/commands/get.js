@@ -28,7 +28,7 @@ module.exports = {
     }
 
     const room = player.gameEngine.roomSystem.getRoom(player.room);
-    if (!room || !room.items || room.items.length === 0) {
+    if (!room) {
       return { 
         success: false, 
         message: 'There is nothing here to get.\r\n' 
@@ -49,6 +49,15 @@ module.exports = {
       if (containerIsMine) {
         containerTerm = containerTerm.replace(/^my\s+/, '');
       }
+      console.log(`[GET] Getting FROM container: "${containerTerm}" (MY: ${containerIsMine})`);
+    }
+
+    // Check room items ONLY if NOT getting from container
+    if (!containerTerm && (!room.items || room.items.length === 0)) {
+      return { 
+        success: false, 
+        message: 'There is nothing here to get.\r\n' 
+      };
     }
     
     // If getting FROM container, locate container first
@@ -106,20 +115,26 @@ module.exports = {
         }
       }
 
-      if (!container || !container.metadata?.container) {
+      if (!container || (!container.metadata?.container && container.type !== 'CONTAINER')) {
+        console.log(`[GET] Container not found or invalid: ${containerTerm}`);
         return { success:false, message: "You don't see that here.\r\n" };
       }
+      console.log(`[GET] Found container: ${container.name}, items: ${container.metadata?.items?.length || 0}`);
     }
 
     // Fetch all items from the search source and use keyword matcher
     let foundItem = null;
     const searchSources = container && Array.isArray(container.metadata?.items)
       ? container.metadata.items
-      : room.items;
+      : (room.items || []);
+    
+    console.log(`[GET] Search sources: ${searchSources.length} items (from ${container ? 'container' : 'room'})`);
 
     // Fetch all items from database
     const itemIds = searchSources.map(itemRef => typeof itemRef === 'string' ? itemRef : (itemRef.id || itemRef.name));
     const items = [];
+    
+    console.log(`[GET] Fetching ${itemIds.length} items from DB:`, itemIds);
     
     if (player.gameEngine.roomSystem.db && itemIds.length > 0) {
       try {
@@ -127,13 +142,17 @@ module.exports = {
           .find({ id: { $in: itemIds } })
           .toArray();
         items.push(...fetched);
+        console.log(`[GET] Fetched ${items.length} items from DB`);
       } catch (error) {
-        console.error('Error fetching items:', error);
+        console.error('[GET] Error fetching items:', error);
       }
+    } else if (itemIds.length === 0) {
+      console.log(`[GET] No item IDs to fetch (searchSources was empty)`);
     }
 
     // Use keyword matcher to find the item
     foundItem = findItemWithOther(searchTerm, items);
+    console.log(`[GET] Search term: "${searchTerm}", Found: ${foundItem ? foundItem.name : 'nothing'}`);
 
     if (!foundItem) {
       return { 
@@ -157,15 +176,73 @@ module.exports = {
 
     let hand = null;
     let handName = null;
+
+    // Guard: treat null/empty/whitespace as empty hand
+    // Also verify items actually exist in DB (cleanup invalid references)
+    const isOccupied = async (val) => {
+      if (val === null || val === undefined) return false;
+      if (typeof val === 'string') {
+        const trimmed = val.trim();
+        if (trimmed.length === 0) return false;
+        // Check if item actually exists in DB
+        if (player.gameEngine?.roomSystem?.db) {
+          try {
+            const exists = await player.gameEngine.roomSystem.db.collection('items').findOne({ id: trimmed });
+            if (!exists) {
+              console.log(`[GET] Cleaning up invalid item reference: ${trimmed}`);
+              return false; // Item doesn't exist, treat as empty
+            }
+            return true;
+          } catch (_) {
+            return trimmed.length > 0; // Fallback to string check if DB query fails
+          }
+        }
+        return trimmed.length > 0;
+      }
+      // if object/id-like
+      return Boolean(val);
+    };
+
+    // Debug logging for hand state
+    try {
+      console.log(`[GET] Player ${player.name} hands => right: ${JSON.stringify(player.equipment.rightHand)}, left: ${JSON.stringify(player.equipment.leftHand)}`);
+    } catch (_) {}
+
+    const rightOccupied = await isOccupied(player.equipment.rightHand);
+    const leftOccupied  = await isOccupied(player.equipment.leftHand);
+
+    // Cleanup invalid hand references
+    let needsSave = false;
+    if (player.equipment.rightHand && !rightOccupied) {
+      console.log(`[GET] Removing invalid rightHand reference: ${player.equipment.rightHand}`);
+      delete player.equipment.rightHand;
+      needsSave = true;
+    }
+    if (player.equipment.leftHand && !leftOccupied) {
+      console.log(`[GET] Removing invalid leftHand reference: ${player.equipment.leftHand}`);
+      delete player.equipment.leftHand;
+      needsSave = true;
+    }
     
-    // Prefer right hand, but can use left if right is full
-    if (!player.equipment.rightHand) {
+    // Persist cleanup if needed
+    if (needsSave && player.gameEngine?.playerSystem?.updatePlayer) {
+      try {
+        await player.gameEngine.playerSystem.updatePlayer(player);
+        console.log(`[GET] Saved cleanup to database for ${player.name}`);
+      } catch (error) {
+        console.error(`[GET] Failed to save cleanup:`, error);
+      }
+    }
+
+    // Prefer right hand, but can use left if right is occupied
+    if (!rightOccupied) {
       hand = 'rightHand';
       handName = 'right';
-    } else if (!player.equipment.leftHand) {
+    } else if (!leftOccupied) {
       hand = 'leftHand';
       handName = 'left';
     } else {
+      try { console.log(`[GET] Hands full for ${player.name}.`); } catch (_) {}
       return { 
         success: false, 
         message: 'Your hands are full.\r\n' 

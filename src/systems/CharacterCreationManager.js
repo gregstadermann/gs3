@@ -1273,11 +1273,14 @@ class CharacterCreationManager {
     if (input.toLowerCase() === 'create') {
       try {
         // Create the final character with default role
+        // Capitalize profession name for class field (e.g., 'wizard' -> 'Wizard')
+        const professionName = state.characterData.profession;
+        const capitalizedClass = professionName ? professionName.charAt(0).toUpperCase() + professionName.slice(1).toLowerCase() : professionName;
         const character = {
           name: state.characterData.name,
           gender: state.characterData.gender,
           race: state.characterData.race,
-          class: state.characterData.profession,
+          class: capitalizedClass,
           playerClass: state.characterData.profession,
           level: 1,
           experience: 0,
@@ -1297,14 +1300,12 @@ class CharacterCreationManager {
           attributes: {
             ...state.characterData.attributes,
             currency: { silver: 0, bank: 0 },
-            bodyWeight: Encumbrance.getBodyWeight({
+            bodyWeight: Math.round(Encumbrance.getBodyWeight({
               race: state.characterData.race,
               attributes: state.characterData.attributes
-            })
+            }))
           },
           metadata: {
-            class: state.characterData.profession,
-            level: 1,
             lastLogin: new Date().toISOString(),
             isOnline: true,
             creationDate: new Date().toISOString()

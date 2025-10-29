@@ -44,6 +44,10 @@ class PlayerSystem {
    */
   async savePlayer(username, player) {
     try {
+      const collection = this.db.collection('players');
+      // Merge strategy: preserve existing nested attributes (like attributes.experience)
+      // if incoming player object lacks them, to avoid wiping persisted data.
+      const existing = await collection.findOne({ name: username });
       // Create a sanitized copy without circular references
       const playerData = {
         name: player.name,
@@ -51,7 +55,7 @@ class PlayerSystem {
         class: player.class,
         level: player.level,
         experience: player.experience,
-        attributes: player.attributes,
+        attributes: player.attributes || {},
         skills: player.skills,
         tps: player.tps,
         room: player.room,
@@ -63,8 +67,13 @@ class PlayerSystem {
         inventory: player.inventory || [],
         gender: player.gender
       };
+
+      // Preserve attributes.experience if missing on write
+      if (existing && existing.attributes && (!playerData.attributes || !playerData.attributes.experience)) {
+        playerData.attributes = playerData.attributes || {};
+        playerData.attributes.experience = existing.attributes.experience;
+      }
       
-      const collection = this.db.collection('players');
       await collection.replaceOne(
         { name: username },
         playerData,
@@ -231,7 +240,7 @@ class PlayerSystem {
    */
   async getPlayersByLevel(minLevel, maxLevel) {
     return this.searchPlayers({
-      'metadata.level': { $gte: minLevel, $lte: maxLevel }
+      level: { $gte: minLevel, $lte: maxLevel }
     });
   }
 
@@ -240,7 +249,7 @@ class PlayerSystem {
    */
   async getPlayersByClass(playerClass) {
     return this.searchPlayers({
-      'metadata.class': playerClass
+      class: playerClass
     });
   }
 

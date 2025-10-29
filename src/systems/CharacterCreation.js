@@ -453,10 +453,12 @@ class CharacterCreation {
     }
 
     // Create character object
+    // Capitalize profession name for class field (e.g., 'wizard' -> 'Wizard')
+    const capitalizedClass = playerClass ? playerClass.charAt(0).toUpperCase() + playerClass.slice(1).toLowerCase() : playerClass;
     const character = {
       name: name,
       race: race,
-      class: playerClass,
+      class: capitalizedClass,
       level: 1,
       experience: 0,
       attributes: {},
@@ -465,8 +467,6 @@ class CharacterCreation {
       room: 'wehnimers-landing-town:tsc',
       account: name,
       metadata: {
-        class: classData.name,
-        level: 1,
         lastLogin: new Date().toISOString(),
         isOnline: true,
         creationDate: new Date().toISOString()

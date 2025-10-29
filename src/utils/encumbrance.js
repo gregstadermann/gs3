@@ -199,10 +199,10 @@ module.exports = {
       const carried = await getCarriedWeight(player);
       const pct = await getEncumbrancePercent(player);
       player.attributes.encumbrance = {
-        bodyWeight: bodyW,
-        capacity,
-        carried,
-        percent: pct
+        bodyWeight: Math.round(bodyW),
+        capacity: Math.round(capacity),
+        carried: Math.round(carried),
+        percent: Math.round(pct)
       };
     } catch (_) {}
   }

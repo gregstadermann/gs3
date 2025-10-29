@@ -621,6 +621,33 @@ class DamageSystem {
           const corpseId = `corpse-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
           const npcName = target.name || 'creature';
           const npcDefinitionId = target.definitionId; // For looking up skin info
+          // Load NPC definition to decide silver drop behavior
+          let npcDefinitionDoc = null;
+          try {
+            npcDefinitionDoc = npcDefinitionId ? await db.collection('npcs').findOne({ id: npcDefinitionId }) : null;
+          } catch (_) {}
+          const dropsSilver = npcDefinitionDoc?.metadata?.dropsSilver !== false; // default true unless explicitly false
+          let silverAmount = 0;
+          let gemLootItem = null;
+          if (dropsSilver) {
+            const definedSilver = npcDefinitionDoc?.metadata?.wealth?.silver;
+            if (typeof definedSilver === 'number' && isFinite(definedSilver) && definedSilver >= 0) {
+              silverAmount = Math.floor(definedSilver);
+            } else {
+              // Generic level-based silver using loot tables with tier modifier
+              const Loot = require('../data/loot-tables');
+              const levelForLoot = Number(target.level || target.attributes?.level || 1) || 1;
+              const baseSilver = Loot.getBaseSilverForLevel(levelForLoot);
+              const silverTier = npcDefinitionDoc?.metadata?.silverTier || 'normal';
+              silverAmount = Loot.applySilverTier(baseSilver, silverTier);
+            }
+          }
+          // Gem loot by tier
+          try {
+            const gemTier = npcDefinitionDoc?.metadata?.gemTier || 'none';
+            const Loot = require('../data/loot-tables');
+            gemLootItem = Loot.maybeGenerateGemLoot(gemTier);
+          } catch (_) {}
           const corpseItem = {
             id: corpseId,
             type: 'CORPSE',
@@ -635,8 +662,8 @@ class DamageSystem {
               searched: false,
               skinned: false,
               loot: {
-                silver: (target.metadata?.wealth?.silver ?? (npcName.toLowerCase().includes('rat') ? 600 : Math.floor(Math.random() * 200))) || 0,
-                items: []
+                silver: silverAmount,
+                items: gemLootItem ? [gemLootItem] : []
               }
             },
             createdAt: new Date()
@@ -673,6 +700,41 @@ class DamageSystem {
             console.log(`[CORPSE] NPC ${npcIdToRemove} removed from system`);
           } else {
             console.log(`[CORPSE] Cannot remove NPC - missing system or ID`);
+          }
+
+          // Award field experience to attacker (player-only)
+          try {
+            const playerSystem = gameEngine?.playerSystem;
+            const isPlayer = !!attacker?.name && attacker?.role !== 'npc';
+            if (isPlayer) {
+              // Award based on level difference chart
+              const npcLevel = Number(target.level || target.attributes?.level || 1) || 1;
+              const playerLevel = Number(attacker.level || attacker.attributes?.level || 1) || 1;
+              const diff = npcLevel - playerLevel;
+              let expGain = 0;
+              if (diff <= -10) {
+                expGain = 0;
+              } else if (diff < 0) {
+                expGain = 100 - 10 * Math.abs(diff);
+              } else if (diff === 0) {
+                expGain = 100;
+              } else if (diff <= 4) {
+                expGain = 100 + 10 * diff;
+              } else {
+                expGain = 150;
+              }
+              if (!attacker.attributes) attacker.attributes = {};
+              if (!attacker.attributes.experience) attacker.attributes.experience = {};
+              const prevField = Number(attacker.attributes.experience.field || 0) || 0;
+              attacker.attributes.experience.field = prevField + expGain;
+
+              // Persist to DB
+              if (playerSystem && typeof playerSystem.updatePlayer === 'function') {
+                await playerSystem.updatePlayer(attacker);
+              }
+            }
+          } catch (e) {
+            console.warn('[EXP] Failed to award experience on kill:', e?.message);
           }
         }
       } catch (_) {

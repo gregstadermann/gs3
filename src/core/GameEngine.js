@@ -43,6 +43,9 @@ class GameEngine extends EventEmitter {
     this.rooms = new Map();
     
     this.setupEventHandlers();
+
+    // Experience absorption pulse counter
+    this._absorbCounter = 0; // seconds
   }
 
   /**
@@ -130,6 +133,29 @@ class GameEngine extends EventEmitter {
       // If in combat, update combat state
       if (this.combatSystem.isInCombat(player)) {
         this.combatSystem.updateCombat(player, 1000);
+      }
+    }
+
+    // Experience absorption pulses (roughly every 120 seconds)
+    this._absorbCounter += 1;
+    if (this._absorbCounter >= 120) {
+      this._absorbCounter = 0;
+      try {
+        const ExperienceSystem = require('../systems/ExperienceSystem');
+        const expSystem = new ExperienceSystem();
+        for (const [, player] of this.players) {
+          const room = this.roomSystem.getRoom(player.room);
+          const beforeField = Math.trunc(player?.attributes?.experience?.field || 0);
+          if (beforeField > 0) {
+            const result = expSystem.applyAbsorptionPulse(player, room);
+            // Persist player if anything moved
+            if (result.moved > 0) {
+              this.playerSystem.updatePlayer(player);
+            }
+          }
+        }
+      } catch (e) {
+        console.error('Error during experience absorption pulse:', e);
       }
     }
 

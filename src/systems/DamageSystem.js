@@ -651,42 +651,30 @@ class DamageSystem {
           await db.collection('rooms').updateOne({ id: target.room }, { $set: { items: newItems } });
           console.log(`[CORPSE] Added corpse to room items array`);
           
-          // Update room cache to remove NPC
+          // Update room cache
           const cachedRoom = roomSystem.getRoom(target.room);
           if (cachedRoom) {
-            // Remove NPC from cached room
-            const updatedNpcs = Array.isArray(cachedRoom.npcs) 
-              ? cachedRoom.npcs.filter(npc => {
-                  const npcId = typeof npc === 'object' ? npc.id : npc;
-                  return npcId !== npcIdToRemove;
-                })
-              : [];
-            
             roomSystem.rooms.set(target.room, { 
               ...cachedRoom, 
-              items: newItems,
-              npcs: updatedNpcs
+              items: newItems
             });
-            console.log(`[CORPSE] Updated room cache, npcs remaining: ${updatedNpcs.length}`);
+            console.log(`[CORPSE] Updated room cache with corpse`);
           }
           
-          // Remove NPC from system and database
+          // Remove NPC from system (don't touch room npcs array - that's templates)
           console.log(`[CORPSE] Attempting to remove NPC, npcId: ${npcIdToRemove}, has system: ${!!npcSystem}`);
           if (npcSystem && npcIdToRemove) {
             console.log(`[CORPSE] Removing NPC ${npcIdToRemove} from NPC system`);
             // Remove NPC from the in-memory NPC system
             npcSystem.removeNPC(npcIdToRemove);
-          }
-          
-          // Remove from room's NPCs array in database (pull by id field in object)
-          try {
-            const result = await db.collection('rooms').updateOne(
-              { id: target.room },
-              { $pull: { npcs: { id: npcIdToRemove } } }
-            );
-            console.log(`[CORPSE] DB update result: modified ${result.modifiedCount} docs`);
-          } catch (err) {
-            console.log(`[CORPSE] Error removing NPC from DB: ${err.message}`);
+            
+            // Also mark as dead in case it gets accessed elsewhere
+            const activeNPC = npcSystem.getActiveNPC(npcIdToRemove);
+            if (activeNPC) {
+              activeNPC.isAlive = false;
+            }
+            
+            console.log(`[CORPSE] NPC removed from system, isAlive set to false`);
           }
         }
       } catch (_) {

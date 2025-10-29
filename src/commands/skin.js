@@ -41,6 +41,11 @@ module.exports = {
       const lower = targetName.toLowerCase();
       const corpse = items.find(it => it.type === 'CORPSE' && (it.name?.toLowerCase().includes(lower) || it.keywords?.some(k => lower.includes(k.toLowerCase()) || k.toLowerCase().includes(lower))));
       if (!corpse) return { success: false, message: "You don't see that here.\r\n" };
+      
+      // Check if already skinned
+      if (corpse.metadata?.skinned) {
+        return { success: false, message: "This corpse has already been skinned.\r\n" };
+      }
 
       // Choose tool: by hand or named weapon
       let tool = null;
@@ -108,6 +113,9 @@ module.exports = {
         createdAt: new Date()
       };
       await db.collection('items').insertOne(skinItem);
+      
+      // Mark corpse as skinned
+      await db.collection('items').updateOne({ id: corpse.id }, { $set: { 'metadata.skinned': true } });
 
       // Add to room items
       const freshRoom = await db.collection('rooms').findOne({ id: player.room });

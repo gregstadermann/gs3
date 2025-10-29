@@ -1,5 +1,7 @@
 'use strict';
 
+const { findItemWithOther } = require('../utils/keywordMatcher');
+
 /**
  * Look Command
  * Allows players to look at their surroundings or examine entities
@@ -157,23 +159,12 @@ const lookEntity = async (player, args) => {
       }
       if (Array.isArray(player.inventory)) itemRefs.push(...player.inventory);
       
-      let container = null;
-      // Fetch full item docs from DB using IDs
-      for (const ref of itemRefs) {
-        // ref is now a string ID, not an object
-        const itemId = typeof ref === 'string' ? ref : (ref?.id || ref);
-        if (!itemId) continue;
-        
-        const fetched = await db.collection('items').findOne({ id: itemId });
-        if (fetched) {
-          const name = (fetched.name || '').toLowerCase();
-          const kws = (fetched.keywords || []).map(k => k.toLowerCase());
-          if (name.includes(containerTerm) || kws.some(k => k.includes(containerTerm))) {
-            container = fetched;
-            break;
-          }
-        }
-      }
+      // Fetch all items and use keyword matcher
+      const itemIds = itemRefs.map(ref => typeof ref === 'string' ? ref : (ref?.id || ref));
+      const fetchedItems = await db.collection('items').find({ id: { $in: itemIds } }).toArray();
+      
+      // Use keyword matcher to find container
+      const container = findItemWithOther(containerTerm, fetchedItems);
 
       if (!container) {
         return { success: false, message: "You don't see that container in your belongings.\r\n" };
@@ -205,122 +196,59 @@ const lookEntity = async (player, args) => {
     }
   }
 
-  // Search items in room - fetch from database
-  if (room.items && room.items.length > 0) {
-    // Get item IDs from room
-    const itemIds = room.items.map(item => typeof item === 'string' ? item : (item.id || item.name || ''));
-    
-    // Search by ID or name/keywords
-    for (const itemId of itemIds) {
-      // Try exact match first
-      if (itemId.toLowerCase().includes(searchLower)) {
-        try {
-          // Fetch item data from database
-          if (player.gameEngine && player.gameEngine.roomSystem && player.gameEngine.roomSystem.db) {
-            const itemData = await player.gameEngine.roomSystem.db.collection('items')
-              .findOne({ id: itemId });
-            
-            if (itemData) {
-              // If "look in" and this is a container, show contents
-              if (lookInContainer && (itemData.type === 'CONTAINER' || (itemData.metadata && itemData.metadata.container))) {
-                const containerItems = itemData.metadata?.items || [];
-                if (containerItems.length === 0) {
-                  return { success: true, message: `You look in ${itemData.name}.\r\nIt is empty.\r\n` };
-                }
-                
-                // Fetch item names
-                const itemDocs = await db.collection('items').find({ id: { $in: containerItems } }).toArray();
-                const itemNames = itemDocs.map(doc => doc.name || 'an item');
-                
-                let contentMsg = '';
-                if (itemNames.length === 1) {
-                  contentMsg = itemNames[0];
-                } else if (itemNames.length === 2) {
-                  contentMsg = `${itemNames[0]} and ${itemNames[1]}`;
-                } else {
-                  contentMsg = itemNames.slice(0, -1).join(', ') + ', and ' + itemNames[itemNames.length - 1];
-                }
-                
-                return { success: true, message: `You look in ${itemData.name}.\r\n${contentMsg}.\r\n` };
-              }
-              
-              let message = '';
-              if (itemData.longDescription) {
-                message = itemData.longDescription;
-              } else if (itemData.description) {
-                message = itemData.description;
-              } else {
-                const shown = itemData.name || itemId;
-                message = `You see ${shown}.`;
-              }
-              
-              // Show additional item details if available
-              if (itemData.timeUntilDecay) {
-                const decayIn = Math.floor(itemData.timeUntilDecay / 1000);
-                message += ` You estimate it will rot away in ${decayIn} seconds.`;
-              }
-              
-              return { success: true, message: message };
-            }
-          }
-        } catch (error) {
-          console.error('Error fetching item:', error);
-        }
-      }
+  // Search items in room using keyword matcher
+  if (room.items && room.items.length > 0 && player.gameEngine && player.gameEngine.roomSystem && player.gameEngine.roomSystem.db) {
+    try {
+      const itemIds = room.items.map(item => typeof item === 'string' ? item : (item.id || item.name || ''));
+      const items = await player.gameEngine.roomSystem.db.collection('items')
+        .find({ id: { $in: itemIds } })
+        .toArray();
       
-      // Also try searching by keywords
-      try {
-        if (player.gameEngine && player.gameEngine.roomSystem && player.gameEngine.roomSystem.db) {
-          const itemData = await player.gameEngine.roomSystem.db.collection('items')
-            .findOne({ id: itemId });
-          
-          if (itemData && itemData.keywords && itemData.keywords.some(kw => 
-            kw.toLowerCase().includes(searchLower) || searchLower.includes(kw.toLowerCase())
-          )) {
-            // If "look in" and this is a container, show contents
-            if (lookInContainer && (itemData.type === 'CONTAINER' || (itemData.metadata && itemData.metadata.container))) {
-              const containerItems = itemData.metadata?.items || [];
-              if (containerItems.length === 0) {
-                return { success: true, message: `You look in ${itemData.name}.\r\nIt is empty.\r\n` };
-              }
-              
-              // Fetch item names
-              const itemDocs = await db.collection('items').find({ id: { $in: containerItems } }).toArray();
-              const itemNames = itemDocs.map(doc => doc.name || 'an item');
-              
-              let contentMsg = '';
-              if (itemNames.length === 1) {
-                contentMsg = itemNames[0];
-              } else if (itemNames.length === 2) {
-                contentMsg = `${itemNames[0]} and ${itemNames[1]}`;
-              } else {
-                contentMsg = itemNames.slice(0, -1).join(', ') + ', and ' + itemNames[itemNames.length - 1];
-              }
-              
-              return { success: true, message: `You look in ${itemData.name}.\r\n${contentMsg}.\r\n` };
-            }
-            
-            let message = '';
-            if (itemData.longDescription) {
-              message = itemData.longDescription;
-            } else if (itemData.description) {
-              message = itemData.description;
-            } else {
-              const shown = itemData.name || itemId;
-              message = `You see ${shown}.`;
-            }
-            
-            if (itemData.timeUntilDecay) {
-              const decayIn = Math.floor(itemData.timeUntilDecay / 1000);
-              message += ` You estimate it will rot away in ${decayIn} seconds.`;
-            }
-            
-            return { success: true, message: message };
+      const matchedItem = findItemWithOther(searchLower, items);
+      
+      if (matchedItem) {
+        // If "look in" and this is a container, show contents
+        if (lookInContainer && (matchedItem.type === 'CONTAINER' || (matchedItem.metadata && matchedItem.metadata.container))) {
+          const containerItems = matchedItem.metadata?.items || [];
+          if (containerItems.length === 0) {
+            return { success: true, message: `You look in ${matchedItem.name}.\r\nIt is empty.\r\n` };
           }
+          
+          // Fetch item names
+          const itemDocs = await db.collection('items').find({ id: { $in: containerItems } }).toArray();
+          const itemNames = itemDocs.map(doc => doc.name || 'an item');
+          
+          let contentMsg = '';
+          if (itemNames.length === 1) {
+            contentMsg = itemNames[0];
+          } else if (itemNames.length === 2) {
+            contentMsg = `${itemNames[0]} and ${itemNames[1]}`;
+          } else {
+            contentMsg = itemNames.slice(0, -1).join(', ') + ', and ' + itemNames[itemNames.length - 1];
+          }
+          
+          return { success: true, message: `You look in ${matchedItem.name}.\r\n${contentMsg}.\r\n` };
         }
-      } catch (error) {
-        console.error('Error searching item keywords:', error);
+        
+        let message = '';
+        if (matchedItem.longDescription) {
+          message = matchedItem.longDescription;
+        } else if (matchedItem.description) {
+          message = matchedItem.description;
+        } else {
+          const shown = matchedItem.name || matchedItem.id;
+          message = `You see ${shown}.`;
+        }
+        
+        if (matchedItem.timeUntilDecay) {
+          const decayIn = Math.floor(matchedItem.timeUntilDecay / 1000);
+          message += ` You estimate it will rot away in ${decayIn} seconds.`;
+        }
+        
+        return { success: true, message: message };
       }
+    } catch (error) {
+      console.error('Error fetching items:', error);
     }
   }
 

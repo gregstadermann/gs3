@@ -14,7 +14,7 @@ module.exports = {
   
   async execute(player, args) {
     if (args.length === 0) {
-      return { success: false, message: 'Go where? Try: go north, go south, go east, go west' };
+      return { success: false, message: 'Go where? Try: go north, go south, go east, go west, go gate, go door' };
     }
     
     // Check roundtime/lag
@@ -23,15 +23,33 @@ module.exports = {
       return roundtimeCheck;
     }
     
-    const direction = args[0].toLowerCase();
+    // Join args to support special exits like "go gate", "go door"
+    // Special exits are stored as just "gate" or "door" (hidden, not in obvious paths)
+    // But players type "go gate", so we need to match "go gate" -> "gate" exit
+    const input = args.join(' ').toLowerCase();
+    const direction = input;
+    
+    // For special exits, try matching without "go" prefix
+    // e.g., "go gate" should match an exit named "gate"
+    const specialExitName = input.startsWith('go ') ? input.substring(3).trim() : null;
+    
     const room = player.gameEngine.roomSystem.getRoom(player.room);
     
     if (!room) {
       return { success: false, message: 'You are nowhere.' };
     }
     
-    // Check if the exit exists
-    const exit = player.gameEngine.roomSystem.getExit(player.room, direction);
+    // Check for special exit first (e.g., "gate", "door") if input starts with "go "
+    let exit = null;
+    if (specialExitName) {
+      exit = player.gameEngine.roomSystem.getExit(player.room, specialExitName);
+    }
+    
+    // If no special exit found, try as regular direction
+    if (!exit) {
+      exit = player.gameEngine.roomSystem.getExit(player.room, direction);
+    }
+    
     if (!exit) {
       return { success: false, message: `You can't go ${direction} from here.` };
     }

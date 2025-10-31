@@ -552,20 +552,15 @@ class CharacterCreationManager {
       charisma: { base: 0, delta: 0 },
       reflexes: { base: 0, delta: 0 },
       logic: { base: 0, delta: 0 },
-      quickness: { base: 0, delta: 0 },
+      agility: { base: 0, delta: 0 },
       discipline: { base: 0, delta: 0 },
       aura: { base: 0, delta: 0 },
-      health: { base: 100, delta: 0 },
-      mana: { base: 50, delta: 0 },
+      health: { base: 0, delta: 0 },
+      mana: { base: 0, delta: 0 },
+      spirit: { base: 0, delta: 0 },
       experience: { base: 0, delta: 0 }
     };
 
-    // Roll 3d6 for each stat
-    for (const stat in baseAttributes) {
-      if (stat !== 'health' && stat !== 'mana' && stat !== 'experience') {
-        baseAttributes[stat].base = this.roll3d6();
-      }
-    }
 
     // Apply race bonuses
     this.applyRaceBonuses(baseAttributes, race);
@@ -576,15 +571,7 @@ class CharacterCreationManager {
     return baseAttributes;
   }
 
-  /**
-   * Roll 3d6
-   */
-  roll3d6() {
-    return Math.floor(Math.random() * 6) + 1 +
-           Math.floor(Math.random() * 6) + 1 +
-           Math.floor(Math.random() * 6) + 1;
-  }
-
+ 
   /**
    * Apply race bonuses
    */

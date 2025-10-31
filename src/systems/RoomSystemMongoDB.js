@@ -81,7 +81,6 @@ class RoomSystem {
         roomId: 'start',
         title: 'Starting Room',
         description: 'You find yourself in a small, dimly lit room. This appears to be the beginning of your adventure. There are exits to the north, south, east, and west.',
-        coordinates: [0, 0, 0],
         npcs: [],
         items: [],
         exits: [
@@ -165,36 +164,14 @@ class RoomSystem {
       return 'You are in a void. There is nothing here.';
     }
 
-    let description = `[${room.title}]\r\n${room.description}`;
+    // For admins, display the room id next to the title for easier mapping/debugging
+    const isAdmin = player && (player.role === 'admin');
+    const titleLine = isAdmin
+      ? `[${room.title}] [ ${room.id} ]`
+      : `[${room.title}]`;
+    let description = `${titleLine}\r\n${room.description}`;
     
-    // Add items in room - fetch from database and format inline
-    if (room.items && room.items.length > 0) {
-      try {
-        const itemIds = room.items.map(item => typeof item === 'string' ? item : (item.id || item.name || 'an item'));
-        
-        if (this.db) {
-          const items = await this.db.collection('items')
-            .find({ id: { $in: itemIds } })
-            .toArray();
-          
-          const itemDescriptions = items.map(item => item.roomDesc || item.name || item.id);
-          
-          if (itemDescriptions.length > 0) {
-            description += '  You also see ';
-            if (itemDescriptions.length === 1) {
-              description += itemDescriptions[0] + '.';
-            } else if (itemDescriptions.length === 2) {
-              description += itemDescriptions[0] + ' and ' + itemDescriptions[1] + '.';
-            } else {
-              description += itemDescriptions.slice(0, -1).join(', ') + ', and ' + itemDescriptions[itemDescriptions.length - 1] + '.';
-            }
-          }
-        }
-      } catch (error) {
-        // Fallback to simple count
-        description += `  You also see ${room.items.length} item(s).`;
-      }
-    }
+    // Suppress inline item listing to keep room descriptions concise
 
     // Get NPCs from NPC system if available
     let npcNames = [];
@@ -203,19 +180,7 @@ class RoomSystem {
       npcNames = npcsInRoom.map(npc => npc.name || npc.npcId);
     }
 
-    // Add players in room
-    const playersInRoom = this.getPlayersInRoom(roomId);
-    const otherPlayers = playersInRoom.filter(p => p.name !== player?.name);
-    
-    if (otherPlayers.length > 0 || npcNames.length > 0) {
-      description += '\r\nAlso here: ';
-      
-      let entities = [];
-      otherPlayers.forEach(p => entities.push(p.name));
-      entities = entities.concat(npcNames);
-      
-      description += entities.join(', ');
-    }
+    // Suppress dynamic "Also here" listing to avoid clutter in room descriptions
 
     // Add exits
     if (room.exits && room.exits.length > 0) {
@@ -261,6 +226,17 @@ class RoomSystem {
    */
   async addRoom(roomData) {
     try {
+      // Normalize exits: remove self-loops and duplicate directions
+      if (Array.isArray(roomData.exits)) {
+        const seen = new Set();
+        roomData.exits = roomData.exits.filter(exit => {
+          if (!exit || !exit.direction || !exit.roomId) return false;
+          if (exit.roomId === roomData.id) return false; // no self-loop
+          if (seen.has(exit.direction)) return false; // unique by direction
+          seen.add(exit.direction);
+          return true;
+        });
+      }
       await this.db.collection('rooms').replaceOne(
         { id: roomData.id },
         roomData,
@@ -286,6 +262,17 @@ class RoomSystem {
       }
 
       const updatedRoom = { ...room, ...updates };
+      // Normalize exits on update as well
+      if (Array.isArray(updatedRoom.exits)) {
+        const seen = new Set();
+        updatedRoom.exits = updatedRoom.exits.filter(exit => {
+          if (!exit || !exit.direction || !exit.roomId) return false;
+          if (exit.roomId === roomId) return false; // no self-loop
+          if (seen.has(exit.direction)) return false; // unique by direction
+          seen.add(exit.direction);
+          return true;
+        });
+      }
       await this.db.collection('rooms').replaceOne(
         { id: roomId },
         updatedRoom

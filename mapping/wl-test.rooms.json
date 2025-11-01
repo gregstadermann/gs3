@@ -1,0 +1,2227 @@
+[
+  {
+    "id": "town_square_northwest",
+    "canonical_id": "town_square_northwest_4ea1ecf5c546511f",
+    "title": "Town Square, Northwest",
+    "description": "This corner of the square is lively and hectic.  A number of representatives of the Landing's population, including several elven loggers and a party of rough-looking dwarves, loiter around the door of the Raging Thrak Inn, where the rowdy cheers of patrons and voices raised in songs of many sorts, from snatches of heroic ballads to blushingly bawdy tunes, beckon you to enter.  You also see a polished granite statue and a large wooden makeshift stand with some stuff on it. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "southeast": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 8,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_talon_st",
+    "canonical_id": "wehnimers_talon_st_ea363285764b87e3",
+    "title": "Wehnimer's, Talon St.",
+    "description": "The street runs between the northern palisade and the central square to the south and east.  The traffic is varied here, as shoppers, traders, travelers and merchants mix with the ever-present and watchful militiamen.  The pristine walls of the Stone Baths occupy nearly the entire block.  You also see a brightly lit small painted wagon and a tall black bulwark tower.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "tower"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 14,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd",
+    "canonical_id": "wehnimers_north_ring_rd_ae6877432cfbd76e",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The road turns gradually at this point as it forms the northwest corner of the city.  The main path curves along the north and west walls, and another leads south between the buildings.  The massive oak and modwir logs of the city palisade tower overhead.  You also see an old weathered cart with some stuff on it.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "southwest": "unknown"
+    },
+    "features": [
+      "tower",
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 17,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_01",
+    "canonical_id": "wehnimers_north_ring_rd_6180364e3061a2bc",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The cobbled road girds the town along the inner side of the northern palisade.  Just to the north stand the twin sentinels of the gate's guardtowers.  Guardsmen come and go through the main gates, keeping a close eye on the people of all races who move to and fro.  Opposite the gates, you see the shop of Dakris the Furrier.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 22,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_02",
+    "canonical_id": "wehnimers_north_ring_rd_435e709ae4c59657",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "Guards and militiamen pass by, moving between the barracks and the guard towers at either end of the north road.  The broad cobblestoned way proceeds east and west, hugging the inside of the northern wall.  A varied mix of citizens and visitors, including wealthy merchants and their wives, grizzled-looking trappers with freshly-cured pelts slung over their shoulders, and many others who have come to seek their fortunes in Wehnimer's Landing, walk among the ever-vigilant guardsmen.  You also see a small warehouse and a squalid canvas pavilion.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 27,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_03",
+    "canonical_id": "wehnimers_north_ring_rd_1288a2ba9d3c4ed6",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "Worn and uneven paving stones broken by deep ruts cover the road here, making for treacherous footing.  A chorus of sounds emanates from the south and west, as the hum of the bazaar melds with the cries of the traders and hawkers and the singsong of vendors and peddlers.  You also see a red-bricked pathway.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 30,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_04",
+    "canonical_id": "wehnimers_north_ring_rd_8ecbecfb05b5f0ec",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "North Ring Road intersects here with a cobbled street of modest dimensions that opens up to the south, where traffic becomes markedly more dense along the routes to the main square.  Towards the east, the guardtowers at the river gates can be seen in the distance.  You also see a rolton and a cobblestone path. Your disk arrives, following you dutifully.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 33,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_05",
+    "canonical_id": "wehnimers_north_ring_rd_167831d333d99703",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The east-west road continues, closed in on the south by the militia barracks and on the north by the twelve-foot-high wall of the city itself.  The insistent thud of leather boots in unison upon cobbled pavement and the clipped shouts of barked orders reverberate off the modwir walls along this part of the road.  The scents of leather, weapon oil and hearty cooking fill the air here.  You also see the town barracks.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 39,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_06",
+    "canonical_id": "wehnimers_north_ring_rd_f16406547a037c65",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "Here along the main north road, the roughhewn logs of the modwir wood palisade echo passing footsteps on the bumpy cobbled path.  The clammy, briny breeze from the nearby bay fills the air in spite of the sturdy barricade.  You also see a crenellated stone fortress.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 43,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_07",
+    "canonical_id": "wehnimers_north_ring_rd_ac2de526a9631b7d",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "A respectful quiet blankets this area like the deep shadow cast by the high north wall.  Those people that move along this section of road walk with their heads bowed and speak in hushed whispers in obvious consideration to the local empath, who practices the restorative arts at the strange tent that is set back from the roadside in the middle of an overgrown vacant lot here.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 47,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_08",
+    "canonical_id": "wehnimers_north_ring_rd_3cf2cf9361bd313b",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The perimeter road runs just inside the protective palisades that protect the north wall of the town, affording shelter from the prevailing winds off Darkstone Bay.  The weathered facades of businesses and warehouses line the road leading south into the center of Wehnimer's Landing.  To the east, the road leads to the riverfront, and the town's main gates lie farther to the west.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 51,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_09",
+    "canonical_id": "wehnimers_north_ring_rd_69e0b208b3c10a7d",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The west river guardtower looms overhead, marking the end of the road just to the east.  Most of the people passing by here are in uniforms of the various divisions of the town's guards or militia, and even the businesses on the south side of the street seem to cater almost exclusively to military types.  You also see an elegant white brick building.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 55,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_bays_watch_west",
+    "canonical_id": "wehnimers_bays_watch_west_a48a4712a83b74b0",
+    "title": "Wehnimer's, Bay's Watch West",
+    "description": "Here at the northern end of Wehnimer's Landing, the fickle waters of the Locksmehr River flow into Darkstone Bay.  The westernmost of the twin guardtowers that keep watch over the river gates into town rises above, casting a shadow over the cobblestones.  The huge ironbound sea gates, greenish water plants clinging to them at water level, straddle the river, extending to the matching tower on the eastern bank.  You also see a muscular red-armored hiresword, a wrought iron gate and a uniformed doorkeeper. Your disk arrives, following you dutifully.",
+    "exits": {
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "tower",
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 59,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way",
+    "canonical_id": "wehnimers_locksmehr_way_5b2dfe06b44f8637",
+    "title": "Wehnimer's, Locksmehr Way",
+    "description": "The faint, tangy scent of the bay mingles with the lighter smells of the river, which runs just to the northeast.  The wide road leads along the riverbank through the warehouse and wharf district, where the sounds of longshoremen loading and unloading freetraders drift over from a wooden walkway to the east.  You also see a painted ashen shop. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "walkway"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 73,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_01",
+    "canonical_id": "wehnimers_locksmehr_way_26b58bb16038600c",
+    "title": "Wehnimer's, Locksmehr Way",
+    "description": "To the east a dock spears out into the waters of the bay.  Ships from all across the world can be seen tied to the dock, and sailors of many races from many lands pass by.  To one side of the road stands a weathered and grey clapboard warehouse.  You also see a small wooden building with a large wooden sign on it.",
+    "exits": {
+      "north": "unknown",
+      "southwest": "unknown"
+    },
+    "features": [
+      "sign"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 78,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_02",
+    "canonical_id": "wehnimers_locksmehr_way_6c0e4570476e9f02",
+    "title": "Wehnimer's, Locksmehr Way",
+    "description": "The roadway follows the natural bend in the river, which encroaches slightly inland here.  To the west, a lane leads off into the business and warehouse districts of the Landing.  The shrieking of seabirds and the groaning of tall ships straining at anchor echo from the east.  You also see the South Wharf and the Wehnimer's Exchange booth. Your disk arrives, following you dutifully.",
+    "exits": {
+      "northeast": "unknown",
+      "southeast": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 82,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd",
+    "canonical_id": "wehnimers_dragonsclaw_rd_d76e502760b790d6",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "description": "Wagons and carts loaded with a variety of goods pass in all directions, from the center of the busy town to the west to the wharfs and piers along the Locksmehr River to the east.  A number of militiamen head north towards the guardtowers and barracks.  You also see a large wooden building with a wooden sign on it.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "sign"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 87,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lanthar_rd",
+    "canonical_id": "wehnimers_lanthar_rd_31d6a87ae88efe90",
+    "title": "Wehnimer's, Lanthar Rd.",
+    "description": "Lanthar Road leads east and west here, serving as a passage between the local inns and warehouses bordering the riverfront district and the center of Wehnimer's Landing.  A stray jarlik sniffs at a patch of grass growing between cracks in the cobbled pavement to one side of the road.  You also see a rough wooden gate. Your disk arrives, following you dutifully.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 91,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st",
+    "canonical_id": "wehnimers_stormarm_st_63ad33b12bff9a24",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "Along this neighborhood byway, wagons loaded with sacks of grain, kegs of beer, and firewood stand at the wide door of a local warehouse.  Merchants, innkeepers and tradesmen of the surrounding streets busily load and unload stored supplies here.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 96,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_01",
+    "canonical_id": "wehnimers_stormarm_st_d150cf1d53b3a484",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "A few warehouses, small shops and businesses, and unmarked buildings with weathered modwir siding predominate along this part of the road.  The street is less crowded than those near the docks or the square, and the irregular cobblestones are slick and unyielding underfoot.  You also see a warehouse entrance.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 104,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_02",
+    "canonical_id": "wehnimers_stormarm_st_fc737377e17a9799",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "This intersection links the bazaar routes with those bisecting and encircling the Landing.  A few ruddyfaced sailors, loudmouthed dockworkers, and off-duty soldiers linger along the wall of a tavern, which is set back from the side of the road up a slight incline.  A shaky wooden stairway, the bane of many an overimbiber's existence, leads up to the tavern door.  You also see a large painted sign. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "sign"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 108,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_03",
+    "canonical_id": "wehnimers_stormarm_st_daff1df97c36e0a6",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "This street cuts a wide path north and south between the north wall and the center of the Landing.  Low, grey stone buildings and nondescript sheds loom to the south and east, and towards the central square the view is more pleasant and varied.  You also see a dark alley.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 113,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_10",
+    "canonical_id": "wehnimers_north_ring_rd_cd6955c6d96304e8",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "A respectful quiet blankets this area like the deep shadow cast by the high north wall.  Those people that move along this section of road walk with their heads bowed and speak in hushed whispers in obvious consideration to the local empath, who practices the restorative arts at the strange tent that is set back from the roadside in the middle of an overgrown vacant lot here. Ruffpuff just arrived. Ruffpuff just went east. Your disk arrives, following you dutifully. Ruffpuff just arrived. Ruffpuff just went west. Brave Soul Galann just arrived. Brave Soul Galann just went east. Thaurin just arrived. Thaurin just went east. Moroha just arrived. Moroha just went west. Weldleaf just arrived. Weldleaf just went east. Maddalena arrives, her figure partially obscured by the flickering form of a tiny kitten made of misty green light stalking beside her. Maddalena strides east, her steps being shadowed by the flickering form of a tiny kitten made of misty green motes. Thaurin just arrived. Thaurin just went south. Weldleaf just arrived. Weldleaf just went west. Medikal just arrived. Medikal just went east. Thaurin just arrived. Thaurin just went east. Typs just arrived. Typs just went east. Dystorshin just arrived. Dystorshin just went east. Kaelvorn just arrived. Kaelvorn just went east. Weldleaf just arrived. Weldleaf just went south. Weldleaf just arrived. A tiny kitten arrives, dodging the many trampling feet. Weldleaf just went west. Weldleaf just arrived. Weldleaf just went east. A tiny kitten paces back and forth. Injure just arrived. Injure just went east. Milthius's group just arrived. Milthius's group just went south. Mister Madarch just arrived. Mister Madarch just went south. A tiny kitten goes south. Kresh just arrived. Kresh just went east. Weldleaf just arrived. Weldleaf just went west. Arkish just arrived. Arkish just went east. Majehem just arrived. Majehem just went east.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 117,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_11",
+    "canonical_id": "wehnimers_north_ring_rd_65661d61c7b1c820",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "A respectful quiet blankets this area like the deep shadow cast by the high north wall.  Those people that move along this section of road walk with their heads bowed and speak in hushed whispers in obvious consideration to the local empath, who practices the restorative arts at the strange tent that is set back from the roadside in the middle of an overgrown vacant lot here.  You also see the Bakardi disk. Arkish just arrived. Arkish just went west. A muscular red-armored hiresword charges in! Kresh just arrived. Kresh just went west. You say, \"STARTING NOW.\"",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 175,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_12",
+    "canonical_id": "wehnimers_north_ring_rd_f2680359f7ee9a3a",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "A respectful quiet blankets this area like the deep shadow cast by the high north wall.  Those people that move along this section of road walk with their heads bowed and speak in hushed whispers in obvious consideration to the local empath, who practices the restorative arts at the strange tent that is set back from the roadside in the middle of an overgrown vacant lot here.  You also see a muscular red-armored hiresword and the Bakardi disk. Lord Hammerrhead just arrived. Lord Hammerrhead just went south. A tiny kitten arrives, dodging the many trampling feet.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 186,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_04",
+    "canonical_id": "wehnimers_stormarm_st_c218b08abd55b48a",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "This street cuts a wide path north and south between the north wall and the center of the Landing.  Low, grey stone buildings and nondescript sheds loom to the south and east, and towards the central square the view is more pleasant and varied.  You also see a dark alley. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 193,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_05",
+    "canonical_id": "wehnimers_stormarm_st_fc737377e17a9799",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "This intersection links the bazaar routes with those bisecting and encircling the Landing.  A few ruddyfaced sailors, loudmouthed dockworkers, and off-duty soldiers linger along the wall of a tavern, which is set back from the side of the road up a slight incline.  A shaky wooden stairway, the bane of many an overimbiber's existence, leads up to the tavern door.  You also see a large painted sign. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "sign"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 198,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_06",
+    "canonical_id": "wehnimers_stormarm_st_c254f56534ebaa83",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "A few warehouses, small shops and businesses, and unmarked buildings with weathered modwir siding predominate along this part of the road.  The street is less crowded than those near the docks or the square, and the irregular cobblestones are slick and unyielding underfoot.  You also see a warehouse entrance. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 203,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_07",
+    "canonical_id": "wehnimers_stormarm_st_63ad33b12bff9a24",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "Along this neighborhood byway, wagons loaded with sacks of grain, kegs of beer, and firewood stand at the wide door of a local warehouse.  Merchants, innkeepers and tradesmen of the surrounding streets busily load and unload stored supplies here.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 208,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_08",
+    "canonical_id": "wehnimers_stormarm_st_33c7994ada310c36",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "The simple yet well built wooden structures in this small residential section of town are more functional than decorative, and little separates the style of one from another.  A few scraggly trees, planted long ago in patches of dirt between the buildings, add spots of shade to the cobblestones. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 212,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lyon_way",
+    "canonical_id": "wehnimers_lyon_way_84a4bdc3704a815e",
+    "title": "Wehnimer's, Lyon Way",
+    "description": "Here Lyon Way runs southeast into Riverwind Street, serving as a conduit for passage between the river and the bazaar and shops.  Most of the more reputable-looking citizens seem to be steering clear of a dimly lit cul-de-sac which lies due south of the intersection. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "southeast": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 217,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lyon_way_01",
+    "canonical_id": "wehnimers_lyon_way_f3afb7dcb86627d8",
+    "title": "Wehnimer's, Lyon Way",
+    "description": "The two- and three-story homes of some of the Landing's middle-class citizens are situated at this bend in Lyon Way.  Whitewash has been applied to most of the wooden structures, though soot from somewhere nearby stains many of their painted surfaces, and window boxes full of flowers add splashes of color here and there.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 222,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lyon_way_02",
+    "canonical_id": "wehnimers_lyon_way_49c83f7ca946ece1",
+    "title": "Wehnimer's, Lyon Way",
+    "description": "The intermittent rhythm of movement through the street to the east and west is accentuated by a constant loud clanging coming from the north, where a column of smoke rises from a towering chimney.  A flatbed wagon has been abandoned here where it collided with the wall of a shabby workshop, and now serves only as amusement for the local children who play on its ruined platform.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 226,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_cheridin_ave",
+    "canonical_id": "wehnimers_cheridin_ave_144cd4464f47194d",
+    "title": "Wehnimer's, Cheridin Ave.",
+    "description": "Many of the dwellings that line this section of road have shutters closed or curtains drawn to keep out the noise and dust raised by the constant flow of traffic along the street.  Just south of here, the traffic on Cheridin streams west towards the bazaar.  To the east, the lanes twist through neighborhoods composed of serviceable shops and modest residences.  You also see a red and white striped door. Your disk arrives, following you dutifully.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 230,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_cheridin_ave_01",
+    "canonical_id": "wehnimers_cheridin_ave_3bc7fee47d7dd3e5",
+    "title": "Wehnimer's, Cheridin Ave.",
+    "description": "The intersection of the broad avenue with the narrower byway connecting to the bazaar to the west creates a fleeting bottleneck in the foot traffic.  Older wood and stone buildings, mostly small shops and offices with upstairs lodgings overlooking the street, predominate here. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 237,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_penna_st",
+    "canonical_id": "wehnimers_penna_st_e58440885d31fd37",
+    "title": "Wehnimer's, Penna St.",
+    "description": "The constant din of the merchants, tradesmen and hawkers in the shops to the west is muted here.  The cracked pavement, scattered cobblestones, and dirt drainage ditches along the side of the road form a not-so-gradual transition between the bustling avenues of the main bazaar and the less frequented, humbler, and more unsavory sections of the town.  You also see a low stone gate and a tall black bulwark tower. Your disk arrives, following you dutifully.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "tower",
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 242,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "town_square_east",
+    "canonical_id": "town_square_east_dbf03906f159f369",
+    "title": "Town Square, East",
+    "description": "Here in the center of a broad plaza near the commercial area of the bazaar stands the impressive facade of the slate-roofed Moot Hall, where the citizens of Wehnimer's Landing hold various official, religious and social functions.  Facing the square are some of the town's more prosperous and bustling shops.  You also see a wood-framed message board, a large purple wooden barrel and a huge dark wagon with a glowing blue-white pylon on it.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 247,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "town_square_central",
+    "canonical_id": "town_square_central_64b80d5834e85223",
+    "title": "Town Square Central",
+    "description": "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops of the bazaar are clustered around this central gathering place, where townsfolk, travellers, and adventurers meet to talk, conspire or raise expeditions to the far-flung reaches of Elanith.  At the north end of the space, an old well, with moss-covered stones and a craggy roof, is shaded by a strong, robust tree.  The oak is tall and straight, and it is apparent that the roots run deep.  You also see the Memories disk, a large acorn, the Jobelle disk, a large acorn, a tincture of tkaro, a tincture of tkaro, a tincture of tkaro, the Kanamir disk, a tincture of ambrominas, a large acorn, the Hecuba disk, a single arrow shaft, some calamia fruit, a small wild rice and millet cake laced with maple syrup, some wide stone benches with some stuff on it, an herbal remedy donation bin, a round silver-banded barrel and a trail of aster-wreathed silver hedgehogs leading southwest. Also here: Memories, Maddalena, Ruffpuff, Dexon, Qodron who is sitting, Jobelle, Viniciuss, Lord Kanamir who is sitting, Maiden Hecuba who is sitting, Ahseetah, Lachdahn who is kneeling Your disk arrives, following you dutifully. I could not find what you were referring to. You are wearing a torn grosgrain bodice (tucked), some vermilion gloves, a moth-eaten light yellow satchel, a snake skin tabard, a pair of dark red boots, a threadbare dark brown vest, an appliqued velvet sack, a soft buckskin quiver, a neat buckskin vest, a neat golden backpack, an enruned orange bandana, some mauve wool trousers, a dashing dark blue vest, a rugged russet greatcloak, a quilled leather tunic, and a polished ora buckler.",
+    "exits": {
+      "northeast": "unknown",
+      "east": "unknown",
+      "southeast": "unknown",
+      "southwest": "unknown",
+      "west": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [
+      "trail"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 251,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "click_inventory_help_for_more_options",
+    "canonical_id": "click_inventory_help_for_more_options_eaff347c64c00b2d",
+    "title": "Click INVENTORY HELP for more options.",
+    "description": "There is nothing in there. Hecuba giggles at you. You blink. (OOC) Hecuba's player whispers, \"Nice name.\" You see Maiden Hecuba the Guardian of the Tiny Tea Thief. She appears to be a Sylvankind of the Kytawa D'ahranal. She is average height and has a leanly muscled physique.  She appears to be of a delicate age.  She has long-lashed violet eyes and fair skin.  She has waist length, braided silver hair worked into thick ropes of braid that trail down her back, with velvety oxblood vampire lilies lodged at each crossing.  She has a delicate face and slightly pointed ears.  She has a branch-like white gold earcap adorned in tiny pale rose tanzanite blossoms attached to her ear. She has a nearly black Asharikan lily tucked behind her ear. She has a delicate lily tattoo on her wrist, a pair of silver hoops dangling sapphire peacock feathers set along the slender tips of her pointed ears, and a scrollwork feystone shard in her left nostril. She has old battle scars on her right leg. She is wearing a multi-faced carved kakore wristlet featuring vacant onyx eyes, a glass-beaded handflower caging dried rose petals, a ruby-strung chain sporting a Liabo white moon pendant, a sun-etched gold ring, a velvet-tied rose gold mesh coin purse, a punched suede sack drawn by feathered ties, a leaf-etched brass vasculum dotted in tiny gold insects, a water-filled glass octopus anklet, an ebon-flecked sunset garnet stickpin, a deep amethyst teardrop of sirenglass, a gold-linked bracelet of oval chocolate opal cabochons, a gold-threaded samite kit, an aranthium mesh wand belt, some chocolate-hued silk-laced almond-hued watered silk high-heeled shoes, a flowing gossamer silk skirt embroidered with intricate knotwork, a twisted virid snakeskin bodysuit graced by a glyph-etched crystal, a longwing butterfly longcloak of pale blue velveteen, a weathered leather backpack painted with a soaring hawk, and a brass widget anklet. Name: Bakardi Race: Giantman  Profession: Empath (not shown) Gender: Male    Age: 0    Expr: 29,805    Level:  5 Normal (Bonus)  ...  Enhanced (Bonus) Strength (STR):    90 (35)    ...   90 (35) Constitution (CON):    52 (11)    ...   52 (11) Dexterity (DEX):    80 (10)    ...   80 (10) Agility (AGI):    80 (10)    ...   80 (10) Discipline (DIS):    72 (11)    ...   72 (11) Aura (AUR):    71 (5)     ...   71 (5) Logic (LOG):    72 (6)     ...   72 (6) Intuition (INT):    25 (-12)   ...   25 (-12) Wisdom (WIS):   100 (25)    ...  100 (25) Influence (INF):    35 (-2)    ...   35 (-2) Mana:  72   Silver: 50 Hecuba applauds you. You wink. Hecuba giggles. Avengel just arrived. You say, \"I like yours also.\" You nod at Hecuba. Hecuba beams happily at you! Hecuba exclaims, \"Thank you!\" Ruffpuff sits down. You see Maiden Hecuba the Guardian of the Tiny Tea Thief. She appears to be a Sylvankind of the Kytawa D'ahranal. She is average height and has a leanly muscled physique.  She appears to be of a delicate age.  She has long-lashed violet eyes and fair skin.  She has waist length, braided silver hair worked into thick ropes of braid that trail down her back, with velvety oxblood vampire lilies lodged at each crossing.  She has a delicate face and slightly pointed ears.  She has a branch-like white gold earcap adorned in tiny pale rose tanzanite blossoms attached to her ear. She has a nearly black Asharikan lily tucked behind her ear. She has a delicate lily tattoo on her wrist, a pair of silver hoops dangling sapphire peacock feathers set along the slender tips of her pointed ears, and a scrollwork feystone shard in her left nostril. She has old battle scars on her right leg. She is wearing a multi-faced carved kakore wristlet featuring vacant onyx eyes, a glass-beaded handflower caging dried rose petals, a ruby-strung chain sporting a Liabo white moon pendant, a sun-etched gold ring, a velvet-tied rose gold mesh coin purse, a punched suede sack drawn by feathered ties, a leaf-etched brass vasculum dotted in tiny gold insects, a water-filled glass octopus anklet, an ebon-flecked sunset garnet stickpin, a deep amethyst teardrop of sirenglass, a gold-linked bracelet of oval chocolate opal cabochons, a gold-threaded samite kit, an aranthium mesh wand belt, some chocolate-hued silk-laced almond-hued watered silk high-heeled shoes, a flowing gossamer silk skirt embroidered with intricate knotwork, a twisted virid snakeskin bodysuit graced by a glyph-etched crystal, a longwing butterfly longcloak of pale blue velveteen, a weathered leather backpack painted with a soaring hawk, and a brass widget anklet. Kanamir removes a shimmering black faenor claidhmore from in his mithril harness. Delivering a smoldering gaze, Hecuba silkily whispers a few magic words. Hecuba concentrates. Hecuba's right leg looks better. You smile. Great Lord Avengel just went northwest. You say, \"Yer welcome.\" Great Lord Avengel just arrived. Kanamir stands up. Lord Kanamir just went northwest. [Help] Memories: \"New Volner seeks longsword blessing in landings, any cleric available up for that?\" Viniciuss just went east. I could not find what you were referring to. On the wide stone benches you see a bloodstained silvery scroll, an origami cake, a crimson sheath, some bubbling Eldreth death-rum, a large acorn, a drake falchion, a royal blue quiver, some acantha leaf, a glistening black apple, a bottle of caramel-colored mead, a black belt, a small cobalt blue belt pouch, a leather sheath, some sloppy viper skin gloves, a bloodstained burnt paper, a bucket of white popcorn, a scattering of deathstone granules, some ephlox moss, some old olive green boots, a lesser health potion, some aloeas stem, some wolifrew lichen, some ephlox moss, a sprig of Imaera's Lace, a sprig of Imaera's Lace, some bubbling Eldreth death-rum, a sprig of Imaera's Lace, a sprig of Imaera's Lace, a tincture of haphip, some torban leaf, some acantha leaf, a rose-marrow potion, a periwinkle seedhead of beebalm, a tincture of aloeas, some wolifrew lichen, some wolifrew lichen, some wolifrew lichen, some wolifrew lichen and some wolifrew lichen. Avengel summons a torrent of spiritual mana and releases upon himself a flurry of abjurations.",
+    "exits": {},
+    "features": [
+      "trail"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 261,
+      "saw_obvious": false
+    }
+  },
+  {
+    "id": "town_square_northwest_01",
+    "canonical_id": "town_square_northwest_4d5c906fecb2ca0f",
+    "title": "Town Square, Northwest",
+    "description": "This corner of the square is lively and hectic.  A number of representatives of the Landing's population, including several elven loggers and a party of rough-looking dwarves, loiter around the door of the Raging Thrak Inn, where the rowdy cheers of patrons and voices raised in songs of many sorts, from snatches of heroic ballads to blushingly bawdy tunes, beckon you to enter.  You also see a polished granite statue and a large wooden makeshift stand with some stuff on it.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "southeast": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 333,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_talon_st_01",
+    "canonical_id": "wehnimers_talon_st_c8d22a28cf2f40ec",
+    "title": "Wehnimer's, Talon St.",
+    "description": "The street runs between the northern palisade and the central square to the south and east.  The traffic is varied here, as shoppers, traders, travelers and merchants mix with the ever-present and watchful militiamen.  The pristine walls of the Stone Baths occupy nearly the entire block.  You also see a brightly lit small painted wagon and a tall black bulwark tower. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "tower"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 337,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_13",
+    "canonical_id": "wehnimers_north_ring_rd_ae6877432cfbd76e",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The road turns gradually at this point as it forms the northwest corner of the city.  The main path curves along the north and west walls, and another leads south between the buildings.  The massive oak and modwir logs of the city palisade tower overhead.  You also see an old weathered cart with some stuff on it.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "southwest": "unknown"
+    },
+    "features": [
+      "tower",
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 342,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_14",
+    "canonical_id": "wehnimers_north_ring_rd_84e8cc63c345003c",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The cobbled road girds the town along the inner side of the northern palisade.  Just to the north stand the twin sentinels of the gate's guardtowers.  Guardsmen come and go through the main gates, keeping a close eye on the people of all races who move to and fro.  Opposite the gates, you see the shop of Dakris the Furrier. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 346,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_15",
+    "canonical_id": "wehnimers_north_ring_rd_435e709ae4c59657",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "Guards and militiamen pass by, moving between the barracks and the guard towers at either end of the north road.  The broad cobblestoned way proceeds east and west, hugging the inside of the northern wall.  A varied mix of citizens and visitors, including wealthy merchants and their wives, grizzled-looking trappers with freshly-cured pelts slung over their shoulders, and many others who have come to seek their fortunes in Wehnimer's Landing, walk among the ever-vigilant guardsmen.  You also see a small warehouse and a squalid canvas pavilion.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 351,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_16",
+    "canonical_id": "wehnimers_north_ring_rd_1288a2ba9d3c4ed6",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "Worn and uneven paving stones broken by deep ruts cover the road here, making for treacherous footing.  A chorus of sounds emanates from the south and west, as the hum of the bazaar melds with the cries of the traders and hawkers and the singsong of vendors and peddlers.  You also see a red-bricked pathway.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 355,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_17",
+    "canonical_id": "wehnimers_north_ring_rd_ea0f4648e51ed3ac",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "North Ring Road intersects here with a cobbled street of modest dimensions that opens up to the south, where traffic becomes markedly more dense along the routes to the main square.  Towards the east, the guardtowers at the river gates can be seen in the distance.  You also see a cobblestone path.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 359,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_18",
+    "canonical_id": "wehnimers_north_ring_rd_167831d333d99703",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The east-west road continues, closed in on the south by the militia barracks and on the north by the twelve-foot-high wall of the city itself.  The insistent thud of leather boots in unison upon cobbled pavement and the clipped shouts of barked orders reverberate off the modwir walls along this part of the road.  The scents of leather, weapon oil and hearty cooking fill the air here.  You also see the town barracks.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 363,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_19",
+    "canonical_id": "wehnimers_north_ring_rd_f16406547a037c65",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "Here along the main north road, the roughhewn logs of the modwir wood palisade echo passing footsteps on the bumpy cobbled path.  The clammy, briny breeze from the nearby bay fills the air in spite of the sturdy barricade.  You also see a crenellated stone fortress.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 368,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_20",
+    "canonical_id": "wehnimers_north_ring_rd_ac2de526a9631b7d",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "A respectful quiet blankets this area like the deep shadow cast by the high north wall.  Those people that move along this section of road walk with their heads bowed and speak in hushed whispers in obvious consideration to the local empath, who practices the restorative arts at the strange tent that is set back from the roadside in the middle of an overgrown vacant lot here.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 371,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_21",
+    "canonical_id": "wehnimers_north_ring_rd_f4f50203633fd0e7",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The perimeter road runs just inside the protective palisades that protect the north wall of the town, affording shelter from the prevailing winds off Darkstone Bay.  The weathered facades of businesses and warehouses line the road leading south into the center of Wehnimer's Landing.  To the east, the road leads to the riverfront, and the town's main gates lie farther to the west.  You also see a tiny kitten.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 376,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_22",
+    "canonical_id": "wehnimers_north_ring_rd_0ad8793742b77b9b",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The west river guardtower looms overhead, marking the end of the road just to the east.  Most of the people passing by here are in uniforms of the various divisions of the town's guards or militia, and even the businesses on the south side of the street seem to cater almost exclusively to military types.  You also see an elegant white brick building. Your disk arrives, following you dutifully.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 380,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_bays_watch_west_01",
+    "canonical_id": "wehnimers_bays_watch_west_357d27525984b4e5",
+    "title": "Wehnimer's, Bay's Watch West",
+    "description": "Here at the northern end of Wehnimer's Landing, the fickle waters of the Locksmehr River flow into Darkstone Bay.  The westernmost of the twin guardtowers that keep watch over the river gates into town rises above, casting a shadow over the cobblestones.  The huge ironbound sea gates, greenish water plants clinging to them at water level, straddle the river, extending to the matching tower on the eastern bank.  You also see a wrought iron gate and a uniformed doorkeeper. Your disk arrives, following you dutifully.",
+    "exits": {
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "tower",
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 385,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_03",
+    "canonical_id": "wehnimers_locksmehr_way_5b2dfe06b44f8637",
+    "title": "Wehnimer's, Locksmehr Way",
+    "description": "The faint, tangy scent of the bay mingles with the lighter smells of the river, which runs just to the northeast.  The wide road leads along the riverbank through the warehouse and wharf district, where the sounds of longshoremen loading and unloading freetraders drift over from a wooden walkway to the east.  You also see a painted ashen shop. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "walkway"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 397,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_04",
+    "canonical_id": "wehnimers_locksmehr_way_9854c4584a4cc0e9",
+    "title": "Wehnimer's, Locksmehr Way",
+    "description": "To the east a dock spears out into the waters of the bay.  Ships from all across the world can be seen tied to the dock, and sailors of many races from many lands pass by.  To one side of the road stands a weathered and grey clapboard warehouse.  You also see a small wooden building with a large wooden sign on it. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "southwest": "unknown"
+    },
+    "features": [
+      "sign"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 402,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_05",
+    "canonical_id": "wehnimers_locksmehr_way_c5c1461dee39cd39",
+    "title": "Wehnimer's, Locksmehr Way",
+    "description": "The roadway follows the natural bend in the river, which encroaches slightly inland here.  To the west, a lane leads off into the business and warehouse districts of the Landing.  The shrieking of seabirds and the groaning of tall ships straining at anchor echo from the east.  You also see the South Wharf and the Wehnimer's Exchange booth.",
+    "exits": {
+      "northeast": "unknown",
+      "southeast": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 407,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_06",
+    "canonical_id": "wehnimers_locksmehr_way_041e310102c54560",
+    "title": "Wehnimer's, Locksmehr Way",
+    "description": "The road snakes and winds to conform to the banks of the river.  In the distance, the low profiles of the shops and warehouses that populate the Landing's western bank can be seen.  To one side of the road, burly workmen load kegs of ale onto a flatbed wagon next to an aging warehouse, while two more wagons stand empty next to the low, cracked curb.  The span of a bridge crosses the river to the southeast. Your disk arrives, following you dutifully.",
+    "exits": {
+      "south": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 411,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_west_crossing",
+    "canonical_id": "wehnimers_west_crossing_aead2299093c6e4d",
+    "title": "Wehnimer's, West Crossing",
+    "description": "From here, the vista along the horizon affords a view of both banks of the river.  To the west, the town's low skyline is dominated by rambling structures and a few towers.  To the east lies the bridge across the Locksmehr, carrying a constant flow of people, goods, and wagons.  You also see a rainbow-colored tent and a blue modwir gate.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 416,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_07",
+    "canonical_id": "wehnimers_locksmehr_way_bc6e093e4da01fc7",
+    "title": "Wehnimer's, Locksmehr Way",
+    "description": "The massive gate of the Landing's boatyard dominates this stretch of road.  Through it can be seen boats in various states of repair, tied up at wooden docks or beached along the riverbank.  Just offshore lies a coastal sailer half-sunken in the river's shallows, and silhouetted against the horizon just to the northeast is the span of a sturdy bridge.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 422,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_08",
+    "canonical_id": "wehnimers_locksmehr_way_5bf19d76fa2b3aea",
+    "title": "Wehnimer's, Locksmehr Way",
+    "description": "Dockworkers, sailors, fishermen and tradesmen stream by, coming and going in the course of tending the ships that ferry goods and people between the Landing and the far-flung reaches of Elanthia.  A group of rough-looking sailors lead a captive Ice Krolvin sea captain and his crew through the street, glaring disdainfully at anyone in their path.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 425,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd",
+    "canonical_id": "wehnimers_south_ring_rd_29722db32b633763",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "South Ring Road leads to the outskirts of Shanty Town, the poorest section of Wehnimer's Landing.  The contrast between the colorful, well-kept buildings of the bazaar and main square and the dingy hovels to the east is striking.  Most passers-by move hurriedly to the west or north to the river crossing.  A ragged child cowers against the south wall, looking lost and forgotten. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 428,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_01",
+    "canonical_id": "wehnimers_south_ring_rd_84f17328f98ee13a",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "Along the edge of the road stands an abandoned shop surrounded by overgrown gardens.  Street urchins play among its remains, their shouts resounding off the modwir wall that borders the east-west road.  You also see a slender stone path.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 433,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_02",
+    "canonical_id": "wehnimers_south_ring_rd_da8e4b03aee3408c",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "Pedestrians and a variety of carts and wagons move along the cobblestoned road in the shadow of the palisades, most focused on going about their business in town.  They pass by the low wood and stone buildings, rarely glancing up or at one another.  You also see a small white-painted boutique.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 438,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_03",
+    "canonical_id": "wehnimers_south_ring_rd_76baf3237b6f951f",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "The rough-hewn, pointed logs forming the palisade of the town's defensive wall are a constant companion along this route linking sections of Wehnimer's Landing to the bazaar, the square, and the waterfront via the southernmost road.  You also see a muscular red-armored hiresword and a wide dark mithril gate. Your disk arrives, following you dutifully.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 442,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_04",
+    "canonical_id": "wehnimers_south_ring_rd_cf4fc359eb561e9c",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "The ongoing parade of citizenry that passes by seems to take on a special character in this part of town.  Mixed in with the usual denizens, you notice a preponderance of travellers who appear to be pilgrims, priests and monks.  They file in and out of the road to the north.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 447,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_05",
+    "canonical_id": "wehnimers_south_ring_rd_509b1cd8ae45ab29",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "A small but constant group of local residents gathers around the small well next to the palisade.  They chat idly as the traffic from the connecting road disperses to the east and west, and others with business in the heart of town head north.  You also see a small rustic shop.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 452,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_06",
+    "canonical_id": "wehnimers_south_ring_rd_3371b818850e05a2",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "The green and rolling countryside outside the town can be glimpsed through a crack in the south palisade wall.  A cool and refreshing mountain breeze whistles between the logs, freshening the air with a brisk scent of pine.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 455,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_07",
+    "canonical_id": "wehnimers_south_ring_rd_924178c71e9788f8",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "A spacious boulevard intersects the Ring Road at this point.  Numerous traders and peddlers cart their wares north to sell at the main bazaar, while townsfolk scatter east and west bearing packages, sacks and purchases.  You also see a muscular red-armored hiresword and an intricate gate in a cast-iron fence.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 458,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_08",
+    "canonical_id": "wehnimers_south_ring_rd_ad7b91a613a7ac03",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "A short distance to the east lies a broad intersection.  To the west, the road narrows slightly as it is impinged on by closely-spaced shops, beyond which the western and southern city walls intersect.  Prosperous ladies and well-to-do gentlemen mingle in the street with the more common folk of the town.  You also see a fresh painted gemcutter's shop.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 464,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_09",
+    "canonical_id": "wehnimers_south_ring_rd_637c82fa9ccf5743",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "The clamor of the traffic is punctuated by the sound of metal bouncing against metal.  A group of children play in the shadow of the buildings, pitching coppers against the wall of a shop.  From one small storefront comes the sound of a lilting melody being picked out on a lute.  You also see a dark-haired half-elven priestess and an ornate wrought iron gate. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 467,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_west_ring_rd",
+    "canonical_id": "wehnimers_west_ring_rd_33714ab0a0f2844e",
+    "title": "Wehnimer's, West Ring Rd.",
+    "description": "The road bends to conform to the inside curve of the southern and western walls of the high modwir log palisades, which converge here.  A whiff of the scents of the marketplace rises from a narrow lane to the east.  You also see a dark ladder leaning against a large iron-plated tower, a brick pathway leading to an ornate silver gate and an ivy-bordered silver sign.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "southeast": "unknown"
+    },
+    "features": [
+      "sign",
+      "tower",
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 477,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_west_ring_rd_01",
+    "canonical_id": "wehnimers_west_ring_rd_01562a41e7e44c8a",
+    "title": "Wehnimer's, West Ring Rd.",
+    "description": "Traffic is light on this portion of West Ring Road.  Most people seem to be using the busier roads that lie to the north and south, leading to the square.  A few warehouses and smaller shops line the way here.  You also see a dark ladder leaning against a large iron-plated tower and a reinforced large wooden gate. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "tower",
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 481,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_west_ring_rd_02",
+    "canonical_id": "wehnimers_west_ring_rd_629c6c28bfd96c05",
+    "title": "Wehnimer's, West Ring Rd.",
+    "description": "The lane to the east leads into the heart of town and the main square.  The back wall of the grocer's shop borders the road, its wide door surrounded by piles of rough gunny sacks and stacks of wooden crates, some empty, others still to be unpacked.  You also see a tall mithril postern gate.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 486,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_west_ring_rd_03",
+    "canonical_id": "wehnimers_west_ring_rd_464e6a0201d8d4b9",
+    "title": "Wehnimer's, West Ring Rd.",
+    "description": "The road passes beneath the shadow of the palisade.  Before you sprawls a gaudily-painted structure, adorned with elaborate carvings depicting scenes of commerce in an almost reverential style.  This is the Merchant's Guild, where the business people of town, from wealthy traders to lowly street peddlers, meet to discuss matters of mutual concern.  You also see a two-story dark brick edifice.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 493,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_west_ring_rd_04",
+    "canonical_id": "wehnimers_west_ring_rd_d5c97f9423329107",
+    "title": "Wehnimer's, West Ring Rd.",
+    "description": "This cobbled road circles the town, providing access to the bazaar and the fringes of the surrounding neighborhoods.  Several members of the militia, wearing leather armor and bearing short swords and daggers, eye the crowds and keep silent watch over the street, which bustles with well-heeled merchants, traders and shopkeepers.  You also see a squat tower entrance, a rune-carved fieldstone house and a curious-looking shop. Your disk arrives, following you dutifully.",
+    "exits": {
+      "northeast": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "tower"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 497,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_23",
+    "canonical_id": "wehnimers_north_ring_rd_ae6877432cfbd76e",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The road turns gradually at this point as it forms the northwest corner of the city.  The main path curves along the north and west walls, and another leads south between the buildings.  The massive oak and modwir logs of the city palisade tower overhead.  You also see an old weathered cart with some stuff on it.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "southwest": "unknown"
+    },
+    "features": [
+      "tower",
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 509,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_24",
+    "canonical_id": "wehnimers_north_ring_rd_84e8cc63c345003c",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The cobbled road girds the town along the inner side of the northern palisade.  Just to the north stand the twin sentinels of the gate's guardtowers.  Guardsmen come and go through the main gates, keeping a close eye on the people of all races who move to and fro.  Opposite the gates, you see the shop of Dakris the Furrier. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 513,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lands_end_rd",
+    "canonical_id": "wehnimers_lands_end_rd_10bbede802b46de9",
+    "title": "Wehnimer's, Land's End Rd.",
+    "description": "Vigilant guardsmen scrutinize the citizens and travelers arriving and departing through the wide gates spanning the land route into Wehnimer's Landing.  The frenetic pace of the city to the south is a far cry from the deceptive calm of the wilds of Elanith outside.  Two daunting towers survey the countryside and protect the town, flanking the road to the east and west.  You also see a large wooden barrel.",
+    "exits": {
+      "south": "unknown",
+      "east": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 518,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "land_tower_east_office",
+    "canonical_id": "land_tower_east_office_11b0f7f3d4a752fe",
+    "title": "Land Tower East, Office",
+    "description": "The ground floor of this guard tower appears to be some kind of office.  A single guard sits behind one of the desks reviewing some paperwork.  A small wood stove in the corner provides heat to the room.  You also see a wooden trapdoor, a large wastebasket, some wooden steps, a sturdy wooden table with Undercover's trunk on it and a scruffy human worker. Also here: Undercover Your disk arrives, following you dutifully.",
+    "exits": {
+      "out": "unknown"
+    },
+    "features": [
+      "tower"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 522,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lands_end_rd_01",
+    "canonical_id": "wehnimers_lands_end_rd_10bbede802b46de9",
+    "title": "Wehnimer's, Land's End Rd.",
+    "description": "Vigilant guardsmen scrutinize the citizens and travelers arriving and departing through the wide gates spanning the land route into Wehnimer's Landing.  The frenetic pace of the city to the south is a far cry from the deceptive calm of the wilds of Elanith outside.  Two daunting towers survey the countryside and protect the town, flanking the road to the east and west.  You also see a large wooden barrel.",
+    "exits": {
+      "south": "unknown",
+      "west": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 528,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "land_tower_west_infirmary",
+    "canonical_id": "land_tower_west_infirmary_ea7493bf6b8ab027",
+    "title": "Land Tower West, Infirmary",
+    "description": "Formerly a dining room for the tower guards, this large open room has been converted to a makeshift infirmary.  Most of the wooden tables have been shoved against the walls, though a few have been draped with linens to serve as treatment platforms.  A battered metal cabinet, sparsely stocked with healing herbs, hangs near the entrance.  Having borne the brunt of bleeding bodies and rotting corpses, the wood floors are clean, but heavily stained.  A sturdy ladder leads to the upper levels of the tower.  You also see a wooden trapdoor and some wall-mounted torches. Your disk arrives, following you dutifully.",
+    "exits": {
+      "up": "unknown",
+      "out": "unknown"
+    },
+    "features": [
+      "tower"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 532,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lands_end_rd_02",
+    "canonical_id": "wehnimers_lands_end_rd_daa4c5d4b605d32e",
+    "title": "Wehnimer's, Land's End Rd.",
+    "description": "Vigilant guardsmen scrutinize the citizens and travelers arriving and departing through the wide gates spanning the land route into Wehnimer's Landing.  The frenetic pace of the city to the south is a far cry from the deceptive calm of the wilds of Elanith outside.  Two daunting towers survey the countryside and protect the town, flanking the road to the east and west.  You also see a large wooden barrel. Your disk arrives, following you dutifully.",
+    "exits": {
+      "south": "unknown",
+      "gate": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 537,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_outside_gate",
+    "canonical_id": "wehnimers_outside_gate_01f0a9194733f56b",
+    "title": "Wehnimer's, Outside Gate",
+    "description": "Citizens, merchants and assorted dregs of society jostle against you before the great wooden gates of Wehnimer's Landing.  Harried guards and militiamen try to keep the chaos to a minimum, but it is hard to keep track of those entering, let alone leaving, this large trading post.  A dirt path encircling the wooden palisade of the town leads east and southwest.  Nailed prominently to the wooden wall beside the gate is a sign you really should read.  You also see the Wayside inn.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "southwest": "unknown",
+      "northwest": "unknown",
+      "gate": {
+        "hidden": true
+      }
+    },
+    "features": [
+      "sign",
+      "path",
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 542,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lands_end_rd_03",
+    "canonical_id": "wehnimers_lands_end_rd_e527e8c1a7b18036",
+    "title": "Wehnimer's, Land's End Rd.",
+    "description": "Vigilant guardsmen scrutinize the citizens and travelers arriving and departing through the wide gates spanning the land route into Wehnimer's Landing.  The frenetic pace of the city to the south is a far cry from the deceptive calm of the wilds of Elanith outside.  Two daunting towers survey the countryside and protect the town, flanking the road to the east and west.  You also see the Bakardi disk and a large wooden barrel.",
+    "exits": {
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 546,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_25",
+    "canonical_id": "wehnimers_north_ring_rd_b1b76e2f47585e84",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The cobbled road girds the town along the inner side of the northern palisade.  Just to the north stand the twin sentinels of the gate's guardtowers.  Guardsmen come and go through the main gates, keeping a close eye on the people of all races who move to and fro.  Opposite the gates, you see the shop of Dakris the Furrier. Your disk arrives, following you dutifully. Brave Soul Vehir just arrived. Brave Soul Vehir just went west.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 550,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_26",
+    "canonical_id": "wehnimers_north_ring_rd_435e709ae4c59657",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "Guards and militiamen pass by, moving between the barracks and the guard towers at either end of the north road.  The broad cobblestoned way proceeds east and west, hugging the inside of the northern wall.  A varied mix of citizens and visitors, including wealthy merchants and their wives, grizzled-looking trappers with freshly-cured pelts slung over their shoulders, and many others who have come to seek their fortunes in Wehnimer's Landing, walk among the ever-vigilant guardsmen.  You also see a small warehouse and a squalid canvas pavilion.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 558,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_27",
+    "canonical_id": "wehnimers_north_ring_rd_1288a2ba9d3c4ed6",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "Worn and uneven paving stones broken by deep ruts cover the road here, making for treacherous footing.  A chorus of sounds emanates from the south and west, as the hum of the bazaar melds with the cries of the traders and hawkers and the singsong of vendors and peddlers.  You also see a red-bricked pathway.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 561,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_28",
+    "canonical_id": "wehnimers_north_ring_rd_f23122bbcf25d794",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "North Ring Road intersects here with a cobbled street of modest dimensions that opens up to the south, where traffic becomes markedly more dense along the routes to the main square.  Towards the east, the guardtowers at the river gates can be seen in the distance.  You also see a cobblestone path. Your disk arrives, following you dutifully.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 565,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_the_mews",
+    "canonical_id": "wehnimers_the_mews_688e812f1ba3c4bc",
+    "title": "Wehnimer's, The Mews",
+    "description": "This narrow lane runs north to south, shaded by the narrow, unadorned buildings that loom on both sides of the rough paving stones.  The clatter of wagon wheels on cobbled streets and the jangling of iron-fitted harnesses echoes from the south, along with a scent of leather and livestock.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 570,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_the_mews_01",
+    "canonical_id": "wehnimers_the_mews_a782e5a8734c9ee2",
+    "title": "Wehnimer's, The Mews",
+    "description": "The large, barn-like structure that dominates the north side of the block is the city stable.  Through a ground-floor window can be seen the rows of now-empty stalls in the dark interior.  The pavement just outside is strewn with straw and debris that merits a careful step along this part of the road.  To the west is the main square and its cobblestoned bazaar, where furious trading takes place on a daily basis.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 575,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_valeria_st",
+    "canonical_id": "wehnimers_valeria_st_771fdfd9bd446e7e",
+    "title": "Wehnimer's, Valeria St.",
+    "description": "Traffic to and from the hub of activity in the square to the west clogs the street here.  Passers-by guard their valuables closely, glancing into doorways and niches and wary of the press of the crowd.  Two-story buildings of wood and stone line the north and south sides of the cobbled road.   You also see a large reddish-brown sandstone shop, a tall black bulwark tower and an ivy-covered white monir tower. Your disk arrives, following you dutifully.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "tower"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 579,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_the_mews_02",
+    "canonical_id": "wehnimers_the_mews_2966439f33dbbc4c",
+    "title": "Wehnimer's, The Mews",
+    "description": "The large, barn-like structure that dominates the north side of the block is the city stable.  Through a ground-floor window can be seen the rows of now-empty stalls in the dark interior.  The pavement just outside is strewn with straw and debris that merits a careful step along this part of the road.  To the west is the main square and its cobblestoned bazaar, where furious trading takes place on a daily basis. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 585,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_valeria_st_01",
+    "canonical_id": "wehnimers_valeria_st_784b2dd48fcc4b76",
+    "title": "Wehnimer's, Valeria St.",
+    "description": "The footsteps of passing wayfarers and townspeople echo on the cobbled pavement between the rows of two-story wooden houses that flank the lane.  The street seems a bit less congested here, blocks away from the busy square to the west.  You also see an old whitewashed house.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 590,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_valeria_st_02",
+    "canonical_id": "wehnimers_valeria_st_05aa923b433caa0d",
+    "title": "Wehnimer's, Valeria St.",
+    "description": "Flatbed wagons carrying loads of wood or other goods lumber slowly to the east and west, bouncing over a large pothole in the road.  A nondescript building, with a prominent sign in the shape of a key above its black door, is set back slightly from the street.  You also see the Engraver's Shop with a small elegant sign on it.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "sign"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 594,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_09",
+    "canonical_id": "wehnimers_stormarm_st_b3dcebbfa12bd4a9",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "This intersection links the bazaar routes with those bisecting and encircling the Landing.  A few ruddyfaced sailors, loudmouthed dockworkers, and off-duty soldiers linger along the wall of a tavern, which is set back from the side of the road up a slight incline.  A shaky wooden stairway, the bane of many an overimbiber's existence, leads up to the tavern door.  You also see a large painted sign.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "sign"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 599,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_10",
+    "canonical_id": "wehnimers_stormarm_st_c254f56534ebaa83",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "A few warehouses, small shops and businesses, and unmarked buildings with weathered modwir siding predominate along this part of the road.  The street is less crowded than those near the docks or the square, and the irregular cobblestones are slick and unyielding underfoot.  You also see a warehouse entrance. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 604,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_11",
+    "canonical_id": "wehnimers_stormarm_st_63ad33b12bff9a24",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "Along this neighborhood byway, wagons loaded with sacks of grain, kegs of beer, and firewood stand at the wide door of a local warehouse.  Merchants, innkeepers and tradesmen of the surrounding streets busily load and unload stored supplies here.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 610,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_12",
+    "canonical_id": "wehnimers_stormarm_st_191d01be4da1efe6",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "The simple yet well built wooden structures in this small residential section of town are more functional than decorative, and little separates the style of one from another.  A few scraggly trees, planted long ago in patches of dirt between the buildings, add spots of shade to the cobblestones.",
+    "exits": {
+      "north": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 614,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_13",
+    "canonical_id": "wehnimers_stormarm_st_6d5f70ce4f1077fc",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "Along this neighborhood byway, wagons loaded with sacks of grain, kegs of beer, and firewood stand at the wide door of a local warehouse.  Merchants, innkeepers and tradesmen of the surrounding streets busily load and unload stored supplies here. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 622,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_14",
+    "canonical_id": "wehnimers_stormarm_st_d150cf1d53b3a484",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "A few warehouses, small shops and businesses, and unmarked buildings with weathered modwir siding predominate along this part of the road.  The street is less crowded than those near the docks or the square, and the irregular cobblestones are slick and unyielding underfoot.  You also see a warehouse entrance.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 626,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_15",
+    "canonical_id": "wehnimers_stormarm_st_fc737377e17a9799",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "This intersection links the bazaar routes with those bisecting and encircling the Landing.  A few ruddyfaced sailors, loudmouthed dockworkers, and off-duty soldiers linger along the wall of a tavern, which is set back from the side of the road up a slight incline.  A shaky wooden stairway, the bane of many an overimbiber's existence, leads up to the tavern door.  You also see a large painted sign. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "sign"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 630,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_16",
+    "canonical_id": "wehnimers_stormarm_st_daff1df97c36e0a6",
+    "title": "Wehnimer's, Stormarm St.",
+    "description": "This street cuts a wide path north and south between the north wall and the center of the Landing.  Low, grey stone buildings and nondescript sheds loom to the south and east, and towards the central square the view is more pleasant and varied.  You also see a dark alley.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 637,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_29",
+    "canonical_id": "wehnimers_north_ring_rd_1aae9e214cf6b713",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "A respectful quiet blankets this area like the deep shadow cast by the high north wall.  Those people that move along this section of road walk with their heads bowed and speak in hushed whispers in obvious consideration to the local empath, who practices the restorative arts at the strange tent that is set back from the roadside in the middle of an overgrown vacant lot here. Your disk arrives, following you dutifully.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 643,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_30",
+    "canonical_id": "wehnimers_north_ring_rd_f4f50203633fd0e7",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The perimeter road runs just inside the protective palisades that protect the north wall of the town, affording shelter from the prevailing winds off Darkstone Bay.  The weathered facades of businesses and warehouses line the road leading south into the center of Wehnimer's Landing.  To the east, the road leads to the riverfront, and the town's main gates lie farther to the west.  You also see a tiny kitten.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 648,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_31",
+    "canonical_id": "wehnimers_north_ring_rd_d4e7f83854eacf58",
+    "title": "Wehnimer's, North Ring Rd.",
+    "description": "The west river guardtower looms overhead, marking the end of the road just to the east.  Most of the people passing by here are in uniforms of the various divisions of the town's guards or militia, and even the businesses on the south side of the street seem to cater almost exclusively to military types.  You also see the Madarch disk and an elegant white brick building. Also here: Mister Madarch",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 654,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_bays_watch_west_02",
+    "canonical_id": "wehnimers_bays_watch_west_357d27525984b4e5",
+    "title": "Wehnimer's, Bay's Watch West",
+    "description": "Here at the northern end of Wehnimer's Landing, the fickle waters of the Locksmehr River flow into Darkstone Bay.  The westernmost of the twin guardtowers that keep watch over the river gates into town rises above, casting a shadow over the cobblestones.  The huge ironbound sea gates, greenish water plants clinging to them at water level, straddle the river, extending to the matching tower on the eastern bank.  You also see a wrought iron gate and a uniformed doorkeeper. Your disk arrives, following you dutifully.",
+    "exits": {
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "tower",
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 658,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_09",
+    "canonical_id": "wehnimers_locksmehr_way_5e29b7ea5861241e",
+    "title": "Wehnimer's, Locksmehr Way",
+    "description": "The faint, tangy scent of the bay mingles with the lighter smells of the river, which runs just to the northeast.  The wide road leads along the riverbank through the warehouse and wharf district, where the sounds of longshoremen loading and unloading freetraders drift over from a wooden walkway to the east.  You also see a painted ashen shop.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "walkway"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 664,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_10",
+    "canonical_id": "wehnimers_locksmehr_way_9854c4584a4cc0e9",
+    "title": "Wehnimer's, Locksmehr Way",
+    "description": "To the east a dock spears out into the waters of the bay.  Ships from all across the world can be seen tied to the dock, and sailors of many races from many lands pass by.  To one side of the road stands a weathered and grey clapboard warehouse.  You also see a small wooden building with a large wooden sign on it. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "southwest": "unknown"
+    },
+    "features": [
+      "sign"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 668,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_11",
+    "canonical_id": "wehnimers_locksmehr_way_c5c1461dee39cd39",
+    "title": "Wehnimer's, Locksmehr Way",
+    "description": "The roadway follows the natural bend in the river, which encroaches slightly inland here.  To the west, a lane leads off into the business and warehouse districts of the Landing.  The shrieking of seabirds and the groaning of tall ships straining at anchor echo from the east.  You also see the South Wharf and the Wehnimer's Exchange booth.",
+    "exits": {
+      "northeast": "unknown",
+      "southeast": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 673,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_01",
+    "canonical_id": "wehnimers_dragonsclaw_rd_1a8a934f1c7187c2",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "description": "Wagons and carts loaded with a variety of goods pass in all directions, from the center of the busy town to the west to the wharfs and piers along the Locksmehr River to the east.  A number of militiamen head north towards the guardtowers and barracks.  You also see a shaggy mutt and a large wooden building with a wooden sign on it.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "sign"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 679,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_02",
+    "canonical_id": "wehnimers_dragonsclaw_rd_e968e0172c8bab85",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "description": "This dingy street is overshadowed by two multi-storied buildings.  At the far end is the unpretentious facade of Beldrin's Gaming Hall, from which the harsh shouts of gamblers, touts, and onlookers echo into the street.  Across the way is a local inn, frequented by sailors, dockworkers and fishermen, from the looks of the clientele gathered around the doorway. Your disk arrives, following you dutifully.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 683,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_bankers_square",
+    "canonical_id": "wehnimers_bankers_square_f5394464d33cbab2",
+    "title": "Wehnimer's, Banker's Square",
+    "description": "The eastern road leads closer to the river, which can be smelled but not seen from here.  The southern road constricts as it makes a straight cut towards the modwir palisade that surrounds the town, avoiding the maze-like side streets of the riverfront and Shanty Town, which are haunted by dockworkers, warehouse porters, and wharf rats.  A dusty pile of rubble might have been a building once, but whatever it was is unrecognizable now.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 688,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_03",
+    "canonical_id": "wehnimers_dragonsclaw_rd_a3507977f9b635eb",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "description": "The road travels roughly parallel to the river's course, skirting the shoreline.  Fishermen, traders, miners, sailors, and townsfolk trek back and forth between the storehouses, shops, docks and offices that constitute the life of Wehnimer's Landing.  You also see a three-story brick building.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 693,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_04",
+    "canonical_id": "wehnimers_dragonsclaw_rd_7fb2fc8699398cb2",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "description": "A somber shop by the side of the road attracts a picturesque clientele.  Lissome travellers cloaked in forest green and hunters of many shapes and sizes gather outside.  Some have quivers slung across their backs, others hold menacing-looking contraptions of wood, metal and fiber.  A rugged wooden plaque in the shape of an arrow is nailed to the shop door.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 697,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_05",
+    "canonical_id": "wehnimers_dragonsclaw_rd_a5cc6eda5b1a87d5",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "description": "The neatly kept shop on the west side of the street looks like a private residence, except for the displays in its bay window of all the latest fashions.  Elm trees cast an intermittent shade over the cobblestones, and a pair of striped kittens scamper in the dappled light.  You also see a grizzled old warrior. A grizzled old warrior tosses his broadsword into the air; it turns end over end once and falls.  The old warrior positions his body just right so that the weapon lands perfectly in his sheath!!",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 701,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_10",
+    "canonical_id": "wehnimers_south_ring_rd_01cd731c6434507b",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "Pedestrians and a variety of carts and wagons move along the cobblestoned road in the shadow of the palisades, most focused on going about their business in town.  They pass by the low wood and stone buildings, rarely glancing up or at one another.  You also see a muscular red-armored hiresword and a small white-painted boutique. Your disk arrives, following you dutifully. A muscular red-armored hiresword charges west!",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 705,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_11",
+    "canonical_id": "wehnimers_south_ring_rd_7bbf3d91de5c5a80",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "The rough-hewn, pointed logs forming the palisade of the town's defensive wall are a constant companion along this route linking sections of Wehnimer's Landing to the bazaar, the square, and the waterfront via the southernmost road.  You also see a muscular red-armored hiresword and a wide dark mithril gate.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 720,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_12",
+    "canonical_id": "wehnimers_south_ring_rd_cf4fc359eb561e9c",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "The ongoing parade of citizenry that passes by seems to take on a special character in this part of town.  Mixed in with the usual denizens, you notice a preponderance of travellers who appear to be pilgrims, priests and monks.  They file in and out of the road to the north.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 723,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_13",
+    "canonical_id": "wehnimers_south_ring_rd_509b1cd8ae45ab29",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "A small but constant group of local residents gathers around the small well next to the palisade.  They chat idly as the traffic from the connecting road disperses to the east and west, and others with business in the heart of town head north.  You also see a small rustic shop.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 726,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_14",
+    "canonical_id": "wehnimers_south_ring_rd_f8093e44d51a888e",
+    "title": "Wehnimer's, South Ring Rd.",
+    "description": "The green and rolling countryside outside the town can be glimpsed through a crack in the south palisade wall.  A cool and refreshing mountain breeze whistles between the logs, freshening the air with a brisk scent of pine. Your disk arrives, following you dutifully. You attempt to blend with the surroundings, and feel confident that no one has noticed your doing so.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-test.txt",
+      "start_line": 729,
+      "saw_obvious": true
+    }
+  }
+]

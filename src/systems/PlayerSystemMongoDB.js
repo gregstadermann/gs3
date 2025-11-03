@@ -1,6 +1,6 @@
 'use strict';
 
-const databaseManager = require('../core/DatabaseManager');
+const databaseManager = require('../adapters/db/mongoClient');
 
 /**
  * Player System (Database Version)

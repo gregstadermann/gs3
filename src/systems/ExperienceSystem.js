@@ -75,7 +75,7 @@ class ExperienceSystem {
     else if (category === 'in-town') base = 22;
 
     // Logic bonus component
-    const { calculateStatBonus, getRawStat } = require('../utils/statBonus');
+    const { calculateStatBonus, getRawStat } = require('../services/statBonus');
     const rawLOG = getRawStat(player, 'logic');
     const logicBonus = calculateStatBonus(rawLOG, player.race, 'logic');
     let logicAdd = 0;

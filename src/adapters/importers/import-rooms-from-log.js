@@ -2,7 +2,7 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const databaseManager = require('../adapters/db/mongoClient');
+const databaseManager = require('../db/mongoClient');
 
 function slugify(text) {
   return String(text)

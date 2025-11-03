@@ -4,7 +4,7 @@ const CombatSystem = require('../systems/CombatSystem');
 const DamageSystem = require('../systems/DamageSystem');
 const WoundSystem = require('../systems/WoundSystem');
 const { checkRoundtime } = require('../utils/roundtimeChecker');
-const { calculateStatBonus, getRawStat } = require('../utils/statBonus');
+const { calculateStatBonus, getRawStat } = require('../services/statBonus');
 
 let combatSystem = null;
 let damageSystem = null;

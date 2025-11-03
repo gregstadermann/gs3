@@ -1,7 +1,7 @@
 'use strict';
 
 const bcrypt = require('bcryptjs');
-const databaseManager = require('../core/DatabaseManager');
+const databaseManager = require('../adapters/db/mongoClient');
 
 /**
  * Account System

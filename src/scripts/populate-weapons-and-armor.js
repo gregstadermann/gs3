@@ -1,6 +1,6 @@
 'use strict';
 
-const dbm = require('../core/DatabaseManager');
+const dbm = require('../adapters/db/mongoClient');
 const BASE_WEAPONS = require('../data/base-weapons');
 const { createWeaponInstance, createArmorInstance } = require('../utils/itemFactory');
 let BASE_ARMOR;

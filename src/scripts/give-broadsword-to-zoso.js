@@ -1,6 +1,6 @@
 'use strict';
 
-const databaseManager = require('../core/DatabaseManager');
+const databaseManager = require('../adapters/db/mongoClient');
 const yaml = require('js-yaml');
 const fs = require('fs').promises;
 const path = require('path');

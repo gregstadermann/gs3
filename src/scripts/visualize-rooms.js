@@ -2,7 +2,7 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const databaseManager = require('../core/DatabaseManager');
+const databaseManager = require('../adapters/db/mongoClient');
 
 /**
  * Generate a DOT graph file for visualization

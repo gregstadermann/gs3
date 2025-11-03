@@ -1,6 +1,6 @@
 'use strict';
 
-const { calculateStatBonus, getRawStat } = require('../utils/statBonus');
+const { calculateStatBonus, getRawStat } = require('../services/statBonus');
 
 /**
  * Info Command (INFO)

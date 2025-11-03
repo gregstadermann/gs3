@@ -1,0 +1,4157 @@
+[
+  {
+    "id": "town_square_southwest",
+    "canonical_id": "town_square_southwest_12c5cbfeb1156a9c",
+    "title": "Town Square, Southwest",
+    "area": "wl-town",
+    "description": "This corner of the square seems somewhat subdued.  Townsfolk pass through on their way to the shops, the bazaar, or the main well at the center of the square.  Others hurry past, anxious to get home or go on about their business.",
+    "exits": {
+      "north": "unknown",
+      "northeast": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 1,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "town_square_central",
+    "canonical_id": "town_square_central_a0720ca4ceffd5d3",
+    "title": "Town Square Central",
+    "area": "wl-town",
+    "description": "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops of the bazaar are clustered around this central gathering place, where townsfolk, travellers, and adventurers meet to talk, conspire or raise expeditions to the far-flung reaches of Elanith.  At the north end, an old well, with moss-covered stones and a craggy roof, is shaded from the moonlight by a strong, robust tree.  The oak is tall and straight, and it is apparent that the roots run deep.",
+    "exits": {
+      "northeast": "unknown",
+      "east": "unknown",
+      "southeast": "unknown",
+      "southwest": "unknown",
+      "west": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 6,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "town_square_northeast",
+    "canonical_id": "town_square_northeast_d9adcfafa1cf84c9",
+    "title": "Town Square, Northeast",
+    "area": "wl-town",
+    "description": "The entrance to Tykel's Arms, its heavy door bounded by iron-barred windows, dominates this corner of the square.  All manner of citizens pass by, moving among the solid, multistoried wooden buildings that surround the bazaar.  Just to the southwest can be seen the tree-shaded heart of the square, where citizens and adventurers gather for socializing, healing and rest.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "southwest": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 11,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_valeria_st",
+    "canonical_id": "wehnimers_valeria_st_29a5d1f3775bef55",
+    "title": "Wehnimer's, Valeria St.",
+    "area": "wl-town",
+    "description": "Traffic to and from the hub of activity in the square to the west passes along the dark street here.  Passers-by guard their valuables closely, glancing into shaded doorways and niches and wary of the press of the crowd.  Two-story buildings of wood and stone line the north and south sides of the cobbled road.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 15,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_the_mews",
+    "canonical_id": "wehnimers_the_mews_a782e5a8734c9ee2",
+    "title": "Wehnimer's, The Mews",
+    "area": "wl-town",
+    "description": "The large, barn-like structure that dominates the north side of the block is the city stable.  Through a ground-floor window can be seen the rows of now-empty stalls in the dark interior.  The pavement just outside is strewn with straw and debris that merits a careful step along this part of the road.  To the west is the main square and its cobblestoned bazaar, where furious trading takes place on a daily basis.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 19,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_the_mews_01",
+    "canonical_id": "wehnimers_the_mews_688e812f1ba3c4bc",
+    "title": "Wehnimer's, The Mews",
+    "area": "wl-town",
+    "description": "This narrow lane runs north to south, shaded by the narrow, unadorned buildings that loom on both sides of the rough paving stones.  The clatter of wagon wheels on cobbled streets and the jangling of iron-fitted harnesses echoes from the south, along with a scent of leather and livestock.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 23,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd",
+    "canonical_id": "wehnimers_north_ring_rd_cbf81cc14de636ea",
+    "title": "Wehnimer's, North Ring Rd.",
+    "area": "wl-town",
+    "description": "North Ring Road intersects here with a cobbled street of modest dimensions that opens up to the south, where traffic becomes more dense along the lamplit routes to the main square.  Towards the east, the guardtowers at the river gates can be seen in the distance, rising dark against the night sky.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 27,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_the_mews_02",
+    "canonical_id": "wehnimers_the_mews_688e812f1ba3c4bc",
+    "title": "Wehnimer's, The Mews",
+    "area": "wl-town",
+    "description": "This narrow lane runs north to south, shaded by the narrow, unadorned buildings that loom on both sides of the rough paving stones.  The clatter of wagon wheels on cobbled streets and the jangling of iron-fitted harnesses echoes from the south, along with a scent of leather and livestock.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 31,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_the_mews_03",
+    "canonical_id": "wehnimers_the_mews_a782e5a8734c9ee2",
+    "title": "Wehnimer's, The Mews",
+    "area": "wl-town",
+    "description": "The large, barn-like structure that dominates the north side of the block is the city stable.  Through a ground-floor window can be seen the rows of now-empty stalls in the dark interior.  The pavement just outside is strewn with straw and debris that merits a careful step along this part of the road.  To the west is the main square and its cobblestoned bazaar, where furious trading takes place on a daily basis.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 35,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_valeria_st_01",
+    "canonical_id": "wehnimers_valeria_st_c41f5ddcaa50e46d",
+    "title": "Wehnimer's, Valeria St.",
+    "area": "wl-town",
+    "description": "The footsteps of a few passing wayfarers and townspeople echo on the cobbled pavement between the rows of two-story wooden houses that flank the lane.  The street is quieter and darker here, blocks away from the busy square to the west.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 41,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_mikhail_st",
+    "canonical_id": "wehnimers_mikhail_st_0ea743123b5914e6",
+    "title": "Wehnimer's, Mikhail St.",
+    "area": "wl-town",
+    "description": "Loud clanging noises come from the yard to one side of the road.  The yard is enclosed by a tall iron gate, welded to which is a peculiar sign in the shape of a horseshoe with crossed hammer and tongs upon it.  Along the side of the street, dumped unceremoniously by the gate, is a heap of coal and a pile of dark-colored rocks.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "sign",
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 45,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lyon_way",
+    "canonical_id": "wehnimers_lyon_way_9938c8d90f5d3f98",
+    "title": "Wehnimer's, Lyon Way",
+    "area": "wl-town",
+    "description": "The intermittent rhythm of movement through the street to the east and west is accentuated by a constant loud clanging coming from the north, where a column of smoke rises from a towering chimney.  A flatbed wagon has been abandoned here where it collided with the wall of a shabby workshop, and now serves only as a home for a few scrawny rats which scamper around its ruined platform.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 49,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lyon_way_01",
+    "canonical_id": "wehnimers_lyon_way_3ed06045551c4876",
+    "title": "Wehnimer's, Lyon Way",
+    "area": "wl-town",
+    "description": "The two- and three-story homes of some of the Landing's middle-class citizens are situated at this bend in Lyon Way.  Whitewash has been applied to most of the wooden structures, though soot from somewhere nearby stains many of their painted surfaces, and window boxes full of flowers add faint splashes of color to the moonlit street.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 53,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lyon_way_02",
+    "canonical_id": "wehnimers_lyon_way_3f453b7e0da51d6c",
+    "title": "Wehnimer's, Lyon Way",
+    "area": "wl-town",
+    "description": "Here Lyon Way runs southeast into Riverwind Street, serving as a conduit for passage between the river and the bazaar and shops.  Most of the more reputable-looking citizens seem to be steering clear of a dimly lit cul-de-sac which lies due south of the intersection.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "southeast": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 57,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_riverwind_st",
+    "canonical_id": "wehnimers_riverwind_st_19b752dad8e71aa7",
+    "title": "Wehnimer's, Riverwind St.",
+    "area": "wl-town",
+    "description": "Here Riverwind Street meets Lyon Way at an angle.  The structures by the roadside are oddly shaped to match the turning of the way.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 61,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_wisraith_lane",
+    "canonical_id": "wehnimers_wisraith_lane_530f156c29463cee",
+    "title": "Wehnimer's, Wisraith Lane",
+    "area": "wl-town",
+    "description": "Sounds of laughter and conversation echo from the residential cottages along this pleasant, cobbled street, where clumps of decorative bushes by the roadside add splashes of green to the lamplit townscape.  A small boy smiles and waves from the front steps of his home, then goes back to counting stars.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 65,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_beolost_rd",
+    "canonical_id": "wehnimers_beolost_rd_1dbfaac0fe648334",
+    "title": "Wehnimer's, Beolost Rd.",
+    "area": "wl-town",
+    "description": "Two peaceful lanes meet here.  Cheerful light glows from the windows of small houses lining the streets, and the aroma of simmering stews and roasting meat fills the air.  The sound of a woman singing merrily from inside a nearby cottage drifts through the quiet lane.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 69,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_beolost_rd_01",
+    "canonical_id": "wehnimers_beolost_rd_e6d525780b5b15b1",
+    "title": "Wehnimer's, Beolost Rd.",
+    "area": "wl-town",
+    "description": "Townswomen and loiterers cluster around a local well, which is constructed of stone with a slate overhang that provides a spot for rest and conversation.  The oft-swept, cobbled square also contains the baker's shop and its adjoining tea room, and several other small merchants.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 73,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd",
+    "canonical_id": "wehnimers_dragonsclaw_rd_7fb2fc8699398cb2",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "area": "wl-town",
+    "description": "A somber shop by the side of the road attracts a picturesque clientele.  Lissome travellers cloaked in forest green and hunters of many shapes and sizes gather outside.  Some have quivers slung across their backs, others hold menacing-looking contraptions of wood, metal and fiber.  A rugged wooden plaque in the shape of an arrow is nailed to the shop door.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 77,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_01",
+    "canonical_id": "wehnimers_dragonsclaw_rd_3301e22d4313bbbb",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "area": "wl-town",
+    "description": "The neatly kept shop on the west side of the street looks like a private residence, except for the displays in its bay window of all the latest fashions.  Elm trees cast the cobblestones into deeper shadow, and a striped alley cat lurks watchfully in the light of the shop's bright oil lamp.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 81,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd",
+    "canonical_id": "wehnimers_south_ring_rd_73a453b1bfd28f68",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "Pedestrians and a few carts and wagons move along the cobblestoned road in the shadow of the palisades, most focused on going about some night time business in town.  They pass by the low wood and stone buildings, rarely glancing up or at one another.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 85,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_02",
+    "canonical_id": "wehnimers_dragonsclaw_rd_3301e22d4313bbbb",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "area": "wl-town",
+    "description": "The neatly kept shop on the west side of the street looks like a private residence, except for the displays in its bay window of all the latest fashions.  Elm trees cast the cobblestones into deeper shadow, and a striped alley cat lurks watchfully in the light of the shop's bright oil lamp.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 91,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_03",
+    "canonical_id": "wehnimers_dragonsclaw_rd_7fb2fc8699398cb2",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "area": "wl-town",
+    "description": "A somber shop by the side of the road attracts a picturesque clientele.  Lissome travellers cloaked in forest green and hunters of many shapes and sizes gather outside.  Some have quivers slung across their backs, others hold menacing-looking contraptions of wood, metal and fiber.  A rugged wooden plaque in the shape of an arrow is nailed to the shop door.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 95,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_04",
+    "canonical_id": "wehnimers_dragonsclaw_rd_7ac75eff76660efe",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "area": "wl-town",
+    "description": "The road travels roughly parallel to the river's course, skirting the shoreline.  Fishermen, traders, miners, sailors, and townsfolk trek back and forth between the storehouses, shops, docks and offices that constitute the life of Wehnimer's Landing.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 99,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_bankers_square",
+    "canonical_id": "wehnimers_bankers_square_f5394464d33cbab2",
+    "title": "Wehnimer's, Banker's Square",
+    "area": "wl-town",
+    "description": "The eastern road leads closer to the river, which can be smelled but not seen from here.  The southern road constricts as it makes a straight cut towards the modwir palisade that surrounds the town, avoiding the maze-like side streets of the riverfront and Shanty Town, which are haunted by dockworkers, warehouse porters, and wharf rats.  A dusty pile of rubble might have been a building once, but whatever it was is unrecognizable now.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 103,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_05",
+    "canonical_id": "wehnimers_dragonsclaw_rd_5762dd09b3203d40",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "area": "wl-town",
+    "description": "This dingy street is overshadowed by two multi-storied buildings.  At the far end is the unpretentious facade of Beldrin's Gaming Hall, from which the harsh shouts of gamblers, touts, and onlookers echo into the street.  Across the way is a local inn, frequented by sailors, dockworkers and fishermen, from the looks of the clientele gathered around the doorway.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 107,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_06",
+    "canonical_id": "wehnimers_dragonsclaw_rd_db22e1d67cf10e35",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "area": "wl-town",
+    "description": "Wagons and carts loaded with a variety of goods pass in all directions, from the center of the busy town to the west to the wharfs and piers along the Locksmehr River to the east.  A number of militiamen head north towards the guardtowers and barracks.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 111,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_07",
+    "canonical_id": "wehnimers_dragonsclaw_rd_6a6275965b58fb9c",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "area": "wl-town",
+    "description": "The large, deserted-looking shed to the east looks as if it once served as a stable or a workshop of some sort.  Now it seems to be nothing more than a crumbling warehouse, and the sparse traffic flowing to the north and south seldom gives it a second look.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 115,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_atropa_st",
+    "canonical_id": "wehnimers_atropa_st_e01ecd84d5199481",
+    "title": "Wehnimer's, Atropa St.",
+    "area": "wl-town",
+    "description": "Here Atropa Street meets Dragonsclaw Road, which traverses the Landing to the south, and combines with Taarna Road to the west.  A gentle rise in the ground affords a glimpse of the hills and open countryside that lie beyond the town walls far to the south.",
+    "exits": {
+      "south": "unknown",
+      "west": "unknown",
+      "pawnwhere": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 119,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_taarna_rd",
+    "canonical_id": "wehnimers_taarna_rd_0cdbeea6f86ecab7",
+    "title": "Wehnimer's, Taarna Rd.",
+    "area": "wl-town",
+    "description": "What traffic flows here at night mostly heads north towards the palisade along the bay and east to the riverfront.  A decrepit single-story pawnshop, its paint peeling and dimly lit window panes broken, stands here alongside the shadowy lane.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "pawn": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 127,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "kilrons_pawnshop_front_room",
+    "canonical_id": "kilrons_pawnshop_front_room_7ac8dbf8a36964d4",
+    "title": "Kilron's Pawnshop, Front Room",
+    "area": "wl-town",
+    "description": "This little pawnshop is somewhat cheerier than you would expect, presided over by its well-dressed and well-heeled owner, Kilron.  A polished white marble counter is set off by freshly whitewashed walls and a highly varnished wood floor.  An antique cabinet on the far wall holds several impressive and equally ancient weapons, some precious trinkets, and several items that you cannot identify, except that they seem to glow in different shades of colored light with different intensities.",
+    "exits": {
+      "out": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 131,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_taarna_rd_01",
+    "canonical_id": "wehnimers_taarna_rd_0cdbeea6f86ecab7",
+    "title": "Wehnimer's, Taarna Rd.",
+    "area": "wl-town",
+    "description": "What traffic flows here at night mostly heads north towards the palisade along the bay and east to the riverfront.  A decrepit single-story pawnshop, its paint peeling and dimly lit window panes broken, stands here alongside the shadowy lane.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "pawnshop": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 135,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "kilrons_pawnshop_front_room_01",
+    "canonical_id": "kilrons_pawnshop_front_room_7ac8dbf8a36964d4",
+    "title": "Kilron's Pawnshop, Front Room",
+    "area": "wl-town",
+    "description": "This little pawnshop is somewhat cheerier than you would expect, presided over by its well-dressed and well-heeled owner, Kilron.  A polished white marble counter is set off by freshly whitewashed walls and a highly varnished wood floor.  An antique cabinet on the far wall holds several impressive and equally ancient weapons, some precious trinkets, and several items that you cannot identify, except that they seem to glow in different shades of colored light with different intensities.",
+    "exits": {
+      "out": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 141,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_taarna_rd_02",
+    "canonical_id": "wehnimers_taarna_rd_0cdbeea6f86ecab7",
+    "title": "Wehnimer's, Taarna Rd.",
+    "area": "wl-town",
+    "description": "What traffic flows here at night mostly heads north towards the palisade along the bay and east to the riverfront.  A decrepit single-story pawnshop, its paint peeling and dimly lit window panes broken, stands here alongside the shadowy lane.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 146,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_taarna_rd_03",
+    "canonical_id": "wehnimers_taarna_rd_472fa230b3ea53cd",
+    "title": "Wehnimer's, Taarna Rd.",
+    "area": "wl-town",
+    "description": "The street here leads north and south, its nearness to the north wall and the docks made obvious by the smell of salt water and fish coming in on the breeze off the bay.  A few flowering weeds thrive in patches of dirt between the cobblestones on less-traveled parts of the road.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 150,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_01",
+    "canonical_id": "wehnimers_north_ring_rd_3cf2cf9361bd313b",
+    "title": "Wehnimer's, North Ring Rd.",
+    "area": "wl-town",
+    "description": "The perimeter road runs just inside the protective palisades that protect the north wall of the town, affording shelter from the prevailing winds off Darkstone Bay.  The weathered facades of businesses and warehouses line the road leading south into the center of Wehnimer's Landing.  To the east, the road leads to the riverfront, and the town's main gates lie farther to the west.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 154,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_ring_rd_02",
+    "canonical_id": "wehnimers_north_ring_rd_ac2de526a9631b7d",
+    "title": "Wehnimer's, North Ring Rd.",
+    "area": "wl-town",
+    "description": "A respectful quiet blankets this area like the deep shadow cast by the high north wall.  Those people that move along this section of road walk with their heads bowed and speak in hushed whispers in obvious consideration to the local empath, who practices the restorative arts at the strange tent that is set back from the roadside in the middle of an overgrown vacant lot here.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 161,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st",
+    "canonical_id": "wehnimers_stormarm_st_2e3789a4b1676bb2",
+    "title": "Wehnimer's, Stormarm St.",
+    "area": "wl-town",
+    "description": "This street cuts a wide path north and south between the north wall and the center of the Landing.  Low, grey stone buildings and nondescript sheds loom to the south and east, and towards the central square the view is more pleasant and varied.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 165,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_01",
+    "canonical_id": "wehnimers_stormarm_st_56afa931f40b11de",
+    "title": "Wehnimer's, Stormarm St.",
+    "area": "wl-town",
+    "description": "This intersection links the bazaar routes with those bisecting and encircling the Landing.  A few ruddyfaced sailors, loudmouthed dockworkers, and off-duty soldiers linger along the wall of a tavern, which is set back from the side of the road up a slight incline.  A shaky wooden stairway, the bane of many an overimbiber's existence, leads up to the tavern door.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 169,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_02",
+    "canonical_id": "wehnimers_stormarm_st_689c7c2c4e1e8a26",
+    "title": "Wehnimer's, Stormarm St.",
+    "area": "wl-town",
+    "description": "A few warehouses, small shops and businesses, and unmarked buildings with weathered modwir siding predominate along this part of the road.  The street is less crowded than those near the docks or the square, and the irregular cobblestones are slick and unyielding underfoot.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 173,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_03",
+    "canonical_id": "wehnimers_stormarm_st_fe4064370ffd8d01",
+    "title": "Wehnimer's, Stormarm St.",
+    "area": "wl-town",
+    "description": "Along this neighborhood byway, wagons loaded with sacks of grain, kegs of beer, and firewood stand at the wide door of a local warehouse.  Merchants, tradesmen and other night workers of the surrounding streets busily load and unload stored supplies here.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 177,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_stormarm_st_04",
+    "canonical_id": "wehnimers_stormarm_st_7e3ffd5e5af2d68b",
+    "title": "Wehnimer's, Stormarm St.",
+    "area": "wl-town",
+    "description": "The simple yet well built wooden structures in this small residential section of town are more functional than decorative, and little separates the style of one from another.  A few scraggly trees, planted long ago in patches of dirt between the buildings, add spots of deeper shadow to the cobblestones.",
+    "exits": {
+      "north": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 181,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lyon_way_03",
+    "canonical_id": "wehnimers_lyon_way_3f453b7e0da51d6c",
+    "title": "Wehnimer's, Lyon Way",
+    "area": "wl-town",
+    "description": "Here Lyon Way runs southeast into Riverwind Street, serving as a conduit for passage between the river and the bazaar and shops.  Most of the more reputable-looking citizens seem to be steering clear of a dimly lit cul-de-sac which lies due south of the intersection.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "southeast": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 193,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_cul_de_sac",
+    "canonical_id": "wehnimers_cul_de_sac_6e618ae71ccd0d88",
+    "title": "Wehnimer's, Cul-de-Sac",
+    "area": "wl-town",
+    "description": "Broken bottles, discarded rubbish, and uneasy feelings pervade this dank, ill-lit dead end.  Several unsavory-looking citizens seem to be lurking here and there in the shadows for want of anything better to do, and the scratching of rats can be heard from within the nearby walls.  A pile of old crates is stacked against the back wall of the alley.",
+    "exits": {
+      "north": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 197,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lyon_way_04",
+    "canonical_id": "wehnimers_lyon_way_3f453b7e0da51d6c",
+    "title": "Wehnimer's, Lyon Way",
+    "area": "wl-town",
+    "description": "Here Lyon Way runs southeast into Riverwind Street, serving as a conduit for passage between the river and the bazaar and shops.  Most of the more reputable-looking citizens seem to be steering clear of a dimly lit cul-de-sac which lies due south of the intersection.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "southeast": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 201,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_riverwind_st_01",
+    "canonical_id": "wehnimers_riverwind_st_19b752dad8e71aa7",
+    "title": "Wehnimer's, Riverwind St.",
+    "area": "wl-town",
+    "description": "Here Riverwind Street meets Lyon Way at an angle.  The structures by the roadside are oddly shaped to match the turning of the way.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 205,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_wisraith_lane_01",
+    "canonical_id": "wehnimers_wisraith_lane_530f156c29463cee",
+    "title": "Wehnimer's, Wisraith Lane",
+    "area": "wl-town",
+    "description": "Sounds of laughter and conversation echo from the residential cottages along this pleasant, cobbled street, where clumps of decorative bushes by the roadside add splashes of green to the lamplit townscape.  A small boy smiles and waves from the front steps of his home, then goes back to counting stars.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 209,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_wisraith_lane_02",
+    "canonical_id": "wehnimers_wisraith_lane_49ff9d45f3761c62",
+    "title": "Wehnimer's, Wisraith Lane",
+    "area": "wl-town",
+    "description": "Interspersed among the small shops along the cobbled road are a few modwir-shingled private houses.  They are gaily decorated, competing for individuality with one another by means of daubs of colorful paint, skillfully carved doors and shutters, and window boxes bursting with ornamental flowers and fresh herbs.  A bright yellow awning lit by a glowing lamp marks the entrance to the florist, whose windows are brimming with fresh blossoms.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 213,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_wisraith_lane_03",
+    "canonical_id": "wehnimers_wisraith_lane_530f156c29463cee",
+    "title": "Wehnimer's, Wisraith Lane",
+    "area": "wl-town",
+    "description": "Sounds of laughter and conversation echo from the residential cottages along this pleasant, cobbled street, where clumps of decorative bushes by the roadside add splashes of green to the lamplit townscape.  A small boy smiles and waves from the front steps of his home, then goes back to counting stars.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 218,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_beolost_rd_02",
+    "canonical_id": "wehnimers_beolost_rd_1dbfaac0fe648334",
+    "title": "Wehnimer's, Beolost Rd.",
+    "area": "wl-town",
+    "description": "Two peaceful lanes meet here.  Cheerful light glows from the windows of small houses lining the streets, and the aroma of simmering stews and roasting meat fills the air.  The sound of a woman singing merrily from inside a nearby cottage drifts through the quiet lane.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 222,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_beolost_rd_03",
+    "canonical_id": "wehnimers_beolost_rd_e6d525780b5b15b1",
+    "title": "Wehnimer's, Beolost Rd.",
+    "area": "wl-town",
+    "description": "Townswomen and loiterers cluster around a local well, which is constructed of stone with a slate overhang that provides a spot for rest and conversation.  The oft-swept, cobbled square also contains the baker's shop and its adjoining tea room, and several other small merchants.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 226,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_08",
+    "canonical_id": "wehnimers_dragonsclaw_rd_7fb2fc8699398cb2",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "area": "wl-town",
+    "description": "A somber shop by the side of the road attracts a picturesque clientele.  Lissome travellers cloaked in forest green and hunters of many shapes and sizes gather outside.  Some have quivers slung across their backs, others hold menacing-looking contraptions of wood, metal and fiber.  A rugged wooden plaque in the shape of an arrow is nailed to the shop door.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 230,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_dragonsclaw_rd_09",
+    "canonical_id": "wehnimers_dragonsclaw_rd_3301e22d4313bbbb",
+    "title": "Wehnimer's, Dragonsclaw Rd.",
+    "area": "wl-town",
+    "description": "The neatly kept shop on the west side of the street looks like a private residence, except for the displays in its bay window of all the latest fashions.  Elm trees cast the cobblestones into deeper shadow, and a striped alley cat lurks watchfully in the light of the shop's bright oil lamp.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 235,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_01",
+    "canonical_id": "wehnimers_south_ring_rd_73a453b1bfd28f68",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "Pedestrians and a few carts and wagons move along the cobblestoned road in the shadow of the palisades, most focused on going about some night time business in town.  They pass by the low wood and stone buildings, rarely glancing up or at one another.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 239,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_02",
+    "canonical_id": "wehnimers_south_ring_rd_4212fccf637f0bd2",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "Along the edge of the road stands an abandoned shop, almost invisible in the deep shadows cast by the overgrown gardens which surround it.  A stray dog sniffs among its ruined remains, growling at travellers along the east-west road.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 245,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_03",
+    "canonical_id": "wehnimers_south_ring_rd_c6000b5da3123c69",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "South Ring Road leads to the outskirts of Shanty Town, the poorest section of Wehnimer's Landing.  The contrast between the colorful, well-kept buildings of the bazaar and main square and the dingy hovels to the east is striking.  Most passers-by move hurriedly to the west or north to the river crossing.  A ragged child cowers against the south wall, looking lost and forgotten.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 249,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_shanty_town",
+    "canonical_id": "wehnimers_shanty_town_481928c0ec7bb9e7",
+    "title": "Wehnimer's, Shanty Town",
+    "area": "wl-town",
+    "description": "The tracks of wagon wheels rut the path through here, forming tiny rivulets that connect the puddles.  A few sparse bushes and a tiny garden outside one of the shanties do little to relieve the monotony of the otherwise indistinguishable dwellings to the north and east.  The western path leads back to town.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 253,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_shanty_town_01",
+    "canonical_id": "wehnimers_shanty_town_d6dedae0375641da",
+    "title": "Wehnimer's, Shanty Town",
+    "area": "wl-town",
+    "description": "No bright lamps light the unpaved road here, and the layer of mud that passes for streets in Shanty Town is treacherous and slippery with seepage from the nearby river.  A few sorry shacks stand cluttered together in this southeast corner, their doors and windows dark with tattered and drawn curtains, holding untold tales of suffering or malice.",
+    "exits": {
+      "north": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 257,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_shanty_town_02",
+    "canonical_id": "wehnimers_shanty_town_892f340281d1fd13",
+    "title": "Wehnimer's, Shanty Town",
+    "area": "wl-town",
+    "description": "Time and tide have not been kind to the dilapidated shacks along this dreary stretch of riverfront beach.  The rotted and weatherbeaten planks, the patched roofs and the mud lanes cast a melancholy pall of neglect here, in contrast to the lively sounds of the river, drifting over from the dark shore that lies directly to the east.  To the north, occasional sounds of sawing and banging emanate from the boatyard.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 266,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_boatyard",
+    "canonical_id": "wehnimers_boatyard_499ba2e392ba147d",
+    "title": "Wehnimer's, Boatyard",
+    "area": "wl-town",
+    "description": "This promontory, formed of rocks and sand partially covered by weathered wooden docks, extends a short distance into the river.  A few workmen hustle to complete their nighttime tasks, repairing and refurbishing the sailing vessels that are moored here.  A refurbished frigate lies at anchor just offshore, awaiting a new cargo as well as a new lease on life.  The sand-covered riverbank beach stretches to the south.",
+    "exits": {
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 270,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_boatyard_01",
+    "canonical_id": "wehnimers_boatyard_2d301e82077b519a",
+    "title": "Wehnimer's, Boatyard",
+    "area": "wl-town",
+    "description": "Half-completed shipping vessels, sections of wooden supports, canvas, and vessels in need of repair are strewn along this strand of riverfront beach, separated from the town proper by the wooden boatyard fence.  The hulking framework of a ship under construction rises against the starlit sky like a giant skeleton belonging to some forgotten sea creature.",
+    "exits": {
+      "east": "unknown",
+      "gate": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [
+      "gate"
+    ],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 275,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way",
+    "canonical_id": "wehnimers_locksmehr_way_483b533f629b81d5",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "The massive gate of the Landing's boatyard dominates this stretch of road.  Through it can be seen boats in various states of repair, tied up at wooden docks or beached along the riverbank.  Just offshore lies a coastal sailer half-sunken in the river's shallows, and silhouetted against the dark horizon just to the northeast is the span of a sturdy bridge.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 279,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_west_crossing",
+    "canonical_id": "wehnimers_west_crossing_09711ab376975fb3",
+    "title": "Wehnimer's, West Crossing",
+    "area": "wl-town",
+    "description": "From here, the vista along the horizon affords a view of both banks of the river.  To the west, the dark expanse of the town's low skyline is dominated by rambling structures and a few towers.  To the east lies the bridge across the Locksmehr, spanning the dark waters to the less-populated east bank.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 283,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_01",
+    "canonical_id": "wehnimers_locksmehr_way_483b533f629b81d5",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "The massive gate of the Landing's boatyard dominates this stretch of road.  Through it can be seen boats in various states of repair, tied up at wooden docks or beached along the riverbank.  Just offshore lies a coastal sailer half-sunken in the river's shallows, and silhouetted against the dark horizon just to the northeast is the span of a sturdy bridge.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 287,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_02",
+    "canonical_id": "wehnimers_locksmehr_way_358d13f380e5ff90",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "Dockworkers, sailors, fishermen and tradesmen stream by, coming and going even at this hour of night between the docks and the inns and taverns of the Landing.  A group of rough-looking sailors weave drunkenly through the street, chortling over some bawdy joke.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 291,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_04",
+    "canonical_id": "wehnimers_south_ring_rd_c6000b5da3123c69",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "South Ring Road leads to the outskirts of Shanty Town, the poorest section of Wehnimer's Landing.  The contrast between the colorful, well-kept buildings of the bazaar and main square and the dingy hovels to the east is striking.  Most passers-by move hurriedly to the west or north to the river crossing.  A ragged child cowers against the south wall, looking lost and forgotten.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 295,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_05",
+    "canonical_id": "wehnimers_south_ring_rd_4212fccf637f0bd2",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "Along the edge of the road stands an abandoned shop, almost invisible in the deep shadows cast by the overgrown gardens which surround it.  A stray dog sniffs among its ruined remains, growling at travellers along the east-west road.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 300,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_06",
+    "canonical_id": "wehnimers_south_ring_rd_c6000b5da3123c69",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "South Ring Road leads to the outskirts of Shanty Town, the poorest section of Wehnimer's Landing.  The contrast between the colorful, well-kept buildings of the bazaar and main square and the dingy hovels to the east is striking.  Most passers-by move hurriedly to the west or north to the river crossing.  A ragged child cowers against the south wall, looking lost and forgotten.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 304,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_03",
+    "canonical_id": "wehnimers_locksmehr_way_358d13f380e5ff90",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "Dockworkers, sailors, fishermen and tradesmen stream by, coming and going even at this hour of night between the docks and the inns and taverns of the Landing.  A group of rough-looking sailors weave drunkenly through the street, chortling over some bawdy joke.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 308,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_04",
+    "canonical_id": "wehnimers_locksmehr_way_483b533f629b81d5",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "The massive gate of the Landing's boatyard dominates this stretch of road.  Through it can be seen boats in various states of repair, tied up at wooden docks or beached along the riverbank.  Just offshore lies a coastal sailer half-sunken in the river's shallows, and silhouetted against the dark horizon just to the northeast is the span of a sturdy bridge.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 312,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_west_crossing_01",
+    "canonical_id": "wehnimers_west_crossing_09711ab376975fb3",
+    "title": "Wehnimer's, West Crossing",
+    "area": "wl-town",
+    "description": "From here, the vista along the horizon affords a view of both banks of the river.  To the west, the dark expanse of the town's low skyline is dominated by rambling structures and a few towers.  To the east lies the bridge across the Locksmehr, spanning the dark waters to the less-populated east bank.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 316,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_05",
+    "canonical_id": "wehnimers_locksmehr_way_1da30c3459082f0b",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "The road snakes and winds to conform to the banks of the river.  In the distance, the low profiles of the shops and warehouses that populate the Landing's western bank can be seen.  To one side of the road, empty flatbed wagons stand at the curb next to an aging warehouse.  The span of a bridge crosses the river to the southeast.",
+    "exits": {
+      "south": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 320,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_06",
+    "canonical_id": "wehnimers_locksmehr_way_9118fd989aac85b3",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "The roadway follows the natural bend in the river, which encroaches slightly inland here.  To the west, a lane leads off into the business and warehouse districts of the Landing.  The sound of the night surf and the groaning of tall ships straining at anchor echo from the east.",
+    "exits": {
+      "northeast": "unknown",
+      "southeast": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 327,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_07",
+    "canonical_id": "wehnimers_locksmehr_way_073521f1539658bc",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "To the east a dock spears out into the waters of the bay.  Ships from all across the world can be seen tied to the dock, and sailors of many races from many lands pass by.  To one side of the road stands a weathered and grey clapboard warehouse.",
+    "exits": {
+      "north": "unknown",
+      "southwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 331,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_08",
+    "canonical_id": "wehnimers_locksmehr_way_7ada0c5c4f6e3a97",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "The faint, tangy scent of the bay mingles with the lighter smells of the river, which runs just to the northeast.  The wide road leads along the riverbank through the warehouse and wharf district, where the sounds of longshoremen loading and unloading freetraders drift over from a wooden walkway to the east.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "walkway"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 335,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_bays_watch_west",
+    "canonical_id": "wehnimers_bays_watch_west_b69ef0c6ae521916",
+    "title": "Wehnimer's, Bay's Watch West",
+    "area": "wl-town",
+    "description": "Here at the northern end of Wehnimer's Landing, the fickle waters of the Locksmehr River flow into Darkstone Bay.  The westernmost of the twin guardtowers that keep watch over the river gates into town rises above, casting a dark shadow over the lamplit cobblestones.  The huge ironbound sea gates straddle the river, extending to the matching tower on the eastern bank.",
+    "exits": {
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "tower"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 339,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_09",
+    "canonical_id": "wehnimers_locksmehr_way_7ada0c5c4f6e3a97",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "The faint, tangy scent of the bay mingles with the lighter smells of the river, which runs just to the northeast.  The wide road leads along the riverbank through the warehouse and wharf district, where the sounds of longshoremen loading and unloading freetraders drift over from a wooden walkway to the east.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "walkway"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 345,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_north_dock",
+    "canonical_id": "wehnimers_north_dock_ac66e60e57a27f1b",
+    "title": "Wehnimer's, North Dock",
+    "area": "wl-town",
+    "description": "The dock's planks are dull and weathered from the salt spray of many seasons.  Northward beyond the massive sea gates, a flock of ice geese passes, silhouetted against the sky over the waters of Darkstone Bay.  The hulk of a derelict coastal sailer is tethered to the end of the pier.",
+    "exits": {
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 349,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_10",
+    "canonical_id": "wehnimers_locksmehr_way_7ada0c5c4f6e3a97",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "The faint, tangy scent of the bay mingles with the lighter smells of the river, which runs just to the northeast.  The wide road leads along the riverbank through the warehouse and wharf district, where the sounds of longshoremen loading and unloading freetraders drift over from a wooden walkway to the east.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "walkway"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 353,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_11",
+    "canonical_id": "wehnimers_locksmehr_way_073521f1539658bc",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "To the east a dock spears out into the waters of the bay.  Ships from all across the world can be seen tied to the dock, and sailors of many races from many lands pass by.  To one side of the road stands a weathered and grey clapboard warehouse.",
+    "exits": {
+      "north": "unknown",
+      "southwest": "unknown",
+      "dock": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 357,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_middle_dock",
+    "canonical_id": "wehnimers_middle_dock_c3df4e7aa56ecc46",
+    "title": "Wehnimer's, Middle Dock",
+    "area": "wl-town",
+    "description": "Laboring dockworkers and strolling seamen mingle here on the weathered planks of the dock, between the hulls of large seafaring merchantmen.  The groan of ships pulling at hawsers, the clatter of feet upon gangplanks, and the swearing of the dockworkers mix with the cries of seabirds and the cadence of waves against the pilings.",
+    "exits": {
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 362,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_12",
+    "canonical_id": "wehnimers_locksmehr_way_073521f1539658bc",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "To the east a dock spears out into the waters of the bay.  Ships from all across the world can be seen tied to the dock, and sailors of many races from many lands pass by.  To one side of the road stands a weathered and grey clapboard warehouse.",
+    "exits": {
+      "north": "unknown",
+      "southwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 366,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_13",
+    "canonical_id": "wehnimers_locksmehr_way_9118fd989aac85b3",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "The roadway follows the natural bend in the river, which encroaches slightly inland here.  To the west, a lane leads off into the business and warehouse districts of the Landing.  The sound of the night surf and the groaning of tall ships straining at anchor echo from the east.",
+    "exits": {
+      "northeast": "unknown",
+      "southeast": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 370,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_locksmehr_way_14",
+    "canonical_id": "wehnimers_locksmehr_way_1da30c3459082f0b",
+    "title": "Wehnimer's, Locksmehr Way",
+    "area": "wl-town",
+    "description": "The road snakes and winds to conform to the banks of the river.  In the distance, the low profiles of the shops and warehouses that populate the Landing's western bank can be seen.  To one side of the road, empty flatbed wagons stand at the curb next to an aging warehouse.  The span of a bridge crosses the river to the southeast.",
+    "exits": {
+      "south": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 374,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_west_crossing_02",
+    "canonical_id": "wehnimers_west_crossing_09711ab376975fb3",
+    "title": "Wehnimer's, West Crossing",
+    "area": "wl-town",
+    "description": "From here, the vista along the horizon affords a view of both banks of the river.  To the west, the dark expanse of the town's low skyline is dominated by rambling structures and a few towers.  To the east lies the bridge across the Locksmehr, spanning the dark waters to the less-populated east bank.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "treewhere": {
+        "hidden": true
+      },
+      "gate": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [
+      "gate"
+    ],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 378,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street",
+    "canonical_id": "west_bank_dock_street_4b9927bed78811cf",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "The cobbled street extends along the riverbank, overlooking the continual traffic of merchant boats that pass to and fro.  Colorful sails and gaily painted cargo ships fill the river, and banners and flags in an equal variety of colors are hung from wooden poles along the road.  A set of weathered wooden stairs leads down to a bustling pier below.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 384,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_under_bridge",
+    "canonical_id": "west_bank_under_bridge_7b6b02a1a2757454",
+    "title": "West Bank, Under Bridge",
+    "area": "wl-town",
+    "description": "The stone arch of the bridge over the Locksmehr passes above the road here, shading the cottages set along the riverbank.  Fish swarm in the cool water, schooling around the barnacle-studded pillars of the bridge and glistening as they dart into the depths to avoid passing boats.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "arch"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 388,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street_01",
+    "canonical_id": "west_bank_dock_street_11c47db2f8bc8169",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "Deep green hedges line the west side of the cobblestone road, bordering the wooden townhouses that overlook the river.  Gulls squawk from their nests along the edge of the bridge to the north, complaining at the ships that pass below.  A painted wooden boardwalk lies along the water to the east, and a side street leads west up the riverbank.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "down": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 392,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street_02",
+    "canonical_id": "west_bank_dock_street_b4aa161936fa9233",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "A merchant barge, hung with colorful banners and weighed down with crates of goods, passes slowly down the river below.  Locals and residents stroll along the cobblestones past the rows of neat townhouses, some waving to the sailors as they go by.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "southwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 396,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street_03",
+    "canonical_id": "west_bank_dock_street_7847e6af1c7b1559",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "The cool breeze from the river blows in, rustling the hedges and fluttering the decorative flags and banners strung along the street.  A narrow bed of irises and violets has been planted along the row of townhouses, filling the air with a flowery scent.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 400,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street_04",
+    "canonical_id": "west_bank_dock_street_dba66c9018f2bcb9",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "The street ends in a cul-de-sac, surrounded by neat trimmed hedges and freshly-painted houses.  The cobblestones form a circular pattern around a pedestal on which stands a statue of a human sailor, hoisting his gear as he extends an eternal salute to the passing ships on the river below.",
+    "exits": {
+      "north": "unknown",
+      "down": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 404,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_boardwalk",
+    "canonical_id": "west_bank_boardwalk_9eefc822c90c6b3e",
+    "title": "West Bank, Boardwalk",
+    "area": "wl-town",
+    "description": "A young elven boy sits by the whitewashed railing, gazing out over the river as he casts his fishing line.  The wind gusts, whipping through the ropes and sails of ships passing on the water and stirring the colorful blossoms planted in pots and flowerbeds along the row of homes next to the boardwalk.",
+    "exits": {
+      "north": "unknown",
+      "up": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 409,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_boardwalk_01",
+    "canonical_id": "west_bank_boardwalk_e0845f0853818379",
+    "title": "West Bank, Boardwalk",
+    "area": "wl-town",
+    "description": "A canopy of white canvas has been suspended over part of the boardwalk on brightly painted blue poles, allowing a bit of shade over a wooden table and benches in the fresh air.  Seabirds perch on the boardwalk railing, diving for their dinner in the river then returning to preen and squawk on their perches.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 413,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_boardwalk_02",
+    "canonical_id": "west_bank_boardwalk_bca63cd84f39fd69",
+    "title": "West Bank, Boardwalk",
+    "area": "wl-town",
+    "description": "A sturdy wooden boardwalk, painted with a fresh coat of whitewash, runs along the side of the river.  Wooden benches rest along the bright blue railing along the edge, providing a place to relax and fish or just watch the merchant boats pass by.  Houses have been built along the boardwalk, surrounded by colorful potted plants and decorative fishing nets.",
+    "exits": {
+      "south": "unknown",
+      "up": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 417,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street_05",
+    "canonical_id": "west_bank_dock_street_11c47db2f8bc8169",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "Deep green hedges line the west side of the cobblestone road, bordering the wooden townhouses that overlook the river.  Gulls squawk from their nests along the edge of the bridge to the north, complaining at the ships that pass below.  A painted wooden boardwalk lies along the water to the east, and a side street leads west up the riverbank.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "down": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 424,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_under_bridge_01",
+    "canonical_id": "west_bank_under_bridge_7b6b02a1a2757454",
+    "title": "West Bank, Under Bridge",
+    "area": "wl-town",
+    "description": "The stone arch of the bridge over the Locksmehr passes above the road here, shading the cottages set along the riverbank.  Fish swarm in the cool water, schooling around the barnacle-studded pillars of the bridge and glistening as they dart into the depths to avoid passing boats.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [
+      "arch"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 429,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street_06",
+    "canonical_id": "west_bank_dock_street_4b9927bed78811cf",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "The cobbled street extends along the riverbank, overlooking the continual traffic of merchant boats that pass to and fro.  Colorful sails and gaily painted cargo ships fill the river, and banners and flags in an equal variety of colors are hung from wooden poles along the road.  A set of weathered wooden stairs leads down to a bustling pier below.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 433,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street_07",
+    "canonical_id": "west_bank_dock_street_388eec440de092a5",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "Tall wooden poles hung with colorful banners are set along the street, fluttering splashes of color in the river breeze.  A trimmed hedgerow separates the road from the pier below, where locals and visitors alike relax and enjoy the waterfront.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 437,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street_08",
+    "canonical_id": "west_bank_dock_street_4b140e29ed0574b9",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "Seagulls walk along the cobblestones, squawking at passersby as they search the crevices for morsels.  The breeze from the river flutters the banners hung along the road, and the colorful blossoms of the flowers planted around the townhouses overlook the water and its traffic of passing boats.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 441,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street_09",
+    "canonical_id": "west_bank_dock_street_b168cab185e00b38",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "The cobblestone road ends in a neat circle around a tall modwir tree that seems to be home to a few squirrels that roost on the branches, chittering as the leaves stir in the river breeze.  The riverbank slopes up to a grassy, tree-lined area above, and down to the shore below.",
+    "exits": {
+      "south": "unknown",
+      "up": "unknown",
+      "down": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 445,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_park",
+    "canonical_id": "west_bank_park_0e6e14d01e167408",
+    "title": "West Bank, Park",
+    "area": "wl-town",
+    "description": "This grassy area is bounded by a tall wooden fence that separates it from the bustling town streets to the west.  The sails of passing boats on the river below can be glimpsed through a row of neatly pruned trees, and children scamper and play in the open area amidst the houses set among the greenery.",
+    "exits": {
+      "down": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 449,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street_10",
+    "canonical_id": "west_bank_dock_street_b168cab185e00b38",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "The cobblestone road ends in a neat circle around a tall modwir tree that seems to be home to a few squirrels that roost on the branches, chittering as the leaves stir in the river breeze.  The riverbank slopes up to a grassy, tree-lined area above, and down to the shore below.",
+    "exits": {
+      "south": "unknown",
+      "up": "unknown",
+      "down": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 453,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street_11",
+    "canonical_id": "west_bank_dock_street_4b140e29ed0574b9",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "Seagulls walk along the cobblestones, squawking at passersby as they search the crevices for morsels.  The breeze from the river flutters the banners hung along the road, and the colorful blossoms of the flowers planted around the townhouses overlook the water and its traffic of passing boats.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 458,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street_12",
+    "canonical_id": "west_bank_dock_street_388eec440de092a5",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "Tall wooden poles hung with colorful banners are set along the street, fluttering splashes of color in the river breeze.  A trimmed hedgerow separates the road from the pier below, where locals and visitors alike relax and enjoy the waterfront.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 462,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "west_bank_dock_street_13",
+    "canonical_id": "west_bank_dock_street_956c30b9a415529e",
+    "title": "West Bank, Dock Street",
+    "area": "wl-town",
+    "description": "The cobbled street extends along the riverbank, overlooking the continual traffic of merchant boats that pass to and fro.  Colorful sails and gaily painted cargo ships fill the river, and banners and flags in an equal variety of colors are hung from wooden poles along the road.  A set of weathered wooden stairs leads down to a bustling pier below. When is it too late to claim the event keys? Today. dir bankDirections towards the First Elanith Bank: GO gate.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "gate": {
+        "hidden": true
+      }
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [
+      "gate"
+    ],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 466,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_west_crossing_03",
+    "canonical_id": "wehnimers_west_crossing_fec2cfde1953d186",
+    "title": "Wehnimer's, West Crossing",
+    "area": "wl-town",
+    "description": "From here, the vista along the horizon affords a view of both banks of the river.  To the west, the dark expanse of the town's low skyline is dominated by rambling structures and a few towers.  To the east lies the bridge across the Locksmehr, spanning the dark waters to the less-populated east bank. They're gone in 30 minutes. A dwarven recruiter strides south. You can claim through the end of the event? but buying new ones from the store is today. You hear the General thoughts of Ranpalandil echo in your mind: The ghost of Ranpalandil thinks, \"I died in the Griffin's Keen.\" go tent",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 475,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "a_rainbow_colored_tent",
+    "canonical_id": "a_rainbow_colored_tent_8f807f9e718227a5",
+    "title": "A Rainbow-Colored Tent",
+    "area": "wl-town",
+    "description": "Light from a few scattered candles reflects from the gaily striped rainbow-colored walls of the tent, illuminating the bare interior with a faint multihued glow.  Bits of charred wood and fabric and what looks like a few fragments of bone are imbedded in the freshly packed dirt floor, and a vague scent of something burnt hangs in the air like a memory.",
+    "exits": {
+      "out": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 487,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_west_crossing_04",
+    "canonical_id": "wehnimers_west_crossing_6184c7ca4312c739",
+    "title": "Wehnimer's, West Crossing",
+    "area": "wl-town",
+    "description": "From here, the vista along the horizon affords a view of both banks of the river.  To the west, the dark expanse of the town's low skyline is dominated by rambling structures and a few towers.  To the east lies the bridge across the Locksmehr, spanning the dark waters to the less-populated east bank. Nope, through today. w",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 491,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_riverwind_st_02",
+    "canonical_id": "wehnimers_riverwind_st_7d10d962fa2cee06",
+    "title": "Wehnimer's, Riverwind St.",
+    "area": "wl-town",
+    "description": "Here Riverwind Street leads to the West Crossing, where traffic over the bridge moves off in all directions.  Carts, wagons, pedestrians, and wayfarers of every stripe pass by the busy intersection, no matter how late the night.  A flagstone path leads away from the road, passing out of view through a lattice arch covered with dark ivy. Where is the locus guy in EG? w",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "path",
+      "arch"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 497,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_bankers_square_01",
+    "canonical_id": "wehnimers_bankers_square_b8ebca9ff2760f3d",
+    "title": "Wehnimer's, Banker's Square",
+    "area": "wl-town",
+    "description": "The eastern road leads closer to the river, which can be smelled but not seen from here.  The southern road constricts as it makes a straight cut towards the modwir palisade that surrounds the town, avoiding the maze-like side streets of the riverfront and Shanty Town, which are haunted by dockworkers, warehouse porters, and wharf rats.  A dusty pile of rubble might have been a building once, but whatever it was is unrecognizable now. You cant redeem keys you already own after today? w",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 503,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_riverwind_st_03",
+    "canonical_id": "wehnimers_riverwind_st_55a6045ac0ae3a7c",
+    "title": "Wehnimer's, Riverwind St.",
+    "area": "wl-town",
+    "description": "This lane contains a cluster of new town houses with small gardens and low fences.  The houses look out of place next to the shabbier, more rundown warehouses and workshops here.  A few tidy shops catering to the new residents of the street sell food, drink and other necessities.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 509,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_riverwind_st_04",
+    "canonical_id": "wehnimers_riverwind_st_c5ea7aef848dbcca",
+    "title": "Wehnimer's, Riverwind St.",
+    "area": "wl-town",
+    "description": "Here Riverwind Street meets Lyon Way at an angle.  The structures by the roadside are oddly shaped to match the turning of the way. You can redeem them.  The CLAIM for EG will expire. Keys won't expire, you can redeem and withdraw as you like. s",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 513,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_wisraith_lane_04",
+    "canonical_id": "wehnimers_wisraith_lane_530f156c29463cee",
+    "title": "Wehnimer's, Wisraith Lane",
+    "area": "wl-town",
+    "description": "Sounds of laughter and conversation echo from the residential cottages along this pleasant, cobbled street, where clumps of decorative bushes by the roadside add splashes of green to the lamplit townscape.  A small boy smiles and waves from the front steps of his home, then goes back to counting stars.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 523,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_wisraith_lane_05",
+    "canonical_id": "wehnimers_wisraith_lane_49ff9d45f3761c62",
+    "title": "Wehnimer's, Wisraith Lane",
+    "area": "wl-town",
+    "description": "Interspersed among the small shops along the cobbled road are a few modwir-shingled private houses.  They are gaily decorated, competing for individuality with one another by means of daubs of colorful paint, skillfully carved doors and shutters, and window boxes bursting with ornamental flowers and fresh herbs.  A bright yellow awning lit by a glowing lamp marks the entrance to the florist, whose windows are brimming with fresh blossoms.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 527,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_erebor_square",
+    "canonical_id": "wehnimers_erebor_square_cecf3acaee4a444e",
+    "title": "Wehnimer's, Erebor Square",
+    "area": "wl-town",
+    "description": "This quiet corner resembles a calm island amid the bustling life of Wehnimer's Landing.  At the west end, a low, broad dome is visible.  In the center of the square, several benches of polished wood and smooth stone surround a sculpture that stands as a sentinel before the Wehnimer's Museum.  Cast in bronze, the work imparts a sense of peace, calm and protection to the landscaped surroundings.  A gold plaque mounted on a gracefully chiseled malachite base stands before it.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 531,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_erebor_square_01",
+    "canonical_id": "wehnimers_erebor_square_4856b94694d825b5",
+    "title": "Wehnimer's, Erebor Square",
+    "area": "wl-town",
+    "description": "The dome of a large temple rises above this peaceful square, silhouetted against the starlit sky.  The circular building is surrounded by marble porticos and teak columns, and a promenade leads to two pillars, through which the inner sanctum can be glimpsed.  Priests and worshippers wander here and there, engaged in various rituals of devotion or study.  A locked almsbox is securely bolted to an iron pole alongside the pillars.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 535,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_cheridin_ave",
+    "canonical_id": "wehnimers_cheridin_ave_3c25781d50a28634",
+    "title": "Wehnimer's, Cheridin Ave.",
+    "area": "wl-town",
+    "description": "Several small shops crowd along the street, which is composed of the back walls of the high buildings bordering the central square.  Each storefront vies with the others for street space and the attention of the many travellers who pass through here.  A few traders, hoping to take advantage of some late business attracted by the nearby temple, have set up stands and pushcarts filled with clothing, trinkets and souvenirs.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 539,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_cheridin_ave_01",
+    "canonical_id": "wehnimers_cheridin_ave_4d0de6a787d6c07b",
+    "title": "Wehnimer's, Cheridin Ave.",
+    "area": "wl-town",
+    "description": "On the west side of this narrow stretch of Cheridin Avenue is the unlit back of the Moot Hall, and the dour building that houses the local constabulary and its jail looms along the other side of the street.  To the southeast, a stone dome rises over the compound that surrounds the Landing's largest temple.  Passers-by here move quickly north and south without much pause.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 543,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_cheridin_ave_02",
+    "canonical_id": "wehnimers_cheridin_ave_db1c6f214ed65c2c",
+    "title": "Wehnimer's, Cheridin Ave.",
+    "area": "wl-town",
+    "description": "The broad avenue intersects here with the narrower byway connecting to the bazaar to the west, where occasional sounds of distant revelry rise from the lamplit streets.  Older wood and stone buildings, mostly small shops and offices with upstairs lodgings overlooking the street, predominate here.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 547,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_penna_st",
+    "canonical_id": "wehnimers_penna_st_41ffc541eac24e60",
+    "title": "Wehnimer's, Penna St.",
+    "area": "wl-town",
+    "description": "The distant sounds of the merchants and tradesmen around the shops to the west are muted here.  The cracked pavement, scattered cobblestones, and dirt drainage ditches along the side of the road form a not-so-gradual transition between the busier avenues of the main bazaar and the less frequented, humbler, and more unsavory sections of the town.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 551,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "town_square_east",
+    "canonical_id": "town_square_east_01fa0589982533c6",
+    "title": "Town Square, East",
+    "area": "wl-town",
+    "description": "Here in the center of a broad plaza near the commercial area of the bazaar stands the impressive facade of the slate-roofed Moot Hall, where the citizens of Wehnimer's Landing hold various official, religious and social functions.  Facing the square are some of the town's more prosperous shops, still doing business with the many customers who still frequent the streets at night.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 555,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_penna_st_01",
+    "canonical_id": "wehnimers_penna_st_41ffc541eac24e60",
+    "title": "Wehnimer's, Penna St.",
+    "area": "wl-town",
+    "description": "The distant sounds of the merchants and tradesmen around the shops to the west are muted here.  The cracked pavement, scattered cobblestones, and dirt drainage ditches along the side of the road form a not-so-gradual transition between the busier avenues of the main bazaar and the less frequented, humbler, and more unsavory sections of the town.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 560,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_cheridin_ave_03",
+    "canonical_id": "wehnimers_cheridin_ave_db1c6f214ed65c2c",
+    "title": "Wehnimer's, Cheridin Ave.",
+    "area": "wl-town",
+    "description": "The broad avenue intersects here with the narrower byway connecting to the bazaar to the west, where occasional sounds of distant revelry rise from the lamplit streets.  Older wood and stone buildings, mostly small shops and offices with upstairs lodgings overlooking the street, predominate here.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 564,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_cheridin_ave_04",
+    "canonical_id": "wehnimers_cheridin_ave_5806647ef11dc913",
+    "title": "Wehnimer's, Cheridin Ave.",
+    "area": "wl-town",
+    "description": "Many of the dwellings that line this section of road have shutters closed or curtains drawn to keep out the noise and dust raised by the constant flow of traffic along the street.  Just south of here, the traffic on Cheridin streams west towards the bazaar.  To the east, the lanes twist through neighborhoods composed of serviceable shops and modest residences.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 568,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lyon_way_05",
+    "canonical_id": "wehnimers_lyon_way_9938c8d90f5d3f98",
+    "title": "Wehnimer's, Lyon Way",
+    "area": "wl-town",
+    "description": "The intermittent rhythm of movement through the street to the east and west is accentuated by a constant loud clanging coming from the north, where a column of smoke rises from a towering chimney.  A flatbed wagon has been abandoned here where it collided with the wall of a shabby workshop, and now serves only as a home for a few scrawny rats which scamper around its ruined platform.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 572,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lyon_way_06",
+    "canonical_id": "wehnimers_lyon_way_673bbf335d69cffb",
+    "title": "Wehnimer's, Lyon Way",
+    "area": "wl-town",
+    "description": "The two- and three-story homes of some of the Landing's middle-class citizens are situated at this bend in Lyon Way.  Whitewash has been applied to most of the wooden structures, though soot from somewhere nearby stains many of their painted surfaces, and window boxes full of flowers add faint splashes of color to the moonlit street. Oh claim like CLAIM you mean, got it. n",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 576,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "house_brigatta_lane",
+    "canonical_id": "house_brigatta_lane_fdb885f4f04f41d3",
+    "title": "House Brigatta, Lane",
+    "area": "wl-town",
+    "description": "At the end of the lane stands a bluestone timber-framed manor house of modest proportions, with a neatly painted cerulean door bearing a polished brass bell.  A small, bronze sign announces, \"House Brigatta.\"  Set into an ivy-strewn curtain wall surrounding an expansive garden is a large, double-doored portal inset with a smaller, subtle wicket gate and a garden path.",
+    "exits": {
+      "south": "unknown"
+    },
+    "features": [
+      "sign",
+      "path",
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 582,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lyon_way_07",
+    "canonical_id": "wehnimers_lyon_way_3ed06045551c4876",
+    "title": "Wehnimer's, Lyon Way",
+    "area": "wl-town",
+    "description": "The two- and three-story homes of some of the Landing's middle-class citizens are situated at this bend in Lyon Way.  Whitewash has been applied to most of the wooden structures, though soot from somewhere nearby stains many of their painted surfaces, and window boxes full of flowers add faint splashes of color to the moonlit street.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 586,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_lyon_way_08",
+    "canonical_id": "wehnimers_lyon_way_9938c8d90f5d3f98",
+    "title": "Wehnimer's, Lyon Way",
+    "area": "wl-town",
+    "description": "The intermittent rhythm of movement through the street to the east and west is accentuated by a constant loud clanging coming from the north, where a column of smoke rises from a towering chimney.  A flatbed wagon has been abandoned here where it collided with the wall of a shabby workshop, and now serves only as a home for a few scrawny rats which scamper around its ruined platform.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 590,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_cheridin_ave_05",
+    "canonical_id": "wehnimers_cheridin_ave_5806647ef11dc913",
+    "title": "Wehnimer's, Cheridin Ave.",
+    "area": "wl-town",
+    "description": "Many of the dwellings that line this section of road have shutters closed or curtains drawn to keep out the noise and dust raised by the constant flow of traffic along the street.  Just south of here, the traffic on Cheridin streams west towards the bazaar.  To the east, the lanes twist through neighborhoods composed of serviceable shops and modest residences.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 594,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_cheridin_ave_06",
+    "canonical_id": "wehnimers_cheridin_ave_db1c6f214ed65c2c",
+    "title": "Wehnimer's, Cheridin Ave.",
+    "area": "wl-town",
+    "description": "The broad avenue intersects here with the narrower byway connecting to the bazaar to the west, where occasional sounds of distant revelry rise from the lamplit streets.  Older wood and stone buildings, mostly small shops and offices with upstairs lodgings overlooking the street, predominate here.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 598,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_cheridin_ave_07",
+    "canonical_id": "wehnimers_cheridin_ave_5bec99240490579f",
+    "title": "Wehnimer's, Cheridin Ave.",
+    "area": "wl-town",
+    "description": "On the west side of this narrow stretch of Cheridin Avenue is the unlit back of the Moot Hall, and the dour building that houses the local constabulary and its jail looms along the other side of the street.  To the southeast, a stone dome rises over the compound that surrounds the Landing's largest temple.  Passers-by here move quickly north and south without much pause. I meant redeem, sorry for confusion, too many verbs lol.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 602,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_cheridin_ave_08",
+    "canonical_id": "wehnimers_cheridin_ave_1131a1fd21a6827b",
+    "title": "Wehnimer's, Cheridin Ave.",
+    "area": "wl-town",
+    "description": "Several small shops crowd along the street, which is composed of the back walls of the high buildings bordering the central square.  Each storefront vies with the others for street space and the attention of the many travellers who pass through here.  A few traders, hoping to take advantage of some late business attracted by the nearby temple, have set up stands and pushcarts filled with clothing, trinkets and souvenirs. The ghost of Ranpalandil asks, \"Any help for me in the Griffin's Keen?\" e",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 608,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_erebor_square_02",
+    "canonical_id": "wehnimers_erebor_square_4856b94694d825b5",
+    "title": "Wehnimer's, Erebor Square",
+    "area": "wl-town",
+    "description": "The dome of a large temple rises above this peaceful square, silhouetted against the starlit sky.  The circular building is surrounded by marble porticos and teak columns, and a promenade leads to two pillars, through which the inner sanctum can be glimpsed.  Priests and worshippers wander here and there, engaged in various rituals of devotion or study.  A locked almsbox is securely bolted to an iron pole alongside the pillars.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 614,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_airioch_lane",
+    "canonical_id": "wehnimers_airioch_lane_3a873f9cc9315eb7",
+    "title": "Wehnimer's, Airioch Lane",
+    "area": "wl-town",
+    "description": "Bordering the temple perimeter, this lane contains a few cheery cottages and friendly shops.  It offers refreshing change from the older, rutted streets and noisy stores of the bazaar and the town square.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 618,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_airioch_lane_01",
+    "canonical_id": "wehnimers_airioch_lane_45241b91374bf560",
+    "title": "Wehnimer's, Airioch Lane",
+    "area": "wl-town",
+    "description": "This tree-dotted lane passes through a residential pocket of the Landing.  The cobbled dirt road leads past well-kept single or two-floor houses, built of wood and stone with carved shutters and doors that can be closed against inclement weather or dangerous invasions.",
+    "exits": {
+      "east": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 622,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_07",
+    "canonical_id": "wehnimers_south_ring_rd_c77c0c6f2a3fdacb",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "A small group of local residents gathers around the small well next to the palisade, chatting idly in the cool night air.  The connecting road runs to the east and west, and a few passers-by head north to the heart of town.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 626,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_08",
+    "canonical_id": "wehnimers_south_ring_rd_9ff6510de4343d71",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "Many of the travellers through this part of town appear to be pilgrims, priests and monks.  They travel to and fro, moving along the quiet road to the north.  The hoot of an owl echoes from somewhere beyond the palisade wall.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 630,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_09",
+    "canonical_id": "wehnimers_south_ring_rd_c77c0c6f2a3fdacb",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "A small group of local residents gathers around the small well next to the palisade, chatting idly in the cool night air.  The connecting road runs to the east and west, and a few passers-by head north to the heart of town.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 634,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_10",
+    "canonical_id": "wehnimers_south_ring_rd_f5a15cf01d27a689",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "The moonlit, rolling countryside outside the town can be glimpsed through a crack in the south palisade wall.  A cool and refreshing night breeze whistles between the logs, freshening the air with a brisk scent of pine.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 638,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_11",
+    "canonical_id": "wehnimers_south_ring_rd_3694cdf31a3a31d0",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "A spacious boulevard intersects the Ring Road at this point.  Traders and peddlers pass by, carting their wares home from a busy day in the bazaar, and a few townsfolk scatter east and west bearing packages, sacks and purchases.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 642,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_12",
+    "canonical_id": "wehnimers_south_ring_rd_fea2ba469c37f918",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "A short distance to the east lies a broad intersection.  To the west, the road narrows slightly as it is impinged on by closely-spaced shops, beyond which the western and southern city walls intersect.  A few townsfolk mingle under the circles of lamplight in the cobbled street.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 646,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_13",
+    "canonical_id": "wehnimers_south_ring_rd_a1d9e7c733b7c280",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "The quiet of the moonlit street is broken by the sound of metal bouncing against metal.  A small group of rough-looking citizens gather in the shadow of the buildings, apparently busy at some gambling game.  From one small storefront comes the sound of a lilting melody being picked out on a lute.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 650,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_west_ring_rd",
+    "canonical_id": "wehnimers_west_ring_rd_7769d198f9bae0f3",
+    "title": "Wehnimer's, West Ring Rd.",
+    "area": "wl-town",
+    "description": "The road bends to conform to the inside curve of the southern and western walls of the high modwir log palisades, which converge here.  A whiff of the scents of the marketplace rises from a narrow lane to the east.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "southeast": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 656,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_south_ring_rd_14",
+    "canonical_id": "wehnimers_south_ring_rd_a1d9e7c733b7c280",
+    "title": "Wehnimer's, South Ring Rd.",
+    "area": "wl-town",
+    "description": "The quiet of the moonlit street is broken by the sound of metal bouncing against metal.  A small group of rough-looking citizens gather in the shadow of the buildings, apparently busy at some gambling game.  From one small storefront comes the sound of a lilting melody being picked out on a lute.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 660,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "wehnimers_west_ring_rd_01",
+    "canonical_id": "wehnimers_west_ring_rd_7769d198f9bae0f3",
+    "title": "Wehnimer's, West Ring Rd.",
+    "area": "wl-town",
+    "description": "The road bends to conform to the inside curve of the southern and western walls of the high modwir log palisades, which converge here.  A whiff of the scents of the marketplace rises from a narrow lane to the east.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "southeast": "unknown",
+      "innwhere": {
+        "hidden": true
+      },
+      "gatewhere": {
+        "hidden": true
+      },
+      "path": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 664,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_courtyard",
+    "canonical_id": "silvergate_courtyard_44d0a97f3c23f449",
+    "title": "Silvergate, Courtyard",
+    "area": "wl-town",
+    "description": "A magnificent grey stone manor with a crested cornerstone rises into view, light dancing in its windows.  Thick arrays of ivy climb the ancient walls, framing an elegant bronze plaque and a set of tall arched doors.  Flanking the main building, twin towers rise gracefully, providing a striking balance and harmony to the view.  Cushioned silver benches are scattered about the paved courtyard in pools of light shed by wrought iron lamposts.  A high stone wall with an ornate silver gate circles the property.",
+    "exits": {
+      "east": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 670,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_garden",
+    "canonical_id": "silvergate_inn_garden_0c38c3722b3ead7c",
+    "title": "Silvergate Inn, Garden",
+    "area": "wl-town",
+    "description": "An ivy-covered wall with a wrought iron gate encloses the garden.  Colorful flower beds border the wide expanse of close-cropped grass which surrounds a small lily pond spanned by a fanciful wrought iron footbridge.  Fireflies glimmer around a graceful wooden arbor covered with silver and white tea roses beside the water.  Several trees are scattered across the lawn, a particularly large one rising near the bridge.  Silvery lions mounted on the stone wall hold glowing, cut-crystal oil lamps.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "gate",
+      "pond"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 674,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_meadow",
+    "canonical_id": "silvergate_inn_meadow_55086c90cfa98495",
+    "title": "Silvergate Inn, Meadow",
+    "area": "wl-town",
+    "description": "A soft night breeze rustles the wide expanse of grass enclosed by an ivy-covered stone wall.  Near a large meandering stream, a riverstone path leads to a large wooden dock.  Wrought iron tables and benches are spaced around a brick firepit amid clusters of tall evergreen trees.  A green crystal candle lamp flickers on each table and silvery lions mounted on the wall hold glowing cut crystal oil lamps.  North of the path, hints of color can be spied through the windows of a small copper-framed greenhouse. Taulramil asks, \"Room?\" w",
+    "exits": {
+      "west": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 678,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_garden_01",
+    "canonical_id": "silvergate_inn_garden_0c38c3722b3ead7c",
+    "title": "Silvergate Inn, Garden",
+    "area": "wl-town",
+    "description": "An ivy-covered wall with a wrought iron gate encloses the garden.  Colorful flower beds border the wide expanse of close-cropped grass which surrounds a small lily pond spanned by a fanciful wrought iron footbridge.  Fireflies glimmer around a graceful wooden arbor covered with silver and white tea roses beside the water.  Several trees are scattered across the lawn, a particularly large one rising near the bridge.  Silvery lions mounted on the stone wall hold glowing, cut-crystal oil lamps.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "gate",
+      "pond"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 684,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_courtyard_01",
+    "canonical_id": "silvergate_courtyard_44d0a97f3c23f449",
+    "title": "Silvergate, Courtyard",
+    "area": "wl-town",
+    "description": "A magnificent grey stone manor with a crested cornerstone rises into view, light dancing in its windows.  Thick arrays of ivy climb the ancient walls, framing an elegant bronze plaque and a set of tall arched doors.  Flanking the main building, twin towers rise gracefully, providing a striking balance and harmony to the view.  Cushioned silver benches are scattered about the paved courtyard in pools of light shed by wrought iron lamposts.  A high stone wall with an ornate silver gate circles the property.",
+    "exits": {
+      "east": "unknown",
+      "archway": {
+        "hidden": true
+      }
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [
+      "archway"
+    ],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 688,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_pool",
+    "canonical_id": "silvergate_inn_pool_6dab7aeaa147331a",
+    "title": "Silvergate Inn, Pool",
+    "area": "wl-town",
+    "description": "Steam rises from a large oblong pool as the water glistens in the lamplight.  Crystal oil lamps atop tall silvery poles rise from the polished river stones which cover the ground to the tall evergreen trees that enclose the area.  Small tables rest between pairs of dark wicker lounge chairs with deep green cushions.  A small channel leading off the pool flows to the door of a petite boathouse, and a series of glass doors lead into the inn.",
+    "exits": {
+      "archway": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [
+      "archway"
+    ],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 692,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_courtyard_02",
+    "canonical_id": "silvergate_courtyard_44d0a97f3c23f449",
+    "title": "Silvergate, Courtyard",
+    "area": "wl-town",
+    "description": "A magnificent grey stone manor with a crested cornerstone rises into view, light dancing in its windows.  Thick arrays of ivy climb the ancient walls, framing an elegant bronze plaque and a set of tall arched doors.  Flanking the main building, twin towers rise gracefully, providing a striking balance and harmony to the view.  Cushioned silver benches are scattered about the paved courtyard in pools of light shed by wrought iron lamposts.  A high stone wall with an ornate silver gate circles the property.",
+    "exits": {
+      "east": "unknown",
+      "archway": {
+        "hidden": true
+      }
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [
+      "archway"
+    ],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 696,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_pool_01",
+    "canonical_id": "silvergate_inn_pool_6e60d7008318d194",
+    "title": "Silvergate Inn, Pool",
+    "area": "wl-town",
+    "description": "Steam rises from a large oblong pool as the water glistens in the lamplight.  Crystal oil lamps atop tall silvery poles rise from the polished river stones which cover the ground to the tall evergreen trees that enclose the area.  Small tables rest between pairs of dark wicker lounge chairs with deep green cushions.  A small channel leading off the pool flows to the door of a petite boathouse, and a series of glass doors lead into the inn. I'll hand over my 25 key for the CLAIM at cost if someone is up for it, but I don't have a loose 2.5M to spare otherwise. You hear the General thoughts of Ranpalandil echo in your mind: The ghost of Ranpalandil thinks, \"Griffin's Keen, Topaz Point - 4578.\" go arch",
+    "exits": {
+      "doorthe": {
+        "hidden": true
+      }
+    },
+    "features": [
+      "arch"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 700,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_courtyard_03",
+    "canonical_id": "silvergate_courtyard_44d0a97f3c23f449",
+    "title": "Silvergate, Courtyard",
+    "area": "wl-town",
+    "description": "A magnificent grey stone manor with a crested cornerstone rises into view, light dancing in its windows.  Thick arrays of ivy climb the ancient walls, framing an elegant bronze plaque and a set of tall arched doors.  Flanking the main building, twin towers rise gracefully, providing a striking balance and harmony to the view.  Cushioned silver benches are scattered about the paved courtyard in pools of light shed by wrought iron lamposts.  A high stone wall with an ornate silver gate circles the property.",
+    "exits": {
+      "east": "unknown",
+      "door": {
+        "hidden": true
+      }
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 710,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer",
+    "canonical_id": "silvergate_foyer_d99e16679b8e57da",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 714,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_tea_room",
+    "canonical_id": "silvergate_inn_tea_room_d292acb4c7f96cae",
+    "title": "Silvergate Inn, Tea Room",
+    "area": "wl-town",
+    "description": "Tiny, colorful songbirds and magnificent honeysuckle vines on hand-painted white silk wall coverings reach up to the high, coffered ceiling.  Lit crystal-shaded golden oil lamps rest on tables scattered around the plush green carpet.  Overstuffed armchairs circle each table.  A tall leaded glass window offering a view of a bustling courtyard neatly frames a wide bench seat with pale golden silk cushions.  Opposite the window is a tray-covered pearwood sideboard.",
+    "exits": {
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 718,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_kitchen",
+    "canonical_id": "silvergate_inn_kitchen_27a76ebd53a3b6df",
+    "title": "Silvergate Inn, Kitchen",
+    "area": "wl-town",
+    "description": "Centered in this bustling kitchen is a long maoral butcher block worktable.  Cast iron stoves line one wall with copper shelves holding spices and containers.  Glass oil lamps flicker brightly, illuminating the room as the mullioned windows offer a view of dancing fireflies.  Baker's racks are situated next to a large brick oven, while small tables holding trays of food sit opposite a horizontally divided oak door.  Nearly hidden in a recess are a long basin and an insulated ice box.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 722,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_lions_den_pub",
+    "canonical_id": "silvergate_inn_lions_den_pub_42e39fe7ebf69892",
+    "title": "Silvergate Inn, Lion's Den Pub",
+    "area": "wl-town",
+    "description": "The serving maid stops in at each of the tables to check on her customers, and she nods a greeting in your direction.  The conversation is louder here, and someone's cigar adds to the smoky haze that fills one side of the room.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 726,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_lions_den_pub",
+    "canonical_id": "silvergate_lions_den_pub_700ff19666ce8aa7",
+    "title": "Silvergate, Lion's Den Pub",
+    "area": "wl-town",
+    "description": "A high-beamed ceiling rises over walls of wine racks and a live edge mistwood bar with polished lion-head taps.  Opposite the bar, a circle of leather-cushioned swing chairs hang around an oiled table.  A myriad of silver lions holding glowing oil lamps hang between the racks at varying heights and a long sideboard holding an antique racing game stretches along the west wall.  An assortment of drinks on a silver tray rests near a liveried bartender.  Perched on a sturdy crossbeam is a large silver lion.",
+    "exits": {
+      "east": "unknown",
+      "southeast": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 730,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_grand_hall",
+    "canonical_id": "silvergate_grand_hall_901617778a065203",
+    "title": "Silvergate, Grand Hall",
+    "area": "wl-town",
+    "description": "Cut-crystal chandeliers brightly illuminate the hall, the light reflecting off tall leaded glass windows.  Plush cream damask sofas and chairs rest atop a crested rug.  Carved sideboards flank a magnificent fireplace under an oil painting of Silvergate Inn.  A sweeping grand staircase with lustrous mahogany banisters rises to the upper level, and elaborate bouquets of jasmine and golden roses artfully fill tall vases decorating the hall.  Liveried footmen and bellmen bustle about, attending to the guests.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 734,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer_01",
+    "canonical_id": "silvergate_foyer_0f4594f2cd048127",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman. It's gone. go step",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 738,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_art_studio",
+    "canonical_id": "silvergate_inn_art_studio_862df544f5ccf36f",
+    "title": "Silvergate Inn, Art Studio",
+    "area": "wl-town",
+    "description": "Circular stone steps lead into a room with picture windows reflecting myriad oil lamps mounted on ivory-painted walls.  One floor-to-ceiling window opens onto a balcony overlooking a lamp-lit garden.  A large platform holding a velvet-draped divan and a carved teak chair sits before a frame which holds rolled up canvas backdrops.  Shelves holding finished works line the walls and a tall cabinet filled with painting supplies behind glass doors is shoved to one side next to a sturdy worktable.",
+    "exits": {
+      "step": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 744,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer_02",
+    "canonical_id": "silvergate_foyer_d99e16679b8e57da",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 748,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_tea_room_01",
+    "canonical_id": "silvergate_inn_tea_room_d292acb4c7f96cae",
+    "title": "Silvergate Inn, Tea Room",
+    "area": "wl-town",
+    "description": "Tiny, colorful songbirds and magnificent honeysuckle vines on hand-painted white silk wall coverings reach up to the high, coffered ceiling.  Lit crystal-shaded golden oil lamps rest on tables scattered around the plush green carpet.  Overstuffed armchairs circle each table.  A tall leaded glass window offering a view of a bustling courtyard neatly frames a wide bench seat with pale golden silk cushions.  Opposite the window is a tray-covered pearwood sideboard.",
+    "exits": {
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 752,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer_03",
+    "canonical_id": "silvergate_foyer_d99e16679b8e57da",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 756,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_grand_ballroom",
+    "canonical_id": "silvergate_grand_ballroom_2f699b093d5ccb07",
+    "title": "Silvergate, Grand Ballroom",
+    "area": "wl-town",
+    "description": "Magnificent cut-crystal chandeliers, hung above the gleaming gold-veined marble floor, softly illuminate the ballroom.  Golden silk frames the alcoves lining the west wall.  An exquisite mural covers the remaining walls.  Tucked in each alcove are elegant settees and chairs in conversational groups.  Musicians populate a long mahogany stage carved with gilded lions at each corner.  Tall topiaries stand between alcoves, and liveried servants flank the marble archway to the north, ready to attend guests.",
+    "exits": {
+      "north": "unknown",
+      "door": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [
+      "door"
+    ],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 760,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_performance_hall",
+    "canonical_id": "silvergate_performance_hall_309dd992337f9ad2",
+    "title": "Silvergate, Performance Hall",
+    "area": "wl-town",
+    "description": "Each of the comfortably cushioned seats has an excellent view of the large stage that is the focal point of this room.  Niches along the cream-colored walls are draped with rich gold damask curtains, and the red carpet laid over the oak parquet floor leads to a stage and its nearby podium.  The low ceilings allow even those seated in the back row to hear the performances.",
+    "exits": {
+      "door": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [
+      "door"
+    ],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 764,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_grand_ballroom_01",
+    "canonical_id": "silvergate_grand_ballroom_2f699b093d5ccb07",
+    "title": "Silvergate, Grand Ballroom",
+    "area": "wl-town",
+    "description": "Magnificent cut-crystal chandeliers, hung above the gleaming gold-veined marble floor, softly illuminate the ballroom.  Golden silk frames the alcoves lining the west wall.  An exquisite mural covers the remaining walls.  Tucked in each alcove are elegant settees and chairs in conversational groups.  Musicians populate a long mahogany stage carved with gilded lions at each corner.  Tall topiaries stand between alcoves, and liveried servants flank the marble archway to the north, ready to attend guests.",
+    "exits": {
+      "north": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 768,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer_04",
+    "canonical_id": "silvergate_foyer_d99e16679b8e57da",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 772,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_tea_room_02",
+    "canonical_id": "silvergate_inn_tea_room_d292acb4c7f96cae",
+    "title": "Silvergate Inn, Tea Room",
+    "area": "wl-town",
+    "description": "Tiny, colorful songbirds and magnificent honeysuckle vines on hand-painted white silk wall coverings reach up to the high, coffered ceiling.  Lit crystal-shaded golden oil lamps rest on tables scattered around the plush green carpet.  Overstuffed armchairs circle each table.  A tall leaded glass window offering a view of a bustling courtyard neatly frames a wide bench seat with pale golden silk cushions.  Opposite the window is a tray-covered pearwood sideboard.",
+    "exits": {
+      "south": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 776,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_kitchen_01",
+    "canonical_id": "silvergate_inn_kitchen_27a76ebd53a3b6df",
+    "title": "Silvergate Inn, Kitchen",
+    "area": "wl-town",
+    "description": "Centered in this bustling kitchen is a long maoral butcher block worktable.  Cast iron stoves line one wall with copper shelves holding spices and containers.  Glass oil lamps flicker brightly, illuminating the room as the mullioned windows offer a view of dancing fireflies.  Baker's racks are situated next to a large brick oven, while small tables holding trays of food sit opposite a horizontally divided oak door.  Nearly hidden in a recess are a long basin and an insulated ice box.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown",
+      "doorwhere": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 780,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_lions_den_pub_01",
+    "canonical_id": "silvergate_inn_lions_den_pub_42e39fe7ebf69892",
+    "title": "Silvergate Inn, Lion's Den Pub",
+    "area": "wl-town",
+    "description": "The serving maid stops in at each of the tables to check on her customers, and she nods a greeting in your direction.  The conversation is louder here, and someone's cigar adds to the smoky haze that fills one side of the room.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 785,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_lions_den_pub_01",
+    "canonical_id": "silvergate_lions_den_pub_700ff19666ce8aa7",
+    "title": "Silvergate, Lion's Den Pub",
+    "area": "wl-town",
+    "description": "A high-beamed ceiling rises over walls of wine racks and a live edge mistwood bar with polished lion-head taps.  Opposite the bar, a circle of leather-cushioned swing chairs hang around an oiled table.  A myriad of silver lions holding glowing oil lamps hang between the racks at varying heights and a long sideboard holding an antique racing game stretches along the west wall.  An assortment of drinks on a silver tray rests near a liveried bartender.  Perched on a sturdy crossbeam is a large silver lion.",
+    "exits": {
+      "east": "unknown",
+      "southeast": "unknown",
+      "south": "unknown",
+      "chuteyou": {
+        "hidden": true
+      },
+      "doorwhere": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 789,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer_05",
+    "canonical_id": "silvergate_foyer_fc9cd7a14d535fcd",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman. How long is the WPS wagon supposed to be around? go stairWhere are you trying to go? Usage: ASK {entity} ABOUT/FOR/TO {subject} Through the end. Is the last time to turn keys in to the Adventurer tonight? go step",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 796,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_art_studio_01",
+    "canonical_id": "silvergate_inn_art_studio_862df544f5ccf36f",
+    "title": "Silvergate Inn, Art Studio",
+    "area": "wl-town",
+    "description": "Circular stone steps lead into a room with picture windows reflecting myriad oil lamps mounted on ivory-painted walls.  One floor-to-ceiling window opens onto a balcony overlooking a lamp-lit garden.  A large platform holding a velvet-draped divan and a carved teak chair sits before a frame which holds rolled up canvas backdrops.  Shelves holding finished works line the walls and a tall cabinet filled with painting supplies behind glass doors is shoved to one side next to a sturdy worktable.",
+    "exits": {
+      "step": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 811,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer_06",
+    "canonical_id": "silvergate_foyer_0811d9fc9251e0a5",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman. No, just getting new keys from store. Until Ebon Gate closes Sunday night at midnight. swYou hear the Help thoughts of Jara echo in your mind: Event grounds remain open until november 2nd 1159.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 815,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_grand_ballroom_02",
+    "canonical_id": "silvergate_grand_ballroom_2f699b093d5ccb07",
+    "title": "Silvergate, Grand Ballroom",
+    "area": "wl-town",
+    "description": "Magnificent cut-crystal chandeliers, hung above the gleaming gold-veined marble floor, softly illuminate the ballroom.  Golden silk frames the alcoves lining the west wall.  An exquisite mural covers the remaining walls.  Tucked in each alcove are elegant settees and chairs in conversational groups.  Musicians populate a long mahogany stage carved with gilded lions at each corner.  Tall topiaries stand between alcoves, and liveried servants flank the marble archway to the north, ready to attend guests.",
+    "exits": {
+      "north": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 826,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer_07",
+    "canonical_id": "silvergate_foyer_0bf7e95cc239b228",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman. Ah ok good. Thanks. w",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 830,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_grand_hall_01",
+    "canonical_id": "silvergate_grand_hall_901617778a065203",
+    "title": "Silvergate, Grand Hall",
+    "area": "wl-town",
+    "description": "Cut-crystal chandeliers brightly illuminate the hall, the light reflecting off tall leaded glass windows.  Plush cream damask sofas and chairs rest atop a crested rug.  Carved sideboards flank a magnificent fireplace under an oil painting of Silvergate Inn.  A sweeping grand staircase with lustrous mahogany banisters rises to the upper level, and elaborate bouquets of jasmine and golden roses artfully fill tall vases decorating the hall.  Liveried footmen and bellmen bustle about, attending to the guests.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "stair": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 838,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_2nd_floor_hallway",
+    "canonical_id": "silvergate_2nd_floor_hallway_e68e1fd9b1b60311",
+    "title": "Silvergate, 2nd Floor Hallway",
+    "area": "wl-town",
+    "description": "Plush, dark green carpeting underfoot complements the stained oak wainscot of this light and airy landing.  Along one wall you see a heavy oak sideboard.  Two crystal vases with arrangements of fresh cut flowers adorn each end of the sideboard and their reflections in a mirror above fill the room with their color.  The delicate scent of the flowers intermingles pleasantly with the smell of freshly polished woodwork.",
+    "exits": {
+      "doorthe": {
+        "hidden": true
+      },
+      "other": {
+        "hidden": true
+      },
+      "staircase": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [
+      "staircase"
+    ],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 842,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_grand_hall_02",
+    "canonical_id": "silvergate_grand_hall_901617778a065203",
+    "title": "Silvergate, Grand Hall",
+    "area": "wl-town",
+    "description": "Cut-crystal chandeliers brightly illuminate the hall, the light reflecting off tall leaded glass windows.  Plush cream damask sofas and chairs rest atop a crested rug.  Carved sideboards flank a magnificent fireplace under an oil painting of Silvergate Inn.  A sweeping grand staircase with lustrous mahogany banisters rises to the upper level, and elaborate bouquets of jasmine and golden roses artfully fill tall vases decorating the hall.  Liveried footmen and bellmen bustle about, attending to the guests.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 848,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_lions_den_pub_02",
+    "canonical_id": "silvergate_lions_den_pub_700ff19666ce8aa7",
+    "title": "Silvergate, Lion's Den Pub",
+    "area": "wl-town",
+    "description": "A high-beamed ceiling rises over walls of wine racks and a live edge mistwood bar with polished lion-head taps.  Opposite the bar, a circle of leather-cushioned swing chairs hang around an oiled table.  A myriad of silver lions holding glowing oil lamps hang between the racks at varying heights and a long sideboard holding an antique racing game stretches along the west wall.  An assortment of drinks on a silver tray rests near a liveried bartender.  Perched on a sturdy crossbeam is a large silver lion.",
+    "exits": {
+      "east": "unknown",
+      "southeast": "unknown",
+      "south": "unknown",
+      "statwhere": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 852,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_lions_den_pub_02",
+    "canonical_id": "silvergate_inn_lions_den_pub_4e2f321387cf3862",
+    "title": "Silvergate Inn, Lion's Den Pub",
+    "area": "wl-town",
+    "description": "The serving maid stops in at each of the tables to check on her customers, and she nods a greeting in your direction.  The conversation is louder here, and someone's cigar adds to the smoky haze that fills one side of the room. You don't see that table.  These tables are here: Red Table Blue Table Green Table White Table Black Table",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown",
+      "stat": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 857,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_kitchen_02",
+    "canonical_id": "silvergate_inn_kitchen_27a76ebd53a3b6df",
+    "title": "Silvergate Inn, Kitchen",
+    "area": "wl-town",
+    "description": "Centered in this bustling kitchen is a long maoral butcher block worktable.  Cast iron stoves line one wall with copper shelves holding spices and containers.  Glass oil lamps flicker brightly, illuminating the room as the mullioned windows offer a view of dancing fireflies.  Baker's racks are situated next to a large brick oven, while small tables holding trays of food sit opposite a horizontally divided oak door.  Nearly hidden in a recess are a long basin and an insulated ice box.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown",
+      "statuewhere": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 869,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_tea_room_03",
+    "canonical_id": "silvergate_inn_tea_room_d292acb4c7f96cae",
+    "title": "Silvergate Inn, Tea Room",
+    "area": "wl-town",
+    "description": "Tiny, colorful songbirds and magnificent honeysuckle vines on hand-painted white silk wall coverings reach up to the high, coffered ceiling.  Lit crystal-shaded golden oil lamps rest on tables scattered around the plush green carpet.  Overstuffed armchairs circle each table.  A tall leaded glass window offering a view of a bustling courtyard neatly frames a wide bench seat with pale golden silk cushions.  Opposite the window is a tray-covered pearwood sideboard.",
+    "exits": {
+      "south": "unknown",
+      "west": "unknown",
+      "statuewhere": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 874,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_kitchen_03",
+    "canonical_id": "silvergate_inn_kitchen_27a76ebd53a3b6df",
+    "title": "Silvergate Inn, Kitchen",
+    "area": "wl-town",
+    "description": "Centered in this bustling kitchen is a long maoral butcher block worktable.  Cast iron stoves line one wall with copper shelves holding spices and containers.  Glass oil lamps flicker brightly, illuminating the room as the mullioned windows offer a view of dancing fireflies.  Baker's racks are situated next to a large brick oven, while small tables holding trays of food sit opposite a horizontally divided oak door.  Nearly hidden in a recess are a long basin and an insulated ice box.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown",
+      "statwhere": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 879,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_lions_den_pub_03",
+    "canonical_id": "silvergate_inn_lions_den_pub_42e39fe7ebf69892",
+    "title": "Silvergate Inn, Lion's Den Pub",
+    "area": "wl-town",
+    "description": "The serving maid stops in at each of the tables to check on her customers, and she nods a greeting in your direction.  The conversation is louder here, and someone's cigar adds to the smoky haze that fills one side of the room.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 884,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_lions_den_pub_03",
+    "canonical_id": "silvergate_lions_den_pub_700ff19666ce8aa7",
+    "title": "Silvergate, Lion's Den Pub",
+    "area": "wl-town",
+    "description": "A high-beamed ceiling rises over walls of wine racks and a live edge mistwood bar with polished lion-head taps.  Opposite the bar, a circle of leather-cushioned swing chairs hang around an oiled table.  A myriad of silver lions holding glowing oil lamps hang between the racks at varying heights and a long sideboard holding an antique racing game stretches along the west wall.  An assortment of drinks on a silver tray rests near a liveried bartender.  Perched on a sturdy crossbeam is a large silver lion.",
+    "exits": {
+      "east": "unknown",
+      "southeast": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 888,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_grand_hall_03",
+    "canonical_id": "silvergate_grand_hall_901617778a065203",
+    "title": "Silvergate, Grand Hall",
+    "area": "wl-town",
+    "description": "Cut-crystal chandeliers brightly illuminate the hall, the light reflecting off tall leaded glass windows.  Plush cream damask sofas and chairs rest atop a crested rug.  Carved sideboards flank a magnificent fireplace under an oil painting of Silvergate Inn.  A sweeping grand staircase with lustrous mahogany banisters rises to the upper level, and elaborate bouquets of jasmine and golden roses artfully fill tall vases decorating the hall.  Liveried footmen and bellmen bustle about, attending to the guests.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown",
+      "statwhere": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 892,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_lions_den_pub_04",
+    "canonical_id": "silvergate_lions_den_pub_700ff19666ce8aa7",
+    "title": "Silvergate, Lion's Den Pub",
+    "area": "wl-town",
+    "description": "A high-beamed ceiling rises over walls of wine racks and a live edge mistwood bar with polished lion-head taps.  Opposite the bar, a circle of leather-cushioned swing chairs hang around an oiled table.  A myriad of silver lions holding glowing oil lamps hang between the racks at varying heights and a long sideboard holding an antique racing game stretches along the west wall.  An assortment of drinks on a silver tray rests near a liveried bartender.  Perched on a sturdy crossbeam is a large silver lion.",
+    "exits": {
+      "east": "unknown",
+      "southeast": "unknown",
+      "south": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 897,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer_08",
+    "canonical_id": "silvergate_foyer_d99e16679b8e57da",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown",
+      "statuewhere": {
+        "hidden": true
+      },
+      "boarwhere": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 903,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_grand_ballroom_03",
+    "canonical_id": "silvergate_grand_ballroom_2f699b093d5ccb07",
+    "title": "Silvergate, Grand Ballroom",
+    "area": "wl-town",
+    "description": "Magnificent cut-crystal chandeliers, hung above the gleaming gold-veined marble floor, softly illuminate the ballroom.  Golden silk frames the alcoves lining the west wall.  An exquisite mural covers the remaining walls.  Tucked in each alcove are elegant settees and chairs in conversational groups.  Musicians populate a long mahogany stage carved with gilded lions at each corner.  Tall topiaries stand between alcoves, and liveried servants flank the marble archway to the north, ready to attend guests.",
+    "exits": {
+      "north": "unknown",
+      "statuewhere": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 909,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer_09",
+    "canonical_id": "silvergate_foyer_d99e16679b8e57da",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 914,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_lions_den_pub_05",
+    "canonical_id": "silvergate_lions_den_pub_700ff19666ce8aa7",
+    "title": "Silvergate, Lion's Den Pub",
+    "area": "wl-town",
+    "description": "A high-beamed ceiling rises over walls of wine racks and a live edge mistwood bar with polished lion-head taps.  Opposite the bar, a circle of leather-cushioned swing chairs hang around an oiled table.  A myriad of silver lions holding glowing oil lamps hang between the racks at varying heights and a long sideboard holding an antique racing game stretches along the west wall.  An assortment of drinks on a silver tray rests near a liveried bartender.  Perched on a sturdy crossbeam is a large silver lion.",
+    "exits": {
+      "east": "unknown",
+      "southeast": "unknown",
+      "south": "unknown",
+      "statuewhere": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 918,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_grand_hall_04",
+    "canonical_id": "silvergate_grand_hall_901617778a065203",
+    "title": "Silvergate, Grand Hall",
+    "area": "wl-town",
+    "description": "Cut-crystal chandeliers brightly illuminate the hall, the light reflecting off tall leaded glass windows.  Plush cream damask sofas and chairs rest atop a crested rug.  Carved sideboards flank a magnificent fireplace under an oil painting of Silvergate Inn.  A sweeping grand staircase with lustrous mahogany banisters rises to the upper level, and elaborate bouquets of jasmine and golden roses artfully fill tall vases decorating the hall.  Liveried footmen and bellmen bustle about, attending to the guests.",
+    "exits": {
+      "north": "unknown",
+      "east": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 923,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer_10",
+    "canonical_id": "silvergate_foyer_d99e16679b8e57da",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown",
+      "boarwhere": {
+        "hidden": true
+      },
+      "door": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 927,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_courtyard_04",
+    "canonical_id": "silvergate_courtyard_44d0a97f3c23f449",
+    "title": "Silvergate, Courtyard",
+    "area": "wl-town",
+    "description": "A magnificent grey stone manor with a crested cornerstone rises into view, light dancing in its windows.  Thick arrays of ivy climb the ancient walls, framing an elegant bronze plaque and a set of tall arched doors.  Flanking the main building, twin towers rise gracefully, providing a striking balance and harmony to the view.  Cushioned silver benches are scattered about the paved courtyard in pools of light shed by wrought iron lamposts.  A high stone wall with an ornate silver gate circles the property.",
+    "exits": {
+      "east": "unknown",
+      "boarwhere": {
+        "hidden": true
+      },
+      "door": {
+        "hidden": true
+      }
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 932,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer_11",
+    "canonical_id": "silvergate_foyer_a61c02fdafc2e2cd",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman. I'm doing free assesses till at least midnight, at WPS wagon (EG entrance room).  Might need to holler a couple times cause it's noisy in here. go door",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown",
+      "boarwhere": {
+        "hidden": true
+      },
+      "statuewhere": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 937,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_courtyard_05",
+    "canonical_id": "silvergate_courtyard_44d0a97f3c23f449",
+    "title": "Silvergate, Courtyard",
+    "area": "wl-town",
+    "description": "A magnificent grey stone manor with a crested cornerstone rises into view, light dancing in its windows.  Thick arrays of ivy climb the ancient walls, framing an elegant bronze plaque and a set of tall arched doors.  Flanking the main building, twin towers rise gracefully, providing a striking balance and harmony to the view.  Cushioned silver benches are scattered about the paved courtyard in pools of light shed by wrought iron lamposts.  A high stone wall with an ornate silver gate circles the property.",
+    "exits": {
+      "east": "unknown"
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 945,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_garden_02",
+    "canonical_id": "silvergate_inn_garden_0c38c3722b3ead7c",
+    "title": "Silvergate Inn, Garden",
+    "area": "wl-town",
+    "description": "An ivy-covered wall with a wrought iron gate encloses the garden.  Colorful flower beds border the wide expanse of close-cropped grass which surrounds a small lily pond spanned by a fanciful wrought iron footbridge.  Fireflies glimmer around a graceful wooden arbor covered with silver and white tea roses beside the water.  Several trees are scattered across the lawn, a particularly large one rising near the bridge.  Silvery lions mounted on the stone wall hold glowing, cut-crystal oil lamps.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown"
+    },
+    "features": [
+      "gate",
+      "pond"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 949,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_meadow_01",
+    "canonical_id": "silvergate_inn_meadow_12d7987ec6f5b267",
+    "title": "Silvergate Inn, Meadow",
+    "area": "wl-town",
+    "description": "A soft night breeze rustles the wide expanse of grass enclosed by an ivy-covered stone wall.  Near a large meandering stream, a riverstone path leads to a large wooden dock.  Wrought iron tables and benches are spaced around a brick firepit amid clusters of tall evergreen trees.  A green crystal candle lamp flickers on each table and silvery lions mounted on the wall hold glowing cut crystal oil lamps.  North of the path, hints of color can be spied through the windows of a small copper-framed greenhouse.",
+    "exits": {
+      "west": "unknown"
+    },
+    "features": [
+      "path"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 953,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_inn_garden_03",
+    "canonical_id": "silvergate_inn_garden_0c38c3722b3ead7c",
+    "title": "Silvergate Inn, Garden",
+    "area": "wl-town",
+    "description": "An ivy-covered wall with a wrought iron gate encloses the garden.  Colorful flower beds border the wide expanse of close-cropped grass which surrounds a small lily pond spanned by a fanciful wrought iron footbridge.  Fireflies glimmer around a graceful wooden arbor covered with silver and white tea roses beside the water.  Several trees are scattered across the lawn, a particularly large one rising near the bridge.  Silvery lions mounted on the stone wall hold glowing, cut-crystal oil lamps.",
+    "exits": {
+      "east": "unknown",
+      "west": "unknown",
+      "boarwhere": {
+        "hidden": true
+      }
+    },
+    "features": [
+      "gate",
+      "pond"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 957,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_courtyard_06",
+    "canonical_id": "silvergate_courtyard_44d0a97f3c23f449",
+    "title": "Silvergate, Courtyard",
+    "area": "wl-town",
+    "description": "A magnificent grey stone manor with a crested cornerstone rises into view, light dancing in its windows.  Thick arrays of ivy climb the ancient walls, framing an elegant bronze plaque and a set of tall arched doors.  Flanking the main building, twin towers rise gracefully, providing a striking balance and harmony to the view.  Cushioned silver benches are scattered about the paved courtyard in pools of light shed by wrought iron lamposts.  A high stone wall with an ornate silver gate circles the property.",
+    "exits": {
+      "east": "unknown",
+      "innwhere": {
+        "hidden": true
+      },
+      "door": {
+        "hidden": true
+      }
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 962,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer_12",
+    "canonical_id": "silvergate_foyer_703c2c1894f8207e",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman. The Infamous Mikalmas just went through an ancient oak door. High Lord Shisshio just went through an ancient oak door.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown",
+      "boarwhere": {
+        "hidden": true
+      },
+      "door": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 967,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_courtyard_07",
+    "canonical_id": "silvergate_courtyard_44d0a97f3c23f449",
+    "title": "Silvergate, Courtyard",
+    "area": "wl-town",
+    "description": "A magnificent grey stone manor with a crested cornerstone rises into view, light dancing in its windows.  Thick arrays of ivy climb the ancient walls, framing an elegant bronze plaque and a set of tall arched doors.  Flanking the main building, twin towers rise gracefully, providing a striking balance and harmony to the view.  Cushioned silver benches are scattered about the paved courtyard in pools of light shed by wrought iron lamposts.  A high stone wall with an ornate silver gate circles the property.",
+    "exits": {
+      "east": "unknown",
+      "door": {
+        "hidden": true
+      }
+    },
+    "features": [
+      "gate"
+    ],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 983,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_foyer_13",
+    "canonical_id": "silvergate_foyer_d99e16679b8e57da",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 987,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "type_inventory_help_for_more_options",
+    "canonical_id": "type_inventory_help_for_more_options_df0f8cd8b571a0ec",
+    "title": "Type INVENTORY HELP for more options.",
+    "area": "wl-town",
+    "description": "As a pin: a torn grosgrain bodice (functional) a threadbare dark brown vest (functional) a neat buckskin vest (functional) an enruned orange bandana (nonfunctional) a dashing dark blue vest (functional) Slung over your shoulder: a polished ora buckler (functional) Draped over your shoulders: a rugged russet greatcloak (functional) Over your chest: a snake skin tabard (nonfunctional) a quilled leather tunic (functional) On your back: a neat golden backpack (functional) Attached to your belt: a moth-eaten light yellow satchel (functional) an appliqued velvet sack (functional) a soft buckskin quiver (functional) Pulled over your legs: some mauve wool trousers (nonfunctional) On your feet: a pair of dark red boots (nonfunctional) (16 items displayed) Beloran just went through an ancient oak door.",
+    "exits": {
+      "oak": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 999,
+      "saw_obvious": false
+    }
+  },
+  {
+    "id": "silvergate_foyer_14",
+    "canonical_id": "silvergate_foyer_d99e16679b8e57da",
+    "title": "Silvergate, Foyer",
+    "area": "wl-town",
+    "description": "A polished maoral table holding a bouquet of roses and jasmine rests near the tall arched doors leading to the courtyard.  Damask-covered sofas are arranged neatly around this welcoming lobby.  Silver sconces highlight paintings which decorate the walls, and chandeliers dance with light overhead.  The lobby bustles with life, while a cheerful clerk stands behind a large modwir desk, busily attending to the inn's guests.  To the southwest is an ancient oak door guarded by a footman.",
+    "exits": {
+      "north": "unknown",
+      "south": "unknown",
+      "west": "unknown",
+      "northwest": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 1042,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_grand_ballroom_04",
+    "canonical_id": "silvergate_grand_ballroom_2f699b093d5ccb07",
+    "title": "Silvergate, Grand Ballroom",
+    "area": "wl-town",
+    "description": "Magnificent cut-crystal chandeliers, hung above the gleaming gold-veined marble floor, softly illuminate the ballroom.  Golden silk frames the alcoves lining the west wall.  An exquisite mural covers the remaining walls.  Tucked in each alcove are elegant settees and chairs in conversational groups.  Musicians populate a long mahogany stage carved with gilded lions at each corner.  Tall topiaries stand between alcoves, and liveried servants flank the marble archway to the north, ready to attend guests.",
+    "exits": {
+      "north": "unknown",
+      "door": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [
+      "door"
+    ],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 1046,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_performance_hall_01",
+    "canonical_id": "silvergate_performance_hall_309dd992337f9ad2",
+    "title": "Silvergate, Performance Hall",
+    "area": "wl-town",
+    "description": "Each of the comfortably cushioned seats has an excellent view of the large stage that is the focal point of this room.  Niches along the cream-colored walls are draped with rich gold damask curtains, and the red carpet laid over the oak parquet floor leads to a stage and its nearby podium.  The low ceilings allow even those seated in the back row to hear the performances.",
+    "exits": {
+      "door": {
+        "hidden": true
+      }
+    },
+    "features": [],
+    "static_items": [
+      "door"
+    ],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 1050,
+      "saw_obvious": true
+    }
+  },
+  {
+    "id": "silvergate_grand_ballroom_05",
+    "canonical_id": "silvergate_grand_ballroom_2f699b093d5ccb07",
+    "title": "Silvergate, Grand Ballroom",
+    "area": "wl-town",
+    "description": "Magnificent cut-crystal chandeliers, hung above the gleaming gold-veined marble floor, softly illuminate the ballroom.  Golden silk frames the alcoves lining the west wall.  An exquisite mural covers the remaining walls.  Tucked in each alcove are elegant settees and chairs in conversational groups.  Musicians populate a long mahogany stage carved with gilded lions at each corner.  Tall topiaries stand between alcoves, and liveried servants flank the marble archway to the north, ready to attend guests.",
+    "exits": {
+      "north": "unknown"
+    },
+    "features": [],
+    "static_items": [],
+    "metadata": {
+      "source": "wl-town-lots-of-rooms.Txt",
+      "start_line": 1054,
+      "saw_obvious": true
+    }
+  }
+]

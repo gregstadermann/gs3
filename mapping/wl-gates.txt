@@ -1,0 +1,55 @@
+
+[Wehnimer's, Outside Gate]
+Citizens, merchants and assorted dregs of society jostle against you before the great wooden gates of Wehnimer's Landing.  Harried guards and militiamen try to keep the chaos to a minimum, but it is hard to keep track of those entering, let alone leaving, this large trading post.  A dirt path encircling the wooden palisade of the town leads east and southwest.  Nailed prominently to the wooden wall beside the gate is a sign you really should read.  You also see the Wayside inn.
+Obvious paths: north, east, southwest, northwest
+>sw
+[Wehnimer's, Exterior]
+You are standing at the northwest corner of the Landing.  The path, which bends to the northeast as it moves along this section of the western wall of the fortified trading post.  To the west can be seen a dark forest while to the south can be seen a rolling plain of high grasses.  You also see a tall wooden archery tower and a cobblestoned trail leading to a wooded glade.
+Obvious paths: northeast, south, west
+>s
+[Wehnimer's, Exterior]
+As you progress on this north-south path, the dark forest to the west catches your eye.  A little forbidding in its primeval appearance, it is sure to offer a good source of small-game hunting.  You also see a mottled rolton hide tent.
+Obvious paths: north, south, west
+>s
+[Wehnimer's, Exterior]
+The muted sounds of loud bartering from within Wehnimer's Landing, and the lonely calls of a pair of mated fenvaoks high up in the air vie for your attention as you march along the outer western edge of the town.  You also see a rolton, a vacillating will-o-wisp spirit that is flying around, a town guard, a tall wooden archery tower and a reinforced large wooden gate.
+Obvious paths: north, south
+>s
+[Wehnimer's, Exterior]
+To the west, the landscape is gradually changing from a thick dark forest to an open, green grassy plain.  You also see a rolton, a weathered canvas tent and a reinforced wooden defense tower.
+Obvious paths: north, south
+>s
+[Wehnimer's, Exterior]
+Clear grassland stretches far to the southwest, a futile lesson in the immensity of Elanith.  To the northwest, the grassy plain gives way to a smattering of pines that dot the landscape.  Immediately east of you looms the high wooden wall of the Landing which provides you with a sense of security against all the unknown things that may lurk in plain and forest alike.
+Obvious paths: north, south
+>s
+[Wehnimer's, Exterior]
+As you stand next to the southwest corner of the Landing, you have an unobstructed view of the plain.  Some distance away you can make out the vague figures of shepherdesses tending their flocks of Rolton -- sheep indigenous to the region.  Further south the grassy expanse turns hilly, eventually terminating in stark mountains that line the horizon.  You also see a wooden signpost.
+Obvious paths: north, southeast, southwest
+>se
+[Wehnimer's, Exterior]
+The dirt path bends around the southwest corner of the landing.  Far to the east, you can see a thin blue line that must be the river.  You also see a heap of splintered timbers and torn hide, a white silk ribbon and a rolton skeleton.
+Obvious paths: east, northwest
+>e
+[Wehnimer's, Exterior]
+Through a crack in the wooden palisade to the north, you can see the bustling traffic of Wehnimer.  It is a stark contrast to the open path that you walk.
+Obvious paths: east, west
+>e
+[Wehnimer's, Exterior]
+You are standing on the western shore of the Locksmehr River.  From here you can see the southern water entrance to the town of Wehnimer's Landing.  It is through this entrance that the boats returning from their upstream sojourns to the south have access to the town.  A rough trail descends a rocky slope toward a stand of willow trees.  You also see a rolton, a wooden sign and a sturdy bridge.
+Obvious paths: west
+>w
+[Wehnimer's, Exterior]
+Through a crack in the wooden palisade to the north, you can see the bustling traffic of Wehnimer.  It is a stark contrast to the open path that you walk.
+Obvious paths: east, west
+>stance dYou are now in a defensive stance.
+>invYou are holding a poplar-hafted ora war hammer in your right hand.
+You are wearing a torn grosgrain bodice (tucked), some vermilion gloves, a moth-eaten light yellow satchel, a snake skin tabard, a pair of dark red boots, a threadbare dark brown vest, an appliqued velvet sack, a soft buckskin quiver, a neat buckskin vest, a neat golden backpack, an enruned orange bandana, some mauve wool trousers, a dashing dark blue vest, a rugged russet greatcloak, a quilled leather tunic, and a polished ora buckler.
+
+[Type INVENTORY HELP for more options.]
+>rem shieRemove what?
+>rem buckYou sling a polished ora buckler off from over your shoulder.
+>e
+[Wehnimer's, Exterior]
+You are standing on the western shore of the Locksmehr River.  From here you can see the southern water entrance to the town of Wehnimer's Landing.  It is through this entrance that the boats returning from their upstream sojourns to the south have access to the town.  A rough trail descends a rocky slope toward a stand of willow trees.  You also see a rolton, a wooden sign and a sturdy bridge.
+Obvious paths: west

@@ -1,6 +1,6 @@
 'use strict';
 
-const databaseManager = require('../adapters/db/mongoClient');
+const databaseManager = require('../db/mongoClient');
 
 /**
  * Import Critical Hit Tables into MongoDB
@@ -17,15 +17,15 @@ async function importCriticalTables() {
     // Clear existing data (optional - comment out if you want to preserve)
     await critsCollection.deleteMany({});
 
-    const slashCriticals = require('../data/crit_tables/slash-criticals-json');
-    const crushCriticals = require('../data/crit_tables/crush-criticals-json');
-    const punctureCriticals = require('../data/crit_tables/puncture-criticals-json');
-    const lightningCriticals = require('../data/crit_tables/lightning-criticals-json');
-    const impactCriticals = require('../data/crit_tables/impact-criticals-json');
-    const fireCriticals = require('../data/crit_tables/fire-criticals-json');
-    const noncorporealCriticals = require('../data/crit_tables/noncorporeal-criticals-json');
-    const coldCriticals = require('../data/crit_tables/cold-criticals-json');
-    const grappleCriticals = require('../data/crit_tables/grapple-criticals-json');
+    const slashCriticals = require('../../data/crit_tables/slash-criticals-json');
+    const crushCriticals = require('../../data/crit_tables/crush-criticals-json');
+    const punctureCriticals = require('../../data/crit_tables/puncture-criticals-json');
+    const lightningCriticals = require('../../data/crit_tables/lightning-criticals-json');
+    const impactCriticals = require('../../data/crit_tables/impact-criticals-json');
+    const fireCriticals = require('../../data/crit_tables/fire-criticals-json');
+    const noncorporealCriticals = require('../../data/crit_tables/noncorporeal-criticals-json');
+    const coldCriticals = require('../../data/crit_tables/cold-criticals-json');
+    const grappleCriticals = require('../../data/crit_tables/grapple-criticals-json');
 
     console.log('Importing slash criticals...');
     

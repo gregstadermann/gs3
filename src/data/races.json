@@ -1,0 +1,237 @@
+{
+  "human": {
+    "name": "Human",
+    "baseWeight": 90,
+    "bodyFactor": 0.90,
+    "encumbranceFactor": 1.00,
+    "statModifiers": {
+      "strength": 5,
+      "constitution": 0,
+      "dexterity": 0,
+      "agility": 0,
+      "discipline": 0,
+      "aura": 0,
+      "logic": 5,
+      "intelligence": 5,
+      "wisdom": 0,
+      "charisma": 0
+    }
+  },
+  "elf": {
+    "name": "Elf",
+    "baseWeight": 70,
+    "bodyFactor": 0.70,
+    "encumbranceFactor": 0.78,
+    "statModifiers": {
+      "strength": 0,
+      "constitution": 0,
+      "dexterity": 5,
+      "agility": 15,
+      "discipline": -15,
+      "aura": 5,
+      "logic": 0,
+      "intelligence": 0,
+      "wisdom": 0,
+      "charisma": 10
+    }
+  },
+  "dark_elf": {
+    "name": "Dark Elf",
+    "baseWeight": 77.6667,
+    "bodyFactor": 0.7767,
+    "encumbranceFactor": 0.84,
+    "statModifiers": {
+      "strength": 0,
+      "constitution": -5,
+      "dexterity": 10,
+      "agility": 5,
+      "discipline": -10,
+      "aura": 10,
+      "logic": 0,
+      "intelligence": 5,
+      "wisdom": 5,
+      "charisma": -5
+    }
+  },
+  "dwarf": {
+    "name": "Dwarf",
+    "baseWeight": 77.6667,
+    "bodyFactor": 0.7767,
+    "encumbranceFactor": 0.80,
+    "statModifiers": {
+      "strength": 10,
+      "constitution": 15,
+      "dexterity": 0,
+      "agility": -5,
+      "discipline": 10,
+      "aura": -10,
+      "logic": 5,
+      "intelligence": 0,
+      "wisdom": 0,
+      "charisma": -10
+    }
+  },
+  "giantman": {
+    "name": "Giantman",
+    "baseWeight": 120,
+    "bodyFactor": 1.20,
+    "encumbranceFactor": 1.33,
+    "statModifiers": {
+      "strength": 15,
+      "constitution": 10,
+      "dexterity": -5,
+      "agility": -5,
+      "discipline": 0,
+      "aura": -5,
+      "logic": -5,
+      "intelligence": 0,
+      "wisdom": 0,
+      "charisma": 5
+    }
+  },
+  "halfling": {
+    "name": "Halfling",
+    "baseWeight": 45.3333,
+    "bodyFactor": 0.4533,
+    "encumbranceFactor": 0.50,
+    "statModifiers": {
+      "strength": -15,
+      "constitution": 10,
+      "dexterity": 15,
+      "agility": 10,
+      "discipline": -5,
+      "aura": -5,
+      "logic": 5,
+      "intelligence": 10,
+      "wisdom": 0,
+      "charisma": -5
+    }
+  },
+  "half_elf": {
+    "name": "Half-Elf",
+    "baseWeight": 82.3333,
+    "bodyFactor": 0.8233,
+    "encumbranceFactor": 0.92,
+    "statModifiers": {
+      "strength": 0,
+      "constitution": 0,
+      "dexterity": 5,
+      "agility": 10,
+      "discipline": -5,
+      "aura": 0,
+      "logic": 0,
+      "intelligence": 0,
+      "wisdom": 0,
+      "charisma": 5
+    }
+  },
+  "burghal_gnome": {
+    "name": "Burghal Gnome",
+    "baseWeight": 40,
+    "bodyFactor": 0.40,
+    "encumbranceFactor": 0.50,
+    "statModifiers": {
+      "strength": -15,
+      "constitution": 5,
+      "dexterity": 10,
+      "agility": 5,
+      "discipline": 5,
+      "aura": 10,
+      "logic": 10,
+      "intelligence": 0,
+      "wisdom": 0,
+      "charisma": -10
+    }
+  },
+  "forest_gnome": {
+    "name": "Forest Gnome",
+    "baseWeight": 47.6667,
+    "bodyFactor": 0.4767,
+    "encumbranceFactor": 0.60,
+    "statModifiers": {
+      "strength": -15,
+      "constitution": 10,
+      "dexterity": 5,
+      "agility": 10,
+      "discipline": 0,
+      "aura": 5,
+      "logic": 10,
+      "intelligence": 0,
+      "wisdom": 5,
+      "charisma": -10
+    }
+  },
+  "sylvankind": {
+    "name": "Sylvankind",
+    "baseWeight": 72.3333,
+    "bodyFactor": 0.7233,
+    "encumbranceFactor": 0.81,
+    "statModifiers": {
+      "strength": -5,
+      "constitution": 0,
+      "dexterity": 5,
+      "agility": 10,
+      "discipline": -10,
+      "aura": 10,
+      "logic": 0,
+      "intelligence": 0,
+      "wisdom": 5,
+      "charisma": 0
+    }
+  },
+  "half_krolvin": {
+    "name": "Half-Krolvin",
+    "baseWeight": 100,
+    "bodyFactor": 1.00,
+    "encumbranceFactor": 1.10,
+    "statModifiers": {
+      "strength": 10,
+      "constitution": 10,
+      "dexterity": 0,
+      "agility": 0,
+      "discipline": 5,
+      "aura": -5,
+      "logic": 0,
+      "intelligence": 0,
+      "wisdom": 0,
+      "charisma": -15
+    }
+  },
+  "aelotoi": {
+    "name": "Aelotoi",
+    "baseWeight": 67.6667,
+    "bodyFactor": 0.6767,
+    "encumbranceFactor": 0.75,
+    "statModifiers": {
+      "strength": 0,
+      "constitution": 0,
+      "dexterity": 10,
+      "agility": 5,
+      "discipline": 0,
+      "aura": 0,
+      "logic": 5,
+      "intelligence": 0,
+      "wisdom": 5,
+      "charisma": 0
+    }
+  },
+  "erithian": {
+    "name": "Erithian",
+    "baseWeight": 72.3333,
+    "bodyFactor": 0.7233,
+    "encumbranceFactor": 0.85,
+    "statModifiers": {
+      "strength": 0,
+      "constitution": -5,
+      "dexterity": 5,
+      "agility": 5,
+      "discipline": 0,
+      "aura": 5,
+      "logic": 10,
+      "intelligence": 0,
+      "wisdom": 5,
+      "charisma": 0
+    }
+  }
+}
+

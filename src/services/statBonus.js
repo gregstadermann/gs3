@@ -1,130 +1,91 @@
 'use strict';
 
 /**
- * Stat Bonus Calculator
+ * Stat Bonus Service - Pure Deterministic Functions
  * Calculates stat bonuses using the formula: ⌊(RawStat - 50)/2⌋ + RaceModifier
  */
 
-const RACE_MODIFIERS = {
-  // Physical stats: STR, CON, DEX, AGI
-  // Mental stats: DIS, AUR, LOG, INT, WIS, CHA
-  
-  human: {
-    strength: 5,
-    constitution: 0,
-    dexterity: 0,
-    agility: 0,
-    discipline: 0,
-    aura: 0,
-    logic: 5,
-    intelligence: 5,
-    wisdom: 0,
-    charisma: 0
-  },
-  
-  elf: {
-    strength: 0,
-    constitution: 0,
-    dexterity: 5,
-    agility: 15,
-    discipline: -15,
-    aura: 5,
-    logic: 0,
-    intelligence: 0,
-    wisdom: 0,
-    charisma: 10
-  },
-  
-  dark_elf: {
-    strength: 0,
-    constitution: -5,
-    dexterity: 10,
-    agility: 5,
-    discipline: -10,
-    aura: 10,
-    logic: 0,
-    intelligence: 5,
-    wisdom: 5,
-    charisma: -5
-  },
-  
-  dwarf: {
-    strength: 10,
-    constitution: 15,
-    dexterity: 0,
-    agility: -5,
-    discipline: 10,
-    aura: -10,
-    logic: 5,
-    intelligence: 0,
-    wisdom: 0,
-    charisma: -10
-  },
-  
-  giantman: {
-    strength: 15,
-    constitution: 10,
-    dexterity: -5,
-    agility: -5,
-    discipline: 0,
-    aura: -5,
-    logic: -5,
-    intelligence: 0,
-    wisdom: 0,
-    charisma: 5
-  },
-  
-  halfling: {
-    strength: -15,
-    constitution: 10,
-    dexterity: 15,
-    agility: 10,
-    discipline: -5,
-    aura: -5,
-    logic: 5,
-    intelligence: 10,
-    wisdom: 0,
-    charisma: -5
-  },
-  
-  half_elf: {
-    strength: 0,
-    constitution: 0,
-    dexterity: 5,
-    agility: 10,
-    discipline: -5,
-    aura: 0,
-    logic: 0,
-    intelligence: 0,
-    wisdom: 0,
-    charisma: 5
-  }
-};
-
-/**
- * Get race bonus for a stat
- */
-function getRaceBonus(race, statName) {
-  const raceKey = race ? race.toLowerCase().replace(/[-\s]/g, '_') : 'human';
-  const modifiers = RACE_MODIFIERS[raceKey] || RACE_MODIFIERS.human;
-  return modifiers[statName] || 0;
-}
+const races = require('../data/races.json');
 
 /**
  * Calculate stat bonus using formula: ⌊(RawStat - 50)/2⌋ + RaceModifier
+ * @param {string} raceKey - Race identifier (e.g., 'human', 'elf', 'dark_elf')
+ * @param {string} statName - Stat name (e.g., 'strength', 'intelligence')
+ * @param {number} rawStat - Raw stat value
+ * @returns {number} Calculated stat bonus
  */
-function calculateStatBonus(rawStat, race, statName) {
-  const baseBonus = Math.floor((rawStat - 50) / 2);
-  const raceBonus = getRaceBonus(race, statName);
-  return baseBonus + raceBonus;
+function statBonus(raceKey, statName, rawStat) {
+  const race = races[raceKey] || races['human'];
+  const baseStat = Math.floor((rawStat - 50) / 2);
+  const raceMod = race.statModifiers?.[statName] ?? 0;
+  return baseStat + raceMod;
 }
 
 /**
- * Get all stat bonuses for a character
+ * Get race modifier for a specific stat
+ * @param {string} raceKey - Race identifier
+ * @param {string} statName - Stat name
+ * @returns {number} Race modifier for the stat
  */
-function getAllStatBonuses(character) {
-  const race = character.race || 'human';
+function raceModifier(raceKey, statName) {
+  const race = races[raceKey] || races['human'];
+  return race.statModifiers?.[statName] ?? 0;
+}
+
+/**
+ * Normalize race key (convert display names to keys)
+ * @param {string} raceName - Race name or key
+ * @returns {string} Normalized race key
+ */
+function normalizeRaceKey(raceName) {
+  if (!raceName) return 'human';
+  
+  // Convert to lowercase and replace spaces/hyphens with underscores
+  const normalized = raceName.toLowerCase().replace(/[-\s]/g, '_');
+  
+  // Check if it exists in races
+  if (races[normalized]) return normalized;
+  
+  // Fallback to human
+  return 'human';
+}
+
+/**
+ * Get all stat bonuses for given raw stats
+ * @param {string} raceKey - Race identifier
+ * @param {Object} rawStats - Object with raw stat values
+ * @returns {Object} Object with calculated stat bonuses
+ */
+function allStatBonuses(raceKey, rawStats) {
+  const statNames = [
+    'strength', 'constitution', 'dexterity', 'agility',
+    'discipline', 'aura', 'logic', 'intelligence', 
+    'wisdom', 'charisma'
+  ];
+  
   const bonuses = {};
+  for (const statName of statNames) {
+    const rawStat = rawStats[statName] ?? 50;
+    bonuses[statName] = statBonus(raceKey, statName, rawStat);
+  }
+  
+  return bonuses;
+}
+
+// Legacy wrapper functions for backward compatibility
+function calculateStatBonus(rawStat, race, statName) {
+  const raceKey = normalizeRaceKey(race);
+  return statBonus(raceKey, statName, rawStat);
+}
+
+function getRaceBonus(race, statName) {
+  const raceKey = normalizeRaceKey(race);
+  return raceModifier(raceKey, statName);
+}
+
+function getAllStatBonuses(character) {
+  const raceKey = normalizeRaceKey(character.race);
+  const rawStats = {};
   
   const statNames = [
     'strength', 'constitution', 'dexterity', 'agility',
@@ -133,16 +94,12 @@ function getAllStatBonuses(character) {
   ];
   
   for (const statName of statNames) {
-    const rawStat = getRawStat(character, statName);
-    bonuses[statName] = calculateStatBonus(rawStat, race, statName);
+    rawStats[statName] = getRawStat(character, statName);
   }
   
-  return bonuses;
+  return allStatBonuses(raceKey, rawStats);
 }
 
-/**
- * Get raw stat value
- */
 function getRawStat(character, statName) {
   if (!character.attributes || !character.attributes[statName]) {
     return 50; // Default value
@@ -157,9 +114,15 @@ function getRawStat(character, statName) {
 }
 
 module.exports = {
+  // Pure API
+  statBonus,
+  raceModifier,
+  normalizeRaceKey,
+  allStatBonuses,
+  
+  // Legacy API (for backward compatibility)
   calculateStatBonus,
   getRaceBonus,
   getAllStatBonuses,
   getRawStat
 };
-

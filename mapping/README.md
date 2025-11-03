@@ -77,7 +77,11 @@ Save this as `logs/my-area.txt`
 
 ```bash
 cd ..
+# First import (replace mode)
 node src/adapters/importers/import-rooms.js mapping/output/my-area.json wl-myarea
+
+# OR for incremental mapping (merge mode)
+node src/adapters/importers/import-rooms.js mapping/output/my-area.json wl-myarea --merge
 ```
 
 **What this does**:
@@ -85,6 +89,10 @@ node src/adapters/importers/import-rooms.js mapping/output/my-area.json wl-myare
 - Uses repository pattern for clean DB access
 - Creates indexes
 - Stores in MongoDB
+
+**Modes**:
+- **Default**: Replaces existing rooms completely
+- **--merge**: Adds new exits to existing rooms (incremental mapping)
 
 ---
 
@@ -306,13 +314,39 @@ Manually remove before parsing:
 - Obvious paths/exits
 - Movement commands: `>direction`
 
+### Incremental Mapping (Multiple Sessions)
+
+For areas explored over multiple sessions:
+
+```bash
+# First session - explore north side
+./room_importer.py logs/session1.txt wl-town -o output/session1.json
+node ../src/adapters/importers/import-rooms.js output/session1.json wl-town
+
+# Second session - explore east side (overlaps with session 1)
+./room_importer.py logs/session2.txt wl-town -o output/session2.json
+node ../src/adapters/importers/import-rooms.js output/session2.json wl-town --merge
+
+# Third session - explore west side
+./room_importer.py logs/session3.txt wl-town -o output/session3.json
+node ../src/adapters/importers/import-rooms.js output/session3.json wl-town --merge
+```
+
+**Benefits of Merge Mode**:
+- ✅ Preserves existing exits
+- ✅ Adds newly discovered exits
+- ✅ Builds complete map over time
+- ✅ No data loss
+
+See `../docs/INCREMENTAL_MAPPING.md` for detailed guide.
+
 ### Handling Large Areas
 
 For areas with 100+ rooms:
-1. Break into logical sections
+1. Break into logical sections (north, east, south, west)
 2. Parse each section separately
-3. Import all sections with same area ID
-4. MongoDB will merge them automatically
+3. Import with `--merge` flag (except first import)
+4. Gradually build complete map
 
 ### Verifying Imports
 

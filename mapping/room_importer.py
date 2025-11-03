@@ -2,6 +2,17 @@
 """
 GS3 Room Importer - Complete Pipeline
 Parses, links, and prepares rooms from movement logs for MongoDB import.
+
+Features:
+- Canonical ID deduplication (hash of title + description)
+- Bidirectional exit linking
+- Self-loop detection and prevention
+- Direction validation (only valid ordinals: n, s, e, w, ne, nw, se, sw, up, down, out)
+- Runtime state exclusion ("You also see..." stripped from descriptions)
+- Automatic feature extraction (gates, paths, towers, etc.)
+
+Note: Non-ordinal exits (go gate, go door, climb ladder) will be added in future iteration.
+      Current version only handles standard movement directions.
 """
 
 import re
@@ -11,7 +22,14 @@ from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass, asdict
 from pathlib import Path
 
-# Direction mappings
+# Valid ordinal directions (SSOT)
+VALID_ORDINALS = {
+    'north', 'south', 'east', 'west',
+    'northeast', 'southeast', 'northwest', 'southwest',
+    'up', 'down', 'out'
+}
+
+# Direction abbreviations
 DIRECTION_ABBREV = {
     'n': 'north', 's': 'south', 'e': 'east', 'w': 'west',
     'ne': 'northeast', 'se': 'southeast', 'nw': 'northwest', 'sw': 'southwest',
@@ -26,6 +44,11 @@ REVERSE_DIRECTION = {
     'up': 'down', 'down': 'up',
     'out': 'out'
 }
+
+def is_valid_direction(direction: str) -> bool:
+    """Check if direction is a valid ordinal direction"""
+    normalized = DIRECTION_ABBREV.get(direction, direction)
+    return normalized in VALID_ORDINALS
 
 @dataclass
 class Room:
@@ -120,6 +143,13 @@ class RoomParser:
             move_match = re.match(r'^>([a-z]+)$', line, re.IGNORECASE)
             if move_match:
                 direction = move_match.group(1).lower()
+                
+                # Validate direction
+                if not is_valid_direction(direction):
+                    print(f"  ⚠️  Skipping invalid direction: '{direction}' (typo or non-ordinal)")
+                    i += 1
+                    continue
+                
                 # Normalize abbreviations
                 last_direction = DIRECTION_ABBREV.get(direction, direction)
                 i += 1
@@ -221,6 +251,11 @@ class RoomParser:
             current_room = self.rooms[current_canonical_id]
             reverse_dir = REVERSE_DIRECTION.get(direction_used)
             
+            # Validate direction before linking
+            if not is_valid_direction(direction_used):
+                print(f"  ⚠️  Skipping invalid exit: {current_room.title} --[{direction_used}]--> (invalid)")
+                continue
+            
             print(f"  {current_room.title} --[{direction_used}]--> {prev_room.title}")
             
             # Forward link: current_room -> prev_room (using direction_used)
@@ -233,7 +268,7 @@ class RoomParser:
                 })
             
             # Reverse link: prev_room -> current_room (using reverse direction)
-            if reverse_dir:
+            if reverse_dir and is_valid_direction(reverse_dir):
                 exit_exists = any(e['direction'] == reverse_dir for e in prev_room.exits)
                 if not exit_exists:
                     print(f"  {prev_room.title} --[{reverse_dir}]--> {current_room.title}")

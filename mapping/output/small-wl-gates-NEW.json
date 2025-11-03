@@ -1,0 +1,136 @@
+[
+  {
+    "id": "wehnimer_s_outside_gate_4e0949b5e6b69678",
+    "fullId": "wl-gates:wehnimer_s_outside_gate_4e0949b5e6b69678",
+    "areaId": "wl-gates",
+    "title": "Wehnimer's, Outside Gate",
+    "description": "Citizens, merchants and assorted dregs of society jostle against you before the great wooden gates of Wehnimer's Landing.  Harried guards and militiamen try to keep the chaos to a minimum, but it is hard to keep track of those entering, let alone leaving, this large trading post.  A dirt path encircling the wooden palisade of the town leads east and southwest.  Nailed prominently to the wooden wall beside the gate is a sign you really should read.  You also see the Wayside inn.",
+    "canonical_id": "wehnimer_s_outside_gate_4e0949b5e6b69678",
+    "exits": [
+      {
+        "direction": "southwest",
+        "roomId": "wehnimer_s_exterior_df3fc3961704110e"
+      }
+    ],
+    "features": [
+      "wall",
+      "path",
+      "sign",
+      "gate"
+    ],
+    "items": [],
+    "metadata": {
+      "importedAt": null,
+      "originalFormat": "movement-log",
+      "source": null
+    }
+  },
+  {
+    "id": "wehnimer_s_exterior_df3fc3961704110e",
+    "fullId": "wl-gates:wehnimer_s_exterior_df3fc3961704110e",
+    "areaId": "wl-gates",
+    "title": "Wehnimer's, Exterior",
+    "description": "You are standing at the northwest corner of the Landing.  The path, which bends to the northeast as it moves along this section of the western wall of the fortified trading post.  To the west can be seen a dark forest while to the south can be seen a rolling plain of high grasses.  You also see a tall wooden archery tower and a cobblestoned trail leading to a wooded glade.",
+    "canonical_id": "wehnimer_s_exterior_df3fc3961704110e",
+    "exits": [
+      {
+        "direction": "northeast",
+        "roomId": "wehnimer_s_outside_gate_4e0949b5e6b69678"
+      },
+      {
+        "direction": "south",
+        "roomId": "wehnimer_s_exterior_f3bc2652e48388a7"
+      }
+    ],
+    "features": [
+      "wall",
+      "path",
+      "tower",
+      "trail"
+    ],
+    "items": [],
+    "metadata": {
+      "importedAt": null,
+      "originalFormat": "movement-log",
+      "source": null
+    }
+  },
+  {
+    "id": "wehnimer_s_exterior_f3bc2652e48388a7",
+    "fullId": "wl-gates:wehnimer_s_exterior_f3bc2652e48388a7",
+    "areaId": "wl-gates",
+    "title": "Wehnimer's, Exterior",
+    "description": "As you progress on this north-south path, the dark forest to the west catches your eye.  A little forbidding in its primeval appearance, it is sure to offer a good source of small-game hunting.  You also see a mottled rolton hide tent.",
+    "canonical_id": "wehnimer_s_exterior_f3bc2652e48388a7",
+    "exits": [
+      {
+        "direction": "north",
+        "roomId": "wehnimer_s_exterior_df3fc3961704110e"
+      },
+      {
+        "direction": "south",
+        "roomId": "wehnimer_s_exterior_991fefc4a2a2970e"
+      }
+    ],
+    "features": [
+      "path"
+    ],
+    "items": [],
+    "metadata": {
+      "importedAt": null,
+      "originalFormat": "movement-log",
+      "source": null
+    }
+  },
+  {
+    "id": "wehnimer_s_exterior_991fefc4a2a2970e",
+    "fullId": "wl-gates:wehnimer_s_exterior_991fefc4a2a2970e",
+    "areaId": "wl-gates",
+    "title": "Wehnimer's, Exterior",
+    "description": "The muted sounds of loud bartering from within Wehnimer's Landing, and the lonely calls of a pair of mated fenvaoks high up in the air vie for your attention as you march along the outer western edge of the town.  You also see a rolton, a vacillating will-o-wisp spirit that is flying around, a town guard, a tall wooden archery tower and a reinforced large wooden gate.",
+    "canonical_id": "wehnimer_s_exterior_991fefc4a2a2970e",
+    "exits": [
+      {
+        "direction": "north",
+        "roomId": "wehnimer_s_exterior_f3bc2652e48388a7"
+      },
+      {
+        "direction": "south",
+        "roomId": "wehnimer_s_exterior_f0f9e6f200465daf"
+      }
+    ],
+    "features": [
+      "tower",
+      "gate"
+    ],
+    "items": [],
+    "metadata": {
+      "importedAt": null,
+      "originalFormat": "movement-log",
+      "source": null
+    }
+  },
+  {
+    "id": "wehnimer_s_exterior_f0f9e6f200465daf",
+    "fullId": "wl-gates:wehnimer_s_exterior_f0f9e6f200465daf",
+    "areaId": "wl-gates",
+    "title": "Wehnimer's, Exterior",
+    "description": "To the west, the landscape is gradually changing from a thick dark forest to an open, green grassy plain.  You also see a rolton, a weathered canvas tent and a reinforced wooden defense tower.",
+    "canonical_id": "wehnimer_s_exterior_f0f9e6f200465daf",
+    "exits": [
+      {
+        "direction": "north",
+        "roomId": "wehnimer_s_exterior_991fefc4a2a2970e"
+      }
+    ],
+    "features": [
+      "tower"
+    ],
+    "items": [],
+    "metadata": {
+      "importedAt": null,
+      "originalFormat": "movement-log",
+      "source": null
+    }
+  }
+]

@@ -15,11 +15,15 @@ class RoomRepository extends BaseRepository {
 
   /**
    * Find room by full ID (area:roomId)
-   * @param {string} fullId - Full room reference
+   * @param {string} fullId - Full room reference (areaId:roomId)
    * @returns {Promise<Object|null>} Room document
    */
   async findByFullId(fullId) {
-    const result = await this.collection.findOne({ fullId });
+    const [areaId, roomId] = fullId.split(':');
+    if (!areaId || !roomId) {
+      throw new Error(`Invalid fullId format: ${fullId}. Expected "areaId:roomId"`);
+    }
+    const result = await this.collection.findOne({ areaId, id: roomId });
     return this._sanitize(result);
   }
 
@@ -150,13 +154,17 @@ class RoomRepository extends BaseRepository {
 
   /**
    * Update room exits
-   * @param {string} fullId - Full room ID
+   * @param {string} fullId - Full room ID (areaId:roomId)
    * @param {Array} exits - New exits array
    * @returns {Promise<Object>} Updated room
    */
   async updateExits(fullId, exits) {
+    const [areaId, roomId] = fullId.split(':');
+    if (!areaId || !roomId) {
+      throw new Error(`Invalid fullId format: ${fullId}. Expected "areaId:roomId"`);
+    }
     return await this.collection.findOneAndUpdate(
-      { fullId },
+      { areaId, id: roomId },
       { $set: { exits } },
       { returnDocument: 'after' }
     ).then(result => this._sanitize(result.value));

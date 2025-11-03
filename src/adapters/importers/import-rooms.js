@@ -53,15 +53,21 @@ async function importRooms(jsonFilePath, areaId) {
     
     for (const room of rooms) {
       try {
-        // Transform exits: convert {"direction": "target_id"} to [{direction, roomId}]
-        const exits = [];
-        for (const [direction, target] of Object.entries(room.exits)) {
-          if (typeof target === 'object' && target.hidden) {
-            // Hidden exit without target
-            exits.push({ direction, roomId: 'unknown', hidden: true });
-          } else if (typeof target === 'string') {
-            // Normal exit with target room ID (just the slug, or "unknown")
-            exits.push({ direction, roomId: target });
+        // Transform exits: handle both object and array formats
+        let exits = [];
+        if (Array.isArray(room.exits)) {
+          // Already in array format [{direction, roomId}] - use as-is
+          exits = room.exits;
+        } else if (typeof room.exits === 'object') {
+          // Object format {"direction": "target_id"} - convert to array
+          for (const [direction, target] of Object.entries(room.exits)) {
+            if (typeof target === 'object' && target.hidden) {
+              // Hidden exit without target
+              exits.push({ direction, roomId: 'unknown', hidden: true });
+            } else if (typeof target === 'string') {
+              // Normal exit with target room ID (just the slug, or "unknown")
+              exits.push({ direction, roomId: target });
+            }
           }
         }
         

@@ -13,14 +13,6 @@ const ROOM_SCHEMA = {
     description: 'Room slug (e.g., town_square_central)'
   },
 
-  // Composite unique ID
-  fullId: {
-    type: String,
-    required: true,
-    unique: true,
-    index: true,
-    description: 'Full room reference: areaId:id'
-  },
 
   // Area reference
   areaId: {
@@ -94,8 +86,7 @@ const ROOM_SCHEMA = {
  * Index definitions
  */
 const ROOM_INDEXES = [
-  { keys: { fullId: 1 }, options: { unique: true } },
-  { keys: { areaId: 1, id: 1 }, options: {} },
+  { keys: { areaId: 1, id: 1 }, options: { unique: true } },
   { keys: { canonical_id: 1 }, options: { sparse: true } },
   { keys: { title: 'text', description: 'text' }, options: {} }
 ];

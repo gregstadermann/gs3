@@ -4,7 +4,7 @@ GS3 Room Importer - Complete Pipeline
 Parses, links, and prepares rooms from movement logs for MongoDB import.
 
 Features:
-- Canonical ID deduplication (hash of title + description)
+- Canonical ID extraction from unique room identifiers (u7003, etc.)
 - Bidirectional exit linking
 - Self-loop detection and prevention
 - Direction validation (only valid ordinals: n, s, e, w, ne, nw, se, sw, up, down, out)
@@ -17,7 +17,6 @@ Note: Non-ordinal exits (go gate, go door, climb ladder) will be added in future
 
 import re
 import json
-import hashlib
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass, asdict
 from pathlib import Path
@@ -87,25 +86,12 @@ class RoomParser:
         self.rooms: Dict[str, Room] = {}  # canonical_id -> Room
         self.room_sequence: List[Tuple[str, Optional[str]]] = []  # [(canonical_id, direction_used)]
         
-    def compute_canonical_id(self, title: str, description: str) -> str:
-        """Generate canonical ID from title and description"""
-        # Clean description (remove "You also see..." part)
-        desc_clean = re.sub(r'\.\s+You also see\s+.+?\.?\s*$', '.', description, flags=re.IGNORECASE)
-        desc_clean = re.sub(r'\s+', ' ', desc_clean.strip())
-        
-        # Create hash
-        h = hashlib.sha1()
-        h.update(title.strip().encode('utf-8'))
-        h.update(b"|")
-        h.update(desc_clean.encode('utf-8'))
-        hash_suffix = h.hexdigest()[:16]
-        
-        # Create slug from title
-        slug = title.lower()
-        slug = re.sub(r"[^a-z0-9]+", "_", slug)
-        slug = slug.strip('_')
-        
-        return f"{slug}_{hash_suffix}"
+    def extract_unique_id(self, header_line: str) -> Optional[str]:
+        """Extract unique ID from room header like '[Room Title] (u7003)'"""
+        match = re.search(r'\(u(\d+)\)', header_line)
+        if match:
+            return f"u{match.group(1)}"
+        return None
     
     def extract_features(self, description: str) -> List[str]:
         """Extract notable features from description"""
@@ -166,10 +152,24 @@ class RoomParser:
                 i += 1
                 continue
             
-            # Check for room header [Room Title]
-            header_match = re.match(r'^\[(.+?)\]$', line)
+            # Check for room header [Room Title] (u7003) or [Room Title - 228] (u7120)
+            header_match = re.match(r'^\[(.+?)\]\s*(\([^)]+\))?', line)
             if header_match:
-                title = header_match.group(1)
+                full_title = header_match.group(1)
+                unique_id_part = header_match.group(2)  # e.g., "(u7003)"
+                
+                # Extract the unique ID from the parenthetical
+                canonical_id = None
+                if unique_id_part:
+                    canonical_id = self.extract_unique_id(unique_id_part)
+                
+                # If no unique ID found, skip this room
+                if not canonical_id:
+                    print(f"  ⚠️  Skipping room without unique ID: {line.strip()}")
+                    i += 1
+                    continue
+                
+                title = full_title
                 
                 # Collect description (until "Obvious paths:" or next room/command)
                 description_lines = []
@@ -216,10 +216,7 @@ class RoomParser:
                 description = re.sub(r'\.\s+You also see\s+.+?\.?\s*$', '.', description, flags=re.IGNORECASE)
                 description = description.strip()
                 
-                # Compute canonical ID
-                canonical_id = self.compute_canonical_id(title, description)
-                
-                # Create or update room
+                # Create or update room (canonical_id was already extracted above)
                 if canonical_id not in self.rooms:
                     features = self.extract_features(description)
                     

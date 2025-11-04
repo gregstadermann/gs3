@@ -39,16 +39,17 @@ def format_log(input_path: str, output_path: str = None):
     changes = 0
     
     for line in lines:
-        # Check for combined movement + room header: >direction[Room Title]
-        match = re.match(r'^(>[a-z]+)(\[.+?\])(.*)$', line, re.IGNORECASE)
+        # Check for combined movement + room header with unique ID: >direction[Room Title] (u1234)
+        match = re.match(r'^(>[a-z]+)(\[.+?\])(\s*\([^)]+\))(.*)$', line, re.IGNORECASE)
         if match:
             movement = match.group(1)
             room_header = match.group(2)
-            remainder = match.group(3)
+            unique_id = match.group(3)  # e.g., " (u7003)"
+            remainder = match.group(4)
             
-            # Split into separate lines
+            # Split into separate lines, keep unique ID with room header
             formatted_lines.append(movement + '\n')
-            formatted_lines.append(room_header + remainder + '\n')
+            formatted_lines.append(room_header + unique_id + remainder + '\n')
             changes += 1
         else:
             formatted_lines.append(line)

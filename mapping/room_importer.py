@@ -41,8 +41,8 @@ REVERSE_DIRECTION = {
     'east': 'west', 'west': 'east',
     'northeast': 'southwest', 'southwest': 'northeast',
     'northwest': 'southeast', 'southeast': 'northwest',
-    'up': 'down', 'down': 'up',
-    'out': 'out'
+    'up': 'down', 'down': 'up'
+    # Note: 'out' has no automatic reverse (context-dependent)
 }
 
 def is_valid_direction(direction: str) -> bool:
@@ -139,7 +139,18 @@ class RoomParser:
                 i += 1
                 continue
             
-            # Check for movement command (>direction)
+            # Check for movement command (>direction or >go target)
+            
+            # Pattern 1: >go <target> (non-ordinal)
+            go_match = re.match(r'^>go\s+(.+)$', line, re.IGNORECASE)
+            if go_match:
+                target = go_match.group(1).strip().lower()
+                # Store as-is (e.g., "furrier", "gate", "door")
+                last_direction = target
+                i += 1
+                continue
+            
+            # Pattern 2: >direction (ordinal)
             move_match = re.match(r'^>([a-z]+)$', line, re.IGNORECASE)
             if move_match:
                 direction = move_match.group(1).lower()
@@ -251,15 +262,16 @@ class RoomParser:
             current_room = self.rooms[current_canonical_id]
             reverse_dir = REVERSE_DIRECTION.get(direction_used)
             
-            # Validate direction before linking
-            if not is_valid_direction(direction_used):
-                print(f"  ⚠️  Skipping invalid exit: {current_room.title} --[{direction_used}]--> (invalid)")
-                continue
+            # Check if this is an ordinal or non-ordinal exit
+            is_ordinal = is_valid_direction(direction_used)
             
-            print(f"  {current_room.title} --[{direction_used}]--> {prev_room.title}")
+            if is_ordinal:
+                print(f"  {current_room.title} --[{direction_used}]--> {prev_room.title}")
+            else:
+                print(f"  {current_room.title} --[{direction_used}]--> {prev_room.title} (non-ordinal)")
             
             # Forward link: current_room -> prev_room (using direction_used)
-            # Check if exit already exists
+            # Always create forward link (ordinal or non-ordinal)
             exit_exists = any(e['direction'] == direction_used for e in current_room.exits)
             if not exit_exists:
                 current_room.exits.append({
@@ -267,8 +279,9 @@ class RoomParser:
                     'roomId': prev_room.canonical_id
                 })
             
-            # Reverse link: prev_room -> current_room (using reverse direction)
-            if reverse_dir and is_valid_direction(reverse_dir):
+            # Reverse link: ONLY for ordinal directions
+            # Non-ordinal exits don't auto-reverse (go gate → out, go house → out, etc.)
+            if is_ordinal and reverse_dir:
                 exit_exists = any(e['direction'] == reverse_dir for e in prev_room.exits)
                 if not exit_exists:
                     print(f"  {prev_room.title} --[{reverse_dir}]--> {current_room.title}")

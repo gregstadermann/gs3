@@ -565,8 +565,8 @@
       }
     ],
     "features": [
-      "door",
-      "wall"
+      "wall",
+      "door"
     ],
     "items": [],
     "metadata": {
@@ -592,8 +592,8 @@
       }
     ],
     "features": [
-      "path",
-      "wall"
+      "wall",
+      "path"
     ],
     "items": [],
     "metadata": {
@@ -824,10 +824,10 @@
       }
     ],
     "features": [
-      "gate",
-      "door",
       "wall",
       "sign",
+      "gate",
+      "door",
       "path"
     ],
     "items": [],
@@ -1298,8 +1298,8 @@
       }
     ],
     "features": [
-      "door",
-      "wall"
+      "wall",
+      "door"
     ],
     "items": [],
     "metadata": {
@@ -1448,9 +1448,9 @@
       }
     ],
     "features": [
+      "wall",
       "sign",
-      "door",
-      "wall"
+      "door"
     ],
     "items": [],
     "metadata": {

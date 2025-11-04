@@ -11,16 +11,29 @@ def format_log(input_path: str, output_path: str = None):
     """
     Format a GS3 movement log to normalize room headers
     
-    Handles cases like:
-        >s[Wehnimer's, North Ring Rd.]
-    
-    Converts to:
-        >s
-        [Wehnimer's, North Ring Rd.]
+    Handles:
+    1. Strips connection header (from "Please wait..." to "...news articles.")
+    2. Splits combined movement+room: >s[Room] → >s\\n[Room]
     """
     
     with open(input_path, 'r', encoding='utf-8') as f:
         lines = f.readlines()
+    
+    # Strip header junk if present
+    header_start = None
+    header_end = None
+    
+    for i, line in enumerate(lines):
+        if 'Please wait for connection to game server' in line:
+            header_start = i
+        if 'You have unread news articles' in line or 'Type NEWS NEXT' in line:
+            header_end = i
+            break
+    
+    # Remove header lines if found
+    if header_start is not None and header_end is not None:
+        print(f"  Removing header junk (lines {header_start+1} to {header_end+1})")
+        lines = lines[:header_start] + lines[header_end+1:]
     
     formatted_lines = []
     changes = 0
@@ -49,7 +62,11 @@ def format_log(input_path: str, output_path: str = None):
     with open(output_path, 'w', encoding='utf-8') as f:
         f.writelines(formatted_lines)
     
+    removed_lines = (header_end - header_start + 1) if header_start is not None and header_end is not None else 0
+    
     print(f"✅ Formatted {len(lines)} lines")
+    if removed_lines > 0:
+        print(f"   Removed {removed_lines} header lines (connection/news junk)")
     print(f"   Split {changes} combined movement+room lines")
     print(f"   Output: {output_path}")
 

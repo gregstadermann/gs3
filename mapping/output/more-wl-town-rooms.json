@@ -694,10 +694,10 @@
       }
     ],
     "features": [
-      "path",
-      "door",
-      "gate",
       "wall",
+      "door",
+      "path",
+      "gate",
       "sign"
     ],
     "items": [],
@@ -899,8 +899,8 @@
       }
     ],
     "features": [
-      "path",
-      "tower"
+      "tower",
+      "path"
     ],
     "items": [],
     "metadata": {

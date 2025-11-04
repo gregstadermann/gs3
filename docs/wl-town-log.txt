@@ -1,0 +1,444 @@
+
+[Wehnimer's, Land's End Rd.]
+Vigilant guardsmen scrutinize the citizens and travelers arriving and departing through the wide gates spanning the land route into Wehnimer's Landing.  The frenetic pace of the city to the south is a far cry from the deceptive calm of the wilds of Elanith outside.  Two daunting towers survey the countryside and protect the town, flanking the road to the east and west.  You also see a large wooden barrel.
+Also here: Doruqu
+Obvious paths: south
+
+Thank you for logging into GemStone IV!
+You have earned the following reward: 500 fame!
+>Doruqu just went south.
+>You feel fully energetic again.
+>Cellior just came through the town gates.
+>Cellior just went south.
+>Uragh just came through the town gates.
+>Uragh just went south.
+>Weldleaf just arrived.
+>Weldleaf just entered the east tower.
+>s[Wehnimer's, North Ring Rd.]
+The cobbled road girds the town along the inner side of the northern palisade.  Just to the north stand the twin sentinels of the gate's guardtowers.  Guardsmen come and go through the main gates, keeping a close eye on the people of all races who move to and fro.  Opposite the gates, you see the shop of Dakris the Furrier.
+Obvious paths: north, east, west
+>Uragh just arrived.
+>Uragh just went north.
+>Valdes just arrived.
+>Valdes just went west.
+>e[Wehnimer's, North Ring Rd.]
+Guards and militiamen pass by, moving between the barracks and the guard towers at either end of the north road.  The broad cobblestoned way proceeds east and west, hugging the inside of the northern wall.  A varied mix of citizens and visitors, including wealthy merchants and their wives, grizzled-looking trappers with freshly-cured pelts slung over their shoulders, and many others who have come to seek their fortunes in Wehnimer's Landing, walk among the ever-vigilant guardsmen.  You also see a small warehouse and a squalid canvas pavilion.
+Obvious paths: east, west
+>e[Wehnimer's, North Ring Rd.]
+Worn and uneven paving stones broken by deep ruts cover the road here, making for treacherous footing.  A chorus of sounds emanates from the south and west, as the hum of the bazaar melds with the cries of the traders and hawkers and the singsong of vendors and peddlers.  You also see a red-bricked pathway.
+Obvious paths: east, west
+>e[Wehnimer's, North Ring Rd.]
+North Ring Road intersects here with a cobbled street of modest dimensions that opens up to the south, where traffic becomes markedly more dense along the routes to the main square.  Towards the east, the guardtowers at the river gates can be seen in the distance.  You also see a cobblestone path.
+Obvious paths: east, south, west
+>e[Wehnimer's, North Ring Rd.]
+The east-west road continues, closed in on the south by the militia barracks and on the north by the twelve-foot-high wall of the city itself.  The insistent thud of leather boots in unison upon cobbled pavement and the clipped shouts of barked orders reverberate off the modwir walls along this part of the road.  The scents of leather, weapon oil and hearty cooking fill the air here.  You also see the town barracks.
+Obvious paths: east, west
+>e[Wehnimer's, North Ring Rd.]
+Here along the main north road, the roughhewn logs of the modwir wood palisade echo passing footsteps on the bumpy cobbled path.  The clammy, briny breeze from the nearby bay fills the air in spite of the sturdy barricade.  You also see a crenellated stone fortress.
+Obvious paths: east, south, west
+>e[Wehnimer's, North Ring Rd.]
+A respectful quiet blankets this area like the deep shadow cast by the high north wall.  Those people that move along this section of road walk with their heads bowed and speak in hushed whispers in obvious consideration to the local empath, who practices the restorative arts at the strange tent that is set back from the roadside in the middle of an overgrown vacant lot here.
+Obvious paths: east, south, west
+>e[Wehnimer's, North Ring Rd.]
+The perimeter road runs just inside the protective palisades that protect the north wall of the town, affording shelter from the prevailing winds off Darkstone Bay.  The weathered facades of businesses and warehouses line the road leading south into the center of Wehnimer's Landing.  To the east, the road leads to the riverfront, and the town's main gates lie farther to the west.  You also see a dwarven recruiter.
+Obvious paths: east, south, west
+>e[Wehnimer's, North Ring Rd.]
+The west river guardtower looms overhead, marking the end of the road just to the east.  Most of the people passing by here are in uniforms of the various divisions of the town's guards or militia, and even the businesses on the south side of the street seem to cater almost exclusively to military types.  You also see an elegant white brick building.
+Obvious paths: east, west
+>e[Wehnimer's, Bay's Watch West]
+Here at the northern end of Wehnimer's Landing, the fickle waters of the Locksmehr River flow into Darkstone Bay.  The westernmost of the twin guardtowers that keep watch over the river gates into town rises above, casting a shadow over the cobblestones.  The huge ironbound sea gates, greenish water plants clinging to them at water level, straddle the river, extending to the matching tower on the eastern bank.  You also see a wrought iron gate and a uniformed doorkeeper.
+Obvious paths: south, west
+>eYou can't go there.
+>eYou can't go there.
+>s[Wehnimer's, Locksmehr Way]
+The faint, tangy scent of the bay mingles with the lighter smells of the river, which runs just to the northeast.  The wide road leads along the riverbank through the warehouse and wharf district, where the sounds of longshoremen loading and unloading freetraders drift over from a wooden walkway to the east.  You also see a painted ashen shop.
+Obvious paths: north, east, south
+>s[Wehnimer's, Locksmehr Way]
+To the east a dock spears out into the waters of the bay.  Ships from all across the world can be seen tied to the dock, and sailors of many races from many lands pass by.  To one side of the road stands a weathered and grey clapboard warehouse.  You also see a small wooden building with a large wooden sign on it.
+Obvious paths: north, southwest
+>sw[Wehnimer's, Locksmehr Way]
+The roadway follows the natural bend in the river, which encroaches slightly inland here.  To the west, a lane leads off into the business and warehouse districts of the Landing.  The shrieking of seabirds and the groaning of tall ships straining at anchor echo from the east.  You also see the South Wharf and the Wehnimer's Exchange booth.
+Obvious paths: northeast, southeast, west
+>w[Wehnimer's, Dragonsclaw Rd.]
+Wagons and carts loaded with a variety of goods pass in all directions, from the center of the busy town to the west to the wharfs and piers along the Locksmehr River to the east.  A number of militiamen head north towards the guardtowers and barracks.  You also see a large wooden building with a wooden sign on it.
+Obvious paths: north, east, south, west
+>n[Wehnimer's, Dragonsclaw Rd.]
+The large, deserted-looking shed to the east looks as if it once served as a stable or a workshop of some sort.  Now it seems to be nothing more than a crumbling warehouse, and the sparse traffic flowing to the north and south seldom gives it a second look.  You also see a dingy grey stone building.
+Obvious paths: north, south
+>n[Wehnimer's, Atropa St.]
+Here Atropa Street meets Dragonsclaw Road, which traverses the Landing to the south, and combines with Taarna Road to the west.  A gentle rise in the ground affords a glimpse of the hills and open countryside that lie beyond the town walls far to the south.  You also see a secluded stone walkway.
+Obvious paths: south, west
+>w[Wehnimer's, Taarna Rd.]
+Traffic flows past briskly, headed north towards the palisade along the bay, south to the market and shops of the Landing, and east to the riverfront.  A decrepit single-story pawnshop, its paint peeling and window panes broken, stands here alongside the busy lane.  You also see a modwir sign.
+Obvious paths: north, east, south
+>n[Wehnimer's, Taarna Rd.]
+The street here leads north and south, its nearness to the north wall and the docks made obvious by the smell of salt water and fish coming in on the breeze off the bay.  A few flowering weeds thrive in patches of dirt between the cobblestones on less-traveled parts of the road.  You also see an old iron gate.
+Obvious paths: north, south
+>n[Wehnimer's, North Ring Rd.]
+The perimeter road runs just inside the protective palisades that protect the north wall of the town, affording shelter from the prevailing winds off Darkstone Bay.  The weathered facades of businesses and warehouses line the road leading south into the center of Wehnimer's Landing.  To the east, the road leads to the riverfront, and the town's main gates lie farther to the west.  You also see a dwarven recruiter.
+Obvious paths: east, south, west
+>A dwarven recruiter jots down some notes on his clipboard.
+>s[Wehnimer's, Taarna Rd.]
+The street here leads north and south, its nearness to the north wall and the docks made obvious by the smell of salt water and fish coming in on the breeze off the bay.  A few flowering weeds thrive in patches of dirt between the cobblestones on less-traveled parts of the road.  You also see an old iron gate.
+Obvious paths: north, south
+>s[Wehnimer's, Taarna Rd.]
+Traffic flows past briskly, headed north towards the palisade along the bay, south to the market and shops of the Landing, and east to the riverfront.  A decrepit single-story pawnshop, its paint peeling and window panes broken, stands here alongside the busy lane.  You also see a modwir sign.
+Obvious paths: north, east, south
+>s[Wehnimer's, Taarna Rd.]
+A small house is set back from the curve in the road, in the midst of a carefully tended garden of strange plants.  A twisting path leading to the door is lined with carved wooden pots in which grow many species of pungent herbs.  Two modwir saplings entwine over the door, forming a leafy arch.  You also see a narrow dark walnut cart framed in delicate bronze nautilus shells with some stuff on it.
+Obvious paths: north, west
+>sYou can't go there.
+>sYou can't go there.
+>w[Wehnimer's, Stormarm St.]
+A few warehouses, small shops and businesses, and unmarked buildings with weathered modwir siding predominate along this part of the road.  The street is less crowded than those near the docks or the square, and the irregular cobblestones are slick and unyielding underfoot.  You also see a black-tipped cloud wolf and a warehouse entrance.
+Also here: Corlandith
+Obvious paths: north, east, south
+>n[Wehnimer's, Stormarm St.]
+This intersection links the bazaar routes with those bisecting and encircling the Landing.  A few ruddyfaced sailors, loudmouthed dockworkers, and off-duty soldiers linger along the wall of a tavern, which is set back from the side of the road up a slight incline.  A shaky wooden stairway, the bane of many an overimbiber's existence, leads up to the tavern door.  You also see a large painted sign.
+Obvious paths: north, south, west
+>Aesun just arrived.
+>nAesun just went south.
+>[Wehnimer's, Stormarm St.]
+This street cuts a wide path north and south between the north wall and the center of the Landing.  Low, grey stone buildings and nondescript sheds loom to the south and east, and towards the central square the view is more pleasant and varied.  You also see a dark alley.
+Obvious paths: north, south
+>n[Wehnimer's, North Ring Rd.]
+A respectful quiet blankets this area like the deep shadow cast by the high north wall.  Those people that move along this section of road walk with their heads bowed and speak in hushed whispers in obvious consideration to the local empath, who practices the restorative arts at the strange tent that is set back from the roadside in the middle of an overgrown vacant lot here.
+Obvious paths: east, south, west
+>s[Wehnimer's, Stormarm St.]
+This street cuts a wide path north and south between the north wall and the center of the Landing.  Low, grey stone buildings and nondescript sheds loom to the south and east, and towards the central square the view is more pleasant and varied.  You also see a dark alley.
+Obvious paths: north, south
+>n[Wehnimer's, North Ring Rd.]
+A respectful quiet blankets this area like the deep shadow cast by the high north wall.  Those people that move along this section of road walk with their heads bowed and speak in hushed whispers in obvious consideration to the local empath, who practices the restorative arts at the strange tent that is set back from the roadside in the middle of an overgrown vacant lot here.
+Obvious paths: east, south, west
+>w[Wehnimer's, North Ring Rd.]
+Here along the main north road, the roughhewn logs of the modwir wood palisade echo passing footsteps on the bumpy cobbled path.  The clammy, briny breeze from the nearby bay fills the air in spite of the sturdy barricade.  You also see a crenellated stone fortress.
+Obvious paths: east, south, west
+>w[Wehnimer's, North Ring Rd.]
+The east-west road continues, closed in on the south by the militia barracks and on the north by the twelve-foot-high wall of the city itself.  The insistent thud of leather boots in unison upon cobbled pavement and the clipped shouts of barked orders reverberate off the modwir walls along this part of the road.  The scents of leather, weapon oil and hearty cooking fill the air here.  You also see the town barracks.
+Obvious paths: east, west
+>w[Wehnimer's, North Ring Rd.]
+North Ring Road intersects here with a cobbled street of modest dimensions that opens up to the south, where traffic becomes markedly more dense along the routes to the main square.  Towards the east, the guardtowers at the river gates can be seen in the distance.  You also see a cobblestone path.
+Obvious paths: east, south, west
+>s[Wehnimer's, The Mews]
+This narrow lane runs north to south, shaded by the narrow, unadorned buildings that loom on both sides of the rough paving stones.  The clatter of wagon wheels on cobbled streets and the jangling of iron-fitted harnesses echoes from the south, along with a scent of leather and livestock.
+Obvious paths: north, south
+>s[Wehnimer's, The Mews]
+The large, barn-like structure that dominates the north side of the block is the city stable.  Through a ground-floor window can be seen the rows of now-empty stalls in the dark interior.  The pavement just outside is strewn with straw and debris that merits a careful step along this part of the road.  To the west is the main square and its cobblestoned bazaar, where furious trading takes place on a daily basis.
+Obvious paths: north, east, west
+>sYou can't go there.
+>e[Wehnimer's, Valeria St.]
+The footsteps of passing wayfarers and townspeople echo on the cobbled pavement between the rows of two-story wooden houses that flank the lane.  The street seems a bit less congested here, blocks away from the busy square to the west.  You also see an old whitewashed house.
+Obvious paths: east, south, west
+>e[Wehnimer's, Valeria St.]
+Flatbed wagons carrying loads of wood or other goods lumber slowly to the east and west, bouncing over a large pothole in the road.  A nondescript building, with a prominent sign in the shape of a key above its black door, is set back slightly from the street.  You also see the Engraver's Shop with a small elegant sign on it.
+Obvious paths: north, east, west
+>e[Wehnimer's, Stormarm St.]
+This intersection links the bazaar routes with those bisecting and encircling the Landing.  A few ruddyfaced sailors, loudmouthed dockworkers, and off-duty soldiers linger along the wall of a tavern, which is set back from the side of the road up a slight incline.  A shaky wooden stairway, the bane of many an overimbiber's existence, leads up to the tavern door.  You also see a large painted sign.
+Obvious paths: north, south, west
+>Divante just arrived.
+>Divante just went south.
+>s[Wehnimer's, Stormarm St.]
+A few warehouses, small shops and businesses, and unmarked buildings with weathered modwir siding predominate along this part of the road.  The street is less crowded than those near the docks or the square, and the irregular cobblestones are slick and unyielding underfoot.  You also see a warehouse entrance.
+Obvious paths: north, east, south
+>s[Wehnimer's, Stormarm St.]
+Along this neighborhood byway, wagons loaded with sacks of grain, kegs of beer, and firewood stand at the wide door of a local warehouse.  Merchants, innkeepers and tradesmen of the surrounding streets busily load and unload stored supplies here.
+Obvious paths: north, east, south
+>s[Wehnimer's, Stormarm St.]
+The simple yet well built wooden structures in this small residential section of town are more functional than decorative, and little separates the style of one from another.  A few scraggly trees, planted long ago in patches of dirt between the buildings, add spots of shade to the cobblestones.
+Obvious paths: north, west
+>sYou can't go there.
+>w[Wehnimer's, Lyon Way]
+Here Lyon Way runs southeast into Riverwind Street, serving as a conduit for passage between the river and the bazaar and shops.  Most of the more reputable-looking citizens seem to be steering clear of a dimly lit cul-de-sac which lies due south of the intersection.
+Obvious paths: north, east, southeast, south
+>n[Wehnimer's, Lyon Way]
+The two- and three-story homes of some of the Landing's middle-class citizens are situated at this bend in Lyon Way.  Whitewash has been applied to most of the wooden structures, though soot from somewhere nearby stains many of their painted surfaces, and window boxes full of flowers add splashes of color here and there.
+Obvious paths: north, south, west
+>n[House Brigatta, Lane]
+At the end of the lane stands a bluestone timber-framed manor house of modest proportions, with a neatly painted cerulean door bearing a polished brass bell.  A small, bronze sign announces, "House Brigatta."  Set into an ivy-strewn curtain wall surrounding an expansive garden is a large, double-doored portal inset with a smaller, subtle wicket gate and a garden path.  You also see the House Brigatta gatekeeper.
+Obvious paths: south
+>s[Wehnimer's, Lyon Way]
+The two- and three-story homes of some of the Landing's middle-class citizens are situated at this bend in Lyon Way.  Whitewash has been applied to most of the wooden structures, though soot from somewhere nearby stains many of their painted surfaces, and window boxes full of flowers add splashes of color here and there.
+Obvious paths: north, south, west
+>w[Wehnimer's, Lyon Way]
+The intermittent rhythm of movement through the street to the east and west is accentuated by a constant loud clanging coming from the north, where a column of smoke rises from a towering chimney.  A flatbed wagon has been abandoned here where it collided with the wall of a shabby workshop, and now serves only as amusement for the local children who play on its ruined platform.
+Obvious paths: north, east, west
+>w[Wehnimer's, Cheridin Ave.]
+Many of the dwellings that line this section of road have shutters closed or curtains drawn to keep out the noise and dust raised by the constant flow of traffic along the street.  Just south of here, the traffic on Cheridin streams west towards the bazaar.  To the east, the lanes twist through neighborhoods composed of serviceable shops and modest residences.  You also see a red and white striped door.
+Obvious paths: east, south
+>s[Wehnimer's, Cheridin Ave.]
+The intersection of the broad avenue with the narrower byway connecting to the bazaar to the west creates a fleeting bottleneck in the foot traffic.  Older wood and stone buildings, mostly small shops and offices with upstairs lodgings overlooking the street, predominate here.
+Obvious paths: north, south, west
+>s[Wehnimer's, Cheridin Ave.]
+On the west side of this narrow stretch of Cheridin Avenue is the wooden back of the Moot Hall, and the dour building that houses the local constabulary and its jail looms along the other side of the street.  To the southeast, a stone dome rises over the compound that surrounds the Landing's largest temple.  The traffic here flows quickly north and south without much pause.
+Obvious paths: north, south
+>s[Wehnimer's, Cheridin Ave.]
+Several small shops crowd along the street, which is composed of the back walls of the high buildings bordering the central square.  Each storefront vies with the others for street space and the attention of the many travellers who pass through here.  Other traders, hoping to take advantage of the traffic attracted by the nearby temple, have set up stands and pushcarts spilling over with clothing, trinkets and souvenirs gathered during their travels far and wide.  You also see the clerics' shop.
+Obvious paths: north, east
+>sYou can't go there.
+>n[Wehnimer's, Cheridin Ave.]
+On the west side of this narrow stretch of Cheridin Avenue is the wooden back of the Moot Hall, and the dour building that houses the local constabulary and its jail looms along the other side of the street.  To the southeast, a stone dome rises over the compound that surrounds the Landing's largest temple.  The traffic here flows quickly north and south without much pause.
+Obvious paths: north, south
+>wYou can't go there.
+>n[Wehnimer's, Cheridin Ave.]
+The intersection of the broad avenue with the narrower byway connecting to the bazaar to the west creates a fleeting bottleneck in the foot traffic.  Older wood and stone buildings, mostly small shops and offices with upstairs lodgings overlooking the street, predominate here.
+Obvious paths: north, south, west
+>w[Wehnimer's, Penna St.]
+The constant din of the merchants, tradesmen and hawkers in the shops to the west is muted here.  The cracked pavement, scattered cobblestones, and dirt drainage ditches along the side of the road form a not-so-gradual transition between the bustling avenues of the main bazaar and the less frequented, humbler, and more unsavory sections of the town.  You also see a low stone gate and a tall black bulwark tower.
+Obvious paths: east, west
+>w[Town Square, East]
+Here in the center of a broad plaza near the commercial area of the bazaar stands the impressive facade of the slate-roofed Moot Hall, where the citizens of Wehnimer's Landing hold various official, religious and social functions.  Facing the square are some of the town's more prosperous and bustling shops.  You also see a wood-framed message board, a large purple wooden barrel and a huge dark wagon with a glowing blue-white pylon on it.
+Obvious paths: north, east, south, west
+>w[Town Square Central]
+This is the heart of the main square of Wehnimer's Landing.  The impromptu shops of the bazaar are clustered around this central gathering place, where townsfolk, travellers, and adventurers meet to talk, conspire or raise expeditions to the far-flung reaches of Elanith.  At the north end of the space, an old well, with moss-covered stones and a craggy roof, is shaded by a strong, robust tree.  The oak is tall and straight, and it is apparent that the roots run deep.  You also see the white Ahirah disk, the Fumbl disk, the Madarch disk, a large acorn, a large acorn, some wide stone benches with some stuff on it, an herbal remedy donation bin, a round silver-banded barrel and a trail of aster-wreathed silver hedgehogs leading southwest.
+Also here: Cellior, Mudno, Flurin, Lord Kirnar, Muscaria, Ghrath, Aeyris, Ahirah, Channell, Mister Madarch, Lachdahn
+Obvious paths: northeast, east, southeast, southwest, west, northwest
+>w[Town Square, West]
+Here in the midst of the town stretches the cobblestoned main bazaar, its serpentine lanes abuzz with traders bartering, bickering, and hawking their wares.  The freewheeling vendors in the bazaar provide a lively alternative to the somewhat stodgier merchants whose shops border the square.  The gilded but peeling stone facade of the First Elanith Bank dominates this side of the square.
+Obvious paths: north, east, south, west
+>n[Town Square, Northwest]
+This corner of the square is lively and hectic.  A number of representatives of the Landing's population, including several elven loggers and a party of rough-looking dwarves, loiter around the door of the Raging Thrak Inn, where the rowdy cheers of patrons and voices raised in songs of many sorts, from snatches of heroic ballads to blushingly bawdy tunes, beckon you to enter.  You also see a polished granite statue and a large wooden makeshift stand with some stuff on it.
+Obvious paths: north, east, southeast, south
+>e[Town Square, Northeast]
+The entrance to Tykel's Arms, its heavy door bounded by iron-barred windows, dominates this corner of the square.  All manner of citizens pass by, moving among the solid, multistoried wooden buildings that surround the bazaar.  Just to the southwest can be seen the tree-shaded heart of the square, where citizens and adventurers gather for socializing, healing and rest.  You also see a narrow alleyway.
+Obvious paths: east, south, southwest, west
+>s[Town Square, East]
+Here in the center of a broad plaza near the commercial area of the bazaar stands the impressive facade of the slate-roofed Moot Hall, where the citizens of Wehnimer's Landing hold various official, religious and social functions.  Facing the square are some of the town's more prosperous and bustling shops.  You also see a wood-framed message board, a large purple wooden barrel and a huge dark wagon with a glowing blue-white pylon on it.
+Obvious paths: north, east, south, west
+>w[Town Square Central]
+This is the heart of the main square of Wehnimer's Landing.  The impromptu shops of the bazaar are clustered around this central gathering place, where townsfolk, travellers, and adventurers meet to talk, conspire or raise expeditions to the far-flung reaches of Elanith.  At the north end of the space, an old well, with moss-covered stones and a craggy roof, is shaded by a strong, robust tree.  The oak is tall and straight, and it is apparent that the roots run deep.  You also see the white Ahirah disk, the Fumbl disk, the Madarch disk, a large acorn, a large acorn, some wide stone benches with some stuff on it, an herbal remedy donation bin, a round silver-banded barrel and a trail of aster-wreathed silver hedgehogs leading southwest.
+Also here: Cellior, Mudno, Flurin, Lord Kirnar, Muscaria, Ghrath, Aeyris, Ahirah, Channell, Mister Madarch, Lachdahn
+Obvious paths: northeast, east, southeast, southwest, west, northwest
+>sw[Town Square, Southwest]
+This corner of the square seems somewhat subdued.  Townsfolk pass through on their way to the shops, the bazaar, or the main well at the center of the square.  Others hurry past, anxious to get home or go on about their business.  You also see a cobblestone walkway leading up to a wrought iron gate, a wood-sided shop and a mound of snow.
+Obvious paths: north, northeast, east, south, west
+>ne[Town Square Central]
+This is the heart of the main square of Wehnimer's Landing.  The impromptu shops of the bazaar are clustered around this central gathering place, where townsfolk, travellers, and adventurers meet to talk, conspire or raise expeditions to the far-flung reaches of Elanith.  At the north end of the space, an old well, with moss-covered stones and a craggy roof, is shaded by a strong, robust tree.  The oak is tall and straight, and it is apparent that the roots run deep.  You also see the white Ahirah disk, the Fumbl disk, the Madarch disk, a large acorn, a large acorn, some wide stone benches with some stuff on it, an herbal remedy donation bin, a round silver-banded barrel and a trail of aster-wreathed silver hedgehogs leading southwest.
+Also here: Cellior, Mudno, Flurin, Lord Kirnar, Muscaria, Ghrath, Aeyris, Ahirah, Channell, Mister Madarch, Lachdahn
+Obvious paths: northeast, east, southeast, southwest, west, northwest
+>seFlurin flags down a nearby urchin and exchanges a few words.  The urchin nods to Flurin and takes off, with Flurin in tow.
+>[Town Square, Southeast]
+Foot and wagon traffic swarms off in all directions here, some going to the large intersection with South Ring Road, others crisscrossing the square via the bazaar.  Men and women carrying neatly tied parcels or sacks and coils of rope slung over their arms emerge from the wooden facade of the old general store.  You also see a dark-haired half-elven priestess, a large ebon gate filled with swirling mist, a long oak table with a long piece of cord on it, a large wooden table with a small plate of steel on it, a wide wooden stand with a coil of thick rope on it and a mushy black door.
+Obvious paths: north, south, west, northwest
+>nw[Town Square Central]
+This is the heart of the main square of Wehnimer's Landing.  The impromptu shops of the bazaar are clustered around this central gathering place, where townsfolk, travellers, and adventurers meet to talk, conspire or raise expeditions to the far-flung reaches of Elanith.  At the north end of the space, an old well, with moss-covered stones and a craggy roof, is shaded by a strong, robust tree.  The oak is tall and straight, and it is apparent that the roots run deep.  You also see the white Ahirah disk, the Fumbl disk, the Madarch disk, a large acorn, a large acorn, some wide stone benches with some stuff on it, an herbal remedy donation bin, a round silver-banded barrel and a trail of aster-wreathed silver hedgehogs leading southwest.
+Also here: Cellior, Mudno, Lord Kirnar, Muscaria, Aeyris, Ahirah, Channell, Mister Madarch, Lachdahn
+Obvious paths: northeast, east, southeast, southwest, west, northwest
+>Aesun just arrived.
+>Aesun just went over to an old well.
+>sw[Town Square, Southwest]
+This corner of the square seems somewhat subdued.  Townsfolk pass through on their way to the shops, the bazaar, or the main well at the center of the square.  Others hurry past, anxious to get home or go on about their business.  You also see a cobblestone walkway leading up to a wrought iron gate, a wood-sided shop and a mound of snow.
+Obvious paths: north, northeast, east, south, west
+>s[Town Square, Small Park]
+A small, shady park fills an old vacant lot behind a row of buildings, the bustling sounds of the square filtering through the passage to the north to animate the area despite its appearance of peace and serenity.  A weatherworn grey marble statue of a stocky human in pioneer's clothing overlooks the park, his stone hat encrusted by the gifts of decades of passing birds and his right hand half-upraised as if it once held some now-missing object.  You also see some ornate wrought iron benches and a tall black bulwark tower.
+Obvious paths: north, south, west
+>s[Town Square, South Alley]
+This narrow alleyway passes crookedly between the old wood and stone walls of the surrounding buildings, providing a shaded byway from the busy road to the south to a small park nestled in a grassy niche to the north.  An occasional stray mutt sniffs around the foundations, searching for rats or morsels.  You also see a tiny kitten.
+Obvious paths: north, south
+>s[Wehnimer's, South Ring Rd.]
+The clamor of the traffic is punctuated by the sound of metal bouncing against metal.  A group of children play in the shadow of the buildings, pitching coppers against the wall of a shop.  From one small storefront comes the sound of a lilting melody being picked out on a lute.  You also see an ornate wrought iron gate.
+Obvious paths: north, east, northwest
+>nw[Wehnimer's, West Ring Rd.]
+The road bends to conform to the inside curve of the southern and western walls of the high modwir log palisades, which converge here.  A whiff of the scents of the marketplace rises from a narrow lane to the east.  You also see a dark ladder leaning against a large iron-plated tower, a brick pathway leading to an ornate silver gate and an ivy-bordered silver sign.
+Obvious paths: north, east, southeast
+>n[Wehnimer's, West Ring Rd.]
+Traffic is light on this portion of West Ring Road.  Most people seem to be using the busier roads that lie to the north and south, leading to the square.  A few warehouses and smaller shops line the way here.  You also see a dark ladder leaning against a large iron-plated tower and a reinforced large wooden gate.
+Obvious paths: north, south
+>n[Wehnimer's, West Ring Rd.]
+The lane to the east leads into the heart of town and the main square.  The back wall of the grocer's shop borders the road, its wide door surrounded by piles of rough gunny sacks and stacks of wooden crates, some empty, others still to be unpacked.  You also see a tall mithril postern gate.
+Obvious paths: north, east, south
+>n[Wehnimer's, West Ring Rd.]
+The road passes beneath the shadow of the palisade.  Before you sprawls a gaudily-painted structure, adorned with elaborate carvings depicting scenes of commerce in an almost reverential style.  This is the Merchant's Guild, where the business people of town, from wealthy traders to lowly street peddlers, meet to discuss matters of mutual concern.  You also see a pretty flower girl and a two-story dark brick edifice.
+Obvious paths: north, south
+>n[Wehnimer's, West Ring Rd.]
+This cobbled road circles the town, providing access to the bazaar and the fringes of the surrounding neighborhoods.  Several members of the militia, wearing leather armor and bearing short swords and daggers, eye the crowds and keep silent watch over the street, which bustles with well-heeled merchants, traders and shopkeepers.  You also see a squat tower entrance, a rune-carved fieldstone house and a curious-looking shop.
+Obvious paths: northeast, south
+>nYou can't go there.
+>nYou can't go there.
+>nYou can't go there.
+>ne[Wehnimer's, North Ring Rd.]
+The road turns gradually at this point as it forms the northwest corner of the city.  The main path curves along the north and west walls, and another leads south between the buildings.  The massive oak and modwir logs of the city palisade tower overhead.  You also see an old weathered cart with some stuff on it.
+Obvious paths: east, south, southwest
+>s[Wehnimer's, Talon St.]
+The street runs between the northern palisade and the central square to the south and east.  The traffic is varied here, as shoppers, traders, travelers and merchants mix with the ever-present and watchful militiamen.  The pristine walls of the Stone Baths occupy nearly the entire block.  You also see a brightly lit small painted wagon and a tall black bulwark tower.
+Obvious paths: north, south
+>s[Town Square, Northwest]
+This corner of the square is lively and hectic.  A number of representatives of the Landing's population, including several elven loggers and a party of rough-looking dwarves, loiter around the door of the Raging Thrak Inn, where the rowdy cheers of patrons and voices raised in songs of many sorts, from snatches of heroic ballads to blushingly bawdy tunes, beckon you to enter.  You also see a polished granite statue and a large wooden makeshift stand with some stuff on it.
+Obvious paths: north, east, southeast, south
+>s[Town Square, West]
+Here in the midst of the town stretches the cobblestoned main bazaar, its serpentine lanes abuzz with traders bartering, bickering, and hawking their wares.  The freewheeling vendors in the bazaar provide a lively alternative to the somewhat stodgier merchants whose shops border the square.  The gilded but peeling stone facade of the First Elanith Bank dominates this side of the square.
+Also here: Lord Celeiron
+Obvious paths: north, east, south, west
+>s[Town Square, Southwest]
+This corner of the square seems somewhat subdued.  Townsfolk pass through on their way to the shops, the bazaar, or the main well at the center of the square.  Others hurry past, anxious to get home or go on about their business.  You also see a cobblestone walkway leading up to a wrought iron gate, a wood-sided shop and a mound of snow.
+Obvious paths: north, northeast, east, south, west
+>e[Town Square, Southeast]
+Foot and wagon traffic swarms off in all directions here, some going to the large intersection with South Ring Road, others crisscrossing the square via the bazaar.  Men and women carrying neatly tied parcels or sacks and coils of rope slung over their arms emerge from the wooden facade of the old general store.  You also see a dark-haired half-elven priestess, a large ebon gate filled with swirling mist, a long oak table with a long piece of cord on it, a large wooden table with a small plate of steel on it, a wide wooden stand with a coil of thick rope on it and a mushy black door.
+Obvious paths: north, south, west, northwest
+>s[Wehnimer's, Parsnips St.]
+This broad conduit leading between the south wall and the square hums with the activities of those passing through.  To one side stands a sedate and dignified shop, the scroll-like sign over its door inscribed in a striking and elegant manner.  You also see a tall black bulwark tower, a building that houses the town's leading and only newspaper and a small wooden building with two entwined gold rings inlaid on the door.
+Obvious paths: north, south
+>s[Wehnimer's, South Ring Rd.]
+A spacious boulevard intersects the Ring Road at this point.  Numerous traders and peddlers cart their wares north to sell at the main bazaar, while townsfolk scatter east and west bearing packages, sacks and purchases.  You also see an intricate gate in a cast-iron fence.
+Obvious paths: north, east, west
+>sYou can't go there.
+>e[Wehnimer's, South Ring Rd.]
+The green and rolling countryside outside the town can be glimpsed through a crack in the south palisade wall.  A cool and refreshing mountain breeze whistles between the logs, freshening the air with a brisk scent of pine.
+Obvious paths: east, west
+>e[Wehnimer's, South Ring Rd.]
+A small but constant group of local residents gathers around the small well next to the palisade.  They chat idly as the traffic from the connecting road disperses to the east and west, and others with business in the heart of town head north.  You also see a small rustic shop.
+Obvious paths: north, east, west
+>e[Wehnimer's, South Ring Rd.]
+The ongoing parade of citizenry that passes by seems to take on a special character in this part of town.  Mixed in with the usual denizens, you notice a preponderance of travellers who appear to be pilgrims, priests and monks.  They file in and out of the road to the north.
+Obvious paths: north, east, west
+>e[Wehnimer's, South Ring Rd.]
+The rough-hewn, pointed logs forming the palisade of the town's defensive wall are a constant companion along this route linking sections of Wehnimer's Landing to the bazaar, the square, and the waterfront via the southernmost road.  You also see a muscular red-armored hiresword and a wide dark mithril gate.
+Obvious paths: east, west
+>e[Wehnimer's, South Ring Rd.]
+Pedestrians and a variety of carts and wagons move along the cobblestoned road in the shadow of the palisades, most focused on going about their business in town.  They pass by the low wood and stone buildings, rarely glancing up or at one another.  You also see a small white-painted boutique.
+Obvious paths: north, east, west
+>e[Wehnimer's, South Ring Rd.]
+Along the edge of the road stands an abandoned shop surrounded by overgrown gardens.  Street urchins play among its remains, their shouts resounding off the modwir wall that borders the east-west road.  You also see a slender stone path.
+Obvious paths: east, west
+>e[Wehnimer's, South Ring Rd.]
+South Ring Road leads to the outskirts of Shanty Town, the poorest section of Wehnimer's Landing.  The contrast between the colorful, well-kept buildings of the bazaar and main square and the dingy hovels to the east is striking.  Most passers-by move hurriedly to the west or north to the river crossing.  A ragged child cowers against the south wall, looking lost and forgotten.  You also see a shaggy mutt.
+Obvious paths: north, east, west
+>ee[Wehnimer's, Shanty Town]
+The tracks of wagon wheels rut the path through here, forming tiny rivulets that connect the puddles.  A few sparse bushes and a tiny garden outside one of the shanties do little to relieve the monotony of the otherwise indistinguishable dwellings to the north and east.  The western path leads back to town.  You also see a wide carved wooden archway.
+Obvious paths: north, east, west
+>[Wehnimer's, Shanty Town]
+The unpaved layer of mud that passes for streets in Shanty Town is treacherous and slippery with seepage from the nearby river.  A few sorry shacks stand cluttered together in this southeast corner, their doors and windows dark with tattered and drawn curtains, holding untold tales of suffering or malice.  You also see a rock-lined path that leads past one of the shacks.
+Obvious paths: north, west
+>w[Wehnimer's, Shanty Town]
+The tracks of wagon wheels rut the path through here, forming tiny rivulets that connect the puddles.  A few sparse bushes and a tiny garden outside one of the shanties do little to relieve the monotony of the otherwise indistinguishable dwellings to the north and east.  The western path leads back to town.  You also see a wide carved wooden archway.
+Obvious paths: north, east, west
+>w[Wehnimer's, South Ring Rd.]
+South Ring Road leads to the outskirts of Shanty Town, the poorest section of Wehnimer's Landing.  The contrast between the colorful, well-kept buildings of the bazaar and main square and the dingy hovels to the east is striking.  Most passers-by move hurriedly to the west or north to the river crossing.  A ragged child cowers against the south wall, looking lost and forgotten.  You also see a shaggy mutt.
+Obvious paths: north, east, west
+>w[Wehnimer's, South Ring Rd.]
+Along the edge of the road stands an abandoned shop surrounded by overgrown gardens.  Street urchins play among its remains, their shouts resounding off the modwir wall that borders the east-west road.  You also see a slender stone path.
+Obvious paths: east, west
+>w[Wehnimer's, South Ring Rd.]
+Pedestrians and a variety of carts and wagons move along the cobblestoned road in the shadow of the palisades, most focused on going about their business in town.  They pass by the low wood and stone buildings, rarely glancing up or at one another.  You also see a small white-painted boutique.
+Obvious paths: north, east, west
+>w[Wehnimer's, South Ring Rd.]
+The rough-hewn, pointed logs forming the palisade of the town's defensive wall are a constant companion along this route linking sections of Wehnimer's Landing to the bazaar, the square, and the waterfront via the southernmost road.  You also see a muscular red-armored hiresword and a wide dark mithril gate.
+Obvious paths: east, west
+>nYou can't go there.
+>nYou can't go there.
+>nYou can't go there.
+>w[Wehnimer's, South Ring Rd.]
+The ongoing parade of citizenry that passes by seems to take on a special character in this part of town.  Mixed in with the usual denizens, you notice a preponderance of travellers who appear to be pilgrims, priests and monks.  They file in and out of the road to the north.
+Obvious paths: north, east, west
+>w[Wehnimer's, South Ring Rd.]
+A small but constant group of local residents gathers around the small well next to the palisade.  They chat idly as the traffic from the connecting road disperses to the east and west, and others with business in the heart of town head north.  You also see a small rustic shop.
+Obvious paths: north, east, west
+>n[Wehnimer's, Airioch Lane]
+This tree-dotted lane passes through a residential pocket of the Landing.  The cobbled dirt road leads past well-kept single or two-floor houses, built of wood and stone with carved shutters and doors that can be closed against inclement weather or dangerous invasions.  You also see a stone-lined path leading to a majestic tree.
+Obvious paths: east, south
+>nYou can't go there.
+>nwYou can't go there.
+>e[Wehnimer's, Airioch Lane]
+Bordering the temple perimeter, this lane contains a few cheery cottages and friendly shops.  It offers refreshing change from the older, rutted streets and noisy stores of the bazaar and the town square.  You also see a polished ora gate and a crystal walkway.
+Obvious paths: north, south, west
+>n[Wehnimer's, Erebor Square]
+The dome of a large temple rises above this peaceful square.  The circular building is surrounded by marble porticos and teak columns, and a promenade leads to two pillars, through which the inner sanctum can be glimpsed.  Priests, acolytes, monks and worshippers move here and there, engaged in various rituals of devotion or study.  A locked almsbox is securely bolted to an iron pole alongside the pillars.  You also see a wrought iron gate and a glowing white stone.
+Obvious paths: east, south, west
+>e[Wehnimer's, Erebor Square]
+This quiet corner resembles a calm island amid the bustling life of Wehnimer's Landing.  At the west end, a low, broad dome is visible.  In the center of the square, several benches of polished wood and smooth stone surround a sculpture that stands as a sentinel before the Wehnimer's Museum.  Cast in bronze, the work imparts a sense of peace, calm and protection to the landscaped surroundings.  A gold plaque mounted on a gracefully chiseled malachite base stands before it.  You also see an ironwork gate.
+Obvious paths: north, south, west
+>n[Wehnimer's, Wisraith Lane]
+Interspersed among the small businesses and shops along the cobbled road are a few modwir-shingled private houses.  They are gaily decorated, competing for individuality with one another by means of daubs of colorful paint, skillfully carved doors and shutters, and window boxes bursting with ornamental flowers and fresh herbs.  A bright yellow awning marks the entrance to the florist, whose windows are brimming with fresh blossoms.  You also see a white monir gate.
+Obvious paths: east, south
+>e[Wehnimer's, Wisraith Lane]
+The laughter of children at play echoes along this pleasant, cobbled street, where clumps of decorative bushes by the roadside add splashes of green to the mostly brown and grey townscape.  A small boy, obviously the quarry in a game of tag, darts by in an attempt to escape from his pursuers.
+Obvious paths: north, east, south, west
+>s[Wehnimer's, Beolost Rd.]
+Two peaceful lanes meet here.  The houses lining the street look cheerful and the aroma of simmering stews and roasting meat fills the air.  A mother calls to her child from the second-floor window of a prim house, cajoling him to leave his friends and come inside.  You also see a tall whitewashed modwir fence surrounding a gabled two-story building topped with a brass bell.
+Obvious paths: north, east
+>e[Wehnimer's, Beolost Rd.]
+Townswomen and loiterers cluster around a local well, which is constructed of stone with a slate overhang that provides a spot of shade and rest.  The oft-swept, cobbled square also contains the baker's shop and its adjoining tea room, and several other small merchants.
+Obvious paths: east, west
+>e[Wehnimer's, Dragonsclaw Rd.]
+A somber shop by the side of the road attracts a picturesque clientele.  Lissome travellers cloaked in forest green and hunters of many shapes and sizes gather outside.  Some have quivers slung across their backs, others hold menacing-looking contraptions of wood, metal and fiber.  A rugged wooden plaque in the shape of an arrow is nailed to the shop door.
+Obvious paths: north, south, west
+>s[Wehnimer's, Dragonsclaw Rd.]
+The neatly kept shop on the west side of the street looks like a private residence, except for the displays in its bay window of all the latest fashions.  Elm trees cast an intermittent shade over the cobblestones, and a pair of striped kittens scamper in the dappled light.
+Obvious paths: north, south
+>s[Wehnimer's, South Ring Rd.]
+Pedestrians and a variety of carts and wagons move along the cobblestoned road in the shadow of the palisades, most focused on going about their business in town.  They pass by the low wood and stone buildings, rarely glancing up or at one another.  You also see a small white-painted boutique.
+Obvious paths: north, east, west
+>n[Wehnimer's, Dragonsclaw Rd.]
+The neatly kept shop on the west side of the street looks like a private residence, except for the displays in its bay window of all the latest fashions.  Elm trees cast an intermittent shade over the cobblestones, and a pair of striped kittens scamper in the dappled light.
+Obvious paths: north, south
+>n[Wehnimer's, Dragonsclaw Rd.]
+A somber shop by the side of the road attracts a picturesque clientele.  Lissome travellers cloaked in forest green and hunters of many shapes and sizes gather outside.  Some have quivers slung across their backs, others hold menacing-looking contraptions of wood, metal and fiber.  A rugged wooden plaque in the shape of an arrow is nailed to the shop door.
+Obvious paths: north, south, west
+>n[Wehnimer's, Dragonsclaw Rd.]
+The road travels roughly parallel to the river's course, skirting the shoreline.  Fishermen, traders, miners, sailors, and townsfolk trek back and forth between the storehouses, shops, docks and offices that constitute the life of Wehnimer's Landing.  You also see a three-story brick building.
+Obvious paths: north, south
+>nn[Wehnimer's, Banker's Square]
+The eastern road leads closer to the river, which can be smelled but not seen from here.  The southern road constricts as it makes a straight cut towards the modwir palisade that surrounds the town, avoiding the maze-like side streets of the riverfront and Shanty Town, which are haunted by dockworkers, warehouse porters, and wharf rats.  A dusty pile of rubble might have been a building once, but whatever it was is unrecognizable now.
+Obvious paths: north, east, south, west
+>[Wehnimer's, Dragonsclaw Rd.]
+This dingy street is overshadowed by two multi-storied buildings.  At the far end is the unpretentious facade of Beldrin's Gaming Hall, from which the harsh shouts of gamblers, touts, and onlookers echo into the street.  Across the way is a local inn, frequented by sailors, dockworkers and fishermen, from the looks of the clientele gathered around the doorway.
+Obvious paths: north, south
+>n[Wehnimer's, Dragonsclaw Rd.]
+Wagons and carts loaded with a variety of goods pass in all directions, from the center of the busy town to the west to the wharfs and piers along the Locksmehr River to the east.  A number of militiamen head north towards the guardtowers and barracks.  You also see a large wooden building with a wooden sign on it.
+Obvious paths: north, east, south, west
+>n[Wehnimer's, Dragonsclaw Rd.]
+The large, deserted-looking shed to the east looks as if it once served as a stable or a workshop of some sort.  Now it seems to be nothing more than a crumbling warehouse, and the sparse traffic flowing to the north and south seldom gives it a second look.  You also see a dingy grey stone building.
+Obvious paths: north, south
+>n[Wehnimer's, Atropa St.]
+Here Atropa Street meets Dragonsclaw Road, which traverses the Landing to the south, and combines with Taarna Road to the west.  A gentle rise in the ground affords a glimpse of the hills and open countryside that lie beyond the town walls far to the south.  You also see a secluded stone walkway.
+Obvious paths: south, west
+>nYou can't go there.
+>nYou can't go there.
+>nYou can't go there.
+>w[Wehnimer's, Taarna Rd.]
+Traffic flows past briskly, headed north towards the palisade along the bay, south to the market and shops of the Landing, and east to the riverfront.  A decrepit single-story pawnshop, its paint peeling and window panes broken, stands here alongside the busy lane.  You also see a modwir sign.
+Obvious paths: north, east, south
+>s[Wehnimer's, Taarna Rd.]
+A small house is set back from the curve in the road, in the midst of a carefully tended garden of strange plants.  A twisting path leading to the door is lined with carved wooden pots in which grow many species of pungent herbs.  Two modwir saplings entwine over the door, forming a leafy arch.  You also see a narrow dark walnut cart framed in delicate bronze nautilus shells with some stuff on it.
+Obvious paths: north, west
+>w[Wehnimer's, Stormarm St.]
+A few warehouses, small shops and businesses, and unmarked buildings with weathered modwir siding predominate along this part of the road.  The street is less crowded than those near the docks or the square, and the irregular cobblestones are slick and unyielding underfoot.  You also see a warehouse entrance.
+Obvious paths: north, east, south
+>n[Wehnimer's, Stormarm St.]
+This intersection links the bazaar routes with those bisecting and encircling the Landing.  A few ruddyfaced sailors, loudmouthed dockworkers, and off-duty soldiers linger along the wall of a tavern, which is set back from the side of the road up a slight incline.  A shaky wooden stairway, the bane of many an overimbiber's existence, leads up to the tavern door.  You also see a large painted sign.
+Obvious paths: north, south, west
+>n[Wehnimer's, Stormarm St.]
+This street cuts a wide path north and south between the north wall and the center of the Landing.  Low, grey stone buildings and nondescript sheds loom to the south and east, and towards the central square the view is more pleasant and varied.  You also see a dark alley.
+Obvious paths: north, south
+>n[Wehnimer's, North Ring Rd.]
+A respectful quiet blankets this area like the deep shadow cast by the high north wall.  Those people that move along this section of road walk with their heads bowed and speak in hushed whispers in obvious consideration to the local empath, who practices the restorative arts at the strange tent that is set back from the roadside in the middle of an overgrown vacant lot here.
+Obvious paths: east, south, west
+>nYou can't go there.
+>s[Wehnimer's, Stormarm St.]
+This street cuts a wide path north and south between the north wall and the center of the Landing.  Low, grey stone buildings and nondescript sheds loom to the south and east, and towards the central square the view is more pleasant and varied.  You also see a dark alley.
+Obvious paths: north, south
+>s[Wehnimer's, Stormarm St.]
+This intersection links the bazaar routes with those bisecting and encircling the Landing.  A few ruddyfaced sailors, loudmouthed dockworkers, and off-duty soldiers linger along the wall of a tavern, which is set back from the side of the road up a slight incline.  A shaky wooden stairway, the bane of many an overimbiber's existence, leads up to the tavern door.  You also see a large painted sign.
+Obvious paths: north, south, west
+>w[Wehnimer's, Valeria St.]
+Flatbed wagons carrying loads of wood or other goods lumber slowly to the east and west, bouncing over a large pothole in the road.  A nondescript building, with a prominent sign in the shape of a key above its black door, is set back slightly from the street.  You also see the Engraver's Shop with a small elegant sign on it.
+Obvious paths: north, east, west
+>w[Wehnimer's, Valeria St.]
+The footsteps of passing wayfarers and townspeople echo on the cobbled pavement between the rows of two-story wooden houses that flank the lane.  The street seems a bit less congested here, blocks away from the busy square to the west.  You also see an old whitewashed house.
+Obvious paths: east, south, west
+>w[Wehnimer's, The Mews]
+The large, barn-like structure that dominates the north side of the block is the city stable.  Through a ground-floor window can be seen the rows of now-empty stalls in the dark interior.  The pavement just outside is strewn with straw and debris that merits a careful step along this part of the road.  To the west is the main square and its cobblestoned bazaar, where furious trading takes place on a daily basis.
+Obvious paths: north, east, west
+>w[Wehnimer's, Valeria St.]
+Traffic to and from the hub of activity in the square to the west clogs the street here.  Passers-by guard their valuables closely, glancing into doorways and niches and wary of the press of the crowd.  Two-story buildings of wood and stone line the north and south sides of the cobbled road.   You also see a large reddish-brown sandstone shop, a tall black bulwark tower and an ivy-covered white monir tower.
+Obvious paths: east, west
+>w[Town Square, Northeast]
+The entrance to Tykel's Arms, its heavy door bounded by iron-barred windows, dominates this corner of the square.  All manner of citizens pass by, moving among the solid, multistoried wooden buildings that surround the bazaar.  Just to the southwest can be seen the tree-shaded heart of the square, where citizens and adventurers gather for socializing, healing and rest.  You also see a narrow alleyway.
+Obvious paths: east, south, southwest, west
+>w[Town Square, Northwest]
+This corner of the square is lively and hectic.  A number of representatives of the Landing's population, including several elven loggers and a party of rough-looking dwarves, loiter around the door of the Raging Thrak Inn, where the rowdy cheers of patrons and voices raised in songs of many sorts, from snatches of heroic ballads to blushingly bawdy tunes, beckon you to enter.  You also see a polished granite statue and a large wooden makeshift stand with some stuff on it.
+Obvious paths: north, east, southeast, south
+>wwPlease rephrase that command.
+>wwYou can't go there.
+>You can't go there.
+>wYou can't go there.
+>exit

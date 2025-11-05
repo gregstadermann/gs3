@@ -20,7 +20,7 @@ const ITEM_SCHEMA = {
     type: String,
     required: true,
     index: true,
-    enum: ['WEAPON', 'ARMOR', 'SHIELD', 'CONTAINER', 'CONSUMABLE', 'MISC', 'TREASURE'],
+    enum: ['WEAPON', 'ARMOR', 'SHIELD', 'CONTAINER', 'CONSUMABLE', 'MISC', 'TREASURE', 'EXIT'],
     description: 'Item type category'
   },
 

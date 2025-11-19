@@ -45,7 +45,8 @@ const ROOM_SCHEMA = {
       direction: String,
       roomId: String,
       fullRoomId: String,  // Computed: areaId:roomId
-      hidden: Boolean
+        hidden: Boolean,
+        requiresClimb: Boolean
     }
   },
 

@@ -33,31 +33,29 @@ class DamageSystem {
    * @returns {Object} Weapon combat values
    */
   calculateWeaponDamage(attacker, weapon, target) {
+    // Determine which base weapon to use
+    let baseWeapon;
+    let baseWeaponType;
+    
     if (!weapon) {
-      // Unarmed combat
-      return {
-        finalDamage: 0, // Not used - calculated in attack.js
-        damageFactor: 0.1,
-        armorType: this.getArmorType(target),
-        avd: 25,
-        damageType: 'crush'
+      // Unarmed combat - use closed fist base weapon
+      baseWeaponType = 'weapon_closed_fist';
+      baseWeapon = this.baseWeapons[baseWeaponType];
+    } else {
+      // Get base weapon type from weapon metadata
+      baseWeaponType = weapon.metadata?.baseWeapon;
+      baseWeapon = baseWeaponType ? this.baseWeapons[baseWeaponType] : null;
+    }
+    
+    if (!baseWeapon) {
+      // Default damage if weapon type unknown (fallback to closed fist)
+      baseWeapon = this.baseWeapons['weapon_closed_fist'] || {
+        damageFactors: { 1: 0.100 },
+        attackVsDefense: { 1: 25 },
+        damageType: ['crush']
       };
     }
 
-    // Get base weapon type
-    const baseWeaponType = weapon.metadata?.baseWeapon;
-    if (!baseWeaponType || !this.baseWeapons[baseWeaponType]) {
-      // Default damage if weapon type unknown
-      return {
-        finalDamage: 0, // Not used - calculated in attack.js
-        damageFactor: 0.45,
-        armorType: this.getArmorType(target),
-        avd: 30,
-        damageType: 'crush'
-      };
-    }
-
-    const baseWeapon = this.baseWeapons[baseWeaponType];
     const targetArmorType = this.getArmorType(target);
 
     // Get damage factor for this armor type (this is the weapon's damage capability)
@@ -317,7 +315,68 @@ class DamageSystem {
   }
 
   /**
+   * Check if a target has a specific body part
+   * @param {Object} target - The target character/NPC
+   * @param {string} bodyPart - Body part to check (e.g., 'RIGHT_ARM', 'LEFT_LEG')
+   * @returns {boolean} True if target has this body part
+   */
+  targetHasBodyPart(target, bodyPart) {
+    if (!target || !bodyPart) return true; // Default to having all parts if unknown
+    
+    // Get body type from target
+    // Players have race, NPCs might have bodyType or race
+    const bodyType = target.bodyType || target.race || target.attributes?.bodyType || null;
+    
+    // Body types that lack certain body parts
+    const bodyPartMap = {
+      // Ophidians (snakes) - no limbs, but have head/torso
+      ophidian: {
+        hasArms: false,
+        hasLegs: false,
+        hasHands: false,
+        hasEyes: true, // Snakes have eyes
+        hasHead: true,
+        hasTorso: true
+      },
+      // Add more body types as needed
+      // quadruped: { hasArms: false, hasLegs: true, hasHands: false, ... }
+    };
+    
+    // If no body type mapping, assume standard humanoid (has all parts)
+    if (!bodyType || !bodyPartMap[bodyType]) {
+      return true;
+    }
+    
+    const restrictions = bodyPartMap[bodyType];
+    const partUpper = bodyPart.toUpperCase();
+    
+    // Check if body part is restricted
+    if (partUpper.includes('ARM')) {
+      return restrictions.hasArms !== false;
+    }
+    if (partUpper.includes('LEG')) {
+      return restrictions.hasLegs !== false;
+    }
+    if (partUpper.includes('HAND')) {
+      return restrictions.hasHands !== false;
+    }
+    if (partUpper.includes('EYE')) {
+      return restrictions.hasEyes !== false;
+    }
+    if (partUpper === 'HEAD') {
+      return restrictions.hasHead !== false;
+    }
+    if (partUpper === 'CHEST' || partUpper === 'ABDOMEN' || partUpper === 'BACK' || partUpper === 'NECK') {
+      return restrictions.hasTorso !== false;
+    }
+    
+    // Default to having the part
+    return true;
+  }
+
+  /**
    * Determine body part hit based on percentages
+   * This happens BEFORE checking if target has the body part
    * @returns {string} Body part
    */
   determineBodyPart() {
@@ -355,8 +414,11 @@ class DamageSystem {
   async calculateCriticalDamage(attacker, target, baseDamage, damageType = 'slash') {
     await this.initializeCriticalSystem();
 
-    // Determine which body part was hit
+    // Determine which body part was hit (random roll happens first, before body type check)
     const bodyPart = this.determineBodyPart();
+    
+    // Check if target actually has this body part
+    const hasBodyPart = this.targetHasBodyPart(target, bodyPart);
     
     // Determine crit rank using armor crit divisor formula
     // Raw damage was provided in baseDamage = (Endroll - 100) * DF
@@ -372,26 +434,42 @@ class DamageSystem {
     if (critRank > 9) critRank = 9;
 
     // Look up the critical result for this body part and rank
+    // We still use the body part for damage calculation even if target doesn't have it
     const critical = await this.criticalSystem.lookupCriticalByBodyPart(damageType, bodyPart, critRank);
     
     // Add critical damage to base damage
     const criticalDamage = critical.damage || 0;
     const totalDamage = baseDamage + criticalDamage;
     
+    // Filter effects - stuns (S#) still apply even if body part doesn't exist
+    // Other effects (F, K, A) only apply if body part exists
+    let effects = [];
+    if (critical.effects && Array.isArray(critical.effects)) {
+      effects = critical.effects.filter(effect => {
+        if (typeof effect === 'string' && /^S\d+$/i.test(effect)) {
+          // Stuns always apply
+          return true;
+        }
+        // Other effects only apply if body part exists
+        return hasBodyPart;
+      });
+    }
+    
     return {
       isCritical: true,  // Always true - every hit is looked up
       damage: criticalDamage,
       totalDamage: totalDamage,
       baseDamage: baseDamage,
-      message: critical.message,
-      effects: critical.effects || [],
-      wounds: critical.wounds || [],
+      message: hasBodyPart ? critical.message : null, // No critical message if body part doesn't exist
+      effects: effects, // Stuns apply even if no body part, other effects only if body part exists
+      wounds: hasBodyPart ? (critical.wounds || []) : [], // No wounds if body part doesn't exist
       rank: critRank,
       bodyPart: bodyPart,
-      isFatal: critical.isFatal || false,
-      isStun: critical.isStun || false,
-      isKnockdown: critical.isKnockdown || false,
-      isAmputation: critical.isAmputation || false
+      hasBodyPart: hasBodyPart, // Flag to indicate if target has this body part
+      isFatal: hasBodyPart && (critical.isFatal || false),
+      isStun: critical.isStun || false, // Stuns still apply even if body part doesn't exist
+      isKnockdown: hasBodyPart && (critical.isKnockdown || false),
+      isAmputation: hasBodyPart && (critical.isAmputation || false)
     };
   }
 
@@ -500,14 +578,9 @@ class DamageSystem {
     }
     
     // Pick random type if multiple (even distribution)
-    // For now, prefer slash if available to test against DB
     let damageType = damageTypes[0];
     if (damageTypes.length > 1) {
       damageType = damageTypes[Math.floor(Math.random() * damageTypes.length)];
-    }
-    // Force to 'slash' to match DB critical type
-    if (damageTypes.includes('slash')) {
-      damageType = 'slash';
     }
     
     console.log(`[DAMAGE] Weapon: ${weapon?.name}, Available types: ${damageTypes.join('/')}, Selected: ${damageType}`);
@@ -571,14 +644,14 @@ class DamageSystem {
     // Update target health
     this.setStat(target, 'health', newHealth);
     
-    // Apply wound if there was a critical hit with a wound
-    if (criticalResult.isCritical && criticalResult.bodyPart) {
+    // Apply wound if there was a critical hit with a wound AND target has the body part
+    if (criticalResult.isCritical && criticalResult.bodyPart && criticalResult.hasBodyPart !== false) {
       // Map critical rank (0-9) to wound rank (1-3)
       let woundRank = 1;
       if (criticalResult.rank >= 7) woundRank = 3;
       else if (criticalResult.rank >= 3) woundRank = 2;
       
-      // Apply the wound
+      // Apply the wound (only if target has the body part)
       WoundSystem.addWound(target, criticalResult.bodyPart, woundRank);
     }
     

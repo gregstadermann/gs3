@@ -79,7 +79,7 @@ module.exports = {
                 
                 const npcDefinition = await npcSystem.getNPC(npcId);
                 if (npcDefinition) {
-                  npcSystem.spawnNPC(npcDefinition, room.id);
+                  npcSystem.spawnNPC(npcDefinition, room.id, player.gameEngine);
                   spawnedCount++;
                 }
               } catch (error) {

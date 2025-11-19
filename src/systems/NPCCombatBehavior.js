@@ -5,8 +5,9 @@
  * Handles NPC combat actions, aggressive behavior, and AI
  */
 class NPCCombatBehavior {
-  constructor(combatSystem) {
+  constructor(combatSystem, gameEngine = null) {
     this.combatSystem = combatSystem;
+    this.gameEngine = gameEngine;
   }
 
   /**
@@ -18,7 +19,8 @@ class NPCCombatBehavior {
       return false;
     }
 
-    if (npc.isInCombat && npc.combatants && npc.combatants.size > 0) {
+    // Check if already in combat using combatSystem
+    if (this.combatSystem.isInCombat(npc)) {
       return false; // Already in combat
     }
 
@@ -28,7 +30,13 @@ class NPCCombatBehavior {
       return false;
     }
 
-    const playersInRoom = npc.gameEngine.roomSystem.getPlayersInRoom(room);
+    // Get gameEngine from this instance (passed from GameEngine)
+    if (!this.gameEngine || !this.gameEngine.roomSystem) {
+      console.error('NPCCombatBehavior: gameEngine not available');
+      return false;
+    }
+
+    const playersInRoom = this.gameEngine.roomSystem.getPlayersInRoom(room);
     if (!playersInRoom || playersInRoom.length === 0) {
       return false;
     }
@@ -93,21 +101,71 @@ class NPCCombatBehavior {
    * NPC attacks a target
    */
   async npcAttack(npc, target) {
-    // Get weapon from NPC
+    // Get weapon from NPC (if any)
     const weapon = this.getNPCWeapon(npc);
+    
+    // Get attack configuration from NPC
+    const attackType = npc.combat?.attackType || 'attack';
+    const attackName = npc.combat?.attackName || attackType;
+    
+    // Damage type can be a string or array (e.g., bite can use puncture/crush/slash)
+    const damageTypeConfig = npc.combat?.damageType || null;
+    const damageType = damageTypeConfig
+      ? (Array.isArray(damageTypeConfig) 
+          ? damageTypeConfig[Math.floor(Math.random() * damageTypeConfig.length)]
+          : damageTypeConfig)
+      : null;
 
     // Calculate damage using GS4 formula
     const DamageSystem = require('./DamageSystem');
     const damageSystem = new DamageSystem();
-    const damageResult = damageSystem.calculateWeaponDamage(npc, weapon, target);
+    
+    // Determine attack method: weapon > custom attack > unarmed
+    let damageResult;
+    if (weapon) {
+      // NPC has a weapon - use weapon damage calculation
+      damageResult = damageSystem.calculateWeaponDamage(npc, weapon, target);
+    } else if (npc.combat?.damageFactors && npc.combat?.avd) {
+      // NPC has custom attack configuration (damageFactors and AvD per armor type)
+      const targetArmorType = damageSystem.getArmorType(target);
+      const damageFactors = npc.combat.damageFactors;
+      const avdTable = npc.combat.avd;
+      
+      // Get damage factor and AvD for target's armor type
+      // Default to cloth (ASG 1) if armor type not found, or use first available value
+      const damageFactor = damageFactors[targetArmorType] 
+        || damageFactors[1] 
+        || Object.values(damageFactors)[0] 
+        || 0.400;
+      const avd = avdTable[targetArmorType] 
+        || avdTable[1] 
+        || Object.values(avdTable)[0] 
+        || 33;
+      
+      damageResult = {
+        finalDamage: 0, // Calculated below using endroll formula
+        damageFactor: damageFactor,
+        armorType: targetArmorType,
+        avd: avd,
+        damageType: damageType || 'crush' // Use configured damage type or default
+      };
+    } else {
+      // Default unarmed attack
+      damageResult = damageSystem.calculateUnarmedDamage(npc, target);
+      // Override damage type if NPC has one configured
+      if (damageType) {
+        damageResult.damageType = damageType;
+      }
+    }
 
     // Calculate hit result (AS - DS + AvD + d100)
     // Get AS directly from NPC definition, or use default
-    const as = npc.stats?.as || npc.combat?.as || 25;
-    const ds = 25; // Base DS (target's defense)
+    const as = npc.stats?.as || npc.combat?.as || npc.attributes?.attackStrength || 25;
+    // Get target's DS (use player's actual DS if available, otherwise base)
+    const targetDS = target.attributes?.defenseStrength || target.combat?.ds || 25;
     const avd = damageResult.avd;
     const d100Roll = Math.floor(Math.random() * 100) + 1;
-    const endRoll = as - ds + avd + d100Roll;
+    const endRoll = as - targetDS + avd + d100Roll;
     
     // Calculate raw damage if hit using GS4 formula: (endroll - 100) * damageFactor
     let rawDamage = 0;
@@ -117,16 +175,27 @@ class NPCCombatBehavior {
       rawDamage = Math.floor(endrollSuccessMargin * damageFactor);
     }
 
+    // For custom attacks without weapons, create a pseudo-weapon object for critical system
+    // This allows the critical system to use the correct damage type table
+    const attackWeapon = weapon || {
+      type: 'WEAPON',
+      name: attackName,
+      metadata: {
+        damageType: damageResult.damageType || damageType || 'crush',
+        weaponType: attackType || 'unarmed'
+      }
+    };
+
     // Apply damage with critical hits (using raw damage)
-    const damageApplied = await damageSystem.applyDamageWithCritical(npc, target, rawDamage, weapon);
+    const damageApplied = await damageSystem.applyDamageWithCritical(npc, target, rawDamage, attackWeapon);
 
     // Send combat messages
     const npcName = npc.name || 'creature';
     const targetName = target.name || 'target';
-    const weaponName = weapon ? weapon.name : 'its attack';
+    const attackVerb = attackName || (weapon ? weapon.name : 'attack');
     
-    this.sendCombatMessage(npc, target, `The ${npcName} tries to ${weaponName} you!\r\n`);
-    this.sendCombatMessage(npc, target, `  AS: +${as} vs DS: +${ds} with AvD: +${avd} + d100 roll: +${d100Roll} = +${endRoll}\r\n`);
+    this.sendCombatMessage(npc, target, `A ${npcName} tries to ${attackVerb} you!\r\n`);
+    this.sendCombatMessage(npc, target, `  AS: +${as} vs DS: +${targetDS} with AvD: +${avd} + d100 roll: +${d100Roll} = +${endRoll}\r\n`);
     
     // Check if hit
     if (endRoll <= 100) {
@@ -137,10 +206,10 @@ class NPCCombatBehavior {
     // Hit successful
     this.sendCombatMessage(npc, target, `  ... and hits for ${damageApplied.damage} points of damage!\r\n`);
     
-    // Every hit gets a critical message
+    // Critical hit message
     if (damageApplied.critical && damageApplied.critical.message) {
-      const critMessage = damageApplied.critical.message.replace(/\[target\]/gi, target.name);
-      this.sendCombatMessage(npc, target, critMessage + '\r\n');
+      const critMessage = damageApplied.critical.message.replace(/\[target\]/gi, targetName);
+      this.sendCombatMessage(npc, target, `  ${critMessage}\r\n`);
     }
     // Show stun messaging if stunned by critical effects
     if (damageApplied.critical && Array.isArray(damageApplied.critical.effects)) {

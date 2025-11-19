@@ -1,6 +1,8 @@
 'use strict';
 
 const databaseManager = require('../adapters/db/mongoClient');
+const CharacterCreation = require('./CharacterCreation');
+const characterCreation = new CharacterCreation();
 
 /**
  * Player System (Database Version)
@@ -113,6 +115,16 @@ class PlayerSystem {
         // Ensure role field exists (default to 'player' if missing)
         if (!player.role) {
           player.role = 'player';
+        }
+
+        ensurePhysicalFitnessSkill(player);
+        
+        // Recalculate health to ensure it's correct (fixes old hardcoded values)
+        try {
+          const HealthCalculation = require('../services/healthCalculation');
+          HealthCalculation.recalculateHealth(player);
+        } catch (error) {
+          console.warn(`[LOAD PLAYER] Could not recalculate health for ${username}:`, error.message);
         }
         
         // Add to memory cache
@@ -264,6 +276,41 @@ class PlayerSystem {
       'metadata.lastLogin': { $gte: cutoffDate.toISOString() }
     });
   }
+}
+
+function ensurePhysicalFitnessSkill(character) {
+  if (!character) {
+    return;
+  }
+
+  character.skills = character.skills || {};
+
+  const classKey = (
+    character.class ||
+    character.playerClass ||
+    character.profession ||
+    ''
+  ).toLowerCase();
+
+  const classData = characterCreation.classes?.[classKey];
+  const classPhysicalFitness = classData?.skills?.physical_fitness;
+
+  if (character.skills.physical_fitness) {
+    const pfSkill = character.skills.physical_fitness;
+    pfSkill.name = pfSkill.name || classPhysicalFitness?.name || 'Physical Fitness';
+    pfSkill.cost = pfSkill.cost || classPhysicalFitness?.cost || [3, 0];
+    pfSkill.maxRanksPerLevel = pfSkill.maxRanksPerLevel ?? classPhysicalFitness?.maxRanksPerLevel ?? 3;
+    return;
+  }
+
+  const legacyPTRanks = character.skills.physical_training?.ranks || 0;
+
+  character.skills.physical_fitness = {
+    name: classPhysicalFitness?.name || 'Physical Fitness',
+    cost: classPhysicalFitness?.cost || [3, 0],
+    ranks: legacyPTRanks || classPhysicalFitness?.ranks || 0,
+    maxRanksPerLevel: classPhysicalFitness?.maxRanksPerLevel ?? 3
+  };
 }
 
 module.exports = PlayerSystem;

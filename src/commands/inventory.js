@@ -50,6 +50,36 @@ module.exports = {
       // Collect all items from equipment
       if (player.equipment) {
         for (const [slot, itemId] of Object.entries(player.equipment)) {
+          // Handle shoulder slot specially (it's an array)
+          if (slot === 'shoulder') {
+            let shoulderItems = itemId;
+            if (!shoulderItems) continue;
+            
+            // Convert string to array if needed (backwards compatibility)
+            if (typeof shoulderItems === 'string') {
+              shoulderItems = [shoulderItems];
+            }
+            
+            if (Array.isArray(shoulderItems)) {
+              const displaySlot = slotDisplayNames[slot] || `On your ${slot}:`;
+              if (!slotGroups[displaySlot]) {
+                slotGroups[displaySlot] = [];
+              }
+              
+              for (const sid of shoulderItems) {
+                if (sid && typeof sid === 'string') {
+                  try {
+                    const item = await db.collection('items').findOne({ id: sid });
+                    if (item) {
+                      slotGroups[displaySlot].push(item.name || sid);
+                    }
+                  } catch (_) {}
+                }
+              }
+            }
+            continue;
+          }
+          
           if (!itemId) continue;
           
           try {
@@ -124,6 +154,29 @@ module.exports = {
     if (player.equipment) {
       for (const [slot, itemId] of Object.entries(player.equipment)) {
         if (slot !== 'rightHand' && slot !== 'leftHand' && itemId) {
+          // Handle shoulder slot specially (it's an array)
+          if (slot === 'shoulder') {
+            let shoulderItems = itemId;
+            // Convert string to array if needed (backwards compatibility)
+            if (typeof shoulderItems === 'string') {
+              shoulderItems = [shoulderItems];
+            }
+            
+            if (Array.isArray(shoulderItems)) {
+              for (const sid of shoulderItems) {
+                if (sid && typeof sid === 'string' && db) {
+                  try {
+                    const item = await db.collection('items').findOne({ id: sid });
+                    if (item) {
+                      wornItems.push(item.name || sid);
+                    }
+                  } catch (_) {}
+                }
+              }
+            }
+            continue;
+          }
+          
           // Try to fetch item name
           let itemName = itemId;
           if (typeof itemId === 'string' && db) {

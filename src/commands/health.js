@@ -1,6 +1,7 @@
 'use strict';
 
 const WoundSystem = require('../systems/WoundSystem');
+const HealthCalculation = require('../services/healthCalculation');
 
 /**
  * Health Command
@@ -115,10 +116,13 @@ module.exports = {
       message += '\r\n';
     }
     
-    // Get HP stats
-    const maxHP = 100;
-    const currentHP = player.attributes?.health?.base || 100;
-    const healthRecovery = 1; // TODO: Calculate based on stats
+    // Calculate HP stats using proper formula
+    // Recalculate health to ensure it's up to date
+    HealthCalculation.recalculateHealth(player);
+    
+    const maxHP = player.attributes?.health?.max || 100;
+    const currentHP = player.attributes?.health?.current || maxHP;
+    const healthRecovery = HealthCalculation.calculateHealthRegen(player);
     
     message += `   Maximum Health Points: ${maxHP}\r\n`;
     message += ` Remaining Health Points: ${currentHP}\r\n`;

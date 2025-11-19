@@ -1,5 +1,8 @@
 'use strict';
 
+const CharacterCreation = require('../systems/CharacterCreation');
+const characterCreation = new CharacterCreation();
+
 /**
  * Skills Command
  * Shows available skills and their training costs
@@ -15,6 +18,30 @@ module.exports = {
       // Show all skills
       let message = 'Available Skills:\n';
       message += `Training Points: ${player.tps ? player.tps[0] : 0} physical, ${player.tps ? player.tps[1] : 0} mental\n\n`;
+
+      // Ensure skills container exists
+      player.skills = player.skills || {};
+
+      // Legacy characters may be missing Physical Fitness. Inject it so the command stays consistent.
+      if (!player.skills.physical_fitness) {
+        const legacyPTRanks = player.skills.physical_training?.ranks || 0;
+        const classKey = (
+          player.class ||
+          player.playerClass ||
+          player.profession ||
+          ''
+        ).toLowerCase();
+
+        const classData = characterCreation.classes?.[classKey];
+        const classPhysicalFitness = classData?.skills?.physical_fitness;
+
+        player.skills.physical_fitness = {
+          name: classPhysicalFitness?.name || 'Physical Fitness',
+          cost: classPhysicalFitness?.cost || [3, 0],
+          ranks: legacyPTRanks || classPhysicalFitness?.ranks || 0,
+          maxRanksPerLevel: classPhysicalFitness?.maxRanksPerLevel ?? 3
+        };
+      }
       
       console.log(`[SKILLS DEBUG] Player: ${player.name}`);
       console.log(`[SKILLS DEBUG] Skills object:`, JSON.stringify(player.skills, null, 2));
@@ -36,84 +63,96 @@ module.exports = {
       console.log(`[SKILLS DEBUG] Combat skills:`, combatSkills.map(([id, skill]) => `${id}: rank ${skill.ranks}`));
       
       const utilitySkills = skills.filter(([id, skill]) => 
-        ['climbing', 'swimming', 'survival', 'disarm_traps', 'pick_locks', 'stalk_and_hide', 'perception', 'ambush', 'first_aid'].includes(id)
+        ['climbing', 'swimming', 'disarm_traps', 'pick_locks', 'stalk_and_hide', 'perception', 'ambush', 'first_aid', 'physical_fitness'].includes(id)
       );
       
       const magicSkills = skills.filter(([id, skill]) => 
         ['spell_aim', 'mana_share', 'magic_item_use', 'scroll_reading', 'harness_power', 'wizard_base', 'cleric_base', 'empath_base', 'sorcerer_base', 'ranger_base', 'paladin_base', 'bard_base'].includes(id)
       );
-      
-      const trainingSkills = skills.filter(([id, skill]) => 
-        ['physical_training'].includes(id)
-      );
 
       let skillNumber = 1;
-      const formatSkill = (name, ranks, cost, number, maxTotal, maxPerLevel) => {
+      const formatSkill = (name, ranks, cost, number, maxPerLevel, skillId) => {
         console.log(`[SKILLS DEBUG] Formatting skill ${number}: ${name} with ${ranks} ranks`);
-        // Format: Number) Current_Ranks Max/Max_Per_Level (Next_Rank_Cost) Skill_Name
+        // Format: Number) Ranks_This_Level/Max_Per_Level (Next_Rank_Cost) Skill_Name (Total_Ranks)
+        // Calculate ranks trained this level
+        const ranksThisLevel = maxPerLevel > 0 ? ranks % maxPerLevel : 0;
+        
         // Calculate what the next rank would cost based on current ranks
-        const rankInLevel = ranks % 3;
         let costMultiplier;
         
-        if (rankInLevel === 0) costMultiplier = 1;      // Next is 1st rank
-        else if (rankInLevel === 1) costMultiplier = 2; // Next is 2nd rank  
+        if (maxPerLevel === 1) {
+          costMultiplier = 1; // Always 1x for 1 rank per level
+        } else if (maxPerLevel === 2) {
+          if (ranksThisLevel === 0) costMultiplier = 1;      // Next is 1st rank
+          else costMultiplier = 2;                        // Next is 2nd rank
+        } else {
+          // Default to 3 ranks per level
+          if (ranksThisLevel === 0) costMultiplier = 1;      // Next is 1st rank
+          else if (ranksThisLevel === 1) costMultiplier = 2; // Next is 2nd rank  
         else costMultiplier = 4;                        // Next is 3rd rank
+        }
         
         const nextPhysicalCost = cost[0] * costMultiplier;
         const nextMentalCost = cost[1] * costMultiplier;
         
-        return `${number}) ${ranks} ${maxTotal}/${maxPerLevel} (${nextPhysicalCost}/${nextMentalCost}) ${name}`;
+        return `${number}) ${ranksThisLevel}/${maxPerLevel} (${nextPhysicalCost}/${nextMentalCost}) ${name}`;
       };
       
       // Define max ranks for each skill type
       const getSkillMaxRanks = (skillId) => {
+        // Get max ranks per level from skill definition if available
+        const skill = player.skills[skillId];
+        if (skill && skill.maxRanksPerLevel !== undefined) {
+          return skill.maxRanksPerLevel;
+        }
+        
+        // Fallback to hardcoded values for skills that don't have maxRanksPerLevel defined
         const maxRanks = {
           // Weapon Skills
-          one_handed_edged: [6, 1], // 6 total, 1 per level
-          one_handed_blunt: [6, 1],
-          two_handed: [14, 3],
-          polearm: [14, 3],
-          ranged: [14, 3],
-          thrown: [8, 2],
-          brawling: [10, 2],
+          one_handed_edged: 1,
+          one_handed_blunt: 1,
+          two_handed: 3,
+          polearm: 3,
+          ranged: 3,
+          thrown: 2,
+          brawling: 2,
           // Combat Skills
-          combat_maneuvers: [12, 8],
-          shield_use: [13, 0],
-          armor_use: [14, 0],
+          combat_maneuvers: 8,
+          shield_use: 0,
+          armor_use: 0,
           // General Skills
-          climbing: [4, 0],
-          swimming: [3, 0],
-          survival: [3, 2],
-          disarm_traps: [2, 6],
-          pick_locks: [2, 4],
-          stalk_and_hide: [5, 4],
-          perception: [0, 3],
-          ambush: [15, 10],
-          first_aid: [2, 1],
+          climbing: 0,
+          swimming: 0,
+          disarm_traps: 6,
+          pick_locks: 4,
+          stalk_and_hide: 4,
+          perception: 3,
+          ambush: 10,
+          first_aid: 1,
           // Magic Skills
-          spell_aim: [2, 1],
-          mana_share: [0, 3],
-          magic_item_use: [0, 1],
-          scroll_reading: [0, 2],
-          major_elemental: [0, 8],
-          minor_elemental: [0, 8],
-          wizard_base: [0, 8],
-          cleric_base: [0, 8],
-          empath_base: [0, 8],
-          sorcerer_base: [0, 8],
-          ranger_base: [0, 8],
-          paladin_base: [0, 8],
-          bard_base: [0, 8]
+          spell_aim: 1,
+          mana_share: 3,
+          magic_item_use: 1,
+          scroll_reading: 2,
+          major_elemental: 8,
+          minor_elemental: 8,
+          wizard_base: 8,
+          cleric_base: 8,
+          empath_base: 8,
+          sorcerer_base: 8,
+          ranger_base: 8,
+          paladin_base: 8,
+          bard_base: 8
         };
-        return maxRanks[skillId] || [10, 2]; // Default if not found
+        return maxRanks[skillId] || 2; // Default if not found
       };
       
       if (combatSkills.length > 0) {
         message += 'Combat Skills\r\n';
         combatSkills.forEach(([id, skill]) => {
-          const [maxTotal, maxPerLevel] = getSkillMaxRanks(id);
-          console.log(`[SKILLS DEBUG] Displaying ${id}: ranks=${skill.ranks}, maxTotal=${maxTotal}, maxPerLevel=${maxPerLevel}`);
-          message += formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxTotal, maxPerLevel) + '\r\n';
+          const maxPerLevel = getSkillMaxRanks(id);
+          console.log(`[SKILLS DEBUG] Displaying ${id}: ranks=${skill.ranks}, maxPerLevel=${maxPerLevel}`);
+          message += formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxPerLevel, id) + '\r\n';
         });
         message += '\r\n';
       }
@@ -121,8 +160,8 @@ module.exports = {
       if (utilitySkills.length > 0) {
         message += 'General Skills\r\n';
         utilitySkills.forEach(([id, skill]) => {
-          const [maxTotal, maxPerLevel] = getSkillMaxRanks(id);
-          message += formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxTotal, maxPerLevel) + '\r\n';
+          const maxPerLevel = getSkillMaxRanks(id);
+          message += formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxPerLevel, id) + '\r\n';
         });
         message += '\r\n';
       }
@@ -130,17 +169,8 @@ module.exports = {
       if (magicSkills.length > 0) {
         message += 'Magic Skills\r\n';
         magicSkills.forEach(([id, skill]) => {
-          const [maxTotal, maxPerLevel] = getSkillMaxRanks(id);
-          message += formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxTotal, maxPerLevel) + '\r\n';
-        });
-        message += '\r\n';
-      }
-
-      if (trainingSkills.length > 0) {
-        message += 'Training Skills\r\n';
-        trainingSkills.forEach(([id, skill]) => {
-          const [maxTotal, maxPerLevel] = getSkillMaxRanks(id);
-          message += formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxTotal, maxPerLevel) + '\r\n';
+          const maxPerLevel = getSkillMaxRanks(id);
+          message += formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxPerLevel, id) + '\r\n';
         });
         message += '\r\n';
       }

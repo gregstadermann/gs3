@@ -142,7 +142,11 @@ module.exports = {
       };
     }
 
-    // Get combat system from game engine
+    // Get combat system from game engine (ensure it's initialized)
+    if (player.gameEngine && !player.gameEngine.combatSystem) {
+      const CombatSystem = require('../systems/CombatSystem');
+      player.gameEngine.combatSystem = new CombatSystem();
+    }
     const gameCombat = player.gameEngine?.combatSystem || combatSystem;
 
     // Find target
@@ -172,10 +176,12 @@ module.exports = {
     const strRaw = getRawStat(player, 'strength');
     const strBonus = calculateStatBonus(strRaw, player.race, 'strength');
     
-    // Weapon Skill Bonus (get from one_handed_edged for broadsword)
+    // Weapon Skill Bonus (get from one_handed_edged for broadsword, or brawling for unarmed)
     let weaponSkillBonus = 0;
     let combatManeuversBonus = 0;
-    if (weapon && player.skills) {
+    if (player.skills) {
+      if (weapon) {
+        // Armed combat - use weapon-specific skill
       console.log(`[AS CALC] Weapon metadata:`, weapon.metadata);
       
       // Check weapon type to use correct skill
@@ -197,6 +203,16 @@ module.exports = {
         // Ranks 41+: +1 per rank
         weaponSkillBonus = calculateSkillBonus(ranks);
         console.log(`[AS CALC] Weapon skill ranks: ${ranks}, bonus: ${weaponSkillBonus}`);
+        }
+      } else {
+        // Unarmed combat - use brawling skill
+        const brawlingSkill = player.skills.brawling;
+        if (brawlingSkill) {
+          const ranks = brawlingSkill.ranks || 0;
+          // Brawling skill bonus with diminishing returns (same as weapon skills)
+          weaponSkillBonus = calculateSkillBonus(ranks);
+          console.log(`[AS CALC] Brawling skill ranks: ${ranks}, bonus: ${weaponSkillBonus}`);
+        }
       }
       
       // Combat Maneuvers bonus
@@ -300,11 +316,20 @@ module.exports = {
     // Get weapon roundtime from weapon definition
     function getWeaponRoundtimeMs(w, p) {
       try {
+        let baseWeapon;
+        
+        if (!w) {
+          // Unarmed combat - use closed fist base weapon
+          baseWeapon = damageSystem.baseWeapons['weapon_closed_fist'];
+        } else {
+          // Get base weapon from weapon metadata
         const baseWeaponType = w?.metadata?.baseWeapon;
-        const baseWeapon = damageSystem.baseWeapons[baseWeaponType];
+          baseWeapon = baseWeaponType ? damageSystem.baseWeapons[baseWeaponType] : null;
+        }
+        
         if (baseWeapon && typeof baseWeapon.roundtime === 'number') {
           // Weapon RT is in seconds (5 = 5s, 3 = 3s, etc)
-          const rtMs = baseWeapon.roundtime * 1000;
+          let rtMs = baseWeapon.roundtime * 1000;
           
           // Only apply Two-Handed skill reduction if weapon is two-handed
           const weaponType = baseWeapon.type || '';
@@ -314,11 +339,25 @@ module.exports = {
             // Two-Handed Weapon skill reduces RT: 1s per 20 ranks
             const twoHandedRanks = p.skills?.two_handed?.ranks || 0;
             const reductionMs = Math.floor((twoHandedRanks / 20) * 1000);
-            return Math.max(500, rtMs - reductionMs); // Minimum 0.5s
+            rtMs = Math.max(500, rtMs - reductionMs); // Minimum 0.5s
+          }
+          
+          // Apply minimum roundtime if specified (e.g., closed fist has minRoundtime: 2)
+          if (baseWeapon.minRoundtime && typeof baseWeapon.minRoundtime === 'number') {
+            const minRtMs = baseWeapon.minRoundtime * 1000;
+            rtMs = Math.max(minRtMs, rtMs);
           }
           
           return rtMs;
         }
+        
+        // Fallback: if no base weapon found, use closed fist (unarmed)
+        const closedFist = damageSystem.baseWeapons['weapon_closed_fist'];
+        if (closedFist) {
+          const minRtMs = closedFist.minRoundtime ? closedFist.minRoundtime * 1000 : 2000;
+          return Math.max(minRtMs, (closedFist.roundtime || 1) * 1000);
+        }
+        
         return 10000; // Default 10s for unknown weapons
       } catch (_) { return 10000; }
     }

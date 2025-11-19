@@ -553,13 +553,15 @@ BASE_WEAPONS['weapon_lance'] = {
 BASE_WEAPONS['weapon_closed_fist'] = {
   name: 'Closed Fist',
   type: 'brawling',
-  roundtime: 0,
-  minRoundtime: 1,
+  roundtime: 1,  // RT 1 (but Min RT 2, so minimum is 2 seconds)
+  minRoundtime: 2,  // Minimum roundtime is 2 seconds
   damageType: ['crush'],
   strReq: 0,
   disReq: 0,
   weight: 0,
+  // Damage factors by armor type (from GS3 closed fist table)
   damageFactors: { 1: 0.100, 5: 0.075, 6: 0.075, 7: 0.075, 8: 0.075, 9: 0.040, 10: 0.040, 11: 0.040, 12: 0.040, 13: 0.036, 14: 0.036, 15: 0.036, 16: 0.036, 17: 0.032, 18: 0.032, 19: 0.032, 20: 0.032 },
+  // Attack vs Defense by armor type (from GS3 closed fist table)
   attackVsDefense: { 1: 25, 5: 20, 6: 19, 7: 18, 8: 17, 9: 10, 10: 8, 11: 6, 12: 4, 13: 5, 14: 1, 15: -3, 16: -7, 17: -5, 18: -11, 19: -17, 20: -23 }
 };
 

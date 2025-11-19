@@ -55,23 +55,38 @@ class NPCSystem {
   /**
    * Spawn an NPC in a room
    */
-  spawnNPC(npcData, roomId) {
+  spawnNPC(npcData, roomId, gameEngine = null) {
     const npcId = `${npcData.id}_${Date.now()}`;
     
     const activeNPC = {
       id: npcId,
       definitionId: npcData.id,
-      npcId: npcData.npcId,
+      npcId: npcData.npcId || npcData.id,
       name: npcData.name,
       room: roomId,
-      level: npcData.level,
+      level: npcData.level || npcData.attributes?.level || 1,
       keywords: npcData.keywords || [],
       description: npcData.description,
-      attributes: { ...npcData.attributes },
-      behaviors: { ...npcData.behaviors },
+      attributes: { ...(npcData.attributes || {}) },
+      behaviors: { ...(npcData.behaviors || {}) },
+      // Combat-related fields
+      aggressive: npcData.aggressive || npcData.behaviors?.aggressive || false,
+      roundtime: npcData.roundtime || 2500, // Default 2.5 seconds
+      stats: npcData.stats || {},
+      combat: npcData.combat || {},
+      equipment: npcData.equipment || {},
+      // Health/status
+      health: npcData.attributes?.health || npcData.health || { current: 100, max: 100 },
       isAlive: true,
-      spawnTime: Date.now()
+      spawnTime: Date.now(),
+      // Reference to gameEngine for room system access
+      gameEngine: gameEngine
     };
+
+    // Ensure attributes.health exists
+    if (!activeNPC.attributes.health) {
+      activeNPC.attributes.health = activeNPC.health;
+    }
 
     this.npcs.set(npcId, activeNPC);
     return activeNPC;

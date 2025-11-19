@@ -90,7 +90,7 @@ module.exports = {
 
       // Skill modifiers (very simplified placeholder)
       const firstAid = player.skills?.first_aid?.ranks || 0;
-      const survival = player.skills?.survival?.ranks || 0;
+      const physicalFitnessRanks = player.skills?.physical_fitness?.ranks || 0;
       const dex = (player.attributes?.dexterity?.base || 50);
       const kneelingBonus = 0; // TODO: implement posture system
       const weaponBonus = (() => {
@@ -102,7 +102,7 @@ module.exports = {
       })();
 
       const difficulty = 15; // placeholder for rat; would be per-creature
-      const score = firstAid + Math.floor(survival / 2) + Math.floor((dex - 50) / 5) + kneelingBonus + weaponBonus + (Math.random() * 20 - 10);
+      const score = firstAid + Math.floor(physicalFitnessRanks / 2) + Math.floor((dex - 50) / 5) + kneelingBonus + weaponBonus + (Math.random() * 20 - 10);
 
       let quality = 'crude';
       if (score > difficulty + 40) quality = 'magnificent';

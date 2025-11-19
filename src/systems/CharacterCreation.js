@@ -87,7 +87,6 @@ class CharacterCreation {
           armor_use: { name: 'Armor Use', cost: [2, 0], ranks: 0 },
           climbing: { name: 'Climbing', cost: [3, 0], ranks: 0 },
           swimming: { name: 'Swimming', cost: [2, 0], ranks: 0 },
-          survival: { name: 'Survival', cost: [1, 3], ranks: 0 },
           disarm_traps: { name: 'Disarming Traps', cost: [2, 4], ranks: 0 },
           pick_locks: { name: 'Picking Locks', cost: [2, 3], ranks: 0 },
           stalk_and_hide: { name: 'Stalking & Hiding', cost: [3, 2], ranks: 0 },
@@ -95,7 +94,7 @@ class CharacterCreation {
           pickpocketing: { name: 'Picking Pockets', cost: [2, 3], ranks: 0 },
           ambush: { name: 'Ambush', cost: [3, 4], ranks: 0 },
           spell_aim: { name: 'Spell Aiming', cost: [4, 8], ranks: 0 },
-          physical_training: { name: 'Physical Training', cost: [2, 0], ranks: 0 },
+          physical_fitness: { name: 'Physical Fitness', cost: [2, 0], ranks: 0, maxRanksPerLevel: 3 },
           mana_share: { name: 'Mana Sharing', cost: [0, 12], ranks: 0 },
           magic_item_use: { name: 'Magic Item Use', cost: [0, 7], ranks: 0 },
           scroll_reading: { name: 'Scroll Reading', cost: [0, 8], ranks: 0 },
@@ -121,7 +120,6 @@ class CharacterCreation {
           armor_use: { name: 'Armor Use', cost: [14, 0], ranks: 0 },
           climbing: { name: 'Climbing', cost: [4, 0], ranks: 0 },
           swimming: { name: 'Swimming', cost: [3, 0], ranks: 0 },
-          survival: { name: 'Survival', cost: [3, 2], ranks: 0 },
           disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0 },
           pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
           stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0 },
@@ -129,7 +127,7 @@ class CharacterCreation {
           pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0 },
           ambush: { name: 'Ambush', cost: [15, 10], ranks: 0 },
           spell_aim: { name: 'Spell Aiming', cost: [2, 1], ranks: 0 },
-          physical_training: { name: 'Physical Training', cost: [8, 0], ranks: 0 },
+          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 2 },
           harness_power: { name: 'Harness Power', cost: [0, 4], ranks: 0 },
           mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0 },
           magic_item_use: { name: 'Magic Item Use', cost: [0, 1], ranks: 0 },
@@ -157,7 +155,6 @@ class CharacterCreation {
           armor_use: { name: 'Armor Use', cost: [14, 0], ranks: 0 },
           climbing: { name: 'Climbing', cost: [4, 0], ranks: 0 },
           swimming: { name: 'Swimming', cost: [3, 0], ranks: 0 },
-          survival: { name: 'Survival', cost: [3, 2], ranks: 0 },
           disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0 },
           pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
           stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0 },
@@ -165,7 +162,7 @@ class CharacterCreation {
           pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0 },
           ambush: { name: 'Ambush', cost: [15, 10], ranks: 0 },
           spell_aim: { name: 'Spell Aiming', cost: [2, 1], ranks: 0 },
-          physical_training: { name: 'Physical Training', cost: [8, 0], ranks: 0 },
+          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 2 },
           mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0 },
           magic_item_use: { name: 'Magic Item Use', cost: [0, 1], ranks: 0 },
           scroll_reading: { name: 'Scroll Reading', cost: [0, 2], ranks: 0 },
@@ -192,7 +189,6 @@ class CharacterCreation {
           armor_use: { name: 'Armor Use', cost: [14, 0], ranks: 0 },
           climbing: { name: 'Climbing', cost: [4, 0], ranks: 0 },
           swimming: { name: 'Swimming', cost: [3, 0], ranks: 0 },
-          survival: { name: 'Survival', cost: [3, 2], ranks: 0 },
           disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0 },
           pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
           stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0 },
@@ -200,7 +196,7 @@ class CharacterCreation {
           pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0 },
           ambush: { name: 'Ambush', cost: [15, 10], ranks: 0 },
           spell_aim: { name: 'Spell Aiming', cost: [2, 1], ranks: 0 },
-          physical_training: { name: 'Physical Training', cost: [8, 0], ranks: 0 },
+          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 2 },
           mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0 },
           magic_item_use: { name: 'Magic Item Use', cost: [0, 1], ranks: 0 },
           scroll_reading: { name: 'Scroll Reading', cost: [0, 2], ranks: 0 },
@@ -227,7 +223,6 @@ class CharacterCreation {
           armor_use: { name: 'Armor Use', cost: [15, 0], ranks: 0 },
           climbing: { name: 'Climbing', cost: [4, 0], ranks: 0 },
           swimming: { name: 'Swimming', cost: [3, 0], ranks: 0 },
-          survival: { name: 'Survival', cost: [3, 2], ranks: 0 },
           disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0 },
           pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
           stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0 },
@@ -235,7 +230,7 @@ class CharacterCreation {
           pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0 },
           ambush: { name: 'Ambush', cost: [15, 15], ranks: 0 },
           spell_aim: { name: 'Spell Aiming', cost: [3, 1], ranks: 0 },
-          physical_training: { name: 'Physical Training', cost: [2, 0], ranks: 0 },
+          physical_fitness: { name: 'Physical Fitness', cost: [2, 0], ranks: 0 },
           mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0 },
           magic_item_use: { name: 'Magic Item Use', cost: [0, 2], ranks: 0 },
           scroll_reading: { name: 'Scroll Reading', cost: [0, 2], ranks: 0 },
@@ -262,7 +257,6 @@ class CharacterCreation {
           armor_use: { name: 'Armor Use', cost: [4, 2], ranks: 0 },
           climbing: { name: 'Climbing', cost: [2, 0], ranks: 0 },
           swimming: { name: 'Swimming', cost: [2, 0], ranks: 0 },
-          survival: { name: 'Survival', cost: [1, 1], ranks: 0 },
           disarm_traps: { name: 'Disarming Traps', cost: [2, 4], ranks: 0 },
           pick_locks: { name: 'Picking Locks', cost: [2, 3], ranks: 0 },
           stalk_and_hide: { name: 'Stalking & Hiding', cost: [2, 1], ranks: 0 },
@@ -270,7 +264,7 @@ class CharacterCreation {
           pickpocketing: { name: 'Picking Pockets', cost: [2, 3], ranks: 0 },
           ambush: { name: 'Ambush', cost: [3, 3], ranks: 0 },
           spell_aim: { name: 'Spell Aiming', cost: [5, 15], ranks: 0 },
-          physical_training: { name: 'Physical Training', cost: [4, 0], ranks: 0 },
+          physical_fitness: { name: 'Physical Fitness', cost: [4, 0], ranks: 0, maxRanksPerLevel: 3 },
           harness_power: { name: 'Harness Power', cost: [0, 5], ranks: 0 },
           mana_share: { name: 'Mana Sharing', cost: [0, 5], ranks: 0 },
           magic_item_use: { name: 'Magic Item Use', cost: [0, 5], ranks: 0 },
@@ -298,7 +292,6 @@ class CharacterCreation {
           armor_use: { name: 'Armor Use', cost: [3, 0], ranks: 0 },
           climbing: { name: 'Climbing', cost: [3, 0], ranks: 0 },
           swimming: { name: 'Swimming', cost: [2, 0], ranks: 0 },
-          survival: { name: 'Survival', cost: [2, 2], ranks: 0 },
           disarm_traps: { name: 'Disarming Traps', cost: [2, 5], ranks: 0 },
           pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
           stalk_and_hide: { name: 'Stalking & Hiding', cost: [4, 4], ranks: 0 },
@@ -306,7 +299,7 @@ class CharacterCreation {
           pickpocketing: { name: 'Picking Pockets', cost: [4, 4], ranks: 0 },
           ambush: { name: 'Ambush', cost: [4, 5], ranks: 0 },
           spell_aim: { name: 'Spell Aiming', cost: [4, 2], ranks: 0 },
-          physical_training: { name: 'Physical Training', cost: [3, 0], ranks: 0 },
+          physical_fitness: { name: 'Physical Fitness', cost: [3, 0], ranks: 0, maxRanksPerLevel: 3 },
           harness_power: { name: 'Harness Power', cost: [0, 5], ranks: 0 },
           mana_share: { name: 'Mana Sharing', cost: [0, 15], ranks: 0 },
           magic_item_use: { name: 'Magic Item Use', cost: [0, 5], ranks: 0 },
@@ -333,7 +326,6 @@ class CharacterCreation {
           armor_use: { name: 'Armor Use', cost: [14, 0], ranks: 0 },
           climbing: { name: 'Climbing', cost: [4, 0], ranks: 0 },
           swimming: { name: 'Swimming', cost: [3, 0], ranks: 0 },
-          survival: { name: 'Survival', cost: [3, 2], ranks: 0 },
           disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0 },
           pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
           stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0 },
@@ -341,7 +333,7 @@ class CharacterCreation {
           pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0 },
           ambush: { name: 'Ambush', cost: [15, 10], ranks: 0 },
           spell_aim: { name: 'Spell Aiming', cost: [2, 1], ranks: 0 },
-          physical_training: { name: 'Physical Training', cost: [8, 0], ranks: 0 },
+          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 2 },
           harness_power: { name: 'Harness Power', cost: [0, 4], ranks: 0 },
           mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0 },
           magic_item_use: { name: 'Magic Item Use', cost: [0, 1], ranks: 0 },
@@ -369,7 +361,6 @@ class CharacterCreation {
           armor_use: { name: 'Armor Use', cost: [15, 0], ranks: 0 },
           climbing: { name: 'Climbing', cost: [4, 0], ranks: 0 },
           swimming: { name: 'Swimming', cost: [3, 0], ranks: 0 },
-          survival: { name: 'Survival', cost: [3, 2], ranks: 0 },
           disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0 },
           pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
           stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0 },
@@ -377,7 +368,7 @@ class CharacterCreation {
           pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0 },
           ambush: { name: 'Ambush', cost: [15, 10], ranks: 0 },
           spell_aim: { name: 'Spell Aiming', cost: [3, 1], ranks: 0 },
-          physical_training: { name: 'Physical Training', cost: [8, 0], ranks: 0 },
+          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 2 },
           harness_power: { name: 'Harness Power', cost: [0, 4], ranks: 0 },
           mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0 },
           magic_item_use: { name: 'Magic Item Use', cost: [0, 2], ranks: 0 },
@@ -481,10 +472,14 @@ class CharacterCreation {
       };
     }
 
+    // Calculate health using proper HP formula
+    const HealthCalculation = require('../services/healthCalculation');
+    const maxHP = HealthCalculation.calculateMaxHP(character);
+
     // Add health and mana
     character.attributes.health = {
-      base: 100,
-      delta: 0
+      current: maxHP,
+      max: maxHP
     };
     character.attributes.mana = {
       base: 50,
@@ -496,7 +491,8 @@ class CharacterCreation {
       character.skills[skillId] = {
         name: skillData.name,
         cost: skillData.cost,
-        ranks: 0
+        ranks: 0,
+        maxRanksPerLevel: skillData.maxRanksPerLevel || 3 // Default to 3 if not specified
       };
     }
 
@@ -513,15 +509,18 @@ class CharacterCreation {
       return { success: false, message: 'Skill not found.' };
     }
 
-    // Check how many ranks trained this level (ranks % 3 gives ranks in current level)
-    const ranksInCurrentLevel = skill.ranks % 3;
-    const maxRanksAllowed = 3 - ranksInCurrentLevel;
+    // Get max ranks per level from skill definition
+    const maxRanksPerLevel = skill.maxRanksPerLevel || 3; // Default to 3 if not specified
+
+    // Check how many ranks trained this level
+    const ranksInCurrentLevel = skill.ranks % maxRanksPerLevel;
+    const maxRanksAllowed = maxRanksPerLevel - ranksInCurrentLevel;
     
     // Check if trying to train more than allowed this level
     if (ranks > maxRanksAllowed) {
       return { 
         success: false, 
-        message: `You can only train ${maxRanksAllowed} more rank(s) in ${skill.name} this level (3 max per level).` 
+        message: `You can only train ${maxRanksAllowed} more rank(s) in ${skill.name} this level (${maxRanksPerLevel} max per level).` 
       };
     }
 
@@ -530,16 +529,25 @@ class CharacterCreation {
     let totalMentalCost = 0;
 
     // Calculate cost for each rank
-    // 1st rank in level: 1x base cost
-    // 2nd rank in level: 2x base cost
-    // 3rd rank in level: 4x base cost
+    // Cost multiplier depends on max ranks per level:
+    // - 1 rank per level: always 1x
+    // - 2 ranks per level: 1st rank = 1x, 2nd rank = 2x
+    // - 3 ranks per level: 1st rank = 1x, 2nd rank = 2x, 3rd rank = 4x
     for (let i = 0; i < ranks; i++) {
       const rankInLevel = ranksInCurrentLevel + i;
       let costMultiplier;
       
+      if (maxRanksPerLevel === 1) {
+        costMultiplier = 1;
+      } else if (maxRanksPerLevel === 2) {
+        if (rankInLevel === 0) costMultiplier = 1;      // 1st rank
+        else costMultiplier = 2;                        // 2nd rank
+      } else {
+        // Default to 3 ranks per level
       if (rankInLevel === 0) costMultiplier = 1;      // 1st rank
       else if (rankInLevel === 1) costMultiplier = 2; // 2nd rank  
       else costMultiplier = 4;                        // 3rd rank
+      }
       
       const physicalCost = basePhysicalCost * costMultiplier;
       const mentalCost = baseMentalCost * costMultiplier;
@@ -596,6 +604,16 @@ class CharacterCreation {
     character.tps[0] = physicalRemaining;
     character.tps[1] = mentalRemaining;
     skill.ranks += ranks;
+
+    // If Physical Fitness was trained, recalculate HP
+    if (skillId === 'physical_fitness') {
+      try {
+        const HealthCalculation = require('../services/healthCalculation');
+        HealthCalculation.recalculateHealth(character);
+      } catch (error) {
+        console.warn(`[TRAIN] Could not recalculate health after PF training:`, error.message);
+      }
+    }
 
     return { 
       success: true, 

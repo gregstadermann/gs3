@@ -132,15 +132,15 @@
     "encumbranceFactor": 0.50,
     "statModifiers": {
       "strength": -15,
-      "constitution": 5,
+      "constitution": 10,
       "dexterity": 10,
-      "agility": 5,
-      "discipline": 5,
-      "aura": 10,
+      "agility": 10,
+      "discipline": -5,
+      "aura": 5,
       "logic": 10,
-      "intelligence": 0,
+      "intelligence": 5,
       "wisdom": 0,
-      "charisma": -10
+      "charisma": -5
     }
   },
   "forest_gnome": {
@@ -149,16 +149,16 @@
     "bodyFactor": 0.4767,
     "encumbranceFactor": 0.60,
     "statModifiers": {
-      "strength": -15,
+      "strength": -10,
       "constitution": 10,
       "dexterity": 5,
       "agility": 10,
-      "discipline": 0,
-      "aura": 5,
-      "logic": 10,
+      "discipline": 5,
+      "aura": 0,
+      "logic": 5,
       "intelligence": 0,
       "wisdom": 5,
-      "charisma": -10
+      "charisma": -5
     }
   },
   "sylvankind": {
@@ -167,15 +167,15 @@
     "bodyFactor": 0.7233,
     "encumbranceFactor": 0.81,
     "statModifiers": {
-      "strength": -5,
+      "strength": 0,
       "constitution": 0,
-      "dexterity": 5,
-      "agility": 10,
-      "discipline": -10,
-      "aura": 10,
+      "dexterity": 10,
+      "agility": 5,
+      "discipline": -5,
+      "aura": 5,
       "logic": 0,
       "intelligence": 0,
-      "wisdom": 5,
+      "wisdom": 0,
       "charisma": 0
     }
   },
@@ -188,13 +188,13 @@
       "strength": 10,
       "constitution": 10,
       "dexterity": 0,
-      "agility": 0,
-      "discipline": 5,
-      "aura": -5,
-      "logic": 0,
+      "agility": 5,
+      "discipline": 0,
+      "aura": 0,
+      "logic": -10,
       "intelligence": 0,
-      "wisdom": 0,
-      "charisma": -15
+      "wisdom": -5,
+      "charisma": -5
     }
   },
   "aelotoi": {
@@ -203,16 +203,16 @@
     "bodyFactor": 0.6767,
     "encumbranceFactor": 0.75,
     "statModifiers": {
-      "strength": 0,
+      "strength": -5,
       "constitution": 0,
-      "dexterity": 10,
-      "agility": 5,
-      "discipline": 0,
+      "dexterity": 5,
+      "agility": 10,
+      "discipline": 5,
       "aura": 0,
       "logic": 5,
-      "intelligence": 0,
-      "wisdom": 5,
-      "charisma": 0
+      "intelligence": 5,
+      "wisdom": 0,
+      "charisma": -5
     }
   },
   "erithian": {
@@ -221,17 +221,16 @@
     "bodyFactor": 0.7233,
     "encumbranceFactor": 0.85,
     "statModifiers": {
-      "strength": 0,
-      "constitution": -5,
-      "dexterity": 5,
-      "agility": 5,
-      "discipline": 0,
-      "aura": 5,
-      "logic": 10,
+      "strength": -5,
+      "constitution": 10,
+      "dexterity": 0,
+      "agility": 0,
+      "discipline": 5,
+      "aura": 0,
+      "logic": 5,
       "intelligence": 0,
-      "wisdom": 5,
-      "charisma": 0
+      "wisdom": 0,
+      "charisma": 10
     }
   }
 }
-

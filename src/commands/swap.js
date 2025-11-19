@@ -47,28 +47,41 @@ module.exports = {
     player.equipment.leftHand = right || null;
     player.equipment.rightHand = left || null;
 
-    // Persist change
+    // Persist change using playerSystem.updatePlayer for consistency
+    // This ensures the in-memory player object and database stay in sync
     try {
-      await db.collection('players').updateOne(
-        { _id: player._id },
-        { 
-          $set: { 
-            'equipment.leftHand': player.equipment.leftHand,
-            'equipment.rightHand': player.equipment.rightHand
-          } 
+      if (player.gameEngine && player.gameEngine.playerSystem) {
+        await player.gameEngine.playerSystem.updatePlayer(player);
+        // Also update the in-memory cache in GameEngine
+        if (player.gameEngine.players) {
+          player.gameEngine.players.set(player.name || player.id, player);
         }
-      );
+      } else {
+        // Fallback to direct DB update
+        await db.collection('players').updateOne(
+          { name: player.name },
+          { 
+            $set: { 
+              'equipment.leftHand': player.equipment.leftHand,
+              'equipment.rightHand': player.equipment.rightHand
+            } 
+          }
+        );
+      }
     } catch (e) {
-      // Non-fatal if persistence fails
+      console.error('Error persisting swap:', e);
+      // Non-fatal if persistence fails, but log it
     }
 
+    // Build message - note: after swap, rightHand has what was in left, leftHand has what was in right
+    // So leftName (what was in left) goes to right, rightName (what was in right) goes to left
     let msg = '';
     if (player.equipment.rightHand && player.equipment.leftHand) {
-      msg = `You deftly swap ${rightName} to your right hand and ${leftName} to your left.\r\n`;
+      msg = `You deftly swap ${leftName} to your right hand and ${rightName} to your left.\r\n`;
     } else if (player.equipment.rightHand) {
-      msg = `You move ${rightName} to your right hand.\r\n`;
+      msg = `You move ${leftName} to your right hand.\r\n`;
     } else if (player.equipment.leftHand) {
-      msg = `You move ${leftName} to your left hand.\r\n`;
+      msg = `You move ${rightName} to your left hand.\r\n`;
     } else {
       msg = 'Your hands are now empty.\r\n';
     }

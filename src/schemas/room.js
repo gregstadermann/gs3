@@ -72,11 +72,18 @@ const ROOM_SCHEMA = {
         required: false,
         description: 'Whether the exit is hidden from obvious paths',
         default: false
+      },
+      requiresClimb: {
+        type: 'boolean',
+        required: false,
+        description: 'Whether the exit requires the CLIMB command instead of GO',
+        default: false
       }
     },
     example: [
       { direction: 'north', roomId: 'town_square_north' },
-      { direction: 'gate', roomId: 'outside_gate_01', hidden: true }
+      { direction: 'gate', roomId: 'outside_gate_01', hidden: true },
+      { direction: 'rope', roomId: 'upper_level', requiresClimb: true }
     ]
   },
 
@@ -159,6 +166,9 @@ function validateRoom(room) {
       }
       if (exit.hidden !== undefined && typeof exit.hidden !== 'boolean') {
         errors.push(`Exit ${idx}: hidden must be boolean`);
+      }
+      if (exit.requiresClimb !== undefined && typeof exit.requiresClimb !== 'boolean') {
+        errors.push(`Exit ${idx}: requiresClimb must be boolean`);
       }
     });
   }

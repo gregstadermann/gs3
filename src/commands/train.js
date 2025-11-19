@@ -46,7 +46,7 @@ module.exports = {
         ['brawling', 'one_handed_edged', 'one_handed_blunt', 'two_handed', 'polearm', 'ranged', 'thrown', 'combat_maneuvers', 'shield_use', 'armor_use'].includes(id)
       );
       const utilitySkills = skills.filter(([id, skill]) =>
-        ['climbing', 'swimming', 'disarm_traps', 'pick_locks', 'stalk_and_hide', 'perception', 'ambush', 'survival', 'first_aid'].includes(id)
+        ['climbing', 'swimming', 'disarm_traps', 'pick_locks', 'stalk_and_hide', 'perception', 'ambush', 'first_aid', 'physical_fitness'].includes(id)
       );
       const magicSkills = skills.filter(([id, skill]) =>
         ['spell_aim', 'mana_share', 'magic_item_use', 'scroll_reading', 'harness_power', 'major_elemental', 'minor_elemental', 'major_spiritual', 'minor_spiritual', 'cleric_base', 'wizard_base', 'empath_base', 'sorcerer_base', 'ranger_base', 'paladin_base', 'bard_base'].includes(id)
@@ -76,7 +76,11 @@ module.exports = {
     const result = player.gameEngine.characterCreation.trainSkill(player, skillId, ranks);
     
     if (result.success) {
-      // Save the player after training
+      // If Physical Fitness was trained, HP is already recalculated by trainSkill
+      // But we should also recalculate if Constitution changed (unlikely, but good practice)
+      // For now, only PF training affects HP
+      
+      // Save the player after training (HP recalculation happens in trainSkill if PF was trained)
       player.gameEngine.playerSystem.savePlayer(player.name, player);
     }
 

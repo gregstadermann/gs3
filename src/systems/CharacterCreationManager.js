@@ -320,7 +320,7 @@ class CharacterCreationManager {
     this.sendMessage(connection, 'Wizard: Magic-focused class with high mental stats\r\n');
     this.sendMessage(connection, 'Cleric: Divine magic and healing focused\r\n');
     this.sendMessage(connection, 'Empath: Emotional magic and empathy focused\r\n');
-    this.sendMessage(connection, 'Ranger: Nature and survival focused\r\n');
+    this.sendMessage(connection, 'Ranger: Nature focused\r\n');
     this.sendMessage(connection, 'Bard: Performance and charisma focused\r\n');
     this.sendMessage(connection, 'Sorcerer: Raw magical power focused\r\n\r\n');
     this.showProfessionSelection(connection);
@@ -419,7 +419,7 @@ class CharacterCreationManager {
   showRaceBonuses(connection, race) {
     const bonuses = {
       human: 'Humans have balanced stats with no penalties or bonuses.',
-      giantman: 'Giantmen gain +2 Strength and Constitution, but -1 Dexterity and Reflexes.',
+      giantman: 'Giantmen have +15 Strength, +10 Constitution, +5 Charisma stat bonuses, but -5 Dexterity, -5 Agility, -5 Aura, -5 Logic stat bonuses. (These affect stat bonus calculations, not base stats)',
       'half-elf': 'Half-Elves gain +1 Intelligence and Charisma, but -1 Constitution.',
       sylvankind: 'Sylvankind gain +1 Dexterity and Reflexes, but -1 Strength.',
       'dark-elf': 'Dark Elves gain +1 Intelligence and Reflexes, but -1 Constitution and Charisma.',
@@ -574,23 +574,17 @@ class CharacterCreationManager {
  
   /**
    * Apply race bonuses
+   * Note: Race modifiers from races.json are applied to STAT BONUSES, not base stats.
+   * During character creation, base stats are not modified by race.
+   * Race modifiers are applied later when calculating stat bonuses using statBonus.js
    */
   applyRaceBonuses(attributes, race) {
-    const bonuses = {
-      human: {},
-      giantman: { strength: 2, constitution: 2, dexterity: -1, reflexes: -1 },
-      'half-elf': { intelligence: 1, charisma: 1, constitution: -1 },
-      sylvankind: { dexterity: 1, reflexes: 1, strength: -1 },
-      'dark-elf': { intelligence: 1, reflexes: 1, constitution: -1, charisma: -1 },
-      elf: { intelligence: 1, dexterity: 1, strength: -1, constitution: -1 },
-      dwarf: { strength: 1, constitution: 1, dexterity: -1, charisma: -1 },
-      halfling: { dexterity: 1, charisma: 1, strength: -1 }
-    };
-
-    const raceBonus = bonuses[race] || {};
-    for (const stat in raceBonus) {
-      attributes[stat].base = Math.max(3, Math.min(100, attributes[stat].base + raceBonus[stat]));
-    }
+    // Race modifiers do NOT modify base stats during character creation
+    // They are applied to stat bonuses via statBonus.js service
+    // Formula: statBonus = ⌊(RawStat - 50)/2⌋ + RaceModifier
+    // So a Giantman with STR 90 gets: ⌊(90-50)/2⌋ + 15 = 20 + 15 = +35 STR bonus
+    // The base stat remains 90, and the +15 is part of the bonus calculation
+    return; // No base stat modifications from race
   }
 
   /**
@@ -867,7 +861,7 @@ class CharacterCreationManager {
       logic: { base: 0, delta: 0 },
       discipline: { base: 0, delta: 0 },
       aura: { base: 0, delta: 0 },
-      health: { base: 100, delta: 0 },
+      // Health will be calculated later using proper formula
       mana: { base: 50, delta: 0 },
       experience: { base: 0, delta: 0 }
     };
@@ -917,6 +911,26 @@ class CharacterCreationManager {
     
     // Show skills if initialized
     if (state.characterData.skills) {
+      // Ensure Physical Fitness exists even if the state was created before the refactor
+      if (!state.characterData.skills.physical_fitness) {
+        const professionKey = (
+          state.characterData.profession ||
+          state.characterData.class ||
+          state.characterData.playerClass ||
+          ''
+        ).toLowerCase();
+
+        const classData = this.characterCreation?.classes?.[professionKey];
+        const classPhysicalFitness = classData?.skills?.physical_fitness;
+
+        state.characterData.skills.physical_fitness = {
+          name: classPhysicalFitness?.name || 'Physical Fitness',
+          cost: classPhysicalFitness?.cost || [3, 0],
+          ranks: classPhysicalFitness?.ranks || 0,
+          maxRanksPerLevel: classPhysicalFitness?.maxRanksPerLevel || 3
+        };
+      }
+
       const skills = Object.entries(state.characterData.skills);
       
       if (skills.length > 0) {
@@ -925,7 +939,7 @@ class CharacterCreationManager {
           ['brawling', 'one_handed_edged', 'one_handed_blunt', 'two_handed', 'polearm', 'ranged', 'thrown', 'combat_maneuvers', 'shield_use', 'armor_use'].includes(id)
         );
         const utilitySkills = skills.filter(([id, skill]) =>
-          ['climbing', 'swimming', 'disarm_traps', 'pick_locks', 'stalk_and_hide', 'perception', 'ambush', 'survival', 'first_aid'].includes(id)
+          ['climbing', 'swimming', 'disarm_traps', 'pick_locks', 'stalk_and_hide', 'perception', 'ambush', 'first_aid', 'physical_fitness'].includes(id)
         );
         const magicSkills = skills.filter(([id, skill]) =>
           ['spell_aim', 'mana_share', 'magic_item_use', 'scroll_reading', 'harness_power', 'major_elemental', 'minor_elemental', 'major_spiritual', 'minor_spiritual', 'cleric_base', 'wizard_base', 'empath_base', 'sorcerer_base', 'ranger_base', 'paladin_base', 'bard_base'].includes(id)
@@ -935,68 +949,84 @@ class CharacterCreationManager {
         
         // Define max ranks for each skill type
         const getSkillMaxRanks = (skillId) => {
+          // Get max ranks per level from skill definition if available
+          const skill = state.characterData.skills[skillId];
+          if (skill && skill.maxRanksPerLevel !== undefined) {
+            return skill.maxRanksPerLevel;
+          }
+          
+          // Fallback to hardcoded values for skills that don't have maxRanksPerLevel defined
           const maxRanks = {
             // Weapon Skills
-            one_handed_edged: [6, 1], // 6 total, 1 per level
-            one_handed_blunt: [6, 1],
-            two_handed: [14, 3],
-            polearm: [14, 3],
-            ranged: [14, 3],
-            thrown: [8, 2],
-            brawling: [10, 2],
+            one_handed_edged: 1,
+            one_handed_blunt: 1,
+            two_handed: 3,
+            polearm: 3,
+            ranged: 3,
+            thrown: 2,
+            brawling: 2,
             // Combat Skills
-            combat_maneuvers: [12, 8],
-            shield_use: [13, 0],
-            armor_use: [14, 0],
+            combat_maneuvers: 8,
+            shield_use: 0,
+            armor_use: 0,
             // General Skills
-            climbing: [4, 0],
-            swimming: [3, 0],
-            survival: [3, 2],
-            disarm_traps: [2, 6],
-            pick_locks: [2, 4],
-            stalk_and_hide: [5, 4],
-            perception: [0, 3],
-            ambush: [15, 10],
-            first_aid: [2, 1],
+            climbing: 0,
+            swimming: 0,
+            disarm_traps: 6,
+            pick_locks: 4,
+            stalk_and_hide: 4,
+            perception: 3,
+            ambush: 10,
+            first_aid: 1,
             // Magic Skills
-            spell_aim: [2, 1],
-            mana_share: [0, 3],
-            magic_item_use: [0, 1],
-            scroll_reading: [0, 2],
-            major_elemental: [0, 8],
-            minor_elemental: [0, 8],
-            wizard_base: [0, 8],
-            cleric_base: [0, 8],
-            empath_base: [0, 8],
-            sorcerer_base: [0, 8],
-            ranger_base: [0, 8],
-            paladin_base: [0, 8],
-            bard_base: [0, 8]
+            spell_aim: 1,
+            mana_share: 3,
+            magic_item_use: 1,
+            scroll_reading: 2,
+            major_elemental: 8,
+            minor_elemental: 8,
+            wizard_base: 8,
+            cleric_base: 8,
+            empath_base: 8,
+            sorcerer_base: 8,
+            ranger_base: 8,
+            paladin_base: 8,
+            bard_base: 8
           };
-          return maxRanks[skillId] || [10, 2]; // Default if not found
+          return maxRanks[skillId] || 2; // Default if not found
         };
         
-        const formatSkill = (name, ranks, cost, number, maxTotal, maxPerLevel) => {
-          // Format: Number) Current_Ranks Max/Max_Per_Level (Next_Rank_Cost) Skill_Name
+        const formatSkill = (name, ranks, cost, number, maxPerLevel, skillId) => {
+          // Format: Number) Ranks_This_Level/Max_Per_Level (Next_Rank_Cost) Skill_Name
+          // Calculate ranks trained this level
+          const ranksThisLevel = maxPerLevel > 0 ? ranks % maxPerLevel : 0;
+          
           // Calculate what the next rank would cost based on current ranks
-          const rankInLevel = ranks % 3;
           let costMultiplier;
           
-          if (rankInLevel === 0) costMultiplier = 1;      // Next is 1st rank
-          else if (rankInLevel === 1) costMultiplier = 2; // Next is 2nd rank  
+          if (maxPerLevel === 1) {
+            costMultiplier = 1; // Always 1x for 1 rank per level
+          } else if (maxPerLevel === 2) {
+            if (ranksThisLevel === 0) costMultiplier = 1;      // Next is 1st rank
+            else costMultiplier = 2;                        // Next is 2nd rank
+          } else {
+            // Default to 3 ranks per level
+            if (ranksThisLevel === 0) costMultiplier = 1;      // Next is 1st rank
+            else if (ranksThisLevel === 1) costMultiplier = 2; // Next is 2nd rank  
           else costMultiplier = 4;                        // Next is 3rd rank
+          }
           
           const nextPhysicalCost = cost[0] * costMultiplier;
           const nextMentalCost = cost[1] * costMultiplier;
           
-          return `${number}) ${ranks} ${maxTotal}/${maxPerLevel} (${nextPhysicalCost}/${nextMentalCost}) ${name}`;
+          return `${number}) ${ranksThisLevel}/${maxPerLevel} (${nextPhysicalCost}/${nextMentalCost}) ${name}`;
         };
         
         if (combatSkills.length > 0) {
           this.sendMessage(connection, 'Combat Skills\r\n');
           combatSkills.forEach(([id, skill]) => {
-            const [maxTotal, maxPerLevel] = getSkillMaxRanks(id);
-            this.sendMessage(connection, formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxTotal, maxPerLevel) + '\r\n');
+            const maxPerLevel = getSkillMaxRanks(id);
+            this.sendMessage(connection, formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxPerLevel, id) + '\r\n');
           });
           this.sendMessage(connection, '\r\n');
         }
@@ -1004,8 +1034,8 @@ class CharacterCreationManager {
         if (utilitySkills.length > 0) {
           this.sendMessage(connection, 'General Skills\r\n');
           utilitySkills.forEach(([id, skill]) => {
-            const [maxTotal, maxPerLevel] = getSkillMaxRanks(id);
-            this.sendMessage(connection, formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxTotal, maxPerLevel) + '\r\n');
+            const maxPerLevel = getSkillMaxRanks(id);
+            this.sendMessage(connection, formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxPerLevel, id) + '\r\n');
           });
           this.sendMessage(connection, '\r\n');
         }
@@ -1013,8 +1043,8 @@ class CharacterCreationManager {
         if (magicSkills.length > 0) {
           this.sendMessage(connection, 'Magic Skills\r\n');
           magicSkills.forEach(([id, skill]) => {
-            const [maxTotal, maxPerLevel] = getSkillMaxRanks(id);
-            this.sendMessage(connection, formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxTotal, maxPerLevel) + '\r\n');
+            const maxPerLevel = getSkillMaxRanks(id);
+            this.sendMessage(connection, formatSkill(skill.name, skill.ranks, skill.cost, skillNumber++, maxPerLevel, id) + '\r\n');
           });
           this.sendMessage(connection, '\r\n');
         }
@@ -1071,7 +1101,7 @@ class CharacterCreationManager {
           ['brawling', 'one_handed_edged', 'one_handed_blunt', 'two_handed', 'polearm', 'ranged', 'thrown', 'combat_maneuvers', 'shield_use', 'armor_use'].includes(id)
         );
         const utilitySkills = skills.filter(([id, skill]) =>
-          ['climbing', 'swimming', 'disarm_traps', 'pick_locks', 'stalk_and_hide', 'perception', 'ambush', 'survival', 'first_aid'].includes(id)
+          ['climbing', 'swimming', 'disarm_traps', 'pick_locks', 'stalk_and_hide', 'perception', 'ambush', 'first_aid', 'physical_fitness'].includes(id)
         );
         const magicSkills = skills.filter(([id, skill]) =>
           ['spell_aim', 'mana_share', 'magic_item_use', 'scroll_reading', 'harness_power', 'major_elemental', 'minor_elemental', 'major_spiritual', 'minor_spiritual', 'cleric_base', 'wizard_base', 'empath_base', 'sorcerer_base', 'ranger_base', 'paladin_base', 'bard_base'].includes(id)
@@ -1114,7 +1144,8 @@ class CharacterCreationManager {
       skills[skillId] = {
         name: classSkills[skillId].name,
         cost: classSkills[skillId].cost,
-        ranks: 0
+        ranks: 0,
+        maxRanksPerLevel: classSkills[skillId].maxRanksPerLevel || 3 // Default to 3 if not specified
       };
     }
     
@@ -1137,15 +1168,18 @@ class CharacterCreationManager {
 
     const skill = characterData.skills[skillId];
     
-    // Check how many ranks trained this level (ranks % 3 gives ranks in current level)
-    const ranksInCurrentLevel = skill.ranks % 3;
-    const maxRanksAllowed = 3 - ranksInCurrentLevel;
+    // Get max ranks per level from skill definition
+    const maxRanksPerLevel = skill.maxRanksPerLevel || 3; // Default to 3 if not specified
+    
+    // Check how many ranks trained this level
+    const ranksInCurrentLevel = skill.ranks % maxRanksPerLevel;
+    const maxRanksAllowed = maxRanksPerLevel - ranksInCurrentLevel;
     
     // Check if trying to train more than allowed this level
     if (ranksToTrain > maxRanksAllowed) {
       return { 
         success: false, 
-        message: `You can only train ${maxRanksAllowed} more rank(s) in ${skill.name} this level (3 max per level).` 
+        message: `You can only train ${maxRanksAllowed} more rank(s) in ${skill.name} this level (${maxRanksPerLevel} max per level).` 
       };
     }
     
@@ -1154,16 +1188,25 @@ class CharacterCreationManager {
     let totalMentalCost = 0;
 
     // Calculate cost for each rank
-    // 1st rank in level: 1x base cost
-    // 2nd rank in level: 2x base cost
-    // 3rd rank in level: 4x base cost
+    // Cost multiplier depends on max ranks per level:
+    // - 1 rank per level: always 1x
+    // - 2 ranks per level: 1st rank = 1x, 2nd rank = 2x
+    // - 3 ranks per level: 1st rank = 1x, 2nd rank = 2x, 3rd rank = 4x
     for (let i = 0; i < ranksToTrain; i++) {
       const rankInLevel = ranksInCurrentLevel + i;
       let costMultiplier;
       
+      if (maxRanksPerLevel === 1) {
+        costMultiplier = 1;
+      } else if (maxRanksPerLevel === 2) {
+        if (rankInLevel === 0) costMultiplier = 1;      // 1st rank
+        else costMultiplier = 2;                        // 2nd rank
+      } else {
+        // Default to 3 ranks per level
       if (rankInLevel === 0) costMultiplier = 1;      // 1st rank
       else if (rankInLevel === 1) costMultiplier = 2; // 2nd rank  
       else costMultiplier = 4;                        // 3rd rank
+      }
       
       const physicalCost = basePhysicalCost * costMultiplier;
       const mentalCost = baseMentalCost * costMultiplier;
@@ -1217,6 +1260,27 @@ class CharacterCreationManager {
     characterData.tps[1] = mentalRemaining;
     skill.ranks += ranksToTrain;
 
+    // If Physical Fitness was trained, recalculate HP
+    if (skillId === 'physical_fitness') {
+      try {
+        const HealthCalculation = require('../services/healthCalculation');
+        // Create a temporary character object for recalculation
+        const tempChar = {
+          race: characterData.race,
+          attributes: characterData.attributes,
+          skills: characterData.skills
+        };
+        HealthCalculation.recalculateHealth(tempChar);
+        // Update health in characterData
+        if (!characterData.attributes) {
+          characterData.attributes = {};
+        }
+        characterData.attributes.health = tempChar.attributes.health;
+      } catch (error) {
+        console.warn(`[TRAIN] Could not recalculate health after PF training:`, error.message);
+      }
+    }
+
     return { success: true, message: `Successfully trained ${skill.name} by ${ranksToTrain} ranks. New rank: ${skill.ranks}. Remaining TPs: ${characterData.tps[0]} physical, ${characterData.tps[1]} mental.${conversionMessage}` };
   }
 
@@ -1268,7 +1332,6 @@ class CharacterCreationManager {
           gender: state.characterData.gender,
           race: state.characterData.race,
           class: capitalizedClass,
-          playerClass: state.characterData.profession,
           level: 1,
           experience: 0,
           attributes: state.characterData.attributes,
@@ -1298,6 +1361,10 @@ class CharacterCreationManager {
             creationDate: new Date().toISOString()
           }
         };
+        
+        // Recalculate health using proper HP formula
+        const HealthCalculation = require('../services/healthCalculation');
+        HealthCalculation.recalculateHealth(character);
         
         // Save the character
         await this.playerSystem.saveCharacter(character);

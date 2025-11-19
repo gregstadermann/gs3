@@ -46,7 +46,7 @@ module.exports = {
     if (!args || args.length === 0) {
       return { 
         success: false, 
-        message: 'Usage: TELEPORT <room-id>\r\nExample: TELEPORT wehnimers-landing-town:zul-logoth-marcasite-tunnel\r\n' 
+        message: 'Usage: TELEPORT <room-id>\r\nExample: TELEPORT u7120 (TSC)\r\n' 
       };
     }
 

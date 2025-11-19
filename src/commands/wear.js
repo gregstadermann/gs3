@@ -37,13 +37,80 @@ module.exports = {
       searchTerm = searchTerm.replace(/^my\s+/, '');
     }
 
+    const db = player.gameEngine.roomSystem.db;
+
+    // Special handling for "WEAR SHIELD" command
+    if (searchTerm === 'shield' || searchTerm === 'shields') {
+      // Find shield in hands
+      let foundShield = null;
+      let hand = null;
+      
+      // Check right hand
+      const rightHandId = player.equipment.rightHand;
+      if (rightHandId && typeof rightHandId === 'string') {
+        const item = await db.collection('items').findOne({ id: rightHandId });
+        if (item && item.type === 'SHIELD') {
+          foundShield = item;
+          hand = 'rightHand';
+        }
+      }
+      
+      // Check left hand if not found in right
+      if (!foundShield) {
+        const leftHandId = player.equipment.leftHand;
+        if (leftHandId && typeof leftHandId === 'string') {
+          const item = await db.collection('items').findOne({ id: leftHandId });
+          if (item && item.type === 'SHIELD') {
+            foundShield = item;
+            hand = 'leftHand';
+          }
+        }
+      }
+      
+      if (!foundShield) {
+        return { 
+          success: false, 
+          message: "You're not holding a shield.\r\n" 
+        };
+      }
+      
+      // Check if shoulder slot is available (shoulder can hold 2 items, but check if full)
+      // For simplicity, we'll just check if shoulder exists and has space
+      // If shoulder slot doesn't exist in equipment, create it as an array
+      if (!player.equipment.shoulder) {
+        player.equipment.shoulder = [];
+      }
+      
+      // If it's a string, convert to array (backwards compatibility)
+      if (typeof player.equipment.shoulder === 'string') {
+        player.equipment.shoulder = [player.equipment.shoulder];
+      }
+      
+      // Check if shoulder is full (max 2 items)
+      if (player.equipment.shoulder.length >= 2) {
+        return { 
+          success: false, 
+          message: "Your shoulder is already full.\r\n" 
+        };
+      }
+      
+      // Move shield from hand to shoulder
+      delete player.equipment[hand];
+      player.equipment.shoulder.push(foundShield.id);
+      
+      try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
+      return { 
+        success: true, 
+        message: `You sling ${foundShield.name || 'your shield'} over your shoulder.\r\n` 
+      };
+    }
+
     // Find the item in player's hands (now stored as IDs)
     let foundItem = null;
     let hand = null;
     let handName = null;
 
     // Collect all items in hands for keyword matching
-    const db = player.gameEngine.roomSystem.db;
     const hands = [];
     
     // Check right hand
@@ -93,6 +160,10 @@ module.exports = {
     if (metadata.slot || metadata.wearLocation) {
       targetSlot = metadata.slot || metadata.wearLocation;
     }
+    // Shields go to shoulder slot (unless explicitly handled above)
+    else if (itemType === 'SHIELD') {
+      targetSlot = 'shoulder';
+    }
     // Determine slot based on item type and name
     else if (itemType === 'ARMOR' || itemType === 'CLOTHING') {
       // Use metadata to determine slot
@@ -138,6 +209,36 @@ module.exports = {
       } else {
         targetSlot = 'general';
       }
+    }
+
+    // Handle shoulder slot specially (it's an array that can hold multiple items)
+    if (targetSlot === 'shoulder') {
+      // Initialize shoulder as array if it doesn't exist
+      if (!player.equipment.shoulder) {
+        player.equipment.shoulder = [];
+      }
+      // Convert string to array if needed (backwards compatibility)
+      if (typeof player.equipment.shoulder === 'string') {
+        player.equipment.shoulder = [player.equipment.shoulder];
+      }
+      
+      // Check if shoulder is full (max 2 items)
+      if (player.equipment.shoulder.length >= 2) {
+        return { 
+          success: false, 
+          message: "Your shoulder is already full.\r\n" 
+        };
+      }
+      
+      // Move item from hand to shoulder
+      delete player.equipment[hand];
+      player.equipment.shoulder.push(foundItem.id);
+      
+      try { const Enc = require('../utils/encumbrance'); await Enc.recalcEncumbrance(player); } catch(_) {}
+      return { 
+        success: true, 
+        message: `You sling ${itemName} over your shoulder.\r\n` 
+      };
     }
 
     // Check if slot is already occupied

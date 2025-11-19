@@ -24,7 +24,7 @@ module.exports = {
     message += `Gender: ${genderName}    Age: ${player.age || 0}    Expr: ${player.experience || 0}    Level:  ${player.level || 0}\r\n\r\n`;
     
     // Stats table
-    message += '                  Normal (Bonus)  ...  Enhanced (Bonus)\r\n';
+    message += '                  Normal (Bonus)\r\n';
     
     const stats = [
       { name: 'Strength', abbr: 'STR', key: 'strength' },
@@ -42,16 +42,13 @@ module.exports = {
     if (player.attributes) {
       stats.forEach(stat => {
         const base = getRawStat(player, stat.key);
-        const enhanced = base; // For now, enhanced = base (no delta)
         
         // Calculate bonuses using proper formula: ⌊(RawStat - 50)/2⌋ + RaceModifier
         const baseBonus = calculateStatBonus(base, player.race, stat.key);
-        const enhancedBonus = calculateStatBonus(enhanced, player.race, stat.key);
         
         const bonusStr = baseBonus >= 0 ? ` +${baseBonus}` : ` ${baseBonus}`;
-        const enhancedBonusStr = enhancedBonus >= 0 ? ` +${enhancedBonus}` : ` ${enhancedBonus}`;
         
-        message += `${stat.name.padEnd(18)} (${stat.abbr}):    ${String(base).padStart(3)} (${bonusStr.padStart(4)})     ...   ${String(enhanced).padStart(3)} (${enhancedBonusStr.padStart(4)})\r\n`;
+        message += `${stat.name.padEnd(18)} (${stat.abbr}):    ${String(base).padStart(3)} (${bonusStr.padStart(4)})\r\n`;
       });
     }
     

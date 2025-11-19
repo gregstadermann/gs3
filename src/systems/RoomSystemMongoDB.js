@@ -164,30 +164,105 @@ class RoomSystem {
       return 'You are in a void. There is nothing here.';
     }
 
-    // For admins, display the room id next to the title for easier mapping/debugging
-    const isAdmin = player && (player.role === 'admin');
+    // Check if player is admin (refresh from DB if available to ensure role is current)
+    let isAdmin = false;
+    if (player) {
+      // Try to refresh role from database if player has gameEngine reference
+      if (this.db && player.name) {
+        try {
+          const freshPlayer = await this.db.collection('players').findOne({ name: player.name });
+          if (freshPlayer && freshPlayer.role) {
+            player.role = freshPlayer.role;
+          }
+        } catch (error) {
+          // Fall back to in-memory role if DB lookup fails
+        }
+      }
+      isAdmin = player.role === 'admin';
+    }
     const titleLine = isAdmin
       ? `[${room.title}] [ ${room.id} ]`
       : `[${room.title}]`;
     let description = `${titleLine}\r\n${room.description}`;
     
-    // Suppress inline item listing to keep room descriptions concise
+    // Get items in room
+    let itemDescriptions = [];
+    if (room.items && room.items.length > 0 && this.db) {
+      try {
+        const itemIds = room.items.map(item => typeof item === 'string' ? item : (item.id || item.name || 'an item'));
+        const items = await this.db.collection('items')
+          .find({ id: { $in: itemIds } })
+          .toArray();
+        
+        itemDescriptions = items.map(item => item.roomDesc || item.name || item.id);
+      } catch (error) {
+        // Fallback to IDs if database lookup fails
+        itemDescriptions = room.items.map(item => typeof item === 'string' ? item : (item.id || item.name || 'an item'));
+      }
+    }
 
     // Get NPCs from NPC system if available
     let npcNames = [];
     if (gameEngine && gameEngine.npcSystem) {
       const npcsInRoom = gameEngine.npcSystem.getNPCsInRoom(roomId);
-      npcNames = npcsInRoom.map(npc => npc.name || npc.npcId);
+      npcNames = npcsInRoom.filter(npc => npc.isAlive).map(npc => npc.name || npc.npcId);
     }
 
-    // Suppress dynamic "Also here" listing to avoid clutter in room descriptions
+    // Get other players in room
+    let otherPlayerNames = [];
+    if (gameEngine && player) {
+      // Get players from GameEngine.players Map (where online players are stored)
+      const allPlayers = Array.from(gameEngine.players.values());
+      const playersInRoom = allPlayers.filter(p => p.room === roomId);
+      otherPlayerNames = playersInRoom
+        .filter(p => p.name !== player.name)
+        .map(p => p.name);
+    }
+
+    // Combine all entities (items, NPCs, players) for "You also see:" line
+    const allEntities = [];
+    if (itemDescriptions.length > 0) {
+      allEntities.push(...itemDescriptions);
+    }
+    if (npcNames.length > 0) {
+      allEntities.push(...npcNames);
+    }
+    if (otherPlayerNames.length > 0) {
+      allEntities.push(...otherPlayerNames);
+    }
+
+    // Add "You also see:" line if there are any entities
+    if (allEntities.length > 0) {
+      description += '  You also see ';
+      if (allEntities.length === 1) {
+        description += allEntities[0] + '.';
+      } else if (allEntities.length === 2) {
+        description += allEntities[0] + ' and ' + allEntities[1] + '.';
+      } else {
+        description += allEntities.slice(0, -1).join(', ') + ', and ' + allEntities[allEntities.length - 1] + '.';
+      }
+    }
 
     // Add exits
     if (room.exits && room.exits.length > 0) {
-      const visibleExits = room.exits.filter(exit => !exit.hidden);
-      if (visibleExits.length > 0) {
+      // Admins can see all exits, including hidden ones (marked with [hidden])
+      let exitsToShow;
+      if (isAdmin) {
+        // Admins see all exits, mark hidden ones
+        exitsToShow = room.exits.map(exit => {
+          if (exit.hidden) {
+            return `${exit.direction} [hidden]`;
+          }
+          return exit.direction;
+        });
+      } else {
+        // Regular players only see non-hidden exits
+        exitsToShow = room.exits.filter(exit => !exit.hidden).map(exit => exit.direction);
+      }
+      
+      if (exitsToShow.length > 0) {
         description += '\r\nObvious paths: ';
-        description += visibleExits.map(exit => exit.direction).join(', ');
+        description += exitsToShow.join(', ');
       }
     }
 
@@ -203,6 +278,8 @@ class RoomSystem {
 
   /**
    * Get exit information
+   * Supports case-insensitive matching and partial matches
+   * e.g., "well" matches "old well", "tree" matches "oak tree"
    */
   getExit(roomId, direction) {
     const room = this.getRoom(roomId);
@@ -210,7 +287,45 @@ class RoomSystem {
       return null;
     }
 
-    return room.exits.find(exit => exit.direction === direction);
+    if (!direction || typeof direction !== 'string') {
+      return null;
+    }
+
+    const searchDir = direction.trim().toLowerCase();
+    
+    // First try exact case-insensitive match
+    let exit = room.exits.find(exit => 
+      exit.direction && exit.direction.toLowerCase() === searchDir
+    );
+    
+    if (exit) {
+      return exit;
+    }
+    
+    // If no exact match, try partial match (input matches end of exit name)
+    // e.g., "well" matches "old well", "tree" matches "oak tree"
+    const matchingExits = room.exits.filter(exit => {
+      if (!exit.direction) return false;
+      const exitDir = exit.direction.toLowerCase();
+      
+      // Check if search direction matches the end of exit direction
+      // e.g., "well" matches "old well", "tree" matches "oak tree"
+      return exitDir === searchDir || exitDir.endsWith(' ' + searchDir);
+    });
+    
+    if (matchingExits.length === 0) {
+      return null;
+    }
+    
+    // If multiple matches, prefer the shortest (most specific) match
+    // e.g., if both "well" and "old well" exist, prefer "well"
+    if (matchingExits.length > 1) {
+      matchingExits.sort((a, b) => 
+        (a.direction.length || 0) - (b.direction.length || 0)
+      );
+    }
+    
+    return matchingExits[0];
   }
 
   /**

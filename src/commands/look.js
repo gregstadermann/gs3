@@ -1,6 +1,7 @@
 'use strict';
 
 const { findItemWithOther } = require('../utils/keywordMatcher');
+const ArgParser = require('../core/ArgParser');
 
 /**
  * Look Command
@@ -56,8 +57,9 @@ const lookRoom = async (player) => {
     npcNames = npcsInRoom.map(npc => npc.name || npc.npcId);
   }
 
-  // Get other players in room
-  const playersInRoom = player.gameEngine.roomSystem.getPlayersInRoom(player.room);
+  // Get other players in room from GameEngine.players Map (where online players are stored)
+  const allPlayers = Array.from(player.gameEngine.players.values());
+  const playersInRoom = allPlayers.filter(p => p.room === player.room);
   const otherPlayers = playersInRoom.filter(p => p.name !== player.name);
 
   // Add "Also here:" line if there are players or NPCs
@@ -73,10 +75,38 @@ const lookRoom = async (player) => {
 
   // Show exits
   if (room.exits && room.exits.length > 0) {
-    const visibleExits = room.exits.filter(exit => !exit.hidden);
-    if (visibleExits.length > 0) {
+    // Check if player is admin (admins can see all exits, including hidden ones)
+    // Refresh role from DB to ensure it's current
+    let isAdmin = false;
+    if (player && player.gameEngine?.roomSystem?.db && player.name) {
+      try {
+        const freshPlayer = await player.gameEngine.roomSystem.db.collection('players').findOne({ name: player.name });
+        if (freshPlayer && freshPlayer.role) {
+          player.role = freshPlayer.role;
+        }
+      } catch (error) {
+        // Fall back to in-memory role if DB lookup fails
+      }
+    }
+    isAdmin = player && (player.role === 'admin');
+    
+    let exitsToShow;
+    if (isAdmin) {
+      // Admins see all exits, mark hidden ones
+      exitsToShow = room.exits.map(exit => {
+        if (exit.hidden) {
+          return `${exit.direction} [hidden]`;
+        }
+        return exit.direction;
+      });
+    } else {
+      // Regular players only see non-hidden exits
+      exitsToShow = room.exits.filter(exit => !exit.hidden).map(exit => exit.direction);
+    }
+    
+    if (exitsToShow.length > 0) {
       message += '\r\nObvious paths: ';
-      message += visibleExits.map(exit => exit.direction).join(', ');
+      message += exitsToShow.join(', ');
     }
   }
 
@@ -296,11 +326,19 @@ const lookEntity = async (player, args) => {
     }
   }
 
-  // Search other players in room
-  const playersInRoom = player.gameEngine.roomSystem.getPlayersInRoom(player.room);
-  const otherPlayer = playersInRoom.find(p => p.name.toLowerCase().includes(searchLower));
+  // Search other players in room using ArgParser for better matching
+  // Get players from GameEngine.players Map (where online players are stored)
+  const allPlayers = Array.from(player.gameEngine.players.values());
+  const playersInRoom = allPlayers.filter(p => p.room === player.room);
+  const otherPlayers = playersInRoom.filter(p => p.name !== player.name);
   
-  if (otherPlayer && otherPlayer.name !== player.name) {
+  // Use ArgParser.findPartial for better fuzzy matching (exact, starts with, contains)
+  const otherPlayer = ArgParser.findPartial(searchTerm, otherPlayers, (p) => p.name);
+  
+  if (otherPlayer) {
+    const db = player.gameEngine.roomSystem.db;
+    const pronoun = otherPlayer.gender === 'male' ? 'He' : 'She';
+    
     let message = `You see ${otherPlayer.name}`;
     if (otherPlayer.class) {
       message += ` the ${otherPlayer.class}`;
@@ -308,8 +346,82 @@ const lookEntity = async (player, args) => {
     message += '.';
 
     if (otherPlayer.race) {
-      const pronoun = otherPlayer.gender === 'male' ? 'He' : 'She';
       message += `\r\n${pronoun} appears to be a ${otherPlayer.race}.`;
+    }
+
+    // Show what they're holding
+    const heldRightId = otherPlayer.equipment?.rightHand;
+    const heldLeftId = otherPlayer.equipment?.leftHand;
+    
+    let heldRight = null;
+    let heldLeft = null;
+    
+    if (heldRightId && db) {
+      try {
+        heldRight = await db.collection('items').findOne({ id: heldRightId });
+      } catch (_) {}
+    }
+    if (heldLeftId && db) {
+      try {
+        heldLeft = await db.collection('items').findOne({ id: heldLeftId });
+      } catch (_) {}
+    }
+    
+    if (heldRight || heldLeft) {
+      const parts = [];
+      const possessive = otherPlayer.gender === 'male' ? 'his' : 'her';
+      if (heldRight) {
+        parts.push((heldRight.name || 'an item') + ' in ' + possessive + ' right hand');
+      }
+      if (heldLeft) {
+        parts.push((heldLeft.name || 'an item') + ' in ' + possessive + ' left hand');
+      }
+      message += `\r\n${pronoun} is holding ${parts.join(' and ')}.`;
+    }
+    
+    // Show what they're wearing
+    const wornItems = [];
+    if (otherPlayer.equipment && db) {
+      for (const [slot, itemId] of Object.entries(otherPlayer.equipment)) {
+        if (slot !== 'rightHand' && slot !== 'leftHand' && itemId) {
+          // Handle shoulder slot specially (it's an array)
+          if (slot === 'shoulder') {
+            let shoulderItems = itemId;
+            // Convert string to array if needed (backwards compatibility)
+            if (typeof shoulderItems === 'string') {
+              shoulderItems = [shoulderItems];
+            }
+            
+            if (Array.isArray(shoulderItems)) {
+              for (const sid of shoulderItems) {
+                if (sid && typeof sid === 'string') {
+                  try {
+                    const item = await db.collection('items').findOne({ id: sid });
+                    if (item) {
+                      wornItems.push(item.name || sid);
+                    }
+                  } catch (_) {}
+                }
+              }
+            }
+            continue;
+          }
+          
+          // Try to fetch item name
+          let itemName = itemId;
+          if (typeof itemId === 'string') {
+            try {
+              const item = await db.collection('items').findOne({ id: itemId });
+              if (item) itemName = item.name || itemId;
+            } catch (_) {}
+          }
+          wornItems.push(itemName);
+        }
+      }
+    }
+    
+    if (wornItems.length > 0) {
+      message += `\r\n${pronoun} is wearing ${wornItems.join(', ')}.`;
     }
 
     return { success: true, message: message };

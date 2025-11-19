@@ -4,18 +4,19 @@ const { checkRoundtime } = require('../utils/roundtimeChecker');
 const ArgParser = require('../core/ArgParser');
 
 /**
- * Go Command
- * Allows players to move between rooms
+ * Climb Command
+ * Allows players to climb certain exits (like ropes, ladders, etc.)
+ * Only works on exits marked with requiresClimb: true
  */
 module.exports = {
-  name: 'go',
-  aliases: ['move', 'walk'],
-  description: 'Move in a direction',
-  usage: 'go <direction>',
+  name: 'climb',
+  aliases: ['scale'],
+  description: 'Climb a rope, ladder, or other climbable exit',
+  usage: 'climb <direction>',
   
   async execute(player, args) {
     if (args.length === 0) {
-      return { success: false, message: 'Go where? Try: go north, go south, go east, go west, go gate, go door' };
+      return { success: false, message: 'Climb what? Try: climb rope, climb ladder, climb up' };
     }
     
     // Check roundtime/lag
@@ -24,7 +25,7 @@ module.exports = {
       return roundtimeCheck;
     }
     
-    // Join args to support multi-word exits like "go old well", "go oak tree"
+    // Join args to support multi-word exits like "climb old rope", "climb oak tree"
     const input = args.join(' ').trim();
     
     const room = player.gameEngine.roomSystem.getRoom(player.room);
@@ -33,7 +34,7 @@ module.exports = {
       return { success: false, message: 'You are nowhere.' };
     }
     
-    // Use ArgParser.findPartial to match exits (handles partial matches like "well" -> "old well")
+    // Use ArgParser.findPartial to match exits (handles partial matches like "rope" -> "old rope")
     const exits = room.exits || [];
     const exit = ArgParser.findPartial(input, exits, (exit) => exit.direction);
     
@@ -41,14 +42,14 @@ module.exports = {
     const fallbackExit = exit || player.gameEngine.roomSystem.getExit(player.room, input);
     
     if (!fallbackExit) {
-      return { success: false, message: `You can't go ${input} from here.` };
+      return { success: false, message: `You can't climb ${input} from here.` };
     }
     
     // Check if this exit requires climbing
-    if (fallbackExit.requiresClimb) {
+    if (!fallbackExit.requiresClimb) {
       return { 
         success: false, 
-        message: `You can't go ${fallbackExit.direction}. You must climb it instead. Try: climb ${fallbackExit.direction}` 
+        message: `You can't climb ${fallbackExit.direction}. Try using 'go ${fallbackExit.direction}' instead.` 
       };
     }
     
@@ -78,3 +79,5 @@ module.exports = {
     };
   }
 };
+
+

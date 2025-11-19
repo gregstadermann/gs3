@@ -46,6 +46,8 @@ class GameEngine extends EventEmitter {
 
     // Experience absorption pulse counter
     this._absorbCounter = 0; // seconds
+    // Health regeneration pulse counter
+    this._healthPulseCounter = 0; // seconds
   }
 
   /**
@@ -122,17 +124,50 @@ class GameEngine extends EventEmitter {
       // Update player
       this.playerSystem.updatePlayer(player);
 
-      // Process roundtime/lag
-      if (player.combatData && player.combatData.lag > 0) {
-        player.combatData.lag = Math.max(0, player.combatData.lag - 1000);
-      }
-
       // Process bleed damage from wounds (rank 2+ bleed)
       this.processBleedDamage(player);
 
-      // If in combat, update combat state
+      // If in combat, update combat state (this handles lag decrementing)
       if (this.combatSystem.isInCombat(player)) {
         this.combatSystem.updateCombat(player, 1000);
+      } else if (player.combatData && player.combatData.lag > 0) {
+        // If not in combat but has lag, decrement it (cleanup)
+        this.combatSystem.tickLag(player, 1000);
+      }
+    }
+
+    // Health regeneration pulses (roughly every 60 seconds / 1 minute)
+    this._healthPulseCounter = (this._healthPulseCounter || 0) + 1;
+    if (this._healthPulseCounter >= 60) {
+      this._healthPulseCounter = 0;
+      try {
+        const HealthCalculation = require('../services/healthCalculation');
+        for (const [, player] of this.players) {
+          if (!player.attributes?.health) continue;
+          
+          // Skip regeneration if player is in combat (health regen typically doesn't occur during combat)
+          if (this.combatSystem && this.combatSystem.isInCombat(player)) {
+            continue;
+          }
+          
+          const currentHP = player.attributes.health.current || 0;
+          const maxHP = player.attributes.health.max || 100;
+          
+          // Only regenerate if below max HP
+          if (currentHP < maxHP) {
+            const regenAmount = HealthCalculation.calculateHealthRegen(player);
+            const newHP = Math.min(maxHP, currentHP + regenAmount);
+            
+            if (newHP > currentHP) {
+              player.attributes.health.current = newHP;
+              // Save player if health increased (but don't save every tick to reduce DB load)
+              // We'll save periodically or on important events
+              this.playerSystem.updatePlayer(player);
+            }
+          }
+        }
+      } catch (e) {
+        console.error('Error during health regeneration pulse:', e);
       }
     }
 
@@ -162,7 +197,7 @@ class GameEngine extends EventEmitter {
     // Import NPC combat behavior if needed
     if (!this.npcCombatBehavior && this.combatSystem) {
       const NPCCombatBehavior = require('../systems/NPCCombatBehavior');
-      this.npcCombatBehavior = new NPCCombatBehavior(this.combatSystem);
+      this.npcCombatBehavior = new NPCCombatBehavior(this.combatSystem, this);
     }
 
     // Process roundtime for NPCs in combat
@@ -342,6 +377,12 @@ class GameEngine extends EventEmitter {
    */
   async spawnNPCs() {
     try {
+      // Track NPC spawns by type for summary
+      const npcCounts = new Map(); // npcId -> count
+      const npcErrors = new Map(); // npcId -> error count
+      let totalSpawned = 0;
+      let totalErrors = 0;
+      
       // Get all areas that have been imported
       const areas = await this.roomSystem.db.collection('areas').find({}).toArray();
       
@@ -361,7 +402,7 @@ class GameEngine extends EventEmitter {
                 } else if (npcRef && npcRef.id) {
                   npcId = npcRef.id;
                 } else {
-                  console.log(`Invalid NPC reference:`, npcRef);
+                  totalErrors++;
                   continue;
                 }
                 
@@ -369,22 +410,56 @@ class GameEngine extends EventEmitter {
                 const npcDefinition = await this.npcSystem.getNPC(npcId);
                 
                 if (npcDefinition) {
-                  // Spawn the NPC in this room
-                  const spawnedNPC = this.npcSystem.spawnNPC(npcDefinition, room.id);
-                  console.log(`Spawned ${spawnedNPC.name} (${spawnedNPC.npcId}) in room ${room.id}`);
+                  // Spawn the NPC in this room (pass gameEngine reference)
+                  const spawnedNPC = this.npcSystem.spawnNPC(npcDefinition, room.id, this);
+                  
+                  // Track spawn count by NPC type
+                  const currentCount = npcCounts.get(npcId) || 0;
+                  npcCounts.set(npcId, currentCount + 1);
+                  totalSpawned++;
                 } else {
-                  console.log(`NPC definition not found: ${npcId}`);
+                  // Track missing NPC definitions
+                  const errorCount = npcErrors.get(npcId) || 0;
+                  npcErrors.set(npcId, errorCount + 1);
+                  totalErrors++;
                 }
               } catch (error) {
-                console.error(`Error spawning NPC in room ${room.id}:`, error);
+                totalErrors++;
+                console.error(`Error spawning NPC in room ${room.id}:`, error.message);
               }
             }
           }
         }
       }
       
+      // Log summary
+      console.log(`\n=== NPC Spawn Summary ===`);
+      console.log(`Total NPCs spawned: ${totalSpawned}`);
+      
+      // Group and display by NPC type
+      if (npcCounts.size > 0) {
+        console.log(`\nNPCs by type:`);
+        // Sort by count (descending) for better readability
+        const sortedNPCs = Array.from(npcCounts.entries()).sort((a, b) => b[1] - a[1]);
+        for (const [npcId, count] of sortedNPCs) {
+          console.log(`  ${npcId}: ${count}`);
+        }
+      }
+      
+      // Log errors if any
+      if (npcErrors.size > 0) {
+        console.log(`\nNPCs not found (${totalErrors} total):`);
+        for (const [npcId, count] of npcErrors.entries()) {
+          console.log(`  ${npcId}: ${count} rooms`);
+        }
+      }
+      
+      console.log(`========================\n`);
+      
       const activeNPCs = this.npcSystem.getAllNPCs();
-      console.log(`Spawned ${activeNPCs.length} NPCs`);
+      if (activeNPCs.length !== totalSpawned) {
+        console.warn(`Warning: Active NPCs (${activeNPCs.length}) doesn't match spawned count (${totalSpawned})`);
+      }
     } catch (error) {
       console.error('Error spawning NPCs:', error);
     }

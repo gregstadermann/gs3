@@ -24,6 +24,12 @@ class NPCCombatBehavior {
       return false; // Already in combat
     }
 
+    // Check attack chance/probability (1.2)
+    const attackChance = npc.behaviors?.attackChance ?? npc.combat?.attackChance ?? 1.0;
+    if (attackChance < 1.0 && Math.random() > attackChance) {
+      return false; // Failed attack chance roll
+    }
+
     // Check for players in the same room
     const room = npc.room;
     if (!room) {
@@ -41,13 +47,35 @@ class NPCCombatBehavior {
       return false;
     }
 
-    // Select first player as target
-    const target = playersInRoom[0];
+    // Select target using improved selection (1.1)
+    const target = this.selectTarget(npc, playersInRoom);
+    if (!target) {
+      return false;
+    }
 
     // Initiate combat against player
     this.initiateCombat(npc, target);
 
     return true;
+  }
+
+  /**
+   * Select target for NPC (1.1 - Improved target selection)
+   * Priority: Players already in combat with this NPC > random player
+   */
+  selectTarget(npc, playersInRoom) {
+    if (!playersInRoom || playersInRoom.length === 0) {
+      return null;
+    }
+
+    // Priority 1: Players already in combat with this NPC
+    const inCombat = playersInRoom.filter(p => this.combatSystem.isInCombat(npc, p));
+    if (inCombat.length > 0) {
+      return inCombat[0]; // Return first combatant
+    }
+
+    // Priority 2: Random player in room
+    return playersInRoom[Math.floor(Math.random() * playersInRoom.length)];
   }
 
   /**
@@ -61,9 +89,15 @@ class NPCCombatBehavior {
 
     this.combatSystem.initiateCombat(npc, target, 0);
     
-    // Send messages
-    this.sendCombatMessage(npc, target, `The ${npc.name} attacks you!\r\n`);
-    this.sendCombatMessage(npc, npc, `You attack ${target.name}!\r\n`);
+    // Send messages (1.3 - Room-wide combat messages)
+    const npcName = npc.name || 'creature';
+    const targetName = target.name || 'target';
+    
+    // Message to target
+    this.sendCombatMessage(npc, target, `The ${npcName} attacks you!\r\n`);
+    
+    // Room-wide message (others in room see the attack)
+    this.sendRoomCombatMessage(npc, target, `The ${npcName} attacks ${targetName}!\r\n`);
   }
 
   /**
@@ -80,8 +114,8 @@ class NPCCombatBehavior {
       return;
     }
 
-    // Select primary target (first combatant)
-    const target = combatants.values().next().value;
+    // Select target using improved selection (1.1)
+    const target = this.selectTargetFromCombatants(npc, Array.from(combatants));
     if (!target) {
       return;
     }
@@ -95,6 +129,27 @@ class NPCCombatBehavior {
     } else {
       npc.combatData.lag = 2500; // Default 2.5 seconds
     }
+  }
+
+  /**
+   * Select target from combatants (1.1 - Improved target selection)
+   * For NPCs in combat, prioritize current target or select randomly
+   */
+  selectTargetFromCombatants(npc, combatants) {
+    if (!combatants || combatants.length === 0) {
+      return null;
+    }
+
+    // If NPC has a preferred target (e.g., from combat.combatData.target), use it
+    if (npc.combatData?.target) {
+      const preferredTarget = combatants.find(c => c.id === npc.combatData.target || c.name === npc.combatData.target);
+      if (preferredTarget) {
+        return preferredTarget;
+      }
+    }
+
+    // Otherwise, select randomly from combatants
+    return combatants[Math.floor(Math.random() * combatants.length)];
   }
 
   /**
@@ -189,39 +244,48 @@ class NPCCombatBehavior {
     // Apply damage with critical hits (using raw damage)
     const damageApplied = await damageSystem.applyDamageWithCritical(npc, target, rawDamage, attackWeapon);
 
-    // Send combat messages
+    // Send combat messages (1.3 - Room-wide combat messages)
     const npcName = npc.name || 'creature';
     const targetName = target.name || 'target';
     const attackVerb = attackName || (weapon ? weapon.name : 'attack');
     
+    // Message to target
     this.sendCombatMessage(npc, target, `A ${npcName} tries to ${attackVerb} you!\r\n`);
     this.sendCombatMessage(npc, target, `  AS: +${as} vs DS: +${targetDS} with AvD: +${avd} + d100 roll: +${d100Roll} = +${endRoll}\r\n`);
+    
+    // Room-wide message (others see the attack attempt)
+    this.sendRoomCombatMessage(npc, target, `A ${npcName} tries to ${attackVerb} ${targetName}!\r\n`);
     
     // Check if hit
     if (endRoll <= 100) {
       this.sendCombatMessage(npc, target, `  ... and misses!\r\n`);
+      this.sendRoomCombatMessage(npc, target, `  ... and misses!\r\n`);
       return;
     }
     
     // Hit successful
     this.sendCombatMessage(npc, target, `  ... and hits for ${damageApplied.damage} points of damage!\r\n`);
+    this.sendRoomCombatMessage(npc, target, `  ... and hits ${targetName} for ${damageApplied.damage} points of damage!\r\n`);
     
     // Critical hit message
     if (damageApplied.critical && damageApplied.critical.message) {
       const critMessage = damageApplied.critical.message.replace(/\[target\]/gi, targetName);
       this.sendCombatMessage(npc, target, `  ${critMessage}\r\n`);
+      this.sendRoomCombatMessage(npc, target, `  ${critMessage}\r\n`);
     }
     // Show stun messaging if stunned by critical effects
     if (damageApplied.critical && Array.isArray(damageApplied.critical.effects)) {
       const hasStun = damageApplied.critical.effects.some(e => typeof e === 'string' && /^S\d+$/i.test(e));
       if (hasStun) {
         this.sendCombatMessage(npc, target, `${targetName} is stunned!\r\n`);
+        this.sendRoomCombatMessage(npc, target, `${targetName} is stunned!\r\n`);
       }
     }
     
     // Check if target died
     if (damageApplied.targetDead) {
       this.sendCombatMessage(npc, target, `${targetName} collapses and dies!\r\n`);
+      this.sendRoomCombatMessage(npc, target, `${targetName} collapses and dies!\r\n`);
       this.combatSystem.removeFromCombat(npc);
     }
   }
@@ -263,6 +327,27 @@ class NPCCombatBehavior {
   }
 
   /**
+   * Send combat message to all players in room except target (1.3 - Room-wide combat messages)
+   */
+  sendRoomCombatMessage(npc, target, message) {
+    if (!this.gameEngine || !this.gameEngine.roomSystem || !npc.room) {
+      return;
+    }
+
+    const playersInRoom = this.gameEngine.roomSystem.getPlayersInRoom(npc.room);
+    if (!playersInRoom) {
+      return;
+    }
+
+    // Send to all players in room except the target (target gets direct message)
+    playersInRoom.forEach(player => {
+      if (player !== target && player.connection) {
+        this.sendCombatMessage(npc, player, message);
+      }
+    });
+  }
+
+  /**
    * Get a stat value from character
    */
   getStat(character, statName) {
@@ -281,6 +366,121 @@ class NPCCombatBehavior {
     }
 
     return stat;
+  }
+
+  /**
+   * Process wander/patrol behavior for NPC (4.1 - Patrol/wander behavior)
+   * Called every game tick for NPCs that are not in combat
+   */
+  async processWander(npc) {
+    // Don't wander if in combat
+    if (this.combatSystem.isInCombat(npc)) {
+      return;
+    }
+
+    // Check if NPC has wander behavior enabled
+    const wanderRange = npc.behaviors?.wanderRange || 0;
+    if (wanderRange === 0) {
+      return; // No wandering
+    }
+
+    // Check wander chance (default: 5% chance per tick, or 1 in 20)
+    const wanderChance = npc.behaviors?.wanderChance || 0.05;
+    if (Math.random() > wanderChance) {
+      return; // No wander this tick
+    }
+
+    // Get current room
+    if (!npc.room || !this.gameEngine || !this.gameEngine.roomSystem) {
+      return;
+    }
+
+    const room = this.gameEngine.roomSystem.getRoom(npc.room);
+    if (!room || !room.exits || room.exits.length === 0) {
+      return; // No exits available
+    }
+
+    // Filter out hidden exits for NPCs (they can use visible exits)
+    const availableExits = room.exits.filter(exit => !exit.hidden);
+    if (availableExits.length === 0) {
+      return; // No valid exits
+    }
+
+    // Select random exit
+    const selectedExit = availableExits[Math.floor(Math.random() * availableExits.length)];
+    const targetRoomId = selectedExit.roomId;
+
+    if (!targetRoomId) {
+      return; // Invalid exit
+    }
+
+    // Check if target room exists
+    const targetRoom = this.gameEngine.roomSystem.getRoom(targetRoomId);
+    if (!targetRoom) {
+      return; // Target room doesn't exist
+    }
+
+    // Move NPC to new room
+    await this.moveNPCToRoom(npc, targetRoomId, selectedExit.direction);
+  }
+
+  /**
+   * Move NPC to a new room
+   */
+  async moveNPCToRoom(npc, roomId, direction) {
+    if (!this.gameEngine || !this.gameEngine.npcSystem || !this.gameEngine.roomSystem) {
+      return;
+    }
+
+    const oldRoomId = npc.room;
+    npc.room = roomId;
+
+    // Send message to players in old room
+    if (oldRoomId) {
+      const oldRoomPlayers = this.gameEngine.roomSystem.getPlayersInRoom(oldRoomId);
+      if (oldRoomPlayers && oldRoomPlayers.length > 0) {
+        const directionName = direction || 'away';
+        const message = `A ${npc.name || 'creature'} leaves ${directionName}.\r\n`;
+        oldRoomPlayers.forEach(player => {
+          if (player.connection) {
+            this.sendCombatMessage(npc, player, message);
+          }
+        });
+      }
+    }
+
+    // Send message to players in new room
+    const newRoomPlayers = this.gameEngine.roomSystem.getPlayersInRoom(roomId);
+    if (newRoomPlayers && newRoomPlayers.length > 0) {
+      const directionName = this.getOppositeDirection(direction) || 'here';
+      const message = `A ${npc.name || 'creature'} arrives from ${directionName}.\r\n`;
+      newRoomPlayers.forEach(player => {
+        if (player.connection) {
+          this.sendCombatMessage(npc, player, message);
+        }
+      });
+    }
+  }
+
+  /**
+   * Get opposite direction for arrival messages
+   */
+  getOppositeDirection(direction) {
+    const opposites = {
+      'north': 'south',
+      'south': 'north',
+      'east': 'west',
+      'west': 'east',
+      'northeast': 'southwest',
+      'northwest': 'southeast',
+      'southeast': 'northwest',
+      'southwest': 'northeast',
+      'up': 'down',
+      'down': 'up',
+      'in': 'out',
+      'out': 'in'
+    };
+    return opposites[direction?.toLowerCase()] || direction;
   }
 }
 

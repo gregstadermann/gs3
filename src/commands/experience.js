@@ -20,11 +20,13 @@ module.exports = {
     const recentDeaths = Math.trunc(attrs.experience?.recentDeaths || 0);
     const deathsSting = attrs.experience?.deathsSting || 'None';
     const deeds = Math.trunc(attrs.experience?.deeds || 0);
-    const ptp = Math.trunc(attrs.trainingPoints?.physical || 0);
-    const mtp = Math.trunc(attrs.trainingPoints?.mental || 0);
+    // Training points are stored in player.tps array [physical, mental]
+    const ptp = Math.trunc(player.tps ? player.tps[0] : 0);
+    const mtp = Math.trunc(player.tps ? player.tps[1] : 0);
 
     const capacity = expSystem.getFieldPoolCapacity(player);
-    const fieldExp = Math.min(Math.trunc(attrs.experience?.field || 0), capacity);
+    // Field experience is enforced to never exceed capacity - get actual value
+    const fieldExp = Math.trunc(attrs.experience?.field || 0);
 
     // Use stored level field, falling back to calculated level from experience
     const calculatedLevel = expSystem.getLevelForTotalExp(totalExp).level;

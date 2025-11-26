@@ -105,7 +105,7 @@ class GameServer {
    */
   async handleMessage(ws, data) {
     try {
-      const message = data.toString().trim();
+      let message = data.toString().trim();
       
       if (!message) return;
       
@@ -145,6 +145,12 @@ class GameServer {
         // Start login process
         this.loginFlow.startLogin(ws);
         return;
+      }
+      
+      // Handle apostrophe shortcut for SAY command
+      // If message starts with ', treat it as "say" command
+      if (message.startsWith("'")) {
+        message = 'say ' + message.substring(1);
       }
       
       // Parse command
@@ -217,7 +223,7 @@ class GameServer {
    */
   async handleTelnetMessage(socket, data) {
     try {
-      const message = data.toString().trim();
+      let message = data.toString().trim();
       console.log(`Telnet: Received message: "${message}"`);
       
       if (!message) return;
@@ -251,6 +257,12 @@ class GameServer {
         console.log(`Telnet: No player found for socket, connection might have issues`);
         // Player should be in login process already
         return;
+      }
+      
+      // Handle apostrophe shortcut for SAY command
+      // If message starts with ', treat it as "say" command
+      if (message.startsWith("'")) {
+        message = 'say ' + message.substring(1);
       }
       
       // Parse command

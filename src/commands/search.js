@@ -61,8 +61,89 @@ module.exports = {
         msg += 'She had nothing else of value.\r\n';
       }
 
-      // Mark searched
-      await db.collection('items').updateOne({ id: corpse.id }, { $set: { 'metadata.searched': true, 'metadata.loot.silver': 0 } });
+      // Award experience to all kill participants (if they're logged in)
+      // Experience is awarded when corpse is SEARCHed/LOOTed, not on kill
+      // All participants who are logged in receive experience when the corpse is searched
+      const killParticipants = corpse.metadata?.killParticipants || [];
+      const npcLevel = corpse.metadata?.npcLevel || 1;
+      const expAwarded = corpse.metadata?.expAwarded || []; // Track who has already received experience
+      
+      if (killParticipants.length > 0) {
+        const ExperienceSystem = require('../systems/ExperienceSystem');
+        const expSystem = new ExperienceSystem();
+        const playerSystem = player.gameEngine?.playerSystem;
+        
+        for (const participantName of killParticipants) {
+          // Skip if this participant already received experience
+          if (expAwarded.includes(participantName)) {
+            continue;
+          }
+          
+          // Find the participant player (must be logged in)
+          const participant = player.gameEngine?.players?.get(participantName);
+          if (!participant) {
+            // Player not logged in - they won't get experience (must be logged in when searched)
+            continue;
+          }
+          
+          // Calculate experience based on level difference
+          const playerLevel = Number(participant.level || participant.attributes?.level || 1) || 1;
+          const diff = npcLevel - playerLevel;
+          let expGain = 0;
+          if (diff <= -10) {
+            expGain = 0;
+          } else if (diff < 0) {
+            expGain = 100 - 10 * Math.abs(diff);
+          } else if (diff === 0) {
+            expGain = 100;
+          } else if (diff <= 4) {
+            expGain = 100 + 10 * diff;
+          } else {
+            expGain = 150;
+          }
+          
+          if (expGain > 0) {
+            if (!participant.attributes) participant.attributes = {};
+            if (!participant.attributes.experience) participant.attributes.experience = {};
+            const prevField = Number(participant.attributes.experience.field || 0) || 0;
+            
+            // Cap field experience at pool capacity
+            const capacity = expSystem.getFieldPoolCapacity(participant);
+            const newField = Math.min(prevField + expGain, capacity);
+            participant.attributes.experience.field = newField;
+            
+            console.log(`[EXP] Awarded ${expGain} field experience to ${participantName} for searching ${corpse.metadata?.npcName || 'corpse'} (prev: ${prevField}, new: ${newField}, capacity: ${capacity})`);
+            
+            // Send experience notification to participant
+            if (participant.connection) {
+              const expMessage = `\r\nYou gain ${expGain} field experience for slaying ${corpse.metadata?.npcName || 'the creature'}.\r\n`;
+              if (typeof participant.connection.send === 'function') {
+                participant.connection.send(expMessage);
+              } else if (typeof participant.connection.write === 'function') {
+                participant.connection.write(expMessage);
+              }
+            }
+            
+            // Persist to DB
+            if (playerSystem && typeof playerSystem.updatePlayer === 'function') {
+              await playerSystem.updatePlayer(participant);
+            }
+            
+            // Mark this participant as having received experience
+            expAwarded.push(participantName);
+          }
+        }
+      }
+
+      // Mark searched and update expAwarded list
+      await db.collection('items').updateOne(
+        { id: corpse.id }, 
+        { $set: { 
+          'metadata.searched': true, 
+          'metadata.loot.silver': 0,
+          'metadata.expAwarded': expAwarded
+        } }
+      );
 
       // Optional decay message
       msg += `A ${corpse.metadata?.npcName || 'corpse'} decays away, leaving nothing behind.\r\n`;

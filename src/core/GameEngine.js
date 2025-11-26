@@ -121,8 +121,8 @@ class GameEngine extends EventEmitter {
 
       // Process roundtime for all players in combat
     for (const [playerId, player] of this.players) {
-      // Update player
-      this.playerSystem.updatePlayer(player);
+      // Note: updatePlayer is async but we don't await it here to avoid blocking the game loop
+      // It will save to DB and update the in-memory cache
 
       // Process bleed damage from wounds (rank 2+ bleed)
       this.processBleedDamage(player);
@@ -181,11 +181,189 @@ class GameEngine extends EventEmitter {
         for (const [, player] of this.players) {
           const room = this.roomSystem.getRoom(player.room);
           const beforeField = Math.trunc(player?.attributes?.experience?.field || 0);
+          const beforeTotal = Math.trunc(player?.attributes?.experience?.total || 0);
+          const beforeLevel = player.level || expSystem.getLevelForTotalExp(beforeTotal).level;
+          
           if (beforeField > 0) {
             const result = expSystem.applyAbsorptionPulse(player, room);
-            // Persist player if anything moved
+            // Check if player leveled up
             if (result.moved > 0) {
+              const afterField = Math.trunc(player?.attributes?.experience?.field || 0);
+              const afterTotal = Math.trunc(player?.attributes?.experience?.total || 0);
+              const afterLevel = expSystem.getLevelForTotalExp(afterTotal).level;
+              
+              console.log(`[EXP ABSORB] ${player.name}: moved ${result.moved} exp (field: ${beforeField} -> ${afterField}, total: ${beforeTotal} -> ${afterTotal})`);
+              
+              // Always check if player's level matches their experience (handles cases where exp was gained outside absorption)
+              const currentLevelFromExp = expSystem.getLevelForTotalExp(afterTotal).level;
+              const storedLevel = player.level || 1;
+              
+              // If calculated level is higher than stored level, player leveled up
+              if (currentLevelFromExp > storedLevel) {
+                const newLevel = currentLevelFromExp;
+                // Player leveled up - reset ranksThisLevel for all skills
+                this.resetSkillRanksThisLevel(player);
+                player.level = newLevel;
+                console.log(`[LEVEL UP] ${player.name} reached level ${newLevel} (was ${storedLevel}, exp: ${afterTotal})`);
+                
+                // Remove legacy top-level experience field if it exists (experience is now in attributes.experience.total)
+                if (player.experience !== undefined) {
+                  delete player.experience;
+                  console.log(`[LEVEL UP] Removed legacy experience field from ${player.name}`);
+                }
+                
+                // Award training points on level up using the same formula as character creation
+                try {
+                  const CharacterCreation = require('../systems/CharacterCreation');
+                  const characterCreation = new CharacterCreation();
+                  const { getRawStat } = require('../services/statBonus');
+                  
+                  // Extract raw stats from player attributes
+                  const stats = {
+                    strength: getRawStat(player, 'strength'),
+                    constitution: getRawStat(player, 'constitution'),
+                    dexterity: getRawStat(player, 'dexterity'),
+                    agility: getRawStat(player, 'agility'),
+                    intelligence: getRawStat(player, 'intelligence'),
+                    wisdom: getRawStat(player, 'wisdom'),
+                    logic: getRawStat(player, 'logic'),
+                    charisma: getRawStat(player, 'charisma'),
+                    aura: getRawStat(player, 'aura'),
+                    discipline: getRawStat(player, 'discipline')
+                  };
+                  
+                  // Calculate new TPs using the same formula as character creation
+                  const [physicalTPs, mentalTPs] = characterCreation.calculateStartingTPs(stats);
+                  
+                  // Add to existing TPs
+                  const currentPhysical = player.tps ? player.tps[0] : 0;
+                  const currentMental = player.tps ? player.tps[1] : 0;
+                  
+                  if (!player.tps) player.tps = [0, 0];
+                  player.tps[0] = currentPhysical + physicalTPs;
+                  player.tps[1] = currentMental + mentalTPs;
+                  
+                  console.log(`[LEVEL UP] ${player.name} gained ${physicalTPs} physical and ${mentalTPs} mental training points (now ${player.tps[0]}/${player.tps[1]})`);
+                  
+                  // Notify player
+                  if (player.connection) {
+                    // Format level up message with proper padding
+                    const boxWidth = 63;
+                    const innerWidth = boxWidth - 4; // Subtract borders and padding
+                    
+                    const formatLine = (text) => {
+                      const padded = text.padEnd(innerWidth);
+                      return `║  ${padded}  ║\r\n`;
+                    };
+                    
+                    const formatNumber = (num) => num.toString().padStart(3);
+                    
+                    let levelUpMessage = `\r\n╔${'═'.repeat(boxWidth - 2)}╗\r\n`;
+                    levelUpMessage += formatLine(`LEVEL UP! You have reached level ${newLevel}!`);
+                    levelUpMessage += formatLine('');
+                    levelUpMessage += formatLine('Training Points Gained:');
+                    levelUpMessage += formatLine(`  ${formatNumber(physicalTPs)} physical training points`);
+                    levelUpMessage += formatLine(`  ${formatNumber(mentalTPs)} mental training points`);
+                    levelUpMessage += formatLine('');
+                    levelUpMessage += formatLine(`Total Training Points: ${formatNumber(player.tps[0])} physical, ${formatNumber(player.tps[1])} mental`);
+                    levelUpMessage += formatLine('');
+                    levelUpMessage += formatLine('All skill training limits have been reset.');
+                    levelUpMessage += formatLine('You can now train up to 3 ranks in each skill this level.');
+                    levelUpMessage += `╚${'═'.repeat(boxWidth - 2)}╝\r\n`;
+                    
+                    if (typeof player.connection.send === 'function') {
+                      player.connection.send(levelUpMessage);
+                    } else if (typeof player.connection.write === 'function') {
+                      player.connection.write(levelUpMessage);
+                    }
+                  }
+                } catch (e) {
+                  console.error(`[LEVEL UP] Error awarding training points to ${player.name}:`, e);
+                }
+              } else if (currentLevelFromExp < storedLevel) {
+                // Level mismatch - player's stored level is higher than their exp warrants (shouldn't happen, but fix it)
+                console.warn(`[LEVEL CHECK] ${player.name}: Level mismatch. Stored: ${storedLevel}, Calculated: ${currentLevelFromExp}. Correcting.`);
+                player.level = currentLevelFromExp;
+              }
+              
               this.playerSystem.updatePlayer(player);
+            }
+          }
+          
+          // Also check level for players with no field exp (they might have leveled up from other sources)
+          // This ensures level is always correct, even if exp was gained outside absorption pulse
+          const totalExp = Math.trunc(player?.attributes?.experience?.total || 0);
+          const calculatedLevel = expSystem.getLevelForTotalExp(totalExp).level;
+          const storedLevel = player.level || 1;
+          
+          if (calculatedLevel > storedLevel) {
+            // Player leveled up but it wasn't detected during absorption - handle it now
+            console.log(`[LEVEL UP] ${player.name} leveled up to ${calculatedLevel} (was ${storedLevel}, exp: ${totalExp}) - detected outside absorption pulse`);
+            this.resetSkillRanksThisLevel(player);
+            player.level = calculatedLevel;
+            
+            // Award training points
+            try {
+              const CharacterCreation = require('../systems/CharacterCreation');
+              const characterCreation = new CharacterCreation();
+              const { getRawStat } = require('../services/statBonus');
+              
+              const stats = {
+                strength: getRawStat(player, 'strength'),
+                constitution: getRawStat(player, 'constitution'),
+                dexterity: getRawStat(player, 'dexterity'),
+                agility: getRawStat(player, 'agility'),
+                intelligence: getRawStat(player, 'intelligence'),
+                wisdom: getRawStat(player, 'wisdom'),
+                logic: getRawStat(player, 'logic'),
+                charisma: getRawStat(player, 'charisma'),
+                aura: getRawStat(player, 'aura'),
+                discipline: getRawStat(player, 'discipline')
+              };
+              
+              const [physicalTPs, mentalTPs] = characterCreation.calculateStartingTPs(stats);
+              const currentPhysical = player.tps ? player.tps[0] : 0;
+              const currentMental = player.tps ? player.tps[1] : 0;
+              
+              if (!player.tps) player.tps = [0, 0];
+              player.tps[0] = currentPhysical + physicalTPs;
+              player.tps[1] = currentMental + mentalTPs;
+              
+              console.log(`[LEVEL UP] ${player.name} gained ${physicalTPs} physical and ${mentalTPs} mental training points (now ${player.tps[0]}/${player.tps[1]})`);
+              
+              // Notify player
+              if (player.connection) {
+                const boxWidth = 63;
+                const innerWidth = boxWidth - 4;
+                const formatLine = (text) => {
+                  const padded = text.padEnd(innerWidth);
+                  return `║  ${padded}  ║\r\n`;
+                };
+                const formatNumber = (num) => num.toString().padStart(3);
+                
+                let levelUpMessage = `\r\n╔${'═'.repeat(boxWidth - 2)}╗\r\n`;
+                levelUpMessage += formatLine(`LEVEL UP! You have reached level ${calculatedLevel}!`);
+                levelUpMessage += formatLine('');
+                levelUpMessage += formatLine('Training Points Gained:');
+                levelUpMessage += formatLine(`  ${formatNumber(physicalTPs)} physical training points`);
+                levelUpMessage += formatLine(`  ${formatNumber(mentalTPs)} mental training points`);
+                levelUpMessage += formatLine('');
+                levelUpMessage += formatLine(`Total Training Points: ${formatNumber(player.tps[0])} physical, ${formatNumber(player.tps[1])} mental`);
+                levelUpMessage += formatLine('');
+                levelUpMessage += formatLine('All skill training limits have been reset.');
+                levelUpMessage += formatLine('You can now train up to 3 ranks in each skill this level.');
+                levelUpMessage += `╚${'═'.repeat(boxWidth - 2)}╝\r\n`;
+                
+                if (typeof player.connection.send === 'function') {
+                  player.connection.send(levelUpMessage);
+                } else if (typeof player.connection.write === 'function') {
+                  player.connection.write(levelUpMessage);
+                }
+              }
+              
+              this.playerSystem.updatePlayer(player);
+            } catch (e) {
+              console.error(`[LEVEL UP] Error awarding training points to ${player.name}:`, e);
             }
           }
         }
@@ -217,6 +395,13 @@ class GameEngine extends EventEmitter {
         // Perform combat action async (don't await to avoid blocking game loop)
         this.npcCombatBehavior?.performCombatAction(npc).catch(err => {
           console.error('Error in NPC combat action:', err);
+        });
+      }
+
+      // Process wander/patrol behavior for NPCs not in combat (4.1)
+      if (!this.combatSystem.isInCombat(npc) && npc.room) {
+        this.npcCombatBehavior?.processWander(npc).catch(err => {
+          console.error('Error in NPC wander behavior:', err);
         });
       }
     }
@@ -462,6 +647,20 @@ class GameEngine extends EventEmitter {
       }
     } catch (error) {
       console.error('Error spawning NPCs:', error);
+    }
+  }
+
+  /**
+   * Reset ranksThisLevel for all skills (called when player levels up)
+   */
+  resetSkillRanksThisLevel(player) {
+    if (!player.skills) return;
+    
+    for (const skillId in player.skills) {
+      const skill = player.skills[skillId];
+      if (skill && typeof skill === 'object') {
+        skill.ranksThisLevel = 0;
+      }
     }
   }
 

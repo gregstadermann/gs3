@@ -2,6 +2,7 @@
 
 # Login script for GS3 MUD
 # Usage: ./login-script <username> <password> <character>
+# Requires: expect (install with: sudo apt install expect)
 
 set username [lindex $argv 0]
 set password [lindex $argv 1]

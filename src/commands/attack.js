@@ -185,11 +185,49 @@ module.exports = {
       console.log(`[AS CALC] Weapon metadata:`, weapon.metadata);
       
       // Check weapon type to use correct skill
-      const weaponType = weapon.metadata?.weapon_type || weapon.metadata?.baseWeapon || '';
+      // First try metadata.weapon_type, then metadata.baseWeapon, then try to determine from base weapon data
+      let weaponType = weapon.metadata?.weapon_type || '';
+      
+      // If no weapon_type, try to get from baseWeapon by looking up the base weapon definition
+      if (!weaponType && weapon.metadata?.baseWeapon) {
+        const baseWeaponKey = weapon.metadata.baseWeapon;
+        const baseWeapon = damageSystem.baseWeapons[baseWeaponKey];
+        if (baseWeapon && baseWeapon.type) {
+          weaponType = baseWeapon.type;
+          console.log(`[AS CALC] Got weapon type '${weaponType}' from base weapon '${baseWeaponKey}'`);
+        } else {
+          // Fallback: check if baseWeapon key contains weapon type info
+          weaponType = baseWeaponKey;
+        }
+      }
+      
+      // If still no weapon type, try to infer from weapon name
+      if (!weaponType && weapon.name) {
+        const weaponName = weapon.name.toLowerCase();
+        if (weaponName.includes('sword') || weaponName.includes('blade') || weaponName.includes('knife') || weaponName.includes('dagger')) {
+          weaponType = 'one_handed_edged';
+        } else if (weaponName.includes('mace') || weaponName.includes('hammer') || weaponName.includes('club')) {
+          weaponType = 'one_handed_blunt';
+        }
+      }
+      
       console.log(`[AS CALC] Weapon type: ${weaponType}`);
       
-      const weaponSkill = weaponType.includes('edged') ? player.skills.one_handed_edged : 
-                         weaponType.includes('blunt') ? player.skills.one_handed_blunt : null;
+      // Map weapon type to skill
+      let weaponSkill = null;
+      if (weaponType.includes('edged') || weaponType === 'one_handed_edged') {
+        weaponSkill = player.skills.one_handed_edged;
+      } else if (weaponType.includes('blunt') || weaponType === 'one_handed_blunt') {
+        weaponSkill = player.skills.one_handed_blunt;
+      } else if (weaponType.includes('two_handed') || weaponType === 'two_handed') {
+        weaponSkill = player.skills.two_handed;
+      } else if (weaponType.includes('polearm') || weaponType === 'polearm') {
+        weaponSkill = player.skills.polearm;
+      } else if (weaponType.includes('ranged') || weaponType === 'ranged') {
+        weaponSkill = player.skills.ranged;
+      } else if (weaponType.includes('thrown') || weaponType === 'thrown') {
+        weaponSkill = player.skills.thrown;
+      }
       
       console.log(`[AS CALC] Weapon skill object:`, weaponSkill);
       
@@ -286,17 +324,22 @@ module.exports = {
     const d100Roll = Math.floor(Math.random() * 100) + 1;
     const endRoll = as - ds + avd + d100Roll;
     
+    // Check if hit (need to exceed 100) BEFORE applying damage
+    const hit = endRoll > 100;
+    
     // Calculate raw damage if hit using GS4 formula: (endroll - 100) * damageFactor
     let rawDamage = 0;
-    if (endRoll > 100) {
+    let damageApplied = { damage: 0, critical: null, targetDead: false };
+    
+    if (hit) {
       // Raw damage = (end roll - 100) * damage factor
       const damageFactor = damageResult.damageFactor || 0.45;
       const endrollSuccessMargin = endRoll - 100;
       rawDamage = Math.floor(endrollSuccessMargin * damageFactor);
+      
+      // Apply damage with critical hits (using raw damage) - ONLY if hit
+      damageApplied = await damageSystem.applyDamageWithCritical(player, target, rawDamage, weapon);
     }
-    
-    // Apply damage with critical hits (using raw damage)
-    const damageApplied = await damageSystem.applyDamageWithCritical(player, target, rawDamage, weapon);
 
     // Determine armor roundtime penalty if wearing armor
     function getArmorRoundtimeMs(p) {
@@ -392,9 +435,6 @@ module.exports = {
     
     // Show attack roll
     message += `AS: +${as} vs DS: +${ds} with AvD: +${avd} + d100 roll: +${d100Roll} = +${endRoll}\r\n`;
-    
-    // Check if hit (need to exceed 100)
-    const hit = endRoll > 100;
     
     if (!hit) {
       message += `  ... and misses!\r\n`;

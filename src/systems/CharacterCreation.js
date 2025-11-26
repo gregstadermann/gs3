@@ -75,32 +75,32 @@ class CharacterCreation {
         manaStat: 'aura',
         primeStats: ['strength', 'constitution'],
         skills: {
-          brawling: { name: 'Brawling', cost: [2, 1], ranks: 0 },
-          one_handed_edged: { name: 'Edged Weapons', cost: [2, 1], ranks: 0 },
-          one_handed_blunt: { name: 'Blunt Weapons', cost: [2, 1], ranks: 0 },
-          two_handed: { name: 'Two-Handed Weapons', cost: [3, 1], ranks: 0 },
-          polearm: { name: 'Polearm Weapons', cost: [3, 1], ranks: 0 },
-          ranged: { name: 'Ranged Weapons', cost: [2, 1], ranks: 0 },
-          thrown: { name: 'Thrown Weapons', cost: [2, 1], ranks: 0 },
-          combat_maneuvers: { name: 'Combat Maneuvers', cost: [4, 3], ranks: 0 },
-          shield_use: { name: 'Shield Use', cost: [2, 0], ranks: 0 },
-          armor_use: { name: 'Armor Use', cost: [2, 0], ranks: 0 },
-          climbing: { name: 'Climbing', cost: [3, 0], ranks: 0 },
-          swimming: { name: 'Swimming', cost: [2, 0], ranks: 0 },
-          disarm_traps: { name: 'Disarming Traps', cost: [2, 4], ranks: 0 },
-          pick_locks: { name: 'Picking Locks', cost: [2, 3], ranks: 0 },
-          stalk_and_hide: { name: 'Stalking & Hiding', cost: [3, 2], ranks: 0 },
-          perception: { name: 'Perception', cost: [0, 3], ranks: 0 },
-          pickpocketing: { name: 'Picking Pockets', cost: [2, 3], ranks: 0 },
-          ambush: { name: 'Ambush', cost: [3, 4], ranks: 0 },
-          spell_aim: { name: 'Spell Aiming', cost: [4, 8], ranks: 0 },
+          brawling: { name: 'Brawling', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_edged: { name: 'Edged Weapons', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_blunt: { name: 'Blunt Weapons', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 },
+          two_handed: { name: 'Two-Handed Weapons', cost: [3, 1], ranks: 0, maxRanksPerLevel: 3 },
+          polearm: { name: 'Polearm Weapons', cost: [3, 1], ranks: 0, maxRanksPerLevel: 3 },
+          ranged: { name: 'Ranged Weapons', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 },
+          thrown: { name: 'Thrown Weapons', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 },
+          combat_maneuvers: { name: 'Combat Maneuvers', cost: [4, 3], ranks: 0, maxRanksPerLevel: 3 },
+          shield_use: { name: 'Shield Use', cost: [2, 0], ranks: 0, maxRanksPerLevel: 3 },
+          armor_use: { name: 'Armor Use', cost: [2, 0], ranks: 0, maxRanksPerLevel: 3 },
+          climbing: { name: 'Climbing', cost: [3, 0], ranks: 0, maxRanksPerLevel: 3 },
+          swimming: { name: 'Swimming', cost: [2, 0], ranks: 0, maxRanksPerLevel: 3 },
+          disarm_traps: { name: 'Disarming Traps', cost: [2, 4], ranks: 0, maxRanksPerLevel: 3 },
+          pick_locks: { name: 'Picking Locks', cost: [2, 3], ranks: 0, maxRanksPerLevel: 3 },
+          stalk_and_hide: { name: 'Stalking & Hiding', cost: [3, 2], ranks: 0, maxRanksPerLevel: 3 },
+          perception: { name: 'Perception', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          pickpocketing: { name: 'Picking Pockets', cost: [2, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ambush: { name: 'Ambush', cost: [3, 4], ranks: 0, maxRanksPerLevel: 3 },
+          spell_aim: { name: 'Spell Aiming', cost: [4, 8], ranks: 0, maxRanksPerLevel: 3 },
           physical_fitness: { name: 'Physical Fitness', cost: [2, 0], ranks: 0, maxRanksPerLevel: 3 },
-          mana_share: { name: 'Mana Sharing', cost: [0, 12], ranks: 0 },
-          magic_item_use: { name: 'Magic Item Use', cost: [0, 7], ranks: 0 },
-          scroll_reading: { name: 'Scroll Reading', cost: [0, 8], ranks: 0 },
-          minor_elemental: { name: 'Minor Elemental', cost: [0, 120], ranks: 0 },
-          minor_spiritual: { name: 'Minor Spiritual', cost: [0, 120], ranks: 0 },
-          first_aid: { name: 'First Aid', cost: [1, 2], ranks: 0 }
+          mana_share: { name: 'Mana Sharing', cost: [0, 12], ranks: 0, maxRanksPerLevel: 3 },
+          magic_item_use: { name: 'Magic Item Use', cost: [0, 7], ranks: 0, maxRanksPerLevel: 3 },
+          scroll_reading: { name: 'Scroll Reading', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          minor_elemental: { name: 'Minor Elemental', cost: [0, 120], ranks: 0, maxRanksPerLevel: 3 },
+          minor_spiritual: { name: 'Minor Spiritual', cost: [0, 120], ranks: 0, maxRanksPerLevel: 3 },
+          first_aid: { name: 'First Aid', cost: [1, 2], ranks: 0, maxRanksPerLevel: 3 }
         }
       },
       rogue: {
@@ -108,34 +108,34 @@ class CharacterCreation {
         manaStat: 'aura',
         primeStats: ['agility', 'dexterity'],
         skills: {
-          brawling: { name: 'Brawling', cost: [10, 2], ranks: 0 },
-          one_handed_edged: { name: 'Edged Weapons', cost: [6, 1], ranks: 0 },
-          one_handed_blunt: { name: 'Blunt Weapons', cost: [6, 1], ranks: 0 },
-          two_handed: { name: 'Two-Handed Weapons', cost: [14, 3], ranks: 0 },
-          polearm: { name: 'Polearm Weapons', cost: [14, 3], ranks: 0 },
-          ranged: { name: 'Ranged Weapons', cost: [14, 3], ranks: 0 },
-          thrown: { name: 'Thrown Weapons', cost: [8, 2], ranks: 0 },
-          combat_maneuvers: { name: 'Combat Maneuvers', cost: [12, 8], ranks: 0 },
-          shield_use: { name: 'Shield Use', cost: [13, 0], ranks: 0 },
-          armor_use: { name: 'Armor Use', cost: [14, 0], ranks: 0 },
-          climbing: { name: 'Climbing', cost: [4, 0], ranks: 0 },
-          swimming: { name: 'Swimming', cost: [3, 0], ranks: 0 },
-          disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0 },
-          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
-          stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0 },
-          perception: { name: 'Perception', cost: [0, 3], ranks: 0 },
-          pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0 },
-          ambush: { name: 'Ambush', cost: [15, 10], ranks: 0 },
-          spell_aim: { name: 'Spell Aiming', cost: [2, 1], ranks: 0 },
-          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 2 },
-          harness_power: { name: 'Harness Power', cost: [0, 4], ranks: 0 },
-          mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0 },
-          magic_item_use: { name: 'Magic Item Use', cost: [0, 1], ranks: 0 },
-          scroll_reading: { name: 'Scroll Reading', cost: [0, 2], ranks: 0 },
-          major_elemental: { name: 'Major Elemental', cost: [0, 8], ranks: 0 },
-          minor_elemental: { name: 'Minor Elemental', cost: [0, 8], ranks: 0 },
-          wizard_base: { name: 'Wizard Base', cost: [0, 8], ranks: 0 },
-          first_aid: { name: 'First Aid', cost: [2, 1], ranks: 0 }
+          brawling: { name: 'Brawling', cost: [10, 2], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_edged: { name: 'Edged Weapons', cost: [6, 1], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_blunt: { name: 'Blunt Weapons', cost: [6, 1], ranks: 0, maxRanksPerLevel: 3 },
+          two_handed: { name: 'Two-Handed Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          polearm: { name: 'Polearm Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ranged: { name: 'Ranged Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          thrown: { name: 'Thrown Weapons', cost: [8, 2], ranks: 0, maxRanksPerLevel: 3 },
+          combat_maneuvers: { name: 'Combat Maneuvers', cost: [12, 8], ranks: 0, maxRanksPerLevel: 3 },
+          shield_use: { name: 'Shield Use', cost: [13, 0], ranks: 0, maxRanksPerLevel: 3 },
+          armor_use: { name: 'Armor Use', cost: [14, 0], ranks: 0, maxRanksPerLevel: 3 },
+          climbing: { name: 'Climbing', cost: [4, 0], ranks: 0, maxRanksPerLevel: 3 },
+          swimming: { name: 'Swimming', cost: [3, 0], ranks: 0, maxRanksPerLevel: 3 },
+          disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0, maxRanksPerLevel: 3 },
+          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0, maxRanksPerLevel: 3 },
+          stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0, maxRanksPerLevel: 3 },
+          perception: { name: 'Perception', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ambush: { name: 'Ambush', cost: [15, 10], ranks: 0, maxRanksPerLevel: 3 },
+          spell_aim: { name: 'Spell Aiming', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 },
+          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 3 },
+          harness_power: { name: 'Harness Power', cost: [0, 4], ranks: 0, maxRanksPerLevel: 3 },
+          mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          magic_item_use: { name: 'Magic Item Use', cost: [0, 1], ranks: 0, maxRanksPerLevel: 3 },
+          scroll_reading: { name: 'Scroll Reading', cost: [0, 2], ranks: 0, maxRanksPerLevel: 3 },
+          major_elemental: { name: 'Major Elemental', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          minor_elemental: { name: 'Minor Elemental', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          wizard_base: { name: 'Wizard Base', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          first_aid: { name: 'First Aid', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 }
         }
       },
       wizard: {
@@ -143,33 +143,33 @@ class CharacterCreation {
         manaStat: 'aura',
         primeStats: ['aura', 'logic'],
         skills: {
-          brawling: { name: 'Brawling', cost: [10, 2], ranks: 0 },
-          one_handed_edged: { name: 'Edged Weapons', cost: [6, 1], ranks: 0 },
-          one_handed_blunt: { name: 'Blunt Weapons', cost: [6, 1], ranks: 0 },
-          two_handed: { name: 'Two-Handed Weapons', cost: [14, 3], ranks: 0 },
-          polearm: { name: 'Polearm Weapons', cost: [14, 3], ranks: 0 },
-          ranged: { name: 'Ranged Weapons', cost: [14, 3], ranks: 0 },
-          thrown: { name: 'Thrown Weapons', cost: [8, 2], ranks: 0 },
-          combat_maneuvers: { name: 'Combat Maneuvers', cost: [12, 8], ranks: 0 },
-          shield_use: { name: 'Shield Use', cost: [13, 0], ranks: 0 },
-          armor_use: { name: 'Armor Use', cost: [14, 0], ranks: 0 },
-          climbing: { name: 'Climbing', cost: [4, 0], ranks: 0 },
-          swimming: { name: 'Swimming', cost: [3, 0], ranks: 0 },
-          disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0 },
-          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
-          stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0 },
-          perception: { name: 'Perception', cost: [0, 3], ranks: 0 },
-          pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0 },
-          ambush: { name: 'Ambush', cost: [15, 10], ranks: 0 },
-          spell_aim: { name: 'Spell Aiming', cost: [2, 1], ranks: 0 },
-          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 2 },
-          mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0 },
-          magic_item_use: { name: 'Magic Item Use', cost: [0, 1], ranks: 0 },
-          scroll_reading: { name: 'Scroll Reading', cost: [0, 2], ranks: 0 },
-          major_elemental: { name: 'Major Elemental', cost: [0, 8], ranks: 0 },
-          minor_elemental: { name: 'Minor Elemental', cost: [0, 8], ranks: 0 },
-          wizard_base: { name: 'Wizard Base', cost: [0, 8], ranks: 0 },
-          first_aid: { name: 'First Aid', cost: [2, 1], ranks: 0 }
+          brawling: { name: 'Brawling', cost: [10, 2], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_edged: { name: 'Edged Weapons', cost: [6, 1], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_blunt: { name: 'Blunt Weapons', cost: [6, 1], ranks: 0, maxRanksPerLevel: 3 },
+          two_handed: { name: 'Two-Handed Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          polearm: { name: 'Polearm Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ranged: { name: 'Ranged Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          thrown: { name: 'Thrown Weapons', cost: [8, 2], ranks: 0, maxRanksPerLevel: 3 },
+          combat_maneuvers: { name: 'Combat Maneuvers', cost: [12, 8], ranks: 0, maxRanksPerLevel: 3 },
+          shield_use: { name: 'Shield Use', cost: [13, 0], ranks: 0, maxRanksPerLevel: 3 },
+          armor_use: { name: 'Armor Use', cost: [14, 0], ranks: 0, maxRanksPerLevel: 3 },
+          climbing: { name: 'Climbing', cost: [4, 0], ranks: 0, maxRanksPerLevel: 3 },
+          swimming: { name: 'Swimming', cost: [3, 0], ranks: 0, maxRanksPerLevel: 3 },
+          disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0, maxRanksPerLevel: 3 },
+          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0, maxRanksPerLevel: 3 },
+          stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0, maxRanksPerLevel: 3 },
+          perception: { name: 'Perception', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ambush: { name: 'Ambush', cost: [15, 10], ranks: 0, maxRanksPerLevel: 3 },
+          spell_aim: { name: 'Spell Aiming', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 },
+          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 3 },
+          mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          magic_item_use: { name: 'Magic Item Use', cost: [0, 1], ranks: 0, maxRanksPerLevel: 3 },
+          scroll_reading: { name: 'Scroll Reading', cost: [0, 2], ranks: 0, maxRanksPerLevel: 3 },
+          major_elemental: { name: 'Major Elemental', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          minor_elemental: { name: 'Minor Elemental', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          wizard_base: { name: 'Wizard Base', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          first_aid: { name: 'First Aid', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 }
         }
       },
       cleric: {
@@ -177,33 +177,33 @@ class CharacterCreation {
         manaStat: 'wisdom',
         primeStats: ['logic', 'wisdom'],
         skills: {
-          brawling: { name: 'Brawling', cost: [10, 2], ranks: 0 },
-          one_handed_edged: { name: 'Edged Weapons', cost: [6, 1], ranks: 0 },
-          one_handed_blunt: { name: 'Blunt Weapons', cost: [6, 1], ranks: 0 },
-          two_handed: { name: 'Two-Handed Weapons', cost: [14, 3], ranks: 0 },
-          polearm: { name: 'Polearm Weapons', cost: [14, 3], ranks: 0 },
-          ranged: { name: 'Ranged Weapons', cost: [14, 3], ranks: 0 },
-          thrown: { name: 'Thrown Weapons', cost: [8, 2], ranks: 0 },
-          combat_maneuvers: { name: 'Combat Maneuvers', cost: [12, 8], ranks: 0 },
-          shield_use: { name: 'Shield Use', cost: [13, 0], ranks: 0 },
-          armor_use: { name: 'Armor Use', cost: [14, 0], ranks: 0 },
-          climbing: { name: 'Climbing', cost: [4, 0], ranks: 0 },
-          swimming: { name: 'Swimming', cost: [3, 0], ranks: 0 },
-          disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0 },
-          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
-          stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0 },
-          perception: { name: 'Perception', cost: [0, 3], ranks: 0 },
-          pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0 },
-          ambush: { name: 'Ambush', cost: [15, 10], ranks: 0 },
-          spell_aim: { name: 'Spell Aiming', cost: [2, 1], ranks: 0 },
-          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 2 },
-          mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0 },
-          magic_item_use: { name: 'Magic Item Use', cost: [0, 1], ranks: 0 },
-          scroll_reading: { name: 'Scroll Reading', cost: [0, 2], ranks: 0 },
-          cleric_base: { name: 'Cleric Base', cost: [0, 8], ranks: 0 },
-          minor_spiritual: { name: 'Minor Spiritual', cost: [0, 8], ranks: 0 },
-          major_spiritual: { name: 'Major Spiritual', cost: [0, 8], ranks: 0 },
-          first_aid: { name: 'First Aid', cost: [2, 1], ranks: 0 }
+          brawling: { name: 'Brawling', cost: [10, 2], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_edged: { name: 'Edged Weapons', cost: [6, 1], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_blunt: { name: 'Blunt Weapons', cost: [6, 1], ranks: 0, maxRanksPerLevel: 3 },
+          two_handed: { name: 'Two-Handed Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          polearm: { name: 'Polearm Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ranged: { name: 'Ranged Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          thrown: { name: 'Thrown Weapons', cost: [8, 2], ranks: 0, maxRanksPerLevel: 3 },
+          combat_maneuvers: { name: 'Combat Maneuvers', cost: [12, 8], ranks: 0, maxRanksPerLevel: 3 },
+          shield_use: { name: 'Shield Use', cost: [13, 0], ranks: 0, maxRanksPerLevel: 3 },
+          armor_use: { name: 'Armor Use', cost: [14, 0], ranks: 0, maxRanksPerLevel: 3 },
+          climbing: { name: 'Climbing', cost: [4, 0], ranks: 0, maxRanksPerLevel: 3 },
+          swimming: { name: 'Swimming', cost: [3, 0], ranks: 0, maxRanksPerLevel: 3 },
+          disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0, maxRanksPerLevel: 3 },
+          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0, maxRanksPerLevel: 3 },
+          stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0, maxRanksPerLevel: 3 },
+          perception: { name: 'Perception', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ambush: { name: 'Ambush', cost: [15, 10], ranks: 0, maxRanksPerLevel: 3 },
+          spell_aim: { name: 'Spell Aiming', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 },
+          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 3 },
+          mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          magic_item_use: { name: 'Magic Item Use', cost: [0, 1], ranks: 0, maxRanksPerLevel: 3 },
+          scroll_reading: { name: 'Scroll Reading', cost: [0, 2], ranks: 0, maxRanksPerLevel: 3 },
+          cleric_base: { name: 'Cleric Base', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          minor_spiritual: { name: 'Minor Spiritual', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          major_spiritual: { name: 'Major Spiritual', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          first_aid: { name: 'First Aid', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 }
         }
       },
       empath: {
@@ -211,33 +211,33 @@ class CharacterCreation {
         manaStat: 'wisdom',
         primeStats: ['aura', 'wisdom'],
         skills: {
-          brawling: { name: 'Brawling', cost: [10, 2], ranks: 0 },
-          one_handed_edged: { name: 'Edged Weapons', cost: [6, 2], ranks: 0 },
-          one_handed_blunt: { name: 'Blunt Weapons', cost: [6, 2], ranks: 0 },
-          two_handed: { name: 'Two-Handed Weapons', cost: [13, 3], ranks: 0 },
-          polearm: { name: 'Polearm Weapons', cost: [14, 3], ranks: 0 },
-          ranged: { name: 'Ranged Weapons', cost: [14, 3], ranks: 0 },
-          thrown: { name: 'Thrown Weapons', cost: [9, 3], ranks: 0 },
-          combat_maneuvers: { name: 'Combat Maneuvers', cost: [12, 8], ranks: 0 },
-          shield_use: { name: 'Shield Use', cost: [13, 0], ranks: 0 },
-          armor_use: { name: 'Armor Use', cost: [15, 0], ranks: 0 },
-          climbing: { name: 'Climbing', cost: [4, 0], ranks: 0 },
-          swimming: { name: 'Swimming', cost: [3, 0], ranks: 0 },
-          disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0 },
-          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
-          stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0 },
-          perception: { name: 'Perception', cost: [0, 3], ranks: 0 },
-          pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0 },
-          ambush: { name: 'Ambush', cost: [15, 15], ranks: 0 },
-          spell_aim: { name: 'Spell Aiming', cost: [3, 1], ranks: 0 },
-          physical_fitness: { name: 'Physical Fitness', cost: [2, 0], ranks: 0 },
-          mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0 },
-          magic_item_use: { name: 'Magic Item Use', cost: [0, 2], ranks: 0 },
-          scroll_reading: { name: 'Scroll Reading', cost: [0, 2], ranks: 0 },
-          major_elemental: { name: 'Major Elemental', cost: [0, 8], ranks: 0 },
-          minor_elemental: { name: 'Minor Elemental', cost: [0, 8], ranks: 0 },
-          empath_base: { name: 'Empath Base', cost: [0, 8], ranks: 0 },
-          first_aid: { name: 'First Aid', cost: [1, 0], ranks: 0 }
+          brawling: { name: 'Brawling', cost: [10, 2], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_edged: { name: 'Edged Weapons', cost: [6, 2], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_blunt: { name: 'Blunt Weapons', cost: [6, 2], ranks: 0, maxRanksPerLevel: 3 },
+          two_handed: { name: 'Two-Handed Weapons', cost: [13, 3], ranks: 0, maxRanksPerLevel: 3 },
+          polearm: { name: 'Polearm Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ranged: { name: 'Ranged Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          thrown: { name: 'Thrown Weapons', cost: [9, 3], ranks: 0, maxRanksPerLevel: 3 },
+          combat_maneuvers: { name: 'Combat Maneuvers', cost: [12, 8], ranks: 0, maxRanksPerLevel: 3 },
+          shield_use: { name: 'Shield Use', cost: [13, 0], ranks: 0, maxRanksPerLevel: 3 },
+          armor_use: { name: 'Armor Use', cost: [15, 0], ranks: 0, maxRanksPerLevel: 3 },
+          climbing: { name: 'Climbing', cost: [4, 0], ranks: 0, maxRanksPerLevel: 3 },
+          swimming: { name: 'Swimming', cost: [3, 0], ranks: 0, maxRanksPerLevel: 3 },
+          disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0, maxRanksPerLevel: 3 },
+          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0, maxRanksPerLevel: 3 },
+          stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0, maxRanksPerLevel: 3 },
+          perception: { name: 'Perception', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ambush: { name: 'Ambush', cost: [15, 15], ranks: 0, maxRanksPerLevel: 3 },
+          spell_aim: { name: 'Spell Aiming', cost: [3, 1], ranks: 0, maxRanksPerLevel: 3 },
+          physical_fitness: { name: 'Physical Fitness', cost: [2, 0], ranks: 0, maxRanksPerLevel: 3 },
+          mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          magic_item_use: { name: 'Magic Item Use', cost: [0, 2], ranks: 0, maxRanksPerLevel: 3 },
+          scroll_reading: { name: 'Scroll Reading', cost: [0, 2], ranks: 0, maxRanksPerLevel: 3 },
+          major_elemental: { name: 'Major Elemental', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          minor_elemental: { name: 'Minor Elemental', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          empath_base: { name: 'Empath Base', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          first_aid: { name: 'First Aid', cost: [1, 0], ranks: 0, maxRanksPerLevel: 3 }
         }
       },
       ranger: {
@@ -245,34 +245,34 @@ class CharacterCreation {
         manaStat: 'wisdom',
         primeStats: ['wisdom', 'dexterity'],
         skills: {
-          brawling: { name: 'Brawling', cost: [4, 1], ranks: 0 },
-          one_handed_edged: { name: 'Edged Weapons', cost: [3, 1], ranks: 0 },
-          one_handed_blunt: { name: 'Blunt Weapons', cost: [4, 1], ranks: 0 },
-          two_handed: { name: 'Two-Handed Weapons', cost: [6, 2], ranks: 0 },
-          polearm: { name: 'Polearm Weapons', cost: [7, 2], ranks: 0 },
-          ranged: { name: 'Ranged Weapons', cost: [3, 1], ranks: 0 },
-          thrown: { name: 'Thrown Weapons', cost: [3, 1], ranks: 0 },
-          combat_maneuvers: { name: 'Combat Maneuvers', cost: [6, 3], ranks: 0 },
-          shield_use: { name: 'Shield Use', cost: [4, 0], ranks: 0 },
-          armor_use: { name: 'Armor Use', cost: [4, 2], ranks: 0 },
-          climbing: { name: 'Climbing', cost: [2, 0], ranks: 0 },
-          swimming: { name: 'Swimming', cost: [2, 0], ranks: 0 },
-          disarm_traps: { name: 'Disarming Traps', cost: [2, 4], ranks: 0 },
-          pick_locks: { name: 'Picking Locks', cost: [2, 3], ranks: 0 },
-          stalk_and_hide: { name: 'Stalking & Hiding', cost: [2, 1], ranks: 0 },
-          perception: { name: 'Perception', cost: [0, 2], ranks: 0 },
-          pickpocketing: { name: 'Picking Pockets', cost: [2, 3], ranks: 0 },
-          ambush: { name: 'Ambush', cost: [3, 3], ranks: 0 },
-          spell_aim: { name: 'Spell Aiming', cost: [5, 15], ranks: 0 },
+          brawling: { name: 'Brawling', cost: [4, 1], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_edged: { name: 'Edged Weapons', cost: [3, 1], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_blunt: { name: 'Blunt Weapons', cost: [4, 1], ranks: 0, maxRanksPerLevel: 3 },
+          two_handed: { name: 'Two-Handed Weapons', cost: [6, 2], ranks: 0, maxRanksPerLevel: 3 },
+          polearm: { name: 'Polearm Weapons', cost: [7, 2], ranks: 0, maxRanksPerLevel: 3 },
+          ranged: { name: 'Ranged Weapons', cost: [3, 1], ranks: 0, maxRanksPerLevel: 3 },
+          thrown: { name: 'Thrown Weapons', cost: [3, 1], ranks: 0, maxRanksPerLevel: 3 },
+          combat_maneuvers: { name: 'Combat Maneuvers', cost: [6, 3], ranks: 0, maxRanksPerLevel: 3 },
+          shield_use: { name: 'Shield Use', cost: [4, 0], ranks: 0, maxRanksPerLevel: 3 },
+          armor_use: { name: 'Armor Use', cost: [4, 2], ranks: 0, maxRanksPerLevel: 3 },
+          climbing: { name: 'Climbing', cost: [2, 0], ranks: 0, maxRanksPerLevel: 3 },
+          swimming: { name: 'Swimming', cost: [2, 0], ranks: 0, maxRanksPerLevel: 3 },
+          disarm_traps: { name: 'Disarming Traps', cost: [2, 4], ranks: 0, maxRanksPerLevel: 3 },
+          pick_locks: { name: 'Picking Locks', cost: [2, 3], ranks: 0, maxRanksPerLevel: 3 },
+          stalk_and_hide: { name: 'Stalking & Hiding', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 },
+          perception: { name: 'Perception', cost: [0, 2], ranks: 0, maxRanksPerLevel: 3 },
+          pickpocketing: { name: 'Picking Pockets', cost: [2, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ambush: { name: 'Ambush', cost: [3, 3], ranks: 0, maxRanksPerLevel: 3 },
+          spell_aim: { name: 'Spell Aiming', cost: [5, 15], ranks: 0, maxRanksPerLevel: 3 },
           physical_fitness: { name: 'Physical Fitness', cost: [4, 0], ranks: 0, maxRanksPerLevel: 3 },
-          harness_power: { name: 'Harness Power', cost: [0, 5], ranks: 0 },
-          mana_share: { name: 'Mana Sharing', cost: [0, 5], ranks: 0 },
-          magic_item_use: { name: 'Magic Item Use', cost: [0, 5], ranks: 0 },
-          scroll_reading: { name: 'Scroll Reading', cost: [0, 5], ranks: 0 },
-          major_spiritual: { name: 'Major Spiritual', cost: [0, 17], ranks: 0 },
-          minor_spiritual: { name: 'Minor Spiritual', cost: [0, 17], ranks: 0 },
-          ranger_base: { name: 'Ranger Base', cost: [0, 17], ranks: 0 },
-          first_aid: { name: 'First Aid', cost: [2, 1], ranks: 0 }
+          harness_power: { name: 'Harness Power', cost: [0, 5], ranks: 0, maxRanksPerLevel: 3 },
+          mana_share: { name: 'Mana Sharing', cost: [0, 5], ranks: 0, maxRanksPerLevel: 3 },
+          magic_item_use: { name: 'Magic Item Use', cost: [0, 5], ranks: 0, maxRanksPerLevel: 3 },
+          scroll_reading: { name: 'Scroll Reading', cost: [0, 5], ranks: 0, maxRanksPerLevel: 3 },
+          major_spiritual: { name: 'Major Spiritual', cost: [0, 17], ranks: 0, maxRanksPerLevel: 3 },
+          minor_spiritual: { name: 'Minor Spiritual', cost: [0, 17], ranks: 0, maxRanksPerLevel: 3 },
+          ranger_base: { name: 'Ranger Base', cost: [0, 17], ranks: 0, maxRanksPerLevel: 3 },
+          first_aid: { name: 'First Aid', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 }
         }
       },
       paladin: {
@@ -280,33 +280,33 @@ class CharacterCreation {
         manaStat: 'wisdom',
         primeStats: ['wisdom', 'strength'],
         skills: {
-          brawling: { name: 'Brawling', cost: [4, 1], ranks: 0 },
-          one_handed_edged: { name: 'Edged Weapons', cost: [3, 1], ranks: 0 },
-          one_handed_blunt: { name: 'Blunt Weapons', cost: [3, 1], ranks: 0 },
-          two_handed: { name: 'Two-Handed Weapons', cost: [4, 2], ranks: 0 },
-          polearm: { name: 'Polearm Weapons', cost: [5, 2], ranks: 0 },
-          ranged: { name: 'Ranged Weapons', cost: [6, 2], ranks: 0 },
-          thrown: { name: 'Thrown Weapons', cost: [5, 1], ranks: 0 },
-          combat_maneuvers: { name: 'Combat Maneuvers', cost: [5, 4], ranks: 0 },
-          shield_use: { name: 'Shield Use', cost: [3, 0], ranks: 0 },
-          armor_use: { name: 'Armor Use', cost: [3, 0], ranks: 0 },
-          climbing: { name: 'Climbing', cost: [3, 0], ranks: 0 },
-          swimming: { name: 'Swimming', cost: [2, 0], ranks: 0 },
-          disarm_traps: { name: 'Disarming Traps', cost: [2, 5], ranks: 0 },
-          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
-          stalk_and_hide: { name: 'Stalking & Hiding', cost: [4, 4], ranks: 0 },
-          perception: { name: 'Perception', cost: [0, 3], ranks: 0 },
-          pickpocketing: { name: 'Picking Pockets', cost: [4, 4], ranks: 0 },
-          ambush: { name: 'Ambush', cost: [4, 5], ranks: 0 },
-          spell_aim: { name: 'Spell Aiming', cost: [4, 2], ranks: 0 },
+          brawling: { name: 'Brawling', cost: [4, 1], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_edged: { name: 'Edged Weapons', cost: [3, 1], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_blunt: { name: 'Blunt Weapons', cost: [3, 1], ranks: 0, maxRanksPerLevel: 3 },
+          two_handed: { name: 'Two-Handed Weapons', cost: [4, 2], ranks: 0, maxRanksPerLevel: 3 },
+          polearm: { name: 'Polearm Weapons', cost: [5, 2], ranks: 0, maxRanksPerLevel: 3 },
+          ranged: { name: 'Ranged Weapons', cost: [6, 2], ranks: 0, maxRanksPerLevel: 3 },
+          thrown: { name: 'Thrown Weapons', cost: [5, 1], ranks: 0, maxRanksPerLevel: 3 },
+          combat_maneuvers: { name: 'Combat Maneuvers', cost: [5, 4], ranks: 0, maxRanksPerLevel: 3 },
+          shield_use: { name: 'Shield Use', cost: [3, 0], ranks: 0, maxRanksPerLevel: 3 },
+          armor_use: { name: 'Armor Use', cost: [3, 0], ranks: 0, maxRanksPerLevel: 3 },
+          climbing: { name: 'Climbing', cost: [3, 0], ranks: 0, maxRanksPerLevel: 3 },
+          swimming: { name: 'Swimming', cost: [2, 0], ranks: 0, maxRanksPerLevel: 3 },
+          disarm_traps: { name: 'Disarming Traps', cost: [2, 5], ranks: 0, maxRanksPerLevel: 3 },
+          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0, maxRanksPerLevel: 3 },
+          stalk_and_hide: { name: 'Stalking & Hiding', cost: [4, 4], ranks: 0, maxRanksPerLevel: 3 },
+          perception: { name: 'Perception', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          pickpocketing: { name: 'Picking Pockets', cost: [4, 4], ranks: 0, maxRanksPerLevel: 3 },
+          ambush: { name: 'Ambush', cost: [4, 5], ranks: 0, maxRanksPerLevel: 3 },
+          spell_aim: { name: 'Spell Aiming', cost: [4, 2], ranks: 0, maxRanksPerLevel: 3 },
           physical_fitness: { name: 'Physical Fitness', cost: [3, 0], ranks: 0, maxRanksPerLevel: 3 },
-          harness_power: { name: 'Harness Power', cost: [0, 5], ranks: 0 },
-          mana_share: { name: 'Mana Sharing', cost: [0, 15], ranks: 0 },
-          magic_item_use: { name: 'Magic Item Use', cost: [0, 5], ranks: 0 },
-          scroll_reading: { name: 'Scroll Reading', cost: [0, 5], ranks: 0 },
-          minor_spiritual: { name: 'Minor Spiritual', cost: [0, 17], ranks: 0 },
-          paladin_base: { name: 'Paladin Base', cost: [0, 17], ranks: 0 },
-          first_aid: { name: 'First Aid', cost: [1, 1], ranks: 0 }
+          harness_power: { name: 'Harness Power', cost: [0, 5], ranks: 0, maxRanksPerLevel: 3 },
+          mana_share: { name: 'Mana Sharing', cost: [0, 15], ranks: 0, maxRanksPerLevel: 3 },
+          magic_item_use: { name: 'Magic Item Use', cost: [0, 5], ranks: 0, maxRanksPerLevel: 3 },
+          scroll_reading: { name: 'Scroll Reading', cost: [0, 5], ranks: 0, maxRanksPerLevel: 3 },
+          minor_spiritual: { name: 'Minor Spiritual', cost: [0, 17], ranks: 0, maxRanksPerLevel: 3 },
+          paladin_base: { name: 'Paladin Base', cost: [0, 17], ranks: 0, maxRanksPerLevel: 3 },
+          first_aid: { name: 'First Aid', cost: [1, 1], ranks: 0, maxRanksPerLevel: 3 }
         }
       },
       bard: {
@@ -314,34 +314,34 @@ class CharacterCreation {
         manaStat: 'aura',
         primeStats: ['charisma', 'aura'],
         skills: {
-          brawling: { name: 'Brawling', cost: [10, 2], ranks: 0 },
-          one_handed_edged: { name: 'Edged Weapons', cost: [6, 1], ranks: 0 },
-          one_handed_blunt: { name: 'Blunt Weapons', cost: [6, 1], ranks: 0 },
-          two_handed: { name: 'Two-Handed Weapons', cost: [14, 3], ranks: 0 },
-          polearm: { name: 'Polearm Weapons', cost: [14, 3], ranks: 0 },
-          ranged: { name: 'Ranged Weapons', cost: [14, 3], ranks: 0 },
-          thrown: { name: 'Thrown Weapons', cost: [8, 2], ranks: 0 },
-          combat_maneuvers: { name: 'Combat Maneuvers', cost: [12, 8], ranks: 0 },
-          shield_use: { name: 'Shield Use', cost: [13, 0], ranks: 0 },
-          armor_use: { name: 'Armor Use', cost: [14, 0], ranks: 0 },
-          climbing: { name: 'Climbing', cost: [4, 0], ranks: 0 },
-          swimming: { name: 'Swimming', cost: [3, 0], ranks: 0 },
-          disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0 },
-          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
-          stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0 },
-          perception: { name: 'Perception', cost: [0, 3], ranks: 0 },
-          pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0 },
-          ambush: { name: 'Ambush', cost: [15, 10], ranks: 0 },
-          spell_aim: { name: 'Spell Aiming', cost: [2, 1], ranks: 0 },
-          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 2 },
-          harness_power: { name: 'Harness Power', cost: [0, 4], ranks: 0 },
-          mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0 },
-          magic_item_use: { name: 'Magic Item Use', cost: [0, 1], ranks: 0 },
-          scroll_reading: { name: 'Scroll Reading', cost: [0, 2], ranks: 0 },
-          major_elemental: { name: 'Major Elemental', cost: [0, 8], ranks: 0 },
-          minor_elemental: { name: 'Minor Elemental', cost: [0, 8], ranks: 0 },
-          wizard_base: { name: 'Wizard Base', cost: [0, 8], ranks: 0 },
-          first_aid: { name: 'First Aid', cost: [2, 1], ranks: 0 }
+          brawling: { name: 'Brawling', cost: [10, 2], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_edged: { name: 'Edged Weapons', cost: [6, 1], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_blunt: { name: 'Blunt Weapons', cost: [6, 1], ranks: 0, maxRanksPerLevel: 3 },
+          two_handed: { name: 'Two-Handed Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          polearm: { name: 'Polearm Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ranged: { name: 'Ranged Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          thrown: { name: 'Thrown Weapons', cost: [8, 2], ranks: 0, maxRanksPerLevel: 3 },
+          combat_maneuvers: { name: 'Combat Maneuvers', cost: [12, 8], ranks: 0, maxRanksPerLevel: 3 },
+          shield_use: { name: 'Shield Use', cost: [13, 0], ranks: 0, maxRanksPerLevel: 3 },
+          armor_use: { name: 'Armor Use', cost: [14, 0], ranks: 0, maxRanksPerLevel: 3 },
+          climbing: { name: 'Climbing', cost: [4, 0], ranks: 0, maxRanksPerLevel: 3 },
+          swimming: { name: 'Swimming', cost: [3, 0], ranks: 0, maxRanksPerLevel: 3 },
+          disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0, maxRanksPerLevel: 3 },
+          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0, maxRanksPerLevel: 3 },
+          stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0, maxRanksPerLevel: 3 },
+          perception: { name: 'Perception', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ambush: { name: 'Ambush', cost: [15, 10], ranks: 0, maxRanksPerLevel: 3 },
+          spell_aim: { name: 'Spell Aiming', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 },
+          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 3 },
+          harness_power: { name: 'Harness Power', cost: [0, 4], ranks: 0, maxRanksPerLevel: 3 },
+          mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          magic_item_use: { name: 'Magic Item Use', cost: [0, 1], ranks: 0, maxRanksPerLevel: 3 },
+          scroll_reading: { name: 'Scroll Reading', cost: [0, 2], ranks: 0, maxRanksPerLevel: 3 },
+          major_elemental: { name: 'Major Elemental', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          minor_elemental: { name: 'Minor Elemental', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          wizard_base: { name: 'Wizard Base', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          first_aid: { name: 'First Aid', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 }
         }
       },
       sorcerer: {
@@ -349,34 +349,34 @@ class CharacterCreation {
         manaStat: 'aura',
         primeStats: ['aura', 'wisdom'],
         skills: {
-          brawling: { name: 'Brawling', cost: [10, 2], ranks: 0 },
-          one_handed_edged: { name: 'Edged Weapons', cost: [6, 1], ranks: 0 },
-          one_handed_blunt: { name: 'Blunt Weapons', cost: [6, 1], ranks: 0 },
-          two_handed: { name: 'Two-Handed Weapons', cost: [14, 3], ranks: 0 },
-          polearm: { name: 'Polearm Weapons', cost: [14, 3], ranks: 0 },
-          ranged: { name: 'Ranged Weapons', cost: [14, 3], ranks: 0 },
-          thrown: { name: 'Thrown Weapons', cost: [8, 2], ranks: 0 },
-          combat_maneuvers: { name: 'Combat Maneuvers', cost: [12, 8], ranks: 0 },
-          shield_use: { name: 'Shield Use', cost: [13, 0], ranks: 0 },
-          armor_use: { name: 'Armor Use', cost: [15, 0], ranks: 0 },
-          climbing: { name: 'Climbing', cost: [4, 0], ranks: 0 },
-          swimming: { name: 'Swimming', cost: [3, 0], ranks: 0 },
-          disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0 },
-          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0 },
-          stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0 },
-          perception: { name: 'Perception', cost: [0, 3], ranks: 0 },
-          pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0 },
-          ambush: { name: 'Ambush', cost: [15, 10], ranks: 0 },
-          spell_aim: { name: 'Spell Aiming', cost: [3, 1], ranks: 0 },
-          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 2 },
-          harness_power: { name: 'Harness Power', cost: [0, 4], ranks: 0 },
-          mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0 },
-          magic_item_use: { name: 'Magic Item Use', cost: [0, 2], ranks: 0 },
-          scroll_reading: { name: 'Scroll Reading', cost: [0, 1], ranks: 0 },
-          minor_spiritual: { name: 'Minor Spiritual', cost: [0, 8], ranks: 0 },
-          minor_elemental: { name: 'Minor Elemental', cost: [0, 8], ranks: 0 },
-          sorcerer_base: { name: 'Sorcerer Base', cost: [0, 8], ranks: 0 },
-          first_aid: { name: 'First Aid', cost: [2, 1], ranks: 0 }
+          brawling: { name: 'Brawling', cost: [10, 2], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_edged: { name: 'Edged Weapons', cost: [6, 1], ranks: 0, maxRanksPerLevel: 3 },
+          one_handed_blunt: { name: 'Blunt Weapons', cost: [6, 1], ranks: 0, maxRanksPerLevel: 3 },
+          two_handed: { name: 'Two-Handed Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          polearm: { name: 'Polearm Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ranged: { name: 'Ranged Weapons', cost: [14, 3], ranks: 0, maxRanksPerLevel: 3 },
+          thrown: { name: 'Thrown Weapons', cost: [8, 2], ranks: 0, maxRanksPerLevel: 3 },
+          combat_maneuvers: { name: 'Combat Maneuvers', cost: [12, 8], ranks: 0, maxRanksPerLevel: 3 },
+          shield_use: { name: 'Shield Use', cost: [13, 0], ranks: 0, maxRanksPerLevel: 3 },
+          armor_use: { name: 'Armor Use', cost: [15, 0], ranks: 0, maxRanksPerLevel: 3 },
+          climbing: { name: 'Climbing', cost: [4, 0], ranks: 0, maxRanksPerLevel: 3 },
+          swimming: { name: 'Swimming', cost: [3, 0], ranks: 0, maxRanksPerLevel: 3 },
+          disarm_traps: { name: 'Disarming Traps', cost: [2, 6], ranks: 0, maxRanksPerLevel: 3 },
+          pick_locks: { name: 'Picking Locks', cost: [2, 4], ranks: 0, maxRanksPerLevel: 3 },
+          stalk_and_hide: { name: 'Stalking & Hiding', cost: [5, 4], ranks: 0, maxRanksPerLevel: 3 },
+          perception: { name: 'Perception', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          pickpocketing: { name: 'Picking Pockets', cost: [3, 3], ranks: 0, maxRanksPerLevel: 3 },
+          ambush: { name: 'Ambush', cost: [15, 10], ranks: 0, maxRanksPerLevel: 3 },
+          spell_aim: { name: 'Spell Aiming', cost: [3, 1], ranks: 0, maxRanksPerLevel: 3 },
+          physical_fitness: { name: 'Physical Fitness', cost: [8, 0], ranks: 0, maxRanksPerLevel: 3 },
+          harness_power: { name: 'Harness Power', cost: [0, 4], ranks: 0, maxRanksPerLevel: 3 },
+          mana_share: { name: 'Mana Sharing', cost: [0, 3], ranks: 0, maxRanksPerLevel: 3 },
+          magic_item_use: { name: 'Magic Item Use', cost: [0, 2], ranks: 0, maxRanksPerLevel: 3 },
+          scroll_reading: { name: 'Scroll Reading', cost: [0, 1], ranks: 0, maxRanksPerLevel: 3 },
+          minor_spiritual: { name: 'Minor Spiritual', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          minor_elemental: { name: 'Minor Elemental', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          sorcerer_base: { name: 'Sorcerer Base', cost: [0, 8], ranks: 0, maxRanksPerLevel: 3 },
+          first_aid: { name: 'First Aid', cost: [2, 1], ranks: 0, maxRanksPerLevel: 3 }
         }
       }
     };
@@ -413,15 +413,17 @@ class CharacterCreation {
    */
   calculateStartingTPs(stats) {
     // Physical TPs based on physical stats
+    // Formula: 25 + ((Aura + Discipline)/2 + Strength + Constitution + Dexterity + Agility) / 20
     const physicalTPs = 25 + Math.floor(
-      ((stats.aura + stats.discipline) / 2) +
-      (stats.strength + stats.constitution + stats.dexterity + stats.agility) / 20
+      (((stats.aura + stats.discipline) / 2) + 
+       stats.strength + stats.constitution + stats.dexterity + stats.agility) / 20
     );
 
-    // Mental TPs based on mental stats  
+    // Mental TPs based on mental stats
+    // Formula: 25 + ((Aura + Discipline)/2 + Intelligence + Wisdom + Logic + Charisma) / 20
     const mentalTPs = 25 + Math.floor(
-      ((stats.aura + stats.discipline) / 2) +
-      (stats.intelligence + stats.wisdom + stats.logic + stats.charisma) / 20
+      (((stats.aura + stats.discipline) / 2) + 
+       stats.intelligence + stats.wisdom + stats.logic + stats.charisma) / 20
     );
 
     return [physicalTPs, mentalTPs];
@@ -451,7 +453,7 @@ class CharacterCreation {
       race: race,
       class: capitalizedClass,
       level: 1,
-      experience: 0,
+      // Note: experience is stored in attributes.experience.total, not as a top-level field
       attributes: {},
       skills: {},
       tps: [physicalTPs, mentalTPs], // [physical, mental]
@@ -492,7 +494,8 @@ class CharacterCreation {
         name: skillData.name,
         cost: skillData.cost,
         ranks: 0,
-        maxRanksPerLevel: skillData.maxRanksPerLevel || 3 // Default to 3 if not specified
+        ranksThisLevel: 0, // Track ranks trained at current level
+        maxRanksPerLevel: 3  // All skills now have maxRanksPerLevel: 3 universally
       };
     }
 
@@ -510,10 +513,18 @@ class CharacterCreation {
     }
 
     // Get max ranks per level from skill definition
-    const maxRanksPerLevel = skill.maxRanksPerLevel || 3; // Default to 3 if not specified
+    // All skills now have maxRanksPerLevel: 3 universally
+    const maxRanksPerLevel = skill.maxRanksPerLevel || 3;
 
-    // Check how many ranks trained this level
-    const ranksInCurrentLevel = skill.ranks % maxRanksPerLevel;
+    // Check how many ranks trained this level (use stored value, fallback to modulo for legacy)
+    if (skill.ranksThisLevel === undefined) {
+      skill.ranksThisLevel = skill.ranks % maxRanksPerLevel;
+    }
+    // Ensure ranksThisLevel doesn't exceed maxRanksPerLevel (safety check)
+    if (skill.ranksThisLevel > maxRanksPerLevel) {
+      skill.ranksThisLevel = maxRanksPerLevel;
+    }
+    const ranksInCurrentLevel = skill.ranksThisLevel;
     const maxRanksAllowed = maxRanksPerLevel - ranksInCurrentLevel;
     
     // Check if trying to train more than allowed this level
@@ -529,25 +540,13 @@ class CharacterCreation {
     let totalMentalCost = 0;
 
     // Calculate cost for each rank
-    // Cost multiplier depends on max ranks per level:
-    // - 1 rank per level: always 1x
-    // - 2 ranks per level: 1st rank = 1x, 2nd rank = 2x
-    // - 3 ranks per level: 1st rank = 1x, 2nd rank = 2x, 3rd rank = 4x
+    // All skills now have 3 ranks per level: 1st rank = 1x, 2nd rank = 2x, 3rd rank = 4x
     for (let i = 0; i < ranks; i++) {
-      const rankInLevel = ranksInCurrentLevel + i;
+      const rankInLevel = (ranksInCurrentLevel + i) % maxRanksPerLevel;
       let costMultiplier;
-      
-      if (maxRanksPerLevel === 1) {
-        costMultiplier = 1;
-      } else if (maxRanksPerLevel === 2) {
-        if (rankInLevel === 0) costMultiplier = 1;      // 1st rank
-        else costMultiplier = 2;                        // 2nd rank
-      } else {
-        // Default to 3 ranks per level
       if (rankInLevel === 0) costMultiplier = 1;      // 1st rank
       else if (rankInLevel === 1) costMultiplier = 2; // 2nd rank  
       else costMultiplier = 4;                        // 3rd rank
-      }
       
       const physicalCost = basePhysicalCost * costMultiplier;
       const mentalCost = baseMentalCost * costMultiplier;
@@ -604,6 +603,11 @@ class CharacterCreation {
     character.tps[0] = physicalRemaining;
     character.tps[1] = mentalRemaining;
     skill.ranks += ranks;
+    skill.ranksThisLevel = (skill.ranksThisLevel || 0) + ranks; // Increment ranks trained this level
+    // Cap ranksThisLevel at maxPerLevel (safety check)
+    if (skill.ranksThisLevel > maxRanksPerLevel) {
+      skill.ranksThisLevel = maxRanksPerLevel;
+    }
 
     // If Physical Fitness was trained, recalculate HP
     if (skillId === 'physical_fitness') {

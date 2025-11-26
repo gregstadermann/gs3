@@ -66,24 +66,59 @@ module.exports = {
     
     try {
       if (itemType === 'weapon') {
-        baseKey = `weapon_${parts.slice(1, parts.length).join('_')}`;
-        baseDef = BASE_WEAPONS[baseKey];
+        // Check if first part is a number (list index)
+        const weaponList = Object.entries(BASE_WEAPONS).map(([key, def]) => ({
+          key,
+          name: def.name,
+          searchKey: key.replace(/^weapon_/, '')
+        }));
         
+        let searchTerm = parts.slice(1, parts.length).join(' ');
+        
+        // If first part is a number, use it as list index (1-based)
+        if (parts.length >= 2 && /^\d+$/.test(parts[1])) {
+          const listIndex = parseInt(parts[1], 10) - 1; // Convert to 0-based
+          if (listIndex >= 0 && listIndex < weaponList.length) {
+            baseKey = weaponList[listIndex].key;
+            baseDef = BASE_WEAPONS[baseKey];
+          }
+        }
+        
+        // If not found by index, try direct key match
         if (!baseDef) {
-          // Try partial match
-          const matching = Object.keys(BASE_WEAPONS).find(k => 
-            k.includes(parts[1]) || BASE_WEAPONS[k].name.toLowerCase().includes(parts.slice(1, parts.length).join(' '))
+          baseKey = `weapon_${parts.slice(1, parts.length).join('_')}`;
+          baseDef = BASE_WEAPONS[baseKey];
+        }
+        
+        // Try partial match by key or name
+        if (!baseDef) {
+          const searchLower = searchTerm.toLowerCase();
+          const matching = weaponList.find(({ key, name, searchKey }) => 
+            key.toLowerCase().includes(searchLower) || 
+            name.toLowerCase().includes(searchLower) ||
+            searchKey.toLowerCase().includes(searchLower)
           );
           if (matching) {
-            baseKey = matching;
-            baseDef = BASE_WEAPONS[matching];
+            baseKey = matching.key;
+            baseDef = BASE_WEAPONS[baseKey];
           }
         }
         
         if (!baseDef) {
+          // Suggest similar matches
+          const suggestions = weaponList
+            .filter(({ name, searchKey }) => 
+              name.toLowerCase().includes(searchTerm.toLowerCase().substring(0, 3)) ||
+              searchKey.toLowerCase().includes(searchTerm.toLowerCase().substring(0, 3))
+            )
+            .slice(0, 3)
+            .map(({ name, searchKey }) => `"${searchKey}" (${name})`)
+            .join(', ');
+          
+          const suggestionMsg = suggestions ? `\r\nDid you mean: ${suggestions}?` : '';
           return { 
             success: false, 
-            message: `Weapon template '${parts.slice(1).join(' ')}' not found. Use LIST WEAPONS to see available.\r\n` 
+            message: `Weapon template '${searchTerm}' not found. Use LIST WEAPONS to see available.${suggestionMsg}\r\n` 
           };
         }
         
@@ -225,15 +260,17 @@ module.exports = {
       await db.collection('items').insertOne(item);
       
       // Place item in room or inventory
-      const locationTerm = parts[parts.length - 1];
+      // Check for location keywords in the original args (case-insensitive)
+      const locationKeywords = ['here', 'ground', 'room', 'hand', 'hands'];
+      const locationTerm = parts.find(p => locationKeywords.includes(p.toLowerCase()));
       let location = 'inventory'; // Default to inventory
       let locationMsg = 'Placed in your inventory.';
       
-      if (locationTerm === 'here' || locationTerm === 'ground' || locationTerm === 'room') {
+      if (locationTerm && (locationTerm.toLowerCase() === 'here' || locationTerm.toLowerCase() === 'ground' || locationTerm.toLowerCase() === 'room')) {
         // Place in current room
-        location = player.currentRoom;
+        location = player.room || player.currentRoom;
         locationMsg = 'Placed in current room.';
-      } else if (locationTerm === 'hand' || locationTerm === 'hands') {
+      } else if (locationTerm && (locationTerm.toLowerCase() === 'hand' || locationTerm.toLowerCase() === 'hands')) {
         // Place in player's hands
         location = 'inventory';
         locationMsg = 'Placed in your inventory.';

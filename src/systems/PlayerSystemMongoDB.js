@@ -56,7 +56,7 @@ class PlayerSystem {
         race: player.race,
         class: player.class,
         level: player.level,
-        experience: player.experience,
+        // Note: experience is now stored in attributes.experience.total, not as a top-level field
         attributes: player.attributes || {},
         skills: player.skills,
         tps: player.tps,
@@ -70,10 +70,37 @@ class PlayerSystem {
         gender: player.gender
       };
 
-      // Preserve attributes.experience if missing on write
-      if (existing && existing.attributes && (!playerData.attributes || !playerData.attributes.experience)) {
-        playerData.attributes = playerData.attributes || {};
-        playerData.attributes.experience = existing.attributes.experience;
+      // Ensure attributes.experience exists and is properly structured
+      if (!playerData.attributes) {
+        playerData.attributes = {};
+      }
+      if (!playerData.attributes.experience) {
+        // If missing, preserve from existing if available, otherwise initialize
+        if (existing && existing.attributes && existing.attributes.experience) {
+          playerData.attributes.experience = existing.attributes.experience;
+        } else {
+          playerData.attributes.experience = { total: 0, field: 0 };
+        }
+      }
+      
+      // Enforce field experience cap at pool capacity (safety check before saving)
+      if (playerData.attributes.experience) {
+        try {
+          const ExperienceSystem = require('./ExperienceSystem');
+          const expSystem = new ExperienceSystem();
+          const capacity = expSystem.getFieldPoolCapacity(player);
+          const currentField = Math.trunc(playerData.attributes.experience.field || 0);
+          if (currentField > capacity) {
+            console.log(`[SAVE PLAYER] Capping field experience for ${username}: ${currentField} -> ${capacity}`);
+            playerData.attributes.experience.field = capacity;
+            // Also update the player object in memory
+            if (player.attributes && player.attributes.experience) {
+              player.attributes.experience.field = capacity;
+            }
+          }
+        } catch (error) {
+          console.warn(`[SAVE PLAYER] Could not enforce field experience cap for ${username}:`, error.message);
+        }
       }
       
       await collection.replaceOne(
@@ -119,12 +146,49 @@ class PlayerSystem {
 
         ensurePhysicalFitnessSkill(player);
         
+        // Recalculate level based on current experience (in case player leveled up while offline)
+        try {
+          const ExperienceSystem = require('../systems/ExperienceSystem');
+          const expSystem = new ExperienceSystem();
+          const totalExp = Math.trunc(player?.attributes?.experience?.total || 0);
+          const calculatedLevel = expSystem.getLevelForTotalExp(totalExp).level;
+          const storedLevel = player.level || 1;
+          
+          if (calculatedLevel > storedLevel) {
+            console.log(`[LOAD PLAYER] ${username}: Level mismatch detected. Stored: ${storedLevel}, Calculated: ${calculatedLevel}. Updating level.`);
+            player.level = calculatedLevel;
+            // Note: We don't award TPs here since this is just a load - TPs should have been awarded during the actual level-up
+          } else if (!player.level) {
+            // If no level stored, set it based on experience
+            player.level = calculatedLevel || 1;
+          }
+        } catch (error) {
+          console.warn(`[LOAD PLAYER] Could not recalculate level for ${username}:`, error.message);
+          if (!player.level) player.level = 1;
+        }
+        
         // Recalculate health to ensure it's correct (fixes old hardcoded values)
         try {
           const HealthCalculation = require('../services/healthCalculation');
           HealthCalculation.recalculateHealth(player);
         } catch (error) {
           console.warn(`[LOAD PLAYER] Could not recalculate health for ${username}:`, error.message);
+        }
+        
+        // Enforce field experience cap at pool capacity
+        try {
+          const ExperienceSystem = require('./ExperienceSystem');
+          const expSystem = new ExperienceSystem();
+          if (player.attributes && player.attributes.experience) {
+            const capacity = expSystem.getFieldPoolCapacity(player);
+            const currentField = Math.trunc(player.attributes.experience.field || 0);
+            if (currentField > capacity) {
+              console.log(`[LOAD PLAYER] Capping field experience for ${username}: ${currentField} -> ${capacity}`);
+              player.attributes.experience.field = capacity;
+            }
+          }
+        } catch (error) {
+          console.warn(`[LOAD PLAYER] Could not enforce field experience cap for ${username}:`, error.message);
         }
         
         // Add to memory cache
@@ -299,7 +363,8 @@ function ensurePhysicalFitnessSkill(character) {
     const pfSkill = character.skills.physical_fitness;
     pfSkill.name = pfSkill.name || classPhysicalFitness?.name || 'Physical Fitness';
     pfSkill.cost = pfSkill.cost || classPhysicalFitness?.cost || [3, 0];
-    pfSkill.maxRanksPerLevel = pfSkill.maxRanksPerLevel ?? classPhysicalFitness?.maxRanksPerLevel ?? 3;
+    // All skills now have maxRanksPerLevel: 3 universally
+    pfSkill.maxRanksPerLevel = 3;
     return;
   }
 
@@ -309,7 +374,7 @@ function ensurePhysicalFitnessSkill(character) {
     name: classPhysicalFitness?.name || 'Physical Fitness',
     cost: classPhysicalFitness?.cost || [3, 0],
     ranks: legacyPTRanks || classPhysicalFitness?.ranks || 0,
-    maxRanksPerLevel: classPhysicalFitness?.maxRanksPerLevel ?? 3
+    maxRanksPerLevel: 3  // All skills now have maxRanksPerLevel: 3 universally
   };
 }
 

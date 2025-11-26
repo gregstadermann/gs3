@@ -1,5 +1,7 @@
 'use strict';
 
+const fs = require('fs');
+const path = require('path');
 const CharacterCreationManager = require('./CharacterCreationManager');
 
 /**
@@ -18,6 +20,35 @@ class LoginFlow {
       playerSystem, 
       accountManager
     );
+    this._bannerCache = null; // Cache banner to avoid reading file on every login
+  }
+
+  /**
+   * Get the banner text from file (cached)
+   */
+  getBanner() {
+    // Return cached banner if available
+    if (this._bannerCache !== null) {
+      return this._bannerCache;
+    }
+
+    try {
+      const bannerPath = path.join(__dirname, '../../banner');
+      if (fs.existsSync(bannerPath)) {
+        const banner = fs.readFileSync(bannerPath, 'utf8');
+        // Cache the banner (add newline if missing)
+        this._bannerCache = banner.endsWith('\n') || banner.endsWith('\r\n') 
+          ? banner 
+          : banner + '\r\n';
+        return this._bannerCache;
+      }
+    } catch (error) {
+      console.warn('Could not load banner file:', error.message);
+    }
+    
+    // Cache null to avoid repeated file system checks
+    this._bannerCache = '';
+    return null;
   }
 
   /**
@@ -29,6 +60,12 @@ class LoginFlow {
       account: null,
       attempts: 0
     });
+
+    // Display banner if available
+    const banner = this.getBanner();
+    if (banner) {
+      this.sendMessage(connection, banner);
+    }
 
     this.sendMessage(connection, 'Welcome to GS3!\r\n');
     this.sendMessage(connection, 'Welcome, what is your account username?\r\n');

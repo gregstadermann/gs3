@@ -927,7 +927,7 @@ class CharacterCreationManager {
           name: classPhysicalFitness?.name || 'Physical Fitness',
           cost: classPhysicalFitness?.cost || [3, 0],
           ranks: classPhysicalFitness?.ranks || 0,
-          maxRanksPerLevel: classPhysicalFitness?.maxRanksPerLevel || 3
+          maxRanksPerLevel: 3  // All skills now have maxRanksPerLevel: 3 universally
         };
       }
 
@@ -955,45 +955,8 @@ class CharacterCreationManager {
             return skill.maxRanksPerLevel;
           }
           
-          // Fallback to hardcoded values for skills that don't have maxRanksPerLevel defined
-          const maxRanks = {
-            // Weapon Skills
-            one_handed_edged: 1,
-            one_handed_blunt: 1,
-            two_handed: 3,
-            polearm: 3,
-            ranged: 3,
-            thrown: 2,
-            brawling: 2,
-            // Combat Skills
-            combat_maneuvers: 8,
-            shield_use: 0,
-            armor_use: 0,
-            // General Skills
-            climbing: 0,
-            swimming: 0,
-            disarm_traps: 6,
-            pick_locks: 4,
-            stalk_and_hide: 4,
-            perception: 3,
-            ambush: 10,
-            first_aid: 1,
-            // Magic Skills
-            spell_aim: 1,
-            mana_share: 3,
-            magic_item_use: 1,
-            scroll_reading: 2,
-            major_elemental: 8,
-            minor_elemental: 8,
-            wizard_base: 8,
-            cleric_base: 8,
-            empath_base: 8,
-            sorcerer_base: 8,
-            ranger_base: 8,
-            paladin_base: 8,
-            bard_base: 8
-          };
-          return maxRanks[skillId] || 2; // Default if not found
+          // All skills now have maxRanksPerLevel: 3 universally
+          return 3;
         };
         
         const formatSkill = (name, ranks, cost, number, maxPerLevel, skillId) => {
@@ -1002,19 +965,11 @@ class CharacterCreationManager {
           const ranksThisLevel = maxPerLevel > 0 ? ranks % maxPerLevel : 0;
           
           // Calculate what the next rank would cost based on current ranks
+          // All skills now have 3 ranks per level
           let costMultiplier;
-          
-          if (maxPerLevel === 1) {
-            costMultiplier = 1; // Always 1x for 1 rank per level
-          } else if (maxPerLevel === 2) {
-            if (ranksThisLevel === 0) costMultiplier = 1;      // Next is 1st rank
-            else costMultiplier = 2;                        // Next is 2nd rank
-          } else {
-            // Default to 3 ranks per level
-            if (ranksThisLevel === 0) costMultiplier = 1;      // Next is 1st rank
-            else if (ranksThisLevel === 1) costMultiplier = 2; // Next is 2nd rank  
+          if (ranksThisLevel === 0) costMultiplier = 1;      // Next is 1st rank
+          else if (ranksThisLevel === 1) costMultiplier = 2; // Next is 2nd rank  
           else costMultiplier = 4;                        // Next is 3rd rank
-          }
           
           const nextPhysicalCost = cost[0] * costMultiplier;
           const nextMentalCost = cost[1] * costMultiplier;
@@ -1145,7 +1100,7 @@ class CharacterCreationManager {
         name: classSkills[skillId].name,
         cost: classSkills[skillId].cost,
         ranks: 0,
-        maxRanksPerLevel: classSkills[skillId].maxRanksPerLevel || 3 // Default to 3 if not specified
+        maxRanksPerLevel: 3  // All skills now have maxRanksPerLevel: 3 universally
       };
     }
     
@@ -1169,10 +1124,12 @@ class CharacterCreationManager {
     const skill = characterData.skills[skillId];
     
     // Get max ranks per level from skill definition
-    const maxRanksPerLevel = skill.maxRanksPerLevel || 3; // Default to 3 if not specified
+    // All skills now have maxRanksPerLevel: 3 universally
+    const maxRanksPerLevel = skill.maxRanksPerLevel || 3;
     
     // Check how many ranks trained this level
-    const ranksInCurrentLevel = skill.ranks % maxRanksPerLevel;
+    // Use ranksThisLevel if available, otherwise calculate from total ranks
+    const ranksInCurrentLevel = skill.ranksThisLevel !== undefined ? skill.ranksThisLevel : (skill.ranks % maxRanksPerLevel);
     const maxRanksAllowed = maxRanksPerLevel - ranksInCurrentLevel;
     
     // Check if trying to train more than allowed this level
@@ -1188,25 +1145,13 @@ class CharacterCreationManager {
     let totalMentalCost = 0;
 
     // Calculate cost for each rank
-    // Cost multiplier depends on max ranks per level:
-    // - 1 rank per level: always 1x
-    // - 2 ranks per level: 1st rank = 1x, 2nd rank = 2x
-    // - 3 ranks per level: 1st rank = 1x, 2nd rank = 2x, 3rd rank = 4x
+    // All skills now have 3 ranks per level: 1st rank = 1x, 2nd rank = 2x, 3rd rank = 4x
     for (let i = 0; i < ranksToTrain; i++) {
-      const rankInLevel = ranksInCurrentLevel + i;
+      const rankInLevel = (ranksInCurrentLevel + i) % maxRanksPerLevel;
       let costMultiplier;
-      
-      if (maxRanksPerLevel === 1) {
-        costMultiplier = 1;
-      } else if (maxRanksPerLevel === 2) {
-        if (rankInLevel === 0) costMultiplier = 1;      // 1st rank
-        else costMultiplier = 2;                        // 2nd rank
-      } else {
-        // Default to 3 ranks per level
       if (rankInLevel === 0) costMultiplier = 1;      // 1st rank
       else if (rankInLevel === 1) costMultiplier = 2; // 2nd rank  
       else costMultiplier = 4;                        // 3rd rank
-      }
       
       const physicalCost = basePhysicalCost * costMultiplier;
       const mentalCost = baseMentalCost * costMultiplier;
@@ -1259,6 +1204,11 @@ class CharacterCreationManager {
     characterData.tps[0] = physicalRemaining;
     characterData.tps[1] = mentalRemaining;
     skill.ranks += ranksToTrain;
+    skill.ranksThisLevel = (skill.ranksThisLevel || 0) + ranksToTrain; // Increment ranks trained this level
+    // Cap ranksThisLevel at maxPerLevel (safety check)
+    if (skill.ranksThisLevel > maxRanksPerLevel) {
+      skill.ranksThisLevel = maxRanksPerLevel;
+    }
 
     // If Physical Fitness was trained, recalculate HP
     if (skillId === 'physical_fitness') {
@@ -1333,7 +1283,7 @@ class CharacterCreationManager {
           race: state.characterData.race,
           class: capitalizedClass,
           level: 1,
-          experience: 0,
+          // Note: experience is stored in attributes.experience.total, not as a top-level field
           attributes: state.characterData.attributes,
           tps: state.characterData.tps,
           skills: state.characterData.skills,

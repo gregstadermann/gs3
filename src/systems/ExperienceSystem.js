@@ -34,8 +34,10 @@ class ExperienceSystem {
 
   // Field experience pool capacity = 800 + LOG + DIS
   getFieldPoolCapacity(player) {
-    const log = Number(player?.attributes?.stats?.LOG ?? player?.attributes?.LOG ?? 0) || 0;
-    const dis = Number(player?.attributes?.stats?.DIS ?? player?.attributes?.DIS ?? 0) || 0;
+    // Use getRawStat to properly extract logic and discipline stats
+    const { getRawStat } = require('../services/statBonus');
+    const log = getRawStat(player, 'logic');
+    const dis = getRawStat(player, 'discipline');
     return 800 + Math.trunc(log) + Math.trunc(dis);
   }
 
@@ -121,7 +123,15 @@ class ExperienceSystem {
     if (!player.attributes) player.attributes = {};
     if (!player.attributes.experience) player.attributes.experience = {};
     const total = Math.trunc(player.attributes.experience.total || 0);
-    const field = Math.trunc(player.attributes.experience.field || 0);
+    let field = Math.trunc(player.attributes.experience.field || 0);
+    
+    // Enforce field experience cap at pool capacity
+    const capacity = this.getFieldPoolCapacity(player);
+    if (field > capacity) {
+      field = capacity;
+      player.attributes.experience.field = capacity;
+    }
+    
     if (field <= 0) return { moved: 0, total, field };
 
     const perPulse = this.computeAbsorbPerPulse(player, room);

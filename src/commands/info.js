@@ -20,8 +20,9 @@ module.exports = {
     let message = '';
     
     // Header
+    const totalExp = Math.trunc(player?.attributes?.experience?.total || 0);
     message += `Name: ${player.name}  Race: ${raceName}  Profession: ${professionName}\r\n`;
-    message += `Gender: ${genderName}    Age: ${player.age || 0}    Expr: ${player.experience || 0}    Level:  ${player.level || 0}\r\n\r\n`;
+    message += `Gender: ${genderName}    Age: ${player.age || 0}    Expr: ${totalExp}    Level:  ${player.level || 0}\r\n\r\n`;
     
     // Stats table
     message += '                  Normal (Bonus)\r\n';

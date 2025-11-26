@@ -48,18 +48,62 @@ module.exports = {
       }
       
       // Check NPC definition for skin info
-      const npcDefinitionId = corpse.metadata?.npcDefinitionId;
+      let npcDefinitionId = corpse.metadata?.npcDefinitionId;
+      
+      // If not found, try to extract from corpse name or keywords
       if (!npcDefinitionId) {
+        // Try to find NPC definition by matching name/keywords
+        const corpseName = corpse.metadata?.npcName || corpse.name || '';
+        const searchTerm = corpseName.toLowerCase().replace(/\s+which\s+appears\s+dead/gi, '').trim();
+        
+        // Try common NPC ID patterns
+        const possibleIds = [
+          searchTerm.replace(/\s+/g, '-'),
+          searchTerm.replace(/\s+/g, '_'),
+          'giant-rat', // Common fallback for giant rats
+          'giant_rat'
+        ];
+        
+        for (const possibleId of possibleIds) {
+          const testDef = await db.collection('npcs').findOne({ id: possibleId });
+          if (testDef && testDef.metadata?.skin) {
+            npcDefinitionId = possibleId;
+            console.log(`[SKIN] Found NPC definition by search: ${possibleId}`);
+            break;
+          }
+        }
+      }
+      
+      if (!npcDefinitionId) {
+        console.log(`[SKIN] No NPC definition ID found for corpse: ${corpse.id}, metadata:`, corpse.metadata);
         return { success: false, message: "You cannot skin this creature.\r\n" };
       }
       
       // Fetch NPC definition to get skin information
       const npcDefinition = await db.collection('npcs').findOne({ id: npcDefinitionId });
-      if (!npcDefinition || !npcDefinition.metadata?.skin) {
+      if (!npcDefinition) {
+        console.log(`[SKIN] NPC definition not found: ${npcDefinitionId}`);
         return { success: false, message: "You cannot skin this creature.\r\n" };
       }
       
-      const skinInfo = npcDefinition.metadata.skin;
+      // Check for skin info in metadata.skin (new format) or top-level skin (old format)
+      let skinInfo = npcDefinition.metadata?.skin;
+      
+      // Fallback: if old format (top-level skin string), convert to new format
+      if (!skinInfo && npcDefinition.skin) {
+        const skinName = typeof npcDefinition.skin === 'string' ? npcDefinition.skin : 'pelt';
+        skinInfo = {
+          name: skinName,
+          keyword: 'pelt',
+          description: `A ${skinName} taken from ${npcDefinition.name || 'the creature'}.`
+        };
+        console.log(`[SKIN] Using legacy skin format for ${npcDefinitionId}, converted to:`, skinInfo);
+      }
+      
+      if (!skinInfo) {
+        console.log(`[SKIN] NPC definition has no skin info: ${npcDefinitionId}`);
+        return { success: false, message: "You cannot skin this creature.\r\n" };
+      }
 
       // Choose tool: by hand or named weapon
       let tool = null;

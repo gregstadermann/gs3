@@ -38,8 +38,8 @@ async function createGiantRatNPCs() {
       attributes: {
         level: 1,
         health: {
-          current: 28,
-          max: 28
+          current: 20,
+          max: 20
         },
         mana: {
           current: 0,
@@ -132,10 +132,23 @@ async function createGiantRatNPCs() {
       
       // Loot/Skin
       lootTable: 'giant-rat',
-      skin: 'rat pelt',
       
       // Metadata
-      areaId: 'wl-catacombs', // Primary area
+      metadata: {
+        areaId: 'wl-catacombs', // Primary area
+        skin: {
+          name: 'giant rat pelt',
+          keyword: 'pelt',
+          description: 'A pelt taken from a giant rat, still warm and slightly matted with blood.'
+        },
+        dropsSilver: false, // Giant rats don't drop coins
+        wealth: {
+          silver: 0 // No silver drops
+        },
+        silverTier: 'normal',
+        gemTier: 'none'
+      },
+      areaId: 'wl-catacombs', // Primary area (also at top level for compatibility)
       status: 'alive',
       createdAt: new Date().toISOString()
     };

@@ -25,7 +25,7 @@ module.exports = {
       };
     }
     
-    const listType = args.trim().toLowerCase();
+    const listType = (args && args.length > 0 ? args.join(' ') : '').trim().toLowerCase();
     
     let items = [];
     let title = '';
